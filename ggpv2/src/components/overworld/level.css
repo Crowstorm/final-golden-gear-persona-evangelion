@@ -1,0 +1,9 @@
+.level{
+    border: 1px solid red;
+    box-sizing: border-box;
+    height:800px;
+    width:800px;
+    float: right;
+    
+    position: relative;
+}
