@@ -7,3 +7,10 @@
     
     position: relative;
 }
+
+.gridCell{
+    height: 32;
+    width: 32;
+    box-sizing: 'border-box';
+    border: 1px solid blue;
+}
