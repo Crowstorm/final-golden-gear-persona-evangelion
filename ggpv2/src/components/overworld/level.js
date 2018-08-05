@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import './level.module.css';
+import './level.css';
 
 //grid generator
 //levels
