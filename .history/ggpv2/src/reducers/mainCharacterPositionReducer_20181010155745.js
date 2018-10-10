@@ -1,8 +1,8 @@
 // import {MOVE_CHAR, MOVE_CHAR_UP, MOVE_CHAR_DOWN, MOVE_CHAR_RIGHT, MOVE_CHAR_LEFT}  from '../actions/types';
-import front from '../assets/sprites/mainCharFront.gif'
-import back from '../assets/sprites/mainCharBack.gif'
-import left from '../assets/sprites/mainCharLeft.gif'
-import right from '../assets/sprites/mainCharRight.gif'
+import front from '../assets/front.gif'
+import back from '../assets/back.gif'
+import left from '../assets/left.gif'
+import right from '../assets/right.gif'
 
 let initial_state = {
     x: 12,

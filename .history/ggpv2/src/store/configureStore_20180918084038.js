@@ -1,8 +1,8 @@
 import { createStore,  applyMiddleware, compose } from 'redux';
-import ReduxPromise from 'redux-promise';
-import thunk from 'redux-thunk';
+import ReduxPromise from 'redux-promise'
+import thunk from 'redux-thunk'
 
-import reducers from './reducers';
+import reducers from './reducers'
 
 
 
