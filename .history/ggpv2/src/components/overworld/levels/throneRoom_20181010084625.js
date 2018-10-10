@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import styles from './css/levels.css';
+import styles from '../level.css';
 
 import { MAIN_GRID } from '../grids/grids';
 

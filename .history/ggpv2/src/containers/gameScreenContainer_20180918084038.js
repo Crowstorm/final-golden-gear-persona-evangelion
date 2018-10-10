@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Level from '../components/overworld/levelRenderer';
+import Level from '../components/overworld/level';
 import OverworldInterface from '../components/overworld/overworldInterface';
 
 class GameScreenContainer extends React.Component {

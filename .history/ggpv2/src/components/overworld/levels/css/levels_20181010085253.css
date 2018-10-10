@@ -1,0 +1,14 @@
+.gridCell{
+    height: 32px;
+    width: 32px;
+    /* box-sizing: 'border-box';
+    border: 1px solid blue; */
+}
+
+.throneRoom{
+    background-image: url("../../assets/levelBackgrounds/throneRoom.jpg");
+    box-sizing: border-box;
+    height:800px;
+    width:800px;
+    float: right;
+}
