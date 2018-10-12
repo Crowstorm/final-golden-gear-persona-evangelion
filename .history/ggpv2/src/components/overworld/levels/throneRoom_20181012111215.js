@@ -23,13 +23,17 @@ class ThroneRoom extends React.Component {
         })
     };
 
+    //Funkcja "nasluchujaca" klikniesz klawiszem. Gora dol, lewo prawo
     handleKeyDown = (e) => {
+        console.log(e);
+        var d = new Date();
+        console.log(d);
         switch (e.key) {
             case "ArrowUp": {
                 let err = [];
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
-                    if (this.props.position.y + 1 === cell.y && this.props.position.x === cell.x) {
+                    if (this.props.charPosition.y + 1 === cell.y && this.props.charPosition.x === cell.x) {
                         console.log('blocked')
                         err.push('blocked');
                     }
@@ -43,7 +47,7 @@ class ThroneRoom extends React.Component {
                 let err = [];
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
-                    if (this.props.position.y - 1 === cell.y && this.props.position.x === cell.x) {
+                    if (this.props.charPosition.y - 1 === cell.y && this.props.charPosition.x === cell.x) {
                         console.log('blocked')
                         err.push('blocked');
                     }
@@ -57,7 +61,7 @@ class ThroneRoom extends React.Component {
                 let err = [];
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
-                    if (this.props.position.y === cell.y && this.props.position.x - 1 === cell.x) {
+                    if (this.props.charPosition.y === cell.y && this.props.charPosition.x - 1 === cell.x) {
                         console.log('blocked')
                         err.push('blocked');
                     }
@@ -71,7 +75,7 @@ class ThroneRoom extends React.Component {
                 let err = [];
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
-                    if (this.props.position.y === cell.y && this.props.position.x + 1 === cell.x) {
+                    if (this.props.charPosition.y === cell.y && this.props.charPosition.x + 1 === cell.x) {
                         console.log('blocked')
                         err.push('blocked');
                     }
@@ -88,7 +92,7 @@ class ThroneRoom extends React.Component {
 
 
     componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyDown);
+
     }
 
 

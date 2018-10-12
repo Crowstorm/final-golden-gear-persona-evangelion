@@ -23,7 +23,11 @@ class ThroneRoom extends React.Component {
         })
     };
 
+    //Funkcja "nasluchujaca" klikniesz klawiszem. Gora dol, lewo prawo
     handleKeyDown = (e) => {
+        console.log(e);
+        var d = new Date();
+        console.log(d);
         switch (e.key) {
             case "ArrowUp": {
                 let err = [];
@@ -88,7 +92,7 @@ class ThroneRoom extends React.Component {
 
 
     componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyDown);
+
     }
 
 

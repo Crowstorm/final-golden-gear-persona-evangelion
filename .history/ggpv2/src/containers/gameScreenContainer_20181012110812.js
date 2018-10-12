@@ -26,10 +26,7 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        moveCharUp: () => {dispatch(moveCharUp())},
-        moveCharDown: () => { dispatch(moveCharDown())},
-        moveCharRight: () => {dispatch(moveCharRight())},
-        moveCharLeft: () => {dispatch(moveCharLeft())},
+
     }
 }
 
