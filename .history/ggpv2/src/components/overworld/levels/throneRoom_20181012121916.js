@@ -10,7 +10,7 @@ class ThroneRoom extends React.Component {
 
     renderPosition = (cell) => {
         if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
-            return <img id="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+            return <img src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
         }
     }
 

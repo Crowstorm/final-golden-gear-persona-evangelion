@@ -10,7 +10,7 @@ class ThroneRoom extends React.Component {
 
     renderPosition = (cell) => {
         if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
-            return <img id="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+            return <img src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
         }
     }
 
@@ -30,6 +30,7 @@ class ThroneRoom extends React.Component {
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
                     if (this.props.position.y + 1 === cell.y && this.props.position.x === cell.x) {
+                        console.log('blocked')
                         err.push('blocked');
                     }
                 })
@@ -43,6 +44,7 @@ class ThroneRoom extends React.Component {
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
                     if (this.props.position.y - 1 === cell.y && this.props.position.x === cell.x) {
+                        console.log('blocked')
                         err.push('blocked');
                     }
                 })
@@ -56,6 +58,7 @@ class ThroneRoom extends React.Component {
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
                     if (this.props.position.y === cell.y && this.props.position.x - 1 === cell.x) {
+                        console.log('blocked')
                         err.push('blocked');
                     }
                 })
@@ -69,6 +72,7 @@ class ThroneRoom extends React.Component {
 
                 _.forEach(BLOCKED_ThroneRoom, cell => {
                     if (this.props.position.y === cell.y && this.props.position.x + 1 === cell.x) {
+                        console.log('blocked')
                         err.push('blocked');
                     }
                 })
@@ -84,7 +88,7 @@ class ThroneRoom extends React.Component {
 
 
     componentDidMount() {
-        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
+        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 500));
     }
 
 
