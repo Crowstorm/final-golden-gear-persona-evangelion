@@ -17,7 +17,6 @@ export default (state = initial_state, action) => {
             case 'MOVE_CHAR_UP': {
                 draft.y += 1;
                 draft.model = back;
-                break;
                 // return {
                 //     ...state,
                 //     y: state.y + 1,
@@ -27,7 +26,6 @@ export default (state = initial_state, action) => {
             case 'MOVE_CHAR_DOWN': {
                 draft.y -= 1;
                 draft.model = front;
-                break;
                 // return {
                 //     ...state,
                 //     y: state.y - 1,
@@ -37,7 +35,6 @@ export default (state = initial_state, action) => {
             case 'MOVE_CHAR_RIGHT': {
                 draft.x += 1;
                 draft.model = right;
-                break;
                 // return {
                 //     ...state,
                 //     x: state.x + 1,
@@ -47,22 +44,21 @@ export default (state = initial_state, action) => {
             case 'MOVE_CHAR_LEFT': {
                 draft.x -= 1;
                 draft.model = left;
-                break;
                 // return {
                 //     ...state,
                 //     x: state.x - 1,
                 //     model: left
                 // }
             }
-            // case 'SET_CHARACTER_POSITION': {
-            //     return {
-            //         ...state,
-            //         x: action.x,
-            //         y: action.y
-            //     }
-            // }
+            case 'SET_CHARACTER_POSITION': {
+                return {
+                    ...state,
+                    x: action.x,
+                    y: action.y
+                }
+            }
             default: {
-                return draft;
+                return state;
             }
         }
     });
