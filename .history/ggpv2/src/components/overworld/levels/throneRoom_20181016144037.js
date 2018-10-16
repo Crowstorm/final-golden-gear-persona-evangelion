@@ -29,6 +29,11 @@ class ThroneRoom extends React.Component {
         characterMovement(this.props,e, BLOCKED_ThroneRoom);
     }
 
+    // renderMainGrid = () =>{
+    //     characterPosition()
+
+    // }
+
     componentDidMount() {
         document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
 

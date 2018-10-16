@@ -10,20 +10,21 @@ import {characterMovement, characterPosition} from '../levelFunctions/levelFunct
 
 class ThroneRoom extends React.Component {
 
-    renderPosition = (cell) => {
-        if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
-            return <img id="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
-        }
-    }
+    // renderPosition = (cell) => {
+    //     if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
+    //         return <img id="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+    //     }
+    // }
 
-    renderMainGrid = () => {
-        return _.map(MAIN_GRID, row => {
-            return <div key={`row${row[0].y}`} className="row" style={{ margin: 0 }}> {_.map(row, cell => {
-                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)}  </div>
-            })
-            } </div>
-        })
-    };
+    // renderMainGrid = () => {
+    //     return _.map(MAIN_GRID, row => {
+    //         return <div key={`row${row[0].y}`} className="row" style={{ margin: 0 }}> {_.map(row, cell => {
+    //             return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)}  </div>
+    //         })
+    //         } </div>
+    //     })
+    // };
+    characterPosition()
 
     handleKeyDown = (e) =>{
         characterMovement(this.props,e, BLOCKED_ThroneRoom);
@@ -31,7 +32,6 @@ class ThroneRoom extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
-
     }
 
     render() {

@@ -6,7 +6,7 @@ import './css/levels.css';
 import { MAIN_GRID } from '../grids/grids';
 import {BLOCKED_ThroneRoom} from '../grids/blockedLevelGrids';
 
-import {characterMovement, characterPosition} from '../levelFunctions/levelFunctions';
+import {characterMovement} from '../levelFunctions/levelFunctions';
 
 class ThroneRoom extends React.Component {
 
@@ -31,7 +31,6 @@ class ThroneRoom extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
-
     }
 
     render() {
