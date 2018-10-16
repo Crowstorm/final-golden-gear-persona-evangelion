@@ -32,8 +32,9 @@ class ThroneRoom extends React.Component {
     }
 
     componentDidMount() {
+        const img = { height: '35px' }
         document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
-        document.getElementById('d12_17').innerHTML = `<img src=${king} />`
+        document.getElementById('d12_17').innerHTML = `<img style={{height: '35px', object-fit: 'cover'}}  src=${king} />`
     }
 
     render() {

@@ -8,7 +8,7 @@ import {BLOCKED_ThroneRoom} from '../grids/blockedLevelGrids';
 
 import {characterMovement, characterPosition} from '../levelFunctions/levelFunctions';
 
-import king from '../../../assets/sprites/npc/king_overworld.png';
+import king from '../../../assets/sprites/npc/king.png';
 
 class ThroneRoom extends React.Component {
 
