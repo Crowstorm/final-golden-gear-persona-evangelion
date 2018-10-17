@@ -8,7 +8,7 @@ class Dialogue extends React.Component {
                 <div className="d-flex flex-row" style={{border: "1px solid black"}}>
                     <img src="https://s3.envato.com/files/196880359/Cartoon%20King.jpg" style={{ height: "150px" }} />
                     <div className="dialogue_text d-flex flex-column align-items-center">
-                        <p>Poważny epicki dialog</p>
+                        <p>Smierdze kasza</p>
                     </div>
                 </div>
                 <button onClick={this.props.toggleDialogueState}>Wypad</button>

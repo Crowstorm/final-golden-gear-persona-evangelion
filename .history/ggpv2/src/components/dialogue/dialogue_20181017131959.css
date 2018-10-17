@@ -1,0 +1,16 @@
+.dialogue{
+    border: 1px solid teal;
+    position: absolute;
+    background-color: white;
+    margin-top: 450px;
+    margin-left: 160px;
+    width: 600px;
+    height: 150px;
+}
+
+.dialogue_text{
+    width: 430px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid blue;
+}

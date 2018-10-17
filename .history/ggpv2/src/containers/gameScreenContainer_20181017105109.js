@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {moveCharDown, moveCharUp, moveCharLeft, moveCharRight} from '../store/actions/characterMovement';
-import {toggleDialogueState} from '../store/actions/modals';
+import {toggleModalVisibility} from '../store/actions/modals';
 
 import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface';
@@ -27,13 +27,10 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        //movement
         moveCharUp: () => {dispatch(moveCharUp())},
         moveCharDown: () => { dispatch(moveCharDown())},
         moveCharRight: () => {dispatch(moveCharRight())},
         moveCharLeft: () => {dispatch(moveCharLeft())},
-        //modals
-        toggleDialogueState: () =>{dispatch(toggleDialogueState());}
     }
 }
 

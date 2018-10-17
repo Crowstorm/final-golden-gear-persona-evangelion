@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
         moveCharRight: () => {dispatch(moveCharRight())},
         moveCharLeft: () => {dispatch(moveCharLeft())},
         //modals
-        toggleDialogueState: () =>{dispatch(toggleDialogueState());}
+        toggleModalState: () =>{dispatch(toggleModalState());}
     }
 }
 

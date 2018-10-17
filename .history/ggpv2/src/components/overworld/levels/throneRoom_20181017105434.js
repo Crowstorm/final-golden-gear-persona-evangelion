@@ -4,13 +4,11 @@ import _ from 'lodash';
 import './css/levels.css';
 
 import { MAIN_GRID } from '../grids/grids';
-import { BLOCKED_ThroneRoom } from '../grids/blockedLevelGrids';
+import {BLOCKED_ThroneRoom} from '../grids/blockedLevelGrids';
 
-import { characterMovement } from '../levelFunctions/levelFunctions';
+import {characterMovement} from '../levelFunctions/levelFunctions';
 
 import king from '../../../assets/sprites/npc/king_overworld.png';
-
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 class ThroneRoom extends React.Component {
 
@@ -29,8 +27,8 @@ class ThroneRoom extends React.Component {
         })
     };
 
-    handleKeyDown = (e) => {
-        characterMovement(this.props, e, BLOCKED_ThroneRoom);
+    handleKeyDown = (e) =>{
+        characterMovement(this.props,e, BLOCKED_ThroneRoom);
         if ((this.props.position.x === 11 && this.props.position.y === 16) || (this.props.position.x === 12 && this.props.position.y === 16)) {
             this.props.toggleDialogueState();
         }
@@ -42,10 +40,8 @@ class ThroneRoom extends React.Component {
     }
 
     render() {
-        let dialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer /> : '';
         return (
             <div className="throneRoom">
-                {dialogue}
                 {this.renderMainGrid()}
             </div>
         )
