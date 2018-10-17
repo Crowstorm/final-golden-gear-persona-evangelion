@@ -4,7 +4,7 @@ import './dialogue.css';
 class Dialogue extends React.Component {
     state={
         i: 0,
-        length: 0
+        // length: this.props.dialogue.length
     }
 
     nextDialogueLine = () =>{

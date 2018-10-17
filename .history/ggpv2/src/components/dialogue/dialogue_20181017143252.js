@@ -4,11 +4,11 @@ import './dialogue.css';
 class Dialogue extends React.Component {
     state={
         i: 0,
-        length: 0
+        // length: this.props.dialogue.length
     }
 
     nextDialogueLine = () =>{
-        if(this.state.i === this.state.length-1){
+        if(this.state.i === this.state.length-2){
             this.setState({ i: 0 });
             this.props.toggleDialogueState();
         } else {
@@ -16,13 +16,8 @@ class Dialogue extends React.Component {
         }
     }
 
-    componentDidMount(){
-        const l = this.props.dialogue.length;
-        this.setState({length: l});
-    }
-
     render() {
-        console.log(this.props.dialogue.length)
+        console.log(this.props)
         return (
             <div className="dialogue d-flex flex-column align-items-center">
                 <div className="d-flex flex-row" style={{border: "1px solid black"}}>

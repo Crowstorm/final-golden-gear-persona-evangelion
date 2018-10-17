@@ -42,6 +42,7 @@ class ThroneRoom extends React.Component {
     }
 
     render() {
+        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue}/> : '';
         const dialogue = [
             { text: "Thank you for coming. As you already heard, the princess had been kidnapped.", name: "King Horace" },
             { text: "And in this time of need we know that we can count on you.", name: "King Horace" },
@@ -51,8 +52,6 @@ class ThroneRoom extends React.Component {
             { text: "She was last seen on the streets near the Inn. That's not the first time something bad happened there. During the night bandits are patrolling this area.", name: "King Horace" },
             { text: "Now go, my friend, and save the Princess. Time might be running short.", name: "King Horace" }
         ]
-        
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue}/> : '';
         return (
             <div className="throneRoom">
                 {renderDialogue}
