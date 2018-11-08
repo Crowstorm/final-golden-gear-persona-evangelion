@@ -1,31 +1,8 @@
 # GGPv2
 
-Skip to content
-Features
-Business
-Explore
-Marketplace
-Pricing
+https://github.com/Klaku/Canvas/commit/86410f3e9ab214d4f6b15060c828501564f136c1
 
-Search
 
-Sign in or Sign up
- The password you provided has been reported as compromised due to re-use of that password on another service by you or someone else. GitHub has not been compromised directly. To increase your security, please complete your two factor authentication process and change your password as soon as possible.
-
-Read our documentation on safer password practices. See our blog for more details.
-
-0 0 0 Klaku/Canvas
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-Wiatrak
-
- master
-@Klaku
-Klaku committed 7 hours ago
-1 parent 6312330 commit 86410f3e9ab214d4f6b15060c828501564f136c1
-Showing  with 393 additions and 0 deletions.
-  
-393  Wiatrak/Wiatrak.html
-@@ -0,0 +1,393 @@
 <!DOCTYPE HTML>
 <html>
  <head>
