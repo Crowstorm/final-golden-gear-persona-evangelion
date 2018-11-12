@@ -7,8 +7,6 @@ class Dialogue extends React.Component {
         length: 0
     }
 
-    //zresetowanie dialogu po wylaczeniu
-
     nextDialogueLine = () =>{
         if(this.state.i === this.state.length-1){
             this.setState({ i: 0 });
@@ -20,14 +18,10 @@ class Dialogue extends React.Component {
 
     componentDidMount(){
         //setting dialogue length to state
-        const l = this.props.dialogue.length;
-        this.setState({length: l});
-
+        this.setState({length:  this.props.dialogue.length});
     }
 
     render() {
-        // if(this.props.dialogueVisibility)
-        // console.log()
         return (
             <div className="dialogue d-flex flex-column align-items-center">
                 <div className="d-flex flex-row" style={{border: "1px solid black"}}>

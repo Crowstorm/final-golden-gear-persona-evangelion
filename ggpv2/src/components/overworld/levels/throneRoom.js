@@ -30,17 +30,22 @@ class ThroneRoom extends React.Component {
     };
 
     handleKeyDown = (e) => {
-        let x = this.props.position.x;
-        let y = this.props.position.y;
+        let { x, y } = this.props.position;
+
         characterMovement(this.props, e, BLOCKED_ThroneRoom);
-        if ((x === 11 && y === 16) || (x === 12 && y === 16)) {
+        if (e.key === "Enter" && ((x === 11 && y === 16) || (x === 12 && y === 16))) {
             this.props.toggleDialogueState();
         }
+
     }
 
-    componentDidMount() {
-        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 200));
+    componentDidMount = () => {
+        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 50));
         document.getElementById('d12_17').innerHTML = `<img src=${king} />`
+    }
+
+    componentWillUnmount = () => {
+        document.removeEventListener("keydown", this.handleKeyDown);
     }
 
     render() {
@@ -53,8 +58,8 @@ class ThroneRoom extends React.Component {
             { text: "She was last seen on the streets near the Inn. That's not the first time something bad happened there. During the night bandits are patrolling this area.", name: "King Horace" },
             { text: "Now go, my friend, and save the Princess. Time might be running short.", name: "King Horace" }
         ]
-        
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue}/> : '';
+
+        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue} /> : '';
         return (
             <div className="throneRoom">
                 {renderDialogue}
