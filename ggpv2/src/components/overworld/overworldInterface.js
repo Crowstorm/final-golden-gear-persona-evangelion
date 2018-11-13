@@ -1,7 +1,7 @@
 import React from 'react';
 import './overworldInterface.css';
 
-import _ from 'lodash'
+// import _ from 'lodash'
 
 class OverworldInterface extends React.Component {
 

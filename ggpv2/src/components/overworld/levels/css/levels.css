@@ -12,3 +12,11 @@
     width:800px;
     float: right;
 }
+
+.castleCorridor{
+    background-image: url("../../../../assets/levelBackgrounds/corridor.png");
+    box-sizing: border-box;
+    height:800px;
+    width:800px;
+    float: right;
+}

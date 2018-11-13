@@ -16,32 +16,38 @@ class ThroneRoom extends React.Component {
 
     renderPosition = (cell) => {
         if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
-            return <img id="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+            return <img id="mainCharacter" alt="mainCharacter" src={this.props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
         }
     }
 
     renderMainGrid = () => {
         return _.map(MAIN_GRID, row => {
-            return <div key={`row${row[0].y}`} className="row" style={{ margin: 0 }}> {_.map(row, cell => {
-                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)}  </div>
+            return <div key={`row${row[0].y}`} className="row" style={{ margin: 0, boxSizing: 'border-box' }}> {_.map(row, cell => {
+                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)} {cell.x}, {cell.y} </div>
             })
             } </div>
         })
     };
 
-    handleKeyDown = (e) => {
+    handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
-
         characterMovement(this.props, e, BLOCKED_ThroneRoom);
         if (e.key === "Enter" && ((x === 11 && y === 16) || (x === 12 && y === 16))) {
             this.props.toggleDialogueState();
         }
-
-    }
+    }, 50)
 
     componentDidMount = () => {
-        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 50));
+        document.addEventListener("keydown", this.handleKeyDown);
         document.getElementById('d12_17').innerHTML = `<img src=${king} />`
+    }
+
+    componentDidUpdate() {
+        let { x, y } = this.props.position;
+
+        if (x === 12 && y === 2) {
+            this.props.changeLevel('CastleCorridor');
+        }
     }
 
     componentWillUnmount = () => {

@@ -6,7 +6,7 @@ import left from '../../assets/sprites/mainCharacter/overworld/mainCharLeft.gif'
 import right from '../../assets/sprites/mainCharacter/overworld/mainCharRight.gif';
 
 let initial_state = {
-    x: 12,
+    x: 13,
     y: 2,
     model: back
 }

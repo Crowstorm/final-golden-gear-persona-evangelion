@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import {moveCharDown, moveCharUp, moveCharLeft, moveCharRight} from '../store/actions/characterMovement';
 import {toggleDialogueState} from '../store/actions/modals';
+import {changeLevel} from '../store/actions/levelActions';
 
 import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface';
@@ -21,7 +22,8 @@ class GameScreenContainer extends React.Component {
 function mapStateToProps(store) {
     return {
         position: store.position,
-        modal: store.modal
+        modal: store.modal,
+        level: store.level
     }
 }
 
@@ -33,7 +35,9 @@ function mapDispatchToProps(dispatch) {
         moveCharRight: () => {dispatch(moveCharRight())},
         moveCharLeft: () => {dispatch(moveCharLeft())},
         //modals
-        toggleDialogueState: () =>{dispatch(toggleDialogueState());}
+        toggleDialogueState: () =>{dispatch(toggleDialogueState())},
+        //level mechanics
+        changeLevel: (levelName) => {dispatch(changeLevel(levelName))},
     }
 }
 

@@ -6,11 +6,10 @@ import { MAIN_GRID } from '../grids/grids';
 
 
 export const characterMovement = (props, e, BLOCKED) => {
-    //Quit dialogue on movement
+    //Quit dialogue on momvement
     if(props.modal.dialogueVisibility){
         props.toggleDialogueState();
     }
-    
     switch (e.key) {
         case "ArrowUp": {
             let err = [];
@@ -71,7 +70,7 @@ export const characterMovement = (props, e, BLOCKED) => {
 export const characterPosition = (props) => {
     const renderPosition = (cell) => {
         if (props.position.x === cell.x && props.position.y === cell.y) {
-            return <img id="mainCharacter" src={props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+            return <img id="mainCharacter" alt="character" src={props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
         }
     }
 

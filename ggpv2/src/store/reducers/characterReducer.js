@@ -3,7 +3,7 @@ let initial_state = [
         name: 'Main Character',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
         position: {
-            x: 12,
+            x: 13,
             y: 2,
             model: ''
         },
