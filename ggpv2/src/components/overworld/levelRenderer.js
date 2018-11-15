@@ -1,5 +1,7 @@
 import React from 'react';
 import './level.css';
+import GridBlocker from '../../assets/gridBlocker/gridBlocker';
+
 
 import ThroneRoom from './levels/throneRoom';
 import CastleCorridor from './levels/castleCorridor';
@@ -26,6 +28,7 @@ class Game extends React.Component {
         return (
             <div className="level">
                 {renderCurrentLevel}
+                <GridBlocker {...this.props} />
             </div>
         )
     }

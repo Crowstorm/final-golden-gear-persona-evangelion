@@ -23,7 +23,7 @@ class ThroneRoom extends React.Component {
     renderMainGrid = () => {
         return _.map(MAIN_GRID, row => {
             return <div key={`row${row[0].y}`} className="row" style={{ margin: 0, boxSizing: 'border-box' }}> {_.map(row, cell => {
-                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)} {cell.x}, {cell.y} </div>
+                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {this.renderPosition(cell)}  </div>
             })
             } </div>
         })
