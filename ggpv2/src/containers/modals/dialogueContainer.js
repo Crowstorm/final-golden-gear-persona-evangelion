@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Dialogue from '../../components/dialogue/dialogue';
 
-import {toggleDialogueState} from '../../store/actions/modals';
+import {toggleDialogueState} from '../../store/actions/modalActions';
 
 class DialogueContainer extends React.Component{
     render(){

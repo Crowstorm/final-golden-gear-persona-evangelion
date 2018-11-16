@@ -28,7 +28,7 @@ class Game extends React.Component {
         return (
             <div className="level">
                 {renderCurrentLevel}
-                <GridBlocker {...this.props} />
+                {/* <GridBlocker {...this.props} /> */}
             </div>
         )
     }

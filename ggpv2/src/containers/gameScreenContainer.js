@@ -1,19 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {moveCharDown, moveCharUp, moveCharLeft, moveCharRight} from '../store/actions/characterMovement';
-import {toggleDialogueState} from '../store/actions/modals';
-import {changeLevel} from '../store/actions/levelActions';
+import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight } from '../store/actions/characterMovementActions';
+import { toggleDialogueState } from '../store/actions/modalActions';
+import { changeLevel } from '../store/actions/levelActions';
 
 import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface';
+import CombatContainer from './combatContainer';
 
 class GameScreenContainer extends React.Component {
+    overworld = () => {
+        return (
+            <div>
+                <OverworldInterface {...this.props} />
+                <Level {...this.props} />
+            </div>
+        )
+    }
+
+    combat = () => {
+        return (
+            <CombatContainer {...this.props} />
+        )
+    }
+
     render() {
         return (
             <div>
-                <OverworldInterface />
-                <Level {...this.props}/>
+                {/* {this.overworld()} */}
+                {this.combat()}
             </div>
         )
     }
@@ -30,14 +46,14 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
     return {
         //movement
-        moveCharUp: () => {dispatch(moveCharUp())},
-        moveCharDown: () => { dispatch(moveCharDown())},
-        moveCharRight: () => {dispatch(moveCharRight())},
-        moveCharLeft: () => {dispatch(moveCharLeft())},
+        moveCharUp: () => { dispatch(moveCharUp()) },
+        moveCharDown: () => { dispatch(moveCharDown()) },
+        moveCharRight: () => { dispatch(moveCharRight()) },
+        moveCharLeft: () => { dispatch(moveCharLeft()) },
         //modals
-        toggleDialogueState: () =>{dispatch(toggleDialogueState())},
+        toggleDialogueState: () => { dispatch(toggleDialogueState()) },
         //level mechanics
-        changeLevel: (levelName) => {dispatch(changeLevel(levelName))},
+        changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
     }
 }
 

@@ -8,11 +8,9 @@ import GameScreenContainer from './containers/gameScreenContainer';
 class App extends Component {
   render() {
     return (
-      // <div className="App container">
         <div className="gameContainer container">
           <GameScreenContainer />
         </div>
-      // </div>
     );
   }
 }
