@@ -22,7 +22,8 @@ class CombatContainer extends React.Component {
 
 function mapStateToProps(store) {
     return {
-
+        characters: store.characters,
+        enemy: store.enemy
     }
 }
 

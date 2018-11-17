@@ -46,6 +46,18 @@ let initial_state = [
 
         ]
     },
+    {
+        name: 'Main Character',
+        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    },
+    {
+        name: 'Main Character',
+        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    },
+    {
+        name: 'Main Character',
+        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    }
 ];
 
 export default (state = initial_state, action) => {
