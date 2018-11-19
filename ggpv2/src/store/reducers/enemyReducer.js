@@ -1,6 +1,9 @@
-const enemyDefaultState = [ 
+import produce from "immer"
+
+
+const enemyDefaultState = [
     {
-        name: 'European Boy',
+        name: 'European Boy1',
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
@@ -13,7 +16,7 @@ const enemyDefaultState = [
         }
     },
     {
-        name: 'European Boy',
+        name: 'European Boy2',
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
@@ -26,7 +29,7 @@ const enemyDefaultState = [
         }
     },
     {
-        name: 'European Boy',
+        name: 'European Boy3',
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
@@ -41,42 +44,15 @@ const enemyDefaultState = [
 ]
 
 const enemyReducer = (state = enemyDefaultState, action) => {
-    switch (action.type) {
-        case 'ADD_ENEMY':{
-            return[
-                ...state,
-                action.enemy
-            ]
-        }
-        case 'CLEAR_ENEMIES':{
-            return[
-               
-            ]
-        }
-        case 'LOSE_HP':
-            let i = action.index;
-            return [
-                ...state.slice(0, i),
-                {
-                    ...state[i],
-                    stats: {
-                        ...state[i].stats,
-                        hp: state[i].stats.hp - action.amount
-                    }
-                },
-                ...state.slice(i + 1)
-            ]
-        case 'ENEMY_DIED':
-            let j  = action.index;
-            return [
-                ...state.slice(0, j),
-                ...state.slice(j + 1)
-            ]
+    return produce(state, draft => {
+        switch (action.type) {
+            case 'ENEMY_LOSE_HP':
+                draft[action.i].stats.hp -= action.hp
 
-        default:
-            return state;
-    }
-
+            default:
+                return draft;
+        }
+    })
 }
 
 export default enemyReducer;

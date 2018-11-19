@@ -6,6 +6,9 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
+import {isAttackReady} from '../store/actions/combatActions';
+import {enemyLoseHp} from '../store/actions/enemyActions';
+
 
 class CombatContainer extends React.Component {
     render() {
@@ -22,14 +25,20 @@ class CombatContainer extends React.Component {
 
 function mapStateToProps(store) {
     return {
-        characters: store.characters,
-        enemy: store.enemy
+        ally: store.characters,
+        enemy: store.enemy,
+        combat: store.combat
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        isAttackReady: (isReady) =>{
+            dispatch(isAttackReady(isReady))
+        },
+        enemyLoseHp: (hp, i) =>{
+            dispatch(enemyLoseHp(hp, i))
+        }
     }
 }
 

@@ -5,16 +5,16 @@ import './combat.css'
 
 class AllyInterface extends React.Component {
     getCharacters = () => {
-        const { characters } = this.props;
-        console.log(characters)
-        return characters.map(char => {
+        const { ally } = this.props;
+        // console.log(characters)
+        return ally.map(char => {
             return (
                 <div key={char.name}>
                     {/* mana bar */}
                     <div className="characterNameContainer d-flex justify-content-center">
                         {char.name}
                     </div>
-                    <img className="characterPortrait" src={char.portrait} />
+                    <img className="characterPortrait" alt="ally" src={char.portrait} />
                     {/* hp bar */}
                 </div>
             )

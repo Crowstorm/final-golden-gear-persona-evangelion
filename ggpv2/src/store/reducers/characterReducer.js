@@ -1,6 +1,6 @@
 let initial_state = [
     {
-        name: 'Main Character',
+        name: 'Main Character1',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
         position: {
             x: 13,
@@ -47,15 +47,15 @@ let initial_state = [
         ]
     },
     {
-        name: 'Main Character',
+        name: 'Main Character2',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
     },
     {
-        name: 'Main Character',
+        name: 'Main Character3',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
     },
     {
-        name: 'Main Character',
+        name: 'Main Character4',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
     }
 ];
