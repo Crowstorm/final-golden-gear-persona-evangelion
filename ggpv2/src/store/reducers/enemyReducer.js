@@ -48,7 +48,10 @@ const enemyReducer = (state = enemyDefaultState, action) => {
         switch (action.type) {
             case 'ENEMY_LOSE_HP':
                 draft[action.i].stats.hp -= action.hp
-
+                break;
+            case 'KILL_ENEMY':
+                draft.splice(action.i, 1);
+                break;
             default:
                 return draft;
         }

@@ -109,6 +109,7 @@ class EnemyInterface extends React.Component {
 
     handleEnemyAttacked = (i) => {
         if (this.props.combat.attackReady) {
+            let enemy = this.props.enemy[i];
             this.props.isAttackReady(false)
             let allyAgility = this.getAllyAgility();
             let enemyEvasion = this.getEnemyEvasion(i);
