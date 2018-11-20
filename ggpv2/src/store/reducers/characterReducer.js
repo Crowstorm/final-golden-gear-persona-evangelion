@@ -49,14 +49,53 @@ let initial_state = [
     {
         name: 'Main Character2',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        stats: {
+            maxHp: 25,
+            hp: 25,
+            maxMp: 15,
+            mp: 15,
+            strength: 5,
+            defence: 5,
+            magic: 5,
+            magicResist: 5,
+            agility: 5,
+            luck: 5,
+            speed: 5,
+        },
     },
     {
         name: 'Main Character3',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        stats: {
+            maxHp: 25,
+            hp: 25,
+            maxMp: 15,
+            mp: 15,
+            strength: 5,
+            defence: 5,
+            magic: 5,
+            magicResist: 5,
+            agility: 5,
+            luck: 5,
+            speed: 5,
+        },
     },
     {
         name: 'Main Character4',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        stats: {
+            maxHp: 25,
+            hp: 25,
+            maxMp: 15,
+            mp: 15,
+            strength: 5,
+            defence: 5,
+            magic: 5,
+            magicResist: 5,
+            agility: 5,
+            luck: 5,
+            speed: 5,
+        },
     }
 ];
 

@@ -6,8 +6,9 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import {isAttackReady} from '../store/actions/combatActions';
-import {enemyLoseHp} from '../store/actions/enemyActions';
+import {isAttackReady, changeTurn,startCombat} from '../store/actions/combatActions';
+import {enemyLoseHp, nextAllyTurn} from '../store/actions/enemyActions';
+// import {nextAllyTurn} from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -38,6 +39,15 @@ function mapDispatchToProps(dispatch) {
         },
         enemyLoseHp: (hp, i) =>{
             dispatch(enemyLoseHp(hp, i))
+        },
+        nextAllyTurn: () =>{
+            dispatch(nextAllyTurn())
+        },
+        changeTurn: (whoseTurn) =>{
+            dispatch(changeTurn(whoseTurn))
+        },
+        startCombat: () =>{
+            dispatch(startCombat())
         }
     }
 }

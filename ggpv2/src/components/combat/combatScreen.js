@@ -6,6 +6,9 @@ import AttackInterface from './attackInterface';
 
 class CombatScreen extends React.Component {
 
+    componentDidMount = () =>{
+        // this.props.startCombat();
+    }
     render() {
         return (
             <div className="combatScreen d-flex flex-wrap align-content-center justify-content-center" style={{ backgroundImage: { background }, }}>

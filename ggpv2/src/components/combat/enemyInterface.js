@@ -91,7 +91,6 @@ class EnemyInterface extends React.Component {
     }
 
     calculateTotalDmg = (allyDmg, enemyDef, wasCritical) =>{
-        console.log({allyDmg}, {enemyDef}, {wasCritical});
         let criticalMultiplier = this.props.combat.basicCriticalMultiplier;
         if(!criticalMultiplier){
             console.error('Cant get critical multiplier');
@@ -108,7 +107,8 @@ class EnemyInterface extends React.Component {
     }
 
     handleEnemyAttacked = (i) => {
-        if (this.props.combat.attackReady) {
+        if (this.props.combat.attackReady && this.props.combat.whoseTurn === 'ally') {
+            //nie pozwolic na atak redi jak nie tura ally
             let enemy = this.props.enemy[i];
             this.props.isAttackReady(false)
             let allyAgility = this.getAllyAgility();
@@ -120,12 +120,13 @@ class EnemyInterface extends React.Component {
                 let allyDmg = this.calculateAllyDmg();
                 let enemyDef = this.getEnemyDefence(i);
                 let totalDmg = this.calculateTotalDmg(allyDmg, enemyDef, wasCritical);
-                console.log({totalDmg})
                 this.props.enemyLoseHp(totalDmg, i);
+                this.props.nextAllyTurn();
             } else {
                 console.log('PUDŁO')
+                this.props.nextAllyTurn();
                 //oddaj ture
-                return;
+                // return;
             }
         }
     }
