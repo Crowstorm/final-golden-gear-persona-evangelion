@@ -2,7 +2,7 @@ const enemyDefaultState = {
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     whoseTurn: "ally",
-    attackerIndex: 0,
+    attackerIndex: 3,
     attackReady: false
 }
 

@@ -6,11 +6,7 @@ export const nextAllyTurn = () => (dispatch, getState) =>{
     if(currentIndex +1 === numberOfAllies){
         console.log('xD')
         //enemy turn
-        const whoseTurn = 'enemy';
-        dispatch({
-            type: 'CHANGE_TURN',
-            whoseTurn
-        })
+        dispatch(changeTurn('enemy'));
     } else {
         dispatch({
             type: 'INCREMENT_ATTACKER_INDEX'
