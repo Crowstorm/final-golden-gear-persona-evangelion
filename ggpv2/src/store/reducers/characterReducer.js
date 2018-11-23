@@ -1,3 +1,5 @@
+import produce from "immer"
+
 let initial_state = [
     {
         name: 'Main Character1',
@@ -55,7 +57,7 @@ let initial_state = [
             maxMp: 15,
             mp: 15,
             strength: 5,
-            defence: 5,
+            defence: 15,
             magic: 5,
             magicResist: 5,
             agility: 5,
@@ -71,7 +73,7 @@ let initial_state = [
             hp: 25,
             maxMp: 15,
             mp: 15,
-            strength: 5,
+            strength: 9,
             defence: 5,
             magic: 5,
             magicResist: 5,
@@ -88,7 +90,7 @@ let initial_state = [
             hp: 25,
             maxMp: 15,
             mp: 15,
-            strength: 5,
+            strength: 10,
             defence: 5,
             magic: 5,
             magicResist: 5,
@@ -100,9 +102,16 @@ let initial_state = [
 ];
 
 export default (state = initial_state, action) => {
-    switch (action.type) {
-        default: {
-            return state;
+    return produce(state, draft => {
+        switch (action.type) {
+            case 'ALLY_LOSE_HP':
+                draft[action.i].stats.hp -= action.dmg
+                break;
+            // case 'KILL_ENEMY':
+            //     draft.splice(action.i, 1);
+            //     break;
+            default:
+                return draft;
         }
-    }
+    })
 }

@@ -12,7 +12,8 @@ const enemyDefaultState = [
             defence: 4,
             agility: 11,
             speed: 6,
-            strength: 31
+            strength: 31,
+            luck: 3
         }
     },
     {
@@ -25,7 +26,8 @@ const enemyDefaultState = [
             defence: 4,
             agility: 4,
             speed: 2,
-            strength: 31
+            strength: 31,
+            luck: 12
         }
     },
     {
@@ -38,7 +40,8 @@ const enemyDefaultState = [
             defence: 4,
             agility: 7,
             speed: 7,
-            strength: 31
+            strength: 31,
+            luck: 14
         }
     },
 ]
