@@ -2,8 +2,9 @@ const enemyDefaultState = {
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     whoseTurn: "ally",
-    attackerIndex: 3,
-    attackReady: false
+    attackerIndex: 0,
+    attackReady: false,
+    info: []
 }
 
 const combatReducer = (state = enemyDefaultState, action) => {
@@ -23,6 +24,13 @@ const combatReducer = (state = enemyDefaultState, action) => {
                 ...state,
                 attackerIndex: state.attackerIndex + 1
             }
+        case 'ADD_INFO_TO_ARRAY': {
+            return {
+                ...state,
+                info: [action.info, ...state.info]
+
+            }
+        }
 
         default:
             return state;

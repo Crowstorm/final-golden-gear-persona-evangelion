@@ -107,6 +107,9 @@ class EnemyInterface extends React.Component {
     }
 
     handleEnemyAttacked = (i) => {
+        let attI = this.props.combat.attackerIndex;
+        let name = this.props.ally[attI].name;
+
         if (this.props.combat.attackReady && this.props.combat.whoseTurn === 'ally') {
             //nie pozwolic na atak redi jak nie tura ally
             let enemy = this.props.enemy[i];
@@ -121,9 +124,14 @@ class EnemyInterface extends React.Component {
                 let enemyDef = this.getEnemyDefence(i);
                 let totalDmg = this.calculateTotalDmg(allyDmg, enemyDef, wasCritical);
                 this.props.enemyLoseHp(totalDmg, i);
+                let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                this.props.addInfoToArray(info)
                 this.props.nextAllyTurn();
             } else {
-                console.log('PUDŁO')
+                console.log('PUDŁO');
+             
+                let info = `${name} missed!`;
+                this.props.addInfoToArray(info)
                 this.props.nextAllyTurn();
                 //oddaj ture
                 // return;

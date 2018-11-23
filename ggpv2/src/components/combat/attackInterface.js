@@ -75,7 +75,9 @@ class AttackInterface extends React.Component {
 
 
         // let renderAdditionalMenus = this.handleRenderMenus();
-        // console.log('propsy ataku', this.props)
+        console.log('propsy ataku', this.props)
+        let index = this.props.combat.attackerIndex;
+        let portrait = this.props.characters[index].portrait;
         return (
             <div id='attackInterface'>
                 <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450 }}>
@@ -87,7 +89,7 @@ class AttackInterface extends React.Component {
                         <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleAllyAttack('basic')}> Basic Attack </div>
                         <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenSkills()}> Skills </div>
                     </div>
-                    <img src="https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png" alt="current char"style={{ height: 50, zIndex: 5, position: 'absolute', borderRadius: 100, border: '1px solid black' }} />
+                    <img src={portrait} alt="current char"style={{ height: 50, zIndex: 5, position: 'absolute', borderRadius: 100, border: '1px solid black' }} />
                     <div className="d-flex flex-column" style={{ marginBottom: 0 }}>
                         <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenMagic()}> Magic </div>
                         <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenConsumables()}> Consumables </div>

@@ -28,8 +28,8 @@ class GameScreenContainer extends React.Component {
     render() {
         return (
             <div>
-                {/* {this.overworld()} */}
-                {this.combat()}
+                {this.overworld()}
+                {/* {this.combat()} */}
             </div>
         )
     }

@@ -2,7 +2,7 @@
     height:800px;
     width: 1024px;
     box-sizing: border-box;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 0;
     display: flex;
     /* justify-content: center;

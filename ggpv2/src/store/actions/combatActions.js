@@ -17,23 +17,32 @@ export const changeTurn = (whoseTurn) => {
     }
 }
 
-export const startCombat = () => {
-    return function (dispatch, getState) {
-        let allyPickTargetPromise = new Promise(resolve => {
-            let handleKeyDown = (e) => {
-                if (getState().combat.whoseTurn === "enemy") {
-                    let i = 'dziala'
-                    resolve(i)
-                }
-                //Logika prawdopodobnie przeniesiona
-                if (getState().enemy.length === 0) {
-                    return 0;
-                }
-            }
-            document.addEventListener("mousedown", handleKeyDown);
-        })
-        allyPickTargetPromise.then((resp) => {
-            console.log('WESZLA ENEMY')
+// export const startCombat = () => {
+//     return function (dispatch, getState) {
+//         let allyPickTargetPromise = new Promise(resolve => {
+//             let handleKeyDown = (e) => {
+//                 if (getState().combat.whoseTurn === "enemy") {
+//                     let i = 'dziala'
+//                     resolve(i)
+//                 }
+//                 //Logika prawdopodobnie przeniesiona
+//                 if (getState().enemy.length === 0) {
+//                     return 0;
+//                 }
+//             }
+//             document.addEventListener("mousedown", handleKeyDown);
+//         })
+//         allyPickTargetPromise.then((resp) => {
+//             console.log('WESZLA ENEMY')
+//         })
+//     }
+// }
+
+export const addInfoToArray = (info) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'ADD_INFO_TO_ARRAY',
+            info
         })
     }
 }

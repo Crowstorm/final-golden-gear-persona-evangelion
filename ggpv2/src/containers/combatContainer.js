@@ -6,7 +6,7 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import {isAttackReady, changeTurn,startCombat} from '../store/actions/combatActions';
+import {isAttackReady, changeTurn, addInfoToArray} from '../store/actions/combatActions';
 import {enemyLoseHp, nextAllyTurn} from '../store/actions/enemyActions';
 // import {nextAllyTurn} from '../store/actions/characterActions';
 
@@ -28,7 +28,8 @@ function mapStateToProps(store) {
     return {
         ally: store.characters,
         enemy: store.enemy,
-        combat: store.combat
+        combat: store.combat,
+        characters: store.characters
     }
 }
 
@@ -46,8 +47,8 @@ function mapDispatchToProps(dispatch) {
         changeTurn: (whoseTurn) =>{
             dispatch(changeTurn(whoseTurn))
         },
-        startCombat: () =>{
-            dispatch(startCombat())
+        addInfoToArray: (info) =>{
+            dispatch(addInfoToArray(info))
         }
     }
 }

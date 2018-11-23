@@ -2,7 +2,7 @@ import produce from "immer"
 
 let initial_state = [
     {
-        name: 'Main Character1',
+        name: 'BigBoss',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
         position: {
             x: 13,
@@ -14,7 +14,7 @@ let initial_state = [
             hp: 25,
             maxMp: 15,
             mp: 15,
-            strength: 5,
+            strength: 7,
             defence: 5,
             magic: 5,
             magicResist: 5,
@@ -49,8 +49,8 @@ let initial_state = [
         ]
     },
     {
-        name: 'Main Character2',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        name: 'Revolver Ocelot',
+        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",
         stats: {
             maxHp: 25,
             hp: 25,
@@ -66,8 +66,8 @@ let initial_state = [
         },
     },
     {
-        name: 'Main Character3',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        name: 'Kaz',
+        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_miller.png",
         stats: {
             maxHp: 25,
             hp: 25,
@@ -83,8 +83,8 @@ let initial_state = [
         },
     },
     {
-        name: 'Main Character4',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+        name: 'Random Guy',
+        portrait: "https://vignette.wikia.nocookie.net/metalgear/images/5/51/Ui_face_635_0.png/revision/latest?cb=20160226135114",
         stats: {
             maxHp: 25,
             hp: 25,

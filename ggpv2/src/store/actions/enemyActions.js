@@ -1,4 +1,4 @@
-import { changeTurn } from './combatActions';
+import { changeTurn, addInfoToArray } from './combatActions';
 import {allyLoseHp} from './characterActions';
 
 const getEnemyHp = (i, getState) => {
@@ -155,10 +155,17 @@ export const enemyTurn = () => {
                     console.log({wasCritical}, {enemyDmg})
                     let allyDef = getAllyDefence(getState, allyIndex);
                     let totalDmg = calculateTotalDmg(getState, enemyDmg, allyDef, wasCritical);
+
+                    let allyName = getState().characters[allyIndex].name;
+                    let info = `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
+                    dispatch(addInfoToArray(info))
                     console.log({allyDef}, {totalDmg});
                     dispatch(allyLoseHp(totalDmg, i))
                     // this.props.nextAllyTurn();
-                };
+                } else {
+                    let info = `${enemy.name} missed!`
+                    dispatch(addInfoToArray(info))
+                }
                 noOfEnemiesAttacked +=1;
             })
             if(noOfEnemiesAttacked === enemies.length){
