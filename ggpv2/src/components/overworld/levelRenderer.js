@@ -19,7 +19,7 @@ class Game extends React.Component {
                     <CastleCorridor {...this.props} />
                 )
             default:
-                alert('Zjebales w level renderer')
+                alert('blad w level renderer')
         }
     }
     render() {
