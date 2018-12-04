@@ -1,7 +1,15 @@
+import React from 'react';
+
 import _ from 'lodash';
+import { MAIN_GRID } from '../grids/grids';
+
 
 
 export const characterMovement = (props, e, BLOCKED) => {
+    //Quit dialogue on movement
+    if(props.modal.dialogueVisibility){
+        props.toggleDialogueState();
+    }
     switch (e.key) {
         case "ArrowUp": {
             let err = [];
@@ -57,4 +65,23 @@ export const characterMovement = (props, e, BLOCKED) => {
         }
         default: { return }
     }
+}
+
+export const characterPosition = (props) => {
+    const renderPosition = (cell) => {
+        if (props.position.x === cell.x && props.position.y === cell.y) {
+            return <img id="mainCharacter" alt="character" src={props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+        }
+    }
+
+    const renderMainGrid = () => {
+        return _.map(MAIN_GRID, row => {
+            return <div key={`row${row[0].y}`} className="row" style={{ margin: 0 }}> {_.map(row, cell => {
+                return <div key={cell.x + '.' + cell.y} id={'d' + cell.x + '_' + cell.y} className="gridCell"> {renderPosition(cell)}  </div>
+            })
+            } </div>
+        })
+    };
+
+    renderMainGrid();
 }

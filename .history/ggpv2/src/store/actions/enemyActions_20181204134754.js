@@ -1,7 +1,7 @@
 import { changeTurn, addInfoToArray } from './combatActions';
 import { allyLoseHp } from './characterActions';
 
-const getEnemyHp = (i) => {
+const getEnemyHp = (i, getState) => {
     return function (dispatch, getState) {
         return getState().enemy[i].stats.hp;
     }

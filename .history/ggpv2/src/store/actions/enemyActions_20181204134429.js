@@ -1,10 +1,8 @@
 import { changeTurn, addInfoToArray } from './combatActions';
 import { allyLoseHp } from './characterActions';
 
-const getEnemyHp = (i) => {
-    return function (dispatch, getState) {
-        return getState().enemy[i].stats.hp;
-    }
+const getEnemyHp = (i, getState) => {
+    return getState().enemy[i].stats.hp;
 }
 
 
@@ -15,7 +13,7 @@ export const enemyLoseHp = (hp, i) => {
             hp,
             i
         })
-        let remainingHp = dispatch(getEnemyHp(i));
+        let remainingHp = getEnemyHp(i, getState);
         if (remainingHp <= 0) {
             dispatch(killEnemy(i));
             if (getState().enemy.length === 0) {
@@ -62,7 +60,7 @@ const getAllyEvasion = (i) => {
 }
 
 const calculateAttackSuccessChance = (agility, evasion) => {
-    return function (dispatch, getState) {
+    return function (dispatch, getState){
         let roll = Math.floor((Math.random() * 100) + 1);
         let basicHitChance = getState().combat.basicAllyHitChance;
         let finalHitChance = basicHitChance + agility * 1.5 - evasion;
@@ -73,42 +71,38 @@ const calculateAttackSuccessChance = (agility, evasion) => {
     }
 }
 
-const wasAttackCritical = (i) => {
-    return function (dispatch, getState) {
-        let roll = Math.floor((Math.random() * 100) + 1);
-        let enemy = getState().enemy[i];
-        let wasCritical = false;
-        if (enemy && enemy.stats && enemy.stats.luck) {
-            let luck = enemy.stats.luck;
-            if (luck >= roll) {
-                wasCritical = true;
-                return wasCritical;
-            } else {
-                return wasCritical;
-            }
-            //Wyslij info o criticalu
+const wasAttackCritical = (getState, i) => {
+    let roll = Math.floor((Math.random() * 100) + 1);
+    let enemy = getState().enemy[i];
+    let wasCritical = false;
+    if (enemy && enemy.stats && enemy.stats.luck) {
+        let luck = enemy.stats.luck;
+        if (luck >= roll) {
+            wasCritical = true;
+            return wasCritical;
         } else {
-            console.error('Couldnt get enemy luck');
             return wasCritical;
         }
+        //Wyslij info o criticalu
+    } else {
+        console.error('Couldnt get enemy luck');
+        return wasCritical;
     }
 }
 
-const calculateEnemyDmg = (i) => {
-    return function (dispatch, getState) {
-        let enemy = getState().enemy[i];
-        let attack = 0;
-        //sprawdz czy atakujacy ma bron z bonusami do strength
+const calculateEnemyDmg = (getState, i) => {
+    let enemy = getState().enemy[i];
+    let attack = 0;
+    //sprawdz czy atakujacy ma bron z bonusami do strength
 
-        //pobierz strength postaci
-        if (enemy && enemy.stats && enemy.stats.strength) {
-            attack += enemy.stats.strength;
-        } else {
-            console.error('Couldnt get enemy attack');
-        }
-
-        return attack;
+    //pobierz strength postaci
+    if (enemy && enemy.stats && enemy.stats.strength) {
+        attack += enemy.stats.strength;
+    } else {
+        console.error('Couldnt get enemy attack');
     }
+
+    return attack;
 }
 
 const getAllyDefence = (i) => {
@@ -124,21 +118,19 @@ const getAllyDefence = (i) => {
     }
 }
 
-const calculateTotalDmg = (allyDmg, enemyDef, wasCritical) => {
-    return function (dispatch, getState) {
-        let criticalMultiplier = getState().combat.basicCriticalMultiplier;
-        if (!criticalMultiplier) {
-            console.error('Cant get critical multiplier');
-            return 0;
-        }
-        let totalDmg = 0;
-        if (!wasCritical) {
-            totalDmg += allyDmg - enemyDef;
-            return totalDmg;
-        } else {
-            totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
-            return totalDmg;
-        }
+const calculateTotalDmg = (getState, allyDmg, enemyDef, wasCritical) => {
+    let criticalMultiplier = getState().combat.basicCriticalMultiplier;
+    if (!criticalMultiplier) {
+        console.error('Cant get critical multiplier');
+        return 0;
+    }
+    let totalDmg = 0;
+    if (!wasCritical) {
+        totalDmg += allyDmg - enemyDef;
+        return totalDmg;
+    } else {
+        totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
+        return totalDmg;
     }
 }
 
@@ -161,11 +153,11 @@ export const enemyTurn = () => {
                 let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
 
                 if (wasAttackSuccessful) {
-                    let wasCritical = dispatch(wasAttackCritical(i));
-                    let enemyDmg = dispatch(calculateEnemyDmg(i));
+                    let wasCritical = wasAttackCritical(getState, i);
+                    let enemyDmg = calculateEnemyDmg(getState, i);
                     console.log({ wasCritical }, { enemyDmg })
                     let allyDef = dispatch(getAllyDefence(allyIndex));
-                    let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
+                    let totalDmg = calculateTotalDmg(getState, enemyDmg, allyDef, wasCritical);
 
                     let info = ``;
                     if (wasCritical) { info += `Critical hit! ` };

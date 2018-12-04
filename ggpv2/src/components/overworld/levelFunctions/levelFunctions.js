@@ -6,7 +6,7 @@ import { MAIN_GRID } from '../grids/grids';
 
 
 export const characterMovement = (props, e, BLOCKED) => {
-    //Quit dialogue on momvement
+    //Quit dialogue on movement
     if(props.modal.dialogueVisibility){
         props.toggleDialogueState();
     }

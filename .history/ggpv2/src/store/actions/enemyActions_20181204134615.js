@@ -1,10 +1,8 @@
 import { changeTurn, addInfoToArray } from './combatActions';
 import { allyLoseHp } from './characterActions';
 
-const getEnemyHp = (i) => {
-    return function (dispatch, getState) {
-        return getState().enemy[i].stats.hp;
-    }
+const getEnemyHp = (i, getState) => {
+    return getState().enemy[i].stats.hp;
 }
 
 
@@ -15,7 +13,7 @@ export const enemyLoseHp = (hp, i) => {
             hp,
             i
         })
-        let remainingHp = dispatch(getEnemyHp(i));
+        let remainingHp = getEnemyHp(i, getState);
         if (remainingHp <= 0) {
             dispatch(killEnemy(i));
             if (getState().enemy.length === 0) {
@@ -124,21 +122,19 @@ const getAllyDefence = (i) => {
     }
 }
 
-const calculateTotalDmg = (allyDmg, enemyDef, wasCritical) => {
-    return function (dispatch, getState) {
-        let criticalMultiplier = getState().combat.basicCriticalMultiplier;
-        if (!criticalMultiplier) {
-            console.error('Cant get critical multiplier');
-            return 0;
-        }
-        let totalDmg = 0;
-        if (!wasCritical) {
-            totalDmg += allyDmg - enemyDef;
-            return totalDmg;
-        } else {
-            totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
-            return totalDmg;
-        }
+const calculateTotalDmg = (getState, allyDmg, enemyDef, wasCritical) => {
+    let criticalMultiplier = getState().combat.basicCriticalMultiplier;
+    if (!criticalMultiplier) {
+        console.error('Cant get critical multiplier');
+        return 0;
+    }
+    let totalDmg = 0;
+    if (!wasCritical) {
+        totalDmg += allyDmg - enemyDef;
+        return totalDmg;
+    } else {
+        totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
+        return totalDmg;
     }
 }
 
@@ -165,7 +161,7 @@ export const enemyTurn = () => {
                     let enemyDmg = dispatch(calculateEnemyDmg(i));
                     console.log({ wasCritical }, { enemyDmg })
                     let allyDef = dispatch(getAllyDefence(allyIndex));
-                    let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
+                    let totalDmg = calculateTotalDmg(getState, enemyDmg, allyDef, wasCritical);
 
                     let info = ``;
                     if (wasCritical) { info += `Critical hit! ` };
