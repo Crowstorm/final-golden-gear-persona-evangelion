@@ -1,18 +1,6 @@
 import {changeTurn} from './combatActions';
 
-export const nextAllyTurn = () => (dispatch, getState) =>{
-    let currentIndex = getState().combat.attackerIndex;
-    let numberOfAllies = getState().characters.length;
-    if(currentIndex +1 === numberOfAllies){
-        console.log('xD')
-        //enemy turn
-        dispatch(changeTurn('enemy'));
-    } else {
-        dispatch({
-            type: 'INCREMENT_ATTACKER_INDEX'
-        })
-    }
-}
+
 
 export const allyLoseHp = (dmg, i) => (dispatch) =>{
     dispatch({

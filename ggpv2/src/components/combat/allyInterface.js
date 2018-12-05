@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './combat.css'
+import './combat.css';
+import { Bar, Filler } from './bar';
 
 
 class AllyInterface extends React.Component {
@@ -9,12 +10,18 @@ class AllyInterface extends React.Component {
         // console.log(characters)
         return ally.map(char => {
             return (
-                <div key={char.name}>
+                <div key={char.name} className="d-flex flex-row">
                     {/* mana bar */}
-                    <div className="characterNameContainer d-flex justify-content-center">
-                        {char.name}
+                    <Bar percentage={70} />
+                    <div>
+                        <div className="characterNameContainer d-flex justify-content-center">
+                            {char.name}
+                        </div>
+                        <img className="characterPortrait" alt="ally" src={char.portrait} />
                     </div>
-                    <img className="characterPortrait" alt="ally" src={char.portrait} />
+                    <Bar percentage={30} />
+
+
                     {/* hp bar */}
                 </div>
             )

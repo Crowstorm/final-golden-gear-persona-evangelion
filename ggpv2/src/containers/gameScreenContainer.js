@@ -26,10 +26,12 @@ class GameScreenContainer extends React.Component {
     }
 
     render() {
+        let renderScreen = (this.props.combat.isCombat) ? this.combat() : this.overworld();
         return (
             <div>
                 {/* {this.overworld()} */}
-                {this.combat()}
+                {/* {this.combat()} */}
+                {renderScreen}
             </div>
         )
     }
@@ -39,7 +41,8 @@ function mapStateToProps(store) {
     return {
         position: store.position,
         modal: store.modal,
-        level: store.level
+        level: store.level,
+        combat: store.combat
     }
 }
 

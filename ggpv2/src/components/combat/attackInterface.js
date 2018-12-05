@@ -15,7 +15,7 @@ class AttackInterface extends React.Component {
     }
 
     handleAllyAttack = (attackType) => {
-        if(attackType === 'basic'){
+        if (attackType === 'basic') {
             this.props.isAttackReady(true);
         }
         // this.setState({ consumables: false });
@@ -31,25 +31,50 @@ class AttackInterface extends React.Component {
     }
 
     handleOpenConsumables = () => {
-       console.log('items')
+        console.log('items')
     }
     handleOpenSkills = () => {
-       console.log('skill')
+        console.log('skill')
     }
     handleOpenMagic = () => {
-       console.log('magic')
+        console.log('magic')
     }
 
     handleRenderConsumables = () => {
-      
+
     }
 
     handleRenderSkills = () => {
 
     }
 
-    handleRenderMagic = () =>{
-  
+    handleRenderMagic = () => {
+
+    }
+
+    handleRenderAttackInterface = () => {
+        const buttonStyle = {
+            width: '180px',
+            height: '50px',
+            border: "1px solid red",
+            WebkitAppearance: 'button',
+        }
+        let index = this.props.combat.attackerIndex;
+        let portrait = this.props.characters[index].portrait;
+
+        return (
+            <div className=" d-flex align-items-center justify-content-center" style={{ marginTop: 450, position: 'relative' }}>
+                <div className="d-flex flex-column" style={{ marginBottom: 0 }}>
+                    <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleAllyAttack('basic')}> Basic Attack </div>
+                    <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenSkills()}> Skills </div>
+                </div>
+                <img src={portrait} alt="current char" style={{ height: 50, zIndex: 5, position: 'absolute', borderRadius: 100, border: '1px solid black' }} />
+                <div className="d-flex flex-column" style={{ marginBottom: 0 }}>
+                    <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenMagic()}> Magic </div>
+                    <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenConsumables()}> Consumables </div>
+                </div>
+            </div>
+        )
     }
 
     // handleRenderMenus = () => {
@@ -65,36 +90,19 @@ class AttackInterface extends React.Component {
     // }
 
     render() {
-        const buttonStyle = {
-            width: '180px',
-            height: '50px',
-            border: "1px solid red",
-            WebkitAppearance: 'button',
-        }
+
         // let i = this.props.mechanics.attackingAllyIndex;
-
-
         // let renderAdditionalMenus = this.handleRenderMenus();
-        console.log('propsy ataku', this.props)
-        let index = this.props.combat.attackerIndex;
-        let portrait = this.props.characters[index].portrait;
+        let attackInterface = (this.props.combat.whoseTurn === 'ally') ? this.handleRenderAttackInterface() : ''
+
+
         return (
             <div id='attackInterface'>
                 <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450 }}>
                     {/* {renderAdditionalMenus} */}
                 </div>
+                {attackInterface}
 
-                <div className=" d-flex align-items-center justify-content-center" style={{ marginTop: 450, position: 'relative' }}>
-                    <div className="d-flex flex-column" style={{ marginBottom: 0 }}>
-                        <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleAllyAttack('basic')}> Basic Attack </div>
-                        <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenSkills()}> Skills </div>
-                    </div>
-                    <img src={portrait} alt="current char"style={{ height: 50, zIndex: 5, position: 'absolute', borderRadius: 100, border: '1px solid black' }} />
-                    <div className="d-flex flex-column" style={{ marginBottom: 0 }}>
-                        <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenMagic()}> Magic </div>
-                        <div className="d-flex justify-content-center flex-wrap align-items-center" style={buttonStyle} onClick={() => this.handleOpenConsumables()}> Consumables </div>
-                    </div>
-                </div>
             </div>
         )
     }

@@ -19,7 +19,10 @@ export const enemyLoseHp = (hp, i) => {
         if (remainingHp <= 0) {
             dispatch(killEnemy(i));
             if (getState().enemy.length === 0) {
-                alert('wygrales')
+                alert('wygrales');
+                dispatch({
+                    type: 'TOGGLE_COMBAT'
+                })
             }
         }
     }
@@ -181,14 +184,16 @@ export const enemyTurn = () => {
                         dispatch(addInfoToArray(info))
                     }
                     noOfEnemiesAttacked += 1;
+
+                    if (noOfEnemiesAttacked === enemies.length) {
+                        dispatch(changeTurn('ally'))
+                    }
                 }, 1000 + offset);
 
-                offset+=1000;
+                offset += 1000;
             })
 
-            if (noOfEnemiesAttacked === enemies.length) {
-                dispatch(changeTurn('ally'))
-            }
+
         } else {
             console.error('Couldnt get enemies')
         }
@@ -203,6 +208,9 @@ export const nextAllyTurn = () => (dispatch, getState) => {
     //if all ally attacked - enemy turn
     if (currentIndex + 1 === numberOfAllies) {
         console.log('ENEMY')
+        dispatch({
+            type: 'RESET_ATTACKER_INDEX'
+        })
         dispatch(changeTurn('enemy'));
         dispatch(enemyTurn());
     } else {

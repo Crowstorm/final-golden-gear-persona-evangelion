@@ -7,7 +7,7 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 21,
+            hp: 1,
             mp: 0,
             defence: 4,
             agility: 11,
@@ -21,7 +21,7 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 24,
+            hp: 4,
             mp: 0,
             defence: 4,
             agility: 4,
@@ -35,7 +35,7 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 20,
+            hp: 2,
             mp: 0,
             defence: 4,
             agility: 7,
