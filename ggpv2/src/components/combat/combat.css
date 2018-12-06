@@ -54,9 +54,7 @@
 
 .bar{
     position: relative;
-    /* background: "red"; */
     background: #1DA598;
-
     height: 96px;
     width: 16px;
     border: 1px solid #333;
@@ -65,8 +63,13 @@
 }
 
 .barFiller{
-    background: #a51d1d;
     width: 100%;
     /* height: 30%; */
     transition: width .2s ease-in;
+}
+
+.barText{
+   /* text-align: center; */
+    transform: rotate(-90deg);
+    color: "white"
 }
