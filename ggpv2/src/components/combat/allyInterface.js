@@ -7,14 +7,14 @@ import { Bar, Filler } from './bar';
 class AllyInterface extends React.Component {
     getCharacters = () => {
         const { ally } = this.props;
-        // console.log(characters)
         return ally.map(char => {
             return (
                 <div key={char.name} className="d-flex flex-row">
-                    {/* mana bar */}
                     <div>
                     <Bar
-                        percentage={90}
+                        // percentage={50}
+                        max={char.stats.maxHp}
+                        current={char.stats.hp}
                         type="health"
                         side="ally"
                     />
@@ -26,14 +26,13 @@ class AllyInterface extends React.Component {
                         </div>
                         <img className="characterPortrait" alt="ally" src={char.portrait} />
                     </div>
+
                     <Bar
-                        percentage={30}
+                        max={char.stats.maxMp}
+                        current={char.stats.mp}
                         type="mana"
                         side="ally"
                     />
-
-
-                    {/* hp bar */}
                 </div>
             )
         })

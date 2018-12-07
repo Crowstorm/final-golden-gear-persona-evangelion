@@ -7,7 +7,9 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 1,
+            maxHp: 17,
+            hp: 11,
+            maxMp: 0,
             mp: 0,
             defence: 4,
             agility: 11,
@@ -17,11 +19,13 @@ const enemyDefaultState = [
         }
     },
     {
-        name: 'Second Beholder',
+        name: '2nd Beholder',
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 4,
+            maxHp: 17,
+            hp: 14,
+            maxMp: 0,
             mp: 0,
             defence: 4,
             agility: 4,
@@ -35,7 +39,9 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            hp: 2,
+            maxHp: 17,
+            hp: 12,
+            maxMp: 0,
             mp: 0,
             defence: 4,
             agility: 7,

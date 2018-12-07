@@ -1,6 +1,7 @@
 import React from 'react'
 
-import './combat.css'
+import { Bar } from './bar';
+import './combat.css';
 
 class EnemyInterface extends React.Component {
 
@@ -62,7 +63,7 @@ class EnemyInterface extends React.Component {
         }
     }
 
-    calculateAllyDmg = () =>{
+    calculateAllyDmg = () => {
         let i = this.props.combat.attackerIndex;
         let char = this.props.ally[i];
         let attack = 0;
@@ -78,7 +79,7 @@ class EnemyInterface extends React.Component {
         return attack;
     }
 
-    getEnemyDefence = (i) =>{
+    getEnemyDefence = (i) => {
         let enemy = this.props.enemy[i];
         let defence = 0;
         if (enemy && enemy.stats && enemy.stats.defence) {
@@ -90,18 +91,18 @@ class EnemyInterface extends React.Component {
         return defence;
     }
 
-    calculateTotalDmg = (allyDmg, enemyDef, wasCritical) =>{
+    calculateTotalDmg = (allyDmg, enemyDef, wasCritical) => {
         let criticalMultiplier = this.props.combat.basicCriticalMultiplier;
-        if(!criticalMultiplier){
+        if (!criticalMultiplier) {
             console.error('Cant get critical multiplier');
             return 0;
         }
         let totalDmg = 0;
-        if(!wasCritical){
+        if (!wasCritical) {
             totalDmg += allyDmg - enemyDef;
             return totalDmg;
         } else {
-            totalDmg += (allyDmg * criticalMultiplier - enemyDef/2);
+            totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
             return totalDmg;
         }
     }
@@ -129,7 +130,7 @@ class EnemyInterface extends React.Component {
                 this.props.nextAllyTurn();
             } else {
                 console.log('PUDŁO');
-             
+
                 let info = `${name} missed!`;
                 this.props.addInfoToArray(info)
                 this.props.nextAllyTurn();
@@ -143,13 +144,27 @@ class EnemyInterface extends React.Component {
         const { enemy } = this.props;
         return enemy.map((char, i) => {
             return (
-                <div key={char.name} onClick={() => this.handleEnemyAttacked(i)}>
-                    {/* mana bar */}
-                    <div className="characterNameContainer d-flex justify-content-center">
-                        {char.name}
+                <div key={char.name} className="d-flex flex-row" onClick={() => this.handleEnemyAttacked(i)}>
+                    <Bar
+                        max={char.stats.maxHp}
+                        current={char.stats.hp}
+                        type="health"
+                        side="enemy"
+                    />
+
+                    <div>
+                        <div className="characterNameContainer d-flex justify-content-center">
+                            {char.name}
+                        </div>
+                        <img className="characterPortrait" alt="enemy" src={char.portrait} />
                     </div>
-                    <img className="characterPortrait" alt="enemy" src={char.portrait} />
-                    {/* hp bar */}
+
+                    <Bar
+                        max={char.stats.maxMp}
+                        current={char.stats.mp}
+                        type="mana"
+                        side="enemy"
+                    />
                 </div>
             )
         })

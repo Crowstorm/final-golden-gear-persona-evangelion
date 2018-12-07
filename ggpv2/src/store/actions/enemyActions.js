@@ -160,7 +160,6 @@ export const enemyTurn = () => {
                 setTimeout(() => {
                     //if special skill pick target, else pick random target
                     let allyIndex = Math.floor((Math.random() * getState().characters.length));
-                    console.log({ allyIndex })
                     let enemyAgility = getEnemyAgility(i, enemies);
                     let allyEvasion = dispatch(getAllyEvasion(allyIndex));
                     let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
@@ -168,7 +167,6 @@ export const enemyTurn = () => {
                     if (wasAttackSuccessful) {
                         let wasCritical = dispatch(wasAttackCritical(i));
                         let enemyDmg = dispatch(calculateEnemyDmg(i));
-                        console.log({ wasCritical }, { enemyDmg })
                         let allyDef = dispatch(getAllyDefence(allyIndex));
                         let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 
@@ -177,20 +175,21 @@ export const enemyTurn = () => {
                         let allyName = getState().characters[allyIndex].name;
                         info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
                         dispatch(addInfoToArray(info))
-                        console.log({ allyDef }, { totalDmg });
-                        dispatch(allyLoseHp(totalDmg, i))
+                        
+                        dispatch(allyLoseHp(totalDmg, allyIndex))
                     } else {
                         let info = `${enemy.name} missed!`
                         dispatch(addInfoToArray(info))
                     }
+
                     noOfEnemiesAttacked += 1;
 
                     if (noOfEnemiesAttacked === enemies.length) {
                         dispatch(changeTurn('ally'))
                     }
-                }, 1000 + offset);
+                }, 2000 + offset);
 
-                offset += 1000;
+                offset += 2000;
             })
 
 
