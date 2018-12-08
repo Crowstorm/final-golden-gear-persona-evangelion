@@ -16,6 +16,9 @@ const enemyDefaultState = [
             speed: 6,
             strength: 9,
             luck: 3
+        },
+        loot: {
+            exp: 50
         }
     },
     {
@@ -23,15 +26,18 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            maxHp: 17,
-            hp: 14,
+            maxHp: 170,
+            hp: 140,
             maxMp: 0,
             mp: 0,
             defence: 4,
             agility: 4,
             speed: 2,
-            strength: 5,
+            strength: 15,
             luck: 12
+        },
+        loot: {
+            exp: 50
         }
     },
     {
@@ -39,8 +45,8 @@ const enemyDefaultState = [
         portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
-            maxHp: 17,
-            hp: 12,
+            maxHp: 170,
+            hp: 120,
             maxMp: 0,
             mp: 0,
             defence: 4,
@@ -48,6 +54,9 @@ const enemyDefaultState = [
             speed: 7,
             strength: 11,
             luck: 14
+        },
+        loot: {
+            exp: 50
         }
     },
 ]

@@ -8,8 +8,21 @@ export const isAttackReady = (isReady) => {
 };
 
 export const changeTurn = (whoseTurn) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
         console.log({ whoseTurn })
+        // dispatch({
+        //     type: 'INCREMENT_ATTACKER_INDEX'
+        // })
+
+        if(whoseTurn === 'ally'){
+            let i = 0;
+            while(getState().characters[i].stats.hp < 1){
+                dispatch({
+                    type: 'INCREMENT_ATTACKER_INDEX'
+                })
+                i++;
+            }
+        }
         dispatch({
             type: 'CHANGE_TURN',
             whoseTurn

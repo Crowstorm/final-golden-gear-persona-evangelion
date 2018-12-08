@@ -7,6 +7,18 @@ const getEnemyHp = (i) => {
     }
 }
 
+const getAllyIndex = () => {
+    return function (dispatch, getState) {
+        let i = Math.floor((Math.random() * getState().characters.length));
+        if (getState().characters[i].stats.hp <= 0) {
+            console.log('IMIE', getState().characters[i].name)
+            dispatch(getAllyIndex());
+        } else {
+            console.log('IMIE Z PELNYM HP', getState().characters[i].name)
+            return i;
+        }
+    }
+}
 
 export const enemyLoseHp = (hp, i) => {
     return function (dispatch, getState) {
@@ -159,7 +171,7 @@ export const enemyTurn = () => {
             enemies.map((enemy, i) => {
                 setTimeout(() => {
                     //if special skill pick target, else pick random target
-                    let allyIndex = Math.floor((Math.random() * getState().characters.length));
+                    let allyIndex = dispatch(getAllyIndex());
                     let enemyAgility = getEnemyAgility(i, enemies);
                     let allyEvasion = dispatch(getAllyEvasion(allyIndex));
                     let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
@@ -175,7 +187,7 @@ export const enemyTurn = () => {
                         let allyName = getState().characters[allyIndex].name;
                         info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
                         dispatch(addInfoToArray(info))
-                        
+
                         dispatch(allyLoseHp(totalDmg, allyIndex))
                     } else {
                         let info = `${enemy.name} missed!`
@@ -189,7 +201,7 @@ export const enemyTurn = () => {
                     }
                 }, 2000 + offset);
 
-                offset += 2000;
+                offset += 200;
             })
 
 
@@ -203,8 +215,15 @@ export const enemyTurn = () => {
 
 export const nextAllyTurn = () => (dispatch, getState) => {
     let currentIndex = getState().combat.attackerIndex;
+    //if character is dead it can't attack
+    // console.log('ILE MASZ HP', getState().characters[currentIndex].stats.hp )
+    // if(getState().characters[currentIndex].stats.hp <=0){
+    //     dispatch({
+    //         type: 'INCREMENT_ATTACKER_INDEX'
+    //     })
+    // }
+
     let numberOfAllies = getState().characters.length;
-    //if all ally attacked - enemy turn
     if (currentIndex + 1 === numberOfAllies) {
         console.log('ENEMY')
         dispatch({

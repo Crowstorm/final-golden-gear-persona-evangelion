@@ -10,6 +10,8 @@ let initial_state = [
             model: ''
         },
         stats: {
+            level: 1,
+            exp: 0,
             maxHp: 25,
             hp: 7,
             maxMp: 15,
@@ -49,15 +51,17 @@ let initial_state = [
         ]
     },
     {
-        name: 'Revolver Ocelot',
+        name: 'Ocelot',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",
         stats: {
+            level: 1,
+            exp: 0,
             maxHp: 25,
             hp: 20,
             maxMp: 15,
             mp: 15,
             strength: 5,
-            defence: 15,
+            defence: 5,
             magic: 5,
             magicResist: 5,
             agility: 5,
@@ -69,8 +73,10 @@ let initial_state = [
         name: 'Kaz',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_miller.png",
         stats: {
+            level: 1,
+            exp: 0,
             maxHp: 25,
-            hp: 25,
+            hp: 0,
             maxMp: 15,
             mp: 15,
             strength: 9,
@@ -86,6 +92,8 @@ let initial_state = [
         name: 'Random Guy',
         portrait: "https://vignette.wikia.nocookie.net/metalgear/images/5/51/Ui_face_635_0.png/revision/latest?cb=20160226135114",
         stats: {
+            level: 1,
+            exp: 0,
             maxHp: 25,
             hp: 25,
             maxMp: 15,

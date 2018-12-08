@@ -5,20 +5,21 @@ import React from 'react';
 export const Bar = (props) => {
     const percentage = 100 - props.current * 100 / props.max;
     let barColor = (props.type === 'health') ? "#1DA598" : "#007efb";
+    let margin = (props.type === 'health') ? "24px" : "8px";
 
     if(props.max === 0){
         barColor = "#808d9a"
     }
-    
+
     return (
-        <div className="bar" style={{ background: barColor }}>
+        <div className="bar" style={{ background: barColor, marginLeft: margin }}>
             <Filler
                 height={percentage}
                 side={props.side}
                 type={props.type}
             />
             <Value
-                percentage={props.percentage}
+                side={props.side}
                 max={props.max}
                 current={props.current}
             />
