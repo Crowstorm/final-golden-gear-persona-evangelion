@@ -3,7 +3,7 @@ const enemyDefaultState = {
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     whoseTurn: "ally",
-    attackerIndex: 3,
+    attackerIndex: 0,
     attackReady: false,
     info: []
 }
@@ -11,10 +11,10 @@ const enemyDefaultState = {
 const combatReducer = (state = enemyDefaultState, action) => {
     switch (action.type) {
         case 'TOGGLE_COMBAT':
-        return{
-            ...state,
-            isCombat: !state.isCombat
-        }
+            return {
+                ...state,
+                isCombat: !state.isCombat
+            }
         case 'IS_ATTACK_READY':
             return {
                 ...state,
@@ -29,6 +29,11 @@ const combatReducer = (state = enemyDefaultState, action) => {
             return {
                 ...state,
                 attackerIndex: state.attackerIndex + 1
+            }
+        case 'SET_ATTACKER_INDEX':
+            return {
+                ...state,
+                attackerIndex: action.i
             }
         case 'RESET_ATTACKER_INDEX':
             return {

@@ -11,15 +11,8 @@ const getAllyIndex = () => {
     return function (dispatch, getState) {
         return new Promise(resolve => {
             let i = Math.floor((Math.random() * getState().characters.length));
-            // if (getState().characters[i].stats.hp <= 0) {
-            //     console.log('IMIE', getState().characters[i].name)
-            //     dispatch(getAllyIndex());
-            // } else {
-            //     console.log('IMIE Z PELNYM HP', getState().characters[i].name)
-            //     // return i;
-            //     resolve(i)
-            // }
-            while(getState().characters[i].stats.hp <= 0){
+
+            while (getState().characters[i].stats.hp <= 0) {
                 i = Math.floor((Math.random() * getState().characters.length));
             }
             resolve(i)
@@ -110,7 +103,6 @@ const wasAttackCritical = (i) => {
             } else {
                 return wasCritical;
             }
-            //Wyslij info o criticalu
         } else {
             console.error('Couldnt get enemy luck');
             return wasCritical;
@@ -181,31 +173,30 @@ export const enemyTurn = () => {
             })
             let noOfEnemiesAttacked = 0;
 
-            let offset = 2000;
+            let offset = 1000;
             for (const [i, enemy] of enemies.entries()) {
-                // enemies.map(async (enemy, i) => {
-                // setTimeout(() => {
                 //if special skill pick target, else pick random target
                 await timeout(offset);
 
                 let allyIndex = await dispatch(getAllyIndex());
                 let enemyAgility = getEnemyAgility(i, enemies);
-                let allyEvasion = await dispatch(getAllyEvasion(allyIndex));
+                let allyEvasion = dispatch(getAllyEvasion(allyIndex));
                 let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
 
                 if (wasAttackSuccessful) {
                     let wasCritical = dispatch(wasAttackCritical(i));
                     let enemyDmg = dispatch(calculateEnemyDmg(i));
-                    let allyDef = await dispatch(getAllyDefence(allyIndex));
+                    let allyDef = dispatch(getAllyDefence(allyIndex));
                     let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 
                     let info = ``;
                     if (wasCritical) { info += `Critical hit! ` };
-                    let allyName = await getState().characters[allyIndex].name;
+                    let allyName = getState().characters[allyIndex].name;
                     info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
                     dispatch(addInfoToArray(info))
 
                     dispatch(allyLoseHp(totalDmg, allyIndex))
+
                 } else {
                     let info = `${enemy.name} missed!`
                     dispatch(addInfoToArray(info))
@@ -216,10 +207,6 @@ export const enemyTurn = () => {
                 if (noOfEnemiesAttacked === enemies.length) {
                     dispatch(changeTurn('ally'))
                 }
-                // }, 2000 + offset);
-
-                // offset += 2000;
-                // })
             }
 
         } else {
@@ -230,27 +217,41 @@ export const enemyTurn = () => {
     }
 }
 
-export const nextAllyTurn = () => (dispatch, getState) => {
-    let currentIndex = getState().combat.attackerIndex;
-    //if character is dead it can't attack
-    // console.log('ILE MASZ HP', getState().characters[currentIndex].stats.hp )
-    // if(getState().characters[currentIndex].stats.hp <=0){
-    //     dispatch({
-    //         type: 'INCREMENT_ATTACKER_INDEX'
-    //     })
-    // }
+const getAliveCharacter = () => {
+    return function (dispatch, getState) {
+        return new Promise(resolve => {
+            let i = getState().combat.attackerIndex;
 
-    let numberOfAllies = getState().characters.length;
-    if (currentIndex + 1 === numberOfAllies) {
-        console.log('ENEMY')
-        dispatch({
-            type: 'RESET_ATTACKER_INDEX'
+            if (getState().characters[i + 1]) {
+                while (getState().characters[i + 1].stats.hp === 0) {
+                    i++;
+                }
+            }
+
+            dispatch({
+                type: 'SET_ATTACKER_INDEX',
+                i
+            })
+            resolve(i);
         })
-        dispatch(changeTurn('enemy'));
-        dispatch(enemyTurn());
-    } else {
-        dispatch({
-            type: 'INCREMENT_ATTACKER_INDEX'
-        })
+    }
+}
+
+export const nextAllyTurn = () => {
+    return async function (dispatch, getState) {
+        let currentIndex = await dispatch(getAliveCharacter());
+    
+        let numberOfAllies = getState().characters.length;
+        if (currentIndex + 1 === numberOfAllies) {
+            dispatch({
+                type: 'RESET_ATTACKER_INDEX'
+            })
+            dispatch(changeTurn('enemy'));
+            dispatch(enemyTurn());
+        } else {
+            dispatch({
+                type: 'INCREMENT_ATTACKER_INDEX'
+            })
+        }
     }
 }
