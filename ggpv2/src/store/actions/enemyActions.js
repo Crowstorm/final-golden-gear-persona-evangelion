@@ -9,14 +9,22 @@ const getEnemyHp = (i) => {
 
 const getAllyIndex = () => {
     return function (dispatch, getState) {
-        let i = Math.floor((Math.random() * getState().characters.length));
-        if (getState().characters[i].stats.hp <= 0) {
-            console.log('IMIE', getState().characters[i].name)
-            dispatch(getAllyIndex());
-        } else {
-            console.log('IMIE Z PELNYM HP', getState().characters[i].name)
-            return i;
-        }
+        return new Promise(resolve => {
+            let i = Math.floor((Math.random() * getState().characters.length));
+            // if (getState().characters[i].stats.hp <= 0) {
+            //     console.log('IMIE', getState().characters[i].name)
+            //     dispatch(getAllyIndex());
+            // } else {
+            //     console.log('IMIE Z PELNYM HP', getState().characters[i].name)
+            //     // return i;
+            //     resolve(i)
+            // }
+            while(getState().characters[i].stats.hp <= 0){
+                i = Math.floor((Math.random() * getState().characters.length));
+            }
+            resolve(i)
+        })
+
     }
 }
 
@@ -62,6 +70,7 @@ const getEnemyAgility = (i, enemies) => {
 
 const getAllyEvasion = (i) => {
     return function (dispatch, getState) {
+        console.log({ i })
         let ally = getState().characters[i];
         console.log({ ally })
         let evasion = 0;
@@ -157,8 +166,13 @@ const calculateTotalDmg = (allyDmg, enemyDef, wasCritical) => {
     }
 }
 
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 export const enemyTurn = () => {
-    return function (dispatch, getState) {
+    return async function (dispatch, getState) {
         let enemies = getState().enemy;
         if (enemies) {
             //sort by speed stat
@@ -167,43 +181,46 @@ export const enemyTurn = () => {
             })
             let noOfEnemiesAttacked = 0;
 
-            let offset = 0;
-            enemies.map((enemy, i) => {
-                setTimeout(() => {
-                    //if special skill pick target, else pick random target
-                    let allyIndex = dispatch(getAllyIndex());
-                    let enemyAgility = getEnemyAgility(i, enemies);
-                    let allyEvasion = dispatch(getAllyEvasion(allyIndex));
-                    let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
+            let offset = 2000;
+            for (const [i, enemy] of enemies.entries()) {
+                // enemies.map(async (enemy, i) => {
+                // setTimeout(() => {
+                //if special skill pick target, else pick random target
+                await timeout(offset);
 
-                    if (wasAttackSuccessful) {
-                        let wasCritical = dispatch(wasAttackCritical(i));
-                        let enemyDmg = dispatch(calculateEnemyDmg(i));
-                        let allyDef = dispatch(getAllyDefence(allyIndex));
-                        let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
+                let allyIndex = await dispatch(getAllyIndex());
+                let enemyAgility = getEnemyAgility(i, enemies);
+                let allyEvasion = await dispatch(getAllyEvasion(allyIndex));
+                let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
 
-                        let info = ``;
-                        if (wasCritical) { info += `Critical hit! ` };
-                        let allyName = getState().characters[allyIndex].name;
-                        info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
-                        dispatch(addInfoToArray(info))
+                if (wasAttackSuccessful) {
+                    let wasCritical = dispatch(wasAttackCritical(i));
+                    let enemyDmg = dispatch(calculateEnemyDmg(i));
+                    let allyDef = await dispatch(getAllyDefence(allyIndex));
+                    let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 
-                        dispatch(allyLoseHp(totalDmg, allyIndex))
-                    } else {
-                        let info = `${enemy.name} missed!`
-                        dispatch(addInfoToArray(info))
-                    }
+                    let info = ``;
+                    if (wasCritical) { info += `Critical hit! ` };
+                    let allyName = await getState().characters[allyIndex].name;
+                    info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
+                    dispatch(addInfoToArray(info))
 
-                    noOfEnemiesAttacked += 1;
+                    dispatch(allyLoseHp(totalDmg, allyIndex))
+                } else {
+                    let info = `${enemy.name} missed!`
+                    dispatch(addInfoToArray(info))
+                }
 
-                    if (noOfEnemiesAttacked === enemies.length) {
-                        dispatch(changeTurn('ally'))
-                    }
-                }, 2000 + offset);
+                noOfEnemiesAttacked += 1;
 
-                offset += 200;
-            })
+                if (noOfEnemiesAttacked === enemies.length) {
+                    dispatch(changeTurn('ally'))
+                }
+                // }, 2000 + offset);
 
+                // offset += 2000;
+                // })
+            }
 
         } else {
             console.error('Couldnt get enemies')
