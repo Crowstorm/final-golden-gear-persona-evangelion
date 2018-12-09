@@ -16,7 +16,7 @@ export const changeTurn = (whoseTurn) => {
 
         if(whoseTurn === 'ally'){
             let i = 0;
-            while(getState().characters[i].stats.hp < 1){
+            while(getState().characters[i].stats.hp < 1 && i <4){
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })

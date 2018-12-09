@@ -1,5 +1,5 @@
 import { changeTurn, addInfoToArray } from './combatActions';
-import { allyLoseHp } from './characterActions';
+import { allyLoseHp, checkIfCharactersAlive } from './characterActions';
 
 const getEnemyHp = (i) => {
     return function (dispatch, getState) {
@@ -176,7 +176,13 @@ export const enemyTurn = () => {
             let offset = 1000;
             for (const [i, enemy] of enemies.entries()) {
                 //if special skill pick target, else pick random target
+            
                 await timeout(offset);
+                //stop combat when all characters are dead
+                let areAlive = dispatch(checkIfCharactersAlive());
+                if(!areAlive){
+                    return;
+                }
 
                 let allyIndex = await dispatch(getAllyIndex());
                 let enemyAgility = getEnemyAgility(i, enemies);
@@ -223,7 +229,7 @@ const getAliveCharacter = () => {
             let i = getState().combat.attackerIndex;
 
             if (getState().characters[i + 1]) {
-                while (getState().characters[i + 1].stats.hp === 0) {
+                while (getState().characters[i + 1] && getState().characters[i + 1].stats.hp === 0  ) {
                     i++;
                 }
             }
