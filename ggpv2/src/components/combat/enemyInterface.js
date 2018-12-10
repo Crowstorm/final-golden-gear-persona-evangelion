@@ -91,13 +91,26 @@ class EnemyInterface extends React.Component {
         return defence;
     }
 
-    calculateTotalDmg = (allyDmg, enemyDef, wasCritical) => {
+    getWeaponDmg = (i) => {
+        return new Promise(resolve => {
+            if (this.props.ally[i].weapon) {
+                console.log(this.props.ally[i].weapon[0])
+                resolve(1)
+            } else {
+                resolve(0);
+            }
+        })
+
+    }
+
+    calculateTotalDmg = async (allyDmg, enemyDef, wasCritical, i) => {
         let criticalMultiplier = this.props.combat.basicCriticalMultiplier;
         if (!criticalMultiplier) {
             console.error('Cant get critical multiplier');
             return 0;
         }
         let totalDmg = 0;
+        let weaponDmg = await this.getWeaponDmg(i);
         if (!wasCritical) {
             totalDmg += allyDmg - enemyDef;
             return totalDmg;
@@ -107,7 +120,7 @@ class EnemyInterface extends React.Component {
         }
     }
 
-    handleEnemyAttacked = (i) => {
+    handleEnemyAttacked = async (i) => {
         let attI = this.props.combat.attackerIndex;
         let name = this.props.ally[attI].name;
 
@@ -123,7 +136,7 @@ class EnemyInterface extends React.Component {
                 let wasCritical = this.wasAttackCritical();
                 let allyDmg = this.calculateAllyDmg();
                 let enemyDef = this.getEnemyDefence(i);
-                let totalDmg = this.calculateTotalDmg(allyDmg, enemyDef, wasCritical);
+                let totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
                 this.props.enemyLoseHp(totalDmg, i);
                 let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
                 this.props.addInfoToArray(info)

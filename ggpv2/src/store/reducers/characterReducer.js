@@ -1,4 +1,5 @@
-import produce from "immer"
+import produce from "immer";
+import * as weapons from '../items/weapons';
 
 let initial_state = [
     {
@@ -34,17 +35,19 @@ let initial_state = [
             rightHand: 'https://i.pinimg.com/originals/8b/99/48/8b9948f230b107327413d56e3d83b744.png',
             legs: 'https://orig00.deviantart.net/ba0b/f/2015/019/7/8/minecraft_leather_pants_by_dragonshadow3-d8ekmni.png'
         },
+        weapon: [
+            weapons.woodenSword
+        ],
         skills: [
 
         ],
         magic: [
-          
         ],
         items: [
 
         ],
         consumables: [
-            
+
         ],
         questItems: [
 
