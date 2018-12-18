@@ -91,11 +91,15 @@ class EnemyInterface extends React.Component {
         return defence;
     }
 
+    //Returns random number between max and min weapon damage
     getWeaponDmg = (i) => {
         return new Promise(resolve => {
             if (this.props.ally[i].weapon) {
-                console.log(this.props.ally[i].weapon[0])
-                resolve(1)
+                let minDmg = this.props.ally[i].weapon.attack[0];
+                let maxDmg = this.props.ally[i].weapon.attack[1];
+                let dmg = Math.floor(Math.random() * (maxDmg - minDmg + 1)) + minDmg;
+                console.log(dmg)
+                resolve(dmg)
             } else {
                 resolve(0);
             }
@@ -109,8 +113,11 @@ class EnemyInterface extends React.Component {
             console.error('Cant get critical multiplier');
             return 0;
         }
+
         let totalDmg = 0;
         let weaponDmg = await this.getWeaponDmg(i);
+        allyDmg += weaponDmg;
+
         if (!wasCritical) {
             totalDmg += allyDmg - enemyDef;
             return totalDmg;
@@ -125,13 +132,11 @@ class EnemyInterface extends React.Component {
         let name = this.props.ally[attI].name;
 
         if (this.props.combat.attackReady && this.props.combat.whoseTurn === 'ally') {
-            //nie pozwolic na atak redi jak nie tura ally
             let enemy = this.props.enemy[i];
             this.props.isAttackReady(false)
             let allyAgility = this.getAllyAgility();
             let enemyEvasion = this.getEnemyEvasion(i);
             let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
-            //jesli atak nie wszedł zakończ turę
             if (wasAttackSuccessful) {
                 let wasCritical = this.wasAttackCritical();
                 let allyDmg = this.calculateAllyDmg();
@@ -142,13 +147,9 @@ class EnemyInterface extends React.Component {
                 this.props.addInfoToArray(info)
                 this.props.nextAllyTurn();
             } else {
-                console.log('PUDŁO');
-
                 let info = `${name} missed!`;
                 this.props.addInfoToArray(info)
                 this.props.nextAllyTurn();
-                //oddaj ture
-                // return;
             }
         }
     }

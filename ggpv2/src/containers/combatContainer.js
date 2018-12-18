@@ -6,9 +6,9 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import {isAttackReady, changeTurn, addInfoToArray} from '../store/actions/combatActions';
-import {enemyLoseHp, nextAllyTurn} from '../store/actions/enemyActions';
-// import {nextAllyTurn} from '../store/actions/characterActions';
+import { isAttackReady, changeTurn, addInfoToArray } from '../store/actions/combatActions';
+import { enemyLoseHp, nextAllyTurn } from '../store/actions/enemyActions';
+import { boostStat } from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -35,20 +35,23 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        isAttackReady: (isReady) =>{
+        isAttackReady: (isReady) => {
             dispatch(isAttackReady(isReady))
         },
-        enemyLoseHp: (hp, i) =>{
+        enemyLoseHp: (hp, i) => {
             dispatch(enemyLoseHp(hp, i))
         },
-        nextAllyTurn: () =>{
-            dispatch(nextAllyTurn())
-        },
-        changeTurn: (whoseTurn) =>{
+        changeTurn: (whoseTurn) => {
             dispatch(changeTurn(whoseTurn))
         },
-        addInfoToArray: (info) =>{
+        nextAllyTurn: () => {
+            dispatch(nextAllyTurn())
+        },
+        addInfoToArray: (info) => {
             dispatch(addInfoToArray(info))
+        },
+        boostStat: (stat, val, i) => {
+            dispatch(boostStat(stat, val, i))
         }
     }
 }

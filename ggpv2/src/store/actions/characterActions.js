@@ -35,6 +35,17 @@ export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
             type: 'TOGGLE_COMBAT'
         })
     }
+}
 
-    console.log('are alive', areAlive)
+//Boosts ally statistics
+export const boostStat = (stat, val, i) => {
+    return function (dispatch) {
+        console.log({stat}, {val})
+        dispatch({
+            type: 'BOOST_STAT',
+            stat,
+            val,
+            i
+        })
+    }
 }

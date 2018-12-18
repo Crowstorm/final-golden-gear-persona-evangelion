@@ -1,5 +1,8 @@
 import produce from "immer";
 import * as weapons from '../items/weapons';
+import * as armor from '../items/armor';
+
+import * as skills from '../skills/skills';
 
 let initial_state = [
     {
@@ -28,18 +31,17 @@ let initial_state = [
         quests: [
 
         ],
-        eq: {
-            head: 'https://i.pinimg.com/originals/2e/a8/51/2ea851e26242a29461b14ec21004dfe2.png',
-            chest: 'http://piq.codeus.net/static/media/userpics/piq_65251_400x400.png',
-            leftHand: 'https://vignette.wikia.nocookie.net/teoria/images/3/39/Piq_68684_400x400.png/revision/latest?cb=20160723153739&path-prefix=pl',
-            rightHand: 'https://i.pinimg.com/originals/8b/99/48/8b9948f230b107327413d56e3d83b744.png',
-            legs: 'https://orig00.deviantart.net/ba0b/f/2015/019/7/8/minecraft_leather_pants_by_dragonshadow3-d8ekmni.png'
+        armor: {
+            head: armor.woodenHelmet,
+            chest: armor.woodenShirt,
+            shield: armor.woodenShield,
+            legs: armor.woodenLegs
         },
-        weapon: [
-            weapons.woodenSword
-        ],
+        weapon: weapons.woodenSword
+        ,
         skills: [
-
+            skills.strongBlow,
+            skills.allIn
         ],
         magic: [
         ],
@@ -118,9 +120,8 @@ export default (state = initial_state, action) => {
             case 'ALLY_LOSE_HP':
                 draft[action.i].stats.hp -= action.dmg
                 break;
-            // case 'KILL_ENEMY':
-            //     draft.splice(action.i, 1);
-            //     break;
+            case 'BOOST_STAT':
+                draft[action.i].stats[action.stat] += action.val
             default:
                 return draft;
         }
