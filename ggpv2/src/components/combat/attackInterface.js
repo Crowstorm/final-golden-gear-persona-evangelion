@@ -46,8 +46,10 @@ class AttackInterface extends React.Component {
             return (
                 <AbilityNode
                     setActiveAbility={this.props.setActiveAbility}
+                    isAttackReady={this.props.isAttackReady}
                     key={i}
                     name={skill.name}
+                    icon={skill.icon}
                     cost={skill.cost}
                     type={skill.costType}
                     dataType={skill.costDataType}
@@ -96,7 +98,7 @@ class AttackInterface extends React.Component {
         let renderAdditionalMenus = this.handleRenderSkills();
         return (
             <div id='attackInterface'>
-                <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450, border: "1px solid green" }}>
+                <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450, border: "2px solid silver", padding:"2px", backgroundColor: "black" }}>
                     {renderAdditionalMenus}
                 </div>
                 {attackInterface}

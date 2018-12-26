@@ -1,3 +1,7 @@
+import strongBlowIcon from './icons/skillIcons/strongBlow.png';
+import strongBlowIcon2 from './icons/skillIcons/strongBlow2.png';
+import whirlwindIcon from './icons/skillIcons/whirlwind.png';
+
 // name - name of skill
 // costType - hp or mp
 // costDataType - integer(int) or percentage(perc)
@@ -9,6 +13,7 @@
 // aoe - true, Area of effect
 
 export const strongBlow = {
+    icon: strongBlowIcon2,
     name: "Strong Blow",
     costType: "mp",
     costDataType: 'int',
@@ -41,6 +46,7 @@ export const decimate ={
 }
 
 export const whirlwind ={
+    icon: whirlwindIcon,
     name: "Whirlwind",
     costType: "mp",
     costDataType: "int",

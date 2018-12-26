@@ -2,8 +2,10 @@
     position: fixed;
     height: 800px;
     width: 192px;
-    /* border: 1px solid blue; */
-    background-color: aquamarine;
+    border: 2px solid silver;
+    background-color: black;
+    color: white;
+    /* background-color: aquamarine; */
 }
 
 .characterNameContainer{
@@ -15,8 +17,8 @@
     height: 96px;
     margin-left: 8px;
     /* margin-left: 32px; */
-    border: 5px solid brown;
-    outline: 5px solid red;
+    border: 5px solid #828282;
+    outline: 3px solid silver;
     margin-bottom: 16px;
     margin-top: 16px;
 }
@@ -27,8 +29,10 @@
     margin-left: 832px;
     height: 800px;
     width: 192px;
-    /* border: 1px solid blue; */
-    background-color: blueviolet;
+    border: 2px solid silver;
+    background-color: black;
+    color: white
+    /* background-color: blueviolet; */
 }
 
 .combatScreen{
@@ -47,8 +51,11 @@
     margin-top: 608px;
     height: 192px;
     width: 640px;
-    /* border: 1px solid pink; */
-    background-color: darkgoldenrod;
+    border-top: 2px solid silver;
+    border-bottom: 2px solid silver;
+    background-color: black;
+    color: white;
+    /* background-color: darkgoldenrod; */
     overflow-y: auto;
 }
 
@@ -63,13 +70,15 @@
 
 .barFiller{
     position: absolute;
-    width: 14.5px;    
+    width: 14px;    
     transition: width .2s ease-in;
 }
 
 .barText{
    /* text-align: center; */
     height: 100%;
-    transform: rotate(-90deg);
+    width: 100%;
+    transform: rotate(-90deg) translatey(-1px);
+    font-size: 14px;
     color: white;
 }

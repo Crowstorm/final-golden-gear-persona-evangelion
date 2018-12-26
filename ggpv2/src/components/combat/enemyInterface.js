@@ -131,30 +131,35 @@ class EnemyInterface extends React.Component {
 
         if (combat.attackReady && combat.whoseTurn === 'ally') {
             //sprawdzenie czy ability w użyciu
+            if (combat.activeAbility.type) {
+                console.log('abilitka')
+                //jeśli typu multiplier to pobranie i wyliczenie obrazen
 
-            //jeśli typu multiplier to pobranie i wyliczenie obrazen
-
-            //jesli flat dmg pobranie danych i atak
-            let enemy = this.props.enemy[i];
-            this.props.isAttackReady(false)
-            let allyAgility = this.getAllyAgility();
-            let enemyEvasion = this.getEnemyEvasion(i);
-            let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
-
-            if (wasAttackSuccessful) {
-                let wasCritical = this.wasAttackCritical();
-                let allyDmg = this.calculateAllyDmg();
-                let enemyDef = this.getEnemyDefence(i);
-                let totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
-                this.props.enemyLoseHp(totalDmg, i);
-                let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                this.props.addInfoToArray(info)
-                this.props.nextAllyTurn();
+                //jesli flat dmg pobranie danych i atak
             } else {
-                let info = `${name} missed!`;
-                this.props.addInfoToArray(info)
-                this.props.nextAllyTurn();
+                let enemy = this.props.enemy[i];
+                this.props.isAttackReady(false)
+                let allyAgility = this.getAllyAgility();
+                let enemyEvasion = this.getEnemyEvasion(i);
+                let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
+
+                if (wasAttackSuccessful) {
+                    let wasCritical = this.wasAttackCritical();
+                    let allyDmg = this.calculateAllyDmg();
+                    let enemyDef = this.getEnemyDefence(i);
+                    let totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                    this.props.enemyLoseHp(totalDmg, i);
+                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                    this.props.addInfoToArray(info)
+                    this.props.nextAllyTurn();
+                } else {
+                    let info = `${name} missed!`;
+                    this.props.addInfoToArray(info)
+                    this.props.nextAllyTurn();
+                }
             }
+
+
         }
     }
 
@@ -171,7 +176,7 @@ class EnemyInterface extends React.Component {
                     />
 
                     <div>
-                        <div className="characterNameContainer d-flex justify-content-center">
+                        <div className="characterNameContainer d-flex justify-content-center" style={{ transform: "translatex(5px)" }}>
                             {char.name}
                         </div>
                         <img className="characterPortrait" alt="enemy" src={char.portrait} />

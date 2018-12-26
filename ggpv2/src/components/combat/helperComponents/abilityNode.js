@@ -1,4 +1,5 @@
 import React from 'react';
+import './abilityNode.css';
 
 export default class AbilityNode extends React.Component {
     state = {
@@ -6,22 +7,12 @@ export default class AbilityNode extends React.Component {
     }
 
     renderInfo = () => {
-        const infoStyle = {
-            display: "flex",
-            border: "1px solid teal",
-            position: "absolute",
-            backgroundColor: "white",
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center"
-        }
         return (
-            <div style={infoStyle}>
+            <div className="infoStyle">
                 <div style={{ padding: 8 }}>
                     {this.props.info}
                 </div>
-                <div style={{ width: 32, height: 32, border: "1px solid blue" }} onClick={(e) => this.toggleInfo(e)}></div>
+                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
             </div>
 
         )
@@ -39,6 +30,7 @@ export default class AbilityNode extends React.Component {
         console.log('button');
         let type = (this.props.skill) ? 'skill' : 'magic';
         this.props.setActiveAbility(type, this.props.name);
+        this.props.isAttackReady(true);
     }
 
     render() {
@@ -47,10 +39,10 @@ export default class AbilityNode extends React.Component {
         //potrzebny bedzie jakis unfocus
         let info = (this.state.info) ? this.renderInfo() : null;
         return (
-            <div className="d-flex flex-direction-row justify-content-between align-items-center" style={{ height: 48, width: "100%",  WebkitAppearance: 'button' }} onClick={() => this.abilityClick()}> 
-                <div style={{ width: 32, height: 32, border: "1px solid blue" }}></div>
+            <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" onClick={() => this.abilityClick()}> 
+                <img className="abilityIcon" src={this.props.icon}/>
                 {this.props.name} Cost: {this.props.cost}{costDatatype} {this.props.type}
-                <div style={{ width: 32, height: 32, border: "1px solid blue", }} onClick={(e) => this.toggleInfo(e)}></div>
+                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
 
                 {info}
             </div>

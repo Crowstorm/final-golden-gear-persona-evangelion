@@ -1,0 +1,39 @@
+.skillButton{
+    /* background-image: url('../../../assets//combat//ui/skillButton.png'); */
+    height: 48px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
+    border: 2px solid silver;
+    color: white;
+    margin: 1px
+}
+
+.infoStyle{
+    display: flex;
+    /* height: 48px; */
+
+    border: 2px solid silver;
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    /* margin-right: 1px; */
+    transform: translateX(-2px)
+}
+
+.abilityIcon{
+    height: 32px;
+    width: 32px;
+    margin-left: 8px;
+}
+
+.toggleButton{
+    height: 32px;
+    width: 32px;
+    margin-right: 8px;
+    border: 1px solid blueviolet;
+}

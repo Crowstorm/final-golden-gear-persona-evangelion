@@ -12,7 +12,7 @@ export const Bar = (props) => {
     }
 
     return (
-        <div className="bar" style={{ background: barColor, marginLeft: margin }}>
+        <div className="bar" style={{ background: barColor, marginLeft: margin, border: "1px solid silver" }}>
             <Filler
                 height={percentage}
                 side={props.side}
