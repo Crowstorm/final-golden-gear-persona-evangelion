@@ -5,6 +5,10 @@ const enemyDefaultState = {
     whoseTurn: "ally",
     attackerIndex: 0,
     attackReady: false,
+    activeAbility: {
+        type: null,
+        name: null
+    },
     info: []
 }
 
@@ -20,6 +24,25 @@ const combatReducer = (state = enemyDefaultState, action) => {
                 ...state,
                 attackReady: action.isReady
             }
+        case 'SET_ACTIVE_ABILITY':
+            return {
+                ...state,
+                activeAbility: {
+                    ...state.activeAbility,
+                    type: action.abilityType,
+                    name: action.name
+                }
+            }
+        case 'RESET_ACTIVE_ABILITY':{
+            return{
+                ...state,
+                activeAbility:{
+                    ...state.activeAbility,
+                    type: null,
+                    name: null
+                }
+            }
+        }
         case 'CHANGE_TURN':
             return {
                 ...state,

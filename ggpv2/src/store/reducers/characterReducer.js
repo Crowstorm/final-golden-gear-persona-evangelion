@@ -41,7 +41,9 @@ let initial_state = [
         ,
         skills: [
             skills.strongBlow,
-            skills.allIn
+            skills.allIn,
+            skills.decimate,
+            skills.whirlwind
         ],
         magic: [
         ],
@@ -119,6 +121,9 @@ export default (state = initial_state, action) => {
         switch (action.type) {
             case 'ALLY_LOSE_HP':
                 draft[action.i].stats.hp -= action.dmg
+                break;
+            case 'ALLY_LOSE_MP':
+                draft[action.i].stats.mp -= action.val
                 break;
             case 'BOOST_STAT':
                 draft[action.i].stats[action.stat] += action.val

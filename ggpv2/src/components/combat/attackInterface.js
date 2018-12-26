@@ -44,9 +44,15 @@ class AttackInterface extends React.Component {
         let skills = this.props.characters[this.index].skills;
         return skills.map((skill, i) => {
             return (
-                <AbilityNode 
+                <AbilityNode
+                    setActiveAbility={this.props.setActiveAbility}
                     key={i}
                     name={skill.name}
+                    cost={skill.cost}
+                    type={skill.costType}
+                    dataType={skill.costDataType}
+                    info={skill.description}
+                    skill={true}
                 />
             )
         })

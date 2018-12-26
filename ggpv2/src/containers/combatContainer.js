@@ -6,9 +6,9 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import { isAttackReady, changeTurn, addInfoToArray } from '../store/actions/combatActions';
+import { isAttackReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility } from '../store/actions/combatActions';
 import { enemyLoseHp, nextAllyTurn } from '../store/actions/enemyActions';
-import { boostStat } from '../store/actions/characterActions';
+import { boostStat, allyLoseMana } from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -52,6 +52,15 @@ function mapDispatchToProps(dispatch) {
         },
         boostStat: (stat, val, i) => {
             dispatch(boostStat(stat, val, i))
+        },
+        allyLoseMana: (val, i) => {
+            dispatch(allyLoseMana(val, i))
+        },
+        setActiveAbility: (type, name) => {
+            dispatch(setActiveAbility(type, name))
+        },
+        resetActiveAbility: () => {
+            dispatch(resetActiveAbility())
         }
     }
 }

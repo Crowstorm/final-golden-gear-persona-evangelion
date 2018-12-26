@@ -7,6 +7,24 @@ export const isAttackReady = (isReady) => {
     }
 };
 
+export const setActiveAbility = (abilityType, name) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'SET_ACTIVE_ABILITY',
+            abilityType,
+            name
+        })
+    }
+}
+
+export const resetActiveAbility = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'RESET_ACTIVE_ABILITY',
+        })
+    }
+}
+
 export const changeTurn = (whoseTurn) => {
     return function (dispatch, getState) {
         console.log({ whoseTurn })
@@ -14,9 +32,9 @@ export const changeTurn = (whoseTurn) => {
         //     type: 'INCREMENT_ATTACKER_INDEX'
         // })
 
-        if(whoseTurn === 'ally'){
+        if (whoseTurn === 'ally') {
             let i = 0;
-            while(getState().characters[i].stats.hp < 1 && i <4){
+            while (getState().characters[i].stats.hp < 1 && i < 4) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })

@@ -37,10 +37,21 @@ export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
     }
 }
 
+export const allyLoseMana = (val, i) => (dispatch, getState) => {
+    const currentMana = getState().characters[i].stats.mp;
+    if (val > currentMana) {
+        val = currentMana
+    }
+    dispatch({
+        type: 'ALLY_LOSE_MP',
+        val,
+        i
+    })
+}
+
 //Boosts ally statistics
 export const boostStat = (stat, val, i) => {
     return function (dispatch) {
-        console.log({stat}, {val})
         dispatch({
             type: 'BOOST_STAT',
             stat,

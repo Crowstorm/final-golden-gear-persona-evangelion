@@ -9,9 +9,7 @@ class EnemyInterface extends React.Component {
         let i = this.props.combat.attackerIndex;
         let char = this.props.ally[i];
         let agility = 0;
-        //sprawdz czy atakujacy ma bron z bonusami do agility
 
-        //pobierz agility postaci
         if (char && char.stats && char.stats.agility) {
             agility += char.stats.agility;
         } else {
@@ -56,7 +54,6 @@ class EnemyInterface extends React.Component {
             } else {
                 return wasCritical;
             }
-            //Wyslij info o criticalu
         } else {
             console.error('Couldnt get ally luck');
             return wasCritical;
@@ -67,9 +64,7 @@ class EnemyInterface extends React.Component {
         let i = this.props.combat.attackerIndex;
         let char = this.props.ally[i];
         let attack = 0;
-        //sprawdz czy atakujacy ma bron z bonusami do strength
 
-        //pobierz strength postaci
         if (char && char.stats && char.stats.strength) {
             attack += char.stats.strength;
         } else {
@@ -127,16 +122,25 @@ class EnemyInterface extends React.Component {
         }
     }
 
+    // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
+        let combat = this.props.combat;
         let attI = this.props.combat.attackerIndex;
         let name = this.props.ally[attI].name;
 
-        if (this.props.combat.attackReady && this.props.combat.whoseTurn === 'ally') {
+
+        if (combat.attackReady && combat.whoseTurn === 'ally') {
+            //sprawdzenie czy ability w użyciu
+
+            //jeśli typu multiplier to pobranie i wyliczenie obrazen
+
+            //jesli flat dmg pobranie danych i atak
             let enemy = this.props.enemy[i];
             this.props.isAttackReady(false)
             let allyAgility = this.getAllyAgility();
             let enemyEvasion = this.getEnemyEvasion(i);
             let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
+
             if (wasAttackSuccessful) {
                 let wasCritical = this.wasAttackCritical();
                 let allyDmg = this.calculateAllyDmg();
