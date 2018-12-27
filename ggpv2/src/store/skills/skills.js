@@ -3,6 +3,7 @@ import strongBlowIcon2 from './icons/skillIcons/strongBlow2.png';
 import whirlwindIcon from './icons/skillIcons/whirlwind.png';
 
 // name - name of skill
+// hitChance - hit chance (perc)
 // costType - hp or mp
 // costDataType - integer(int) or percentage(perc)
 // cost - amount
@@ -15,6 +16,7 @@ import whirlwindIcon from './icons/skillIcons/whirlwind.png';
 export const strongBlow = {
     icon: strongBlowIcon2,
     name: "Strong Blow",
+    hitChance: 80,
     costType: "mp",
     costDataType: 'int',
     cost: 10,
@@ -37,6 +39,7 @@ export const allIn = {
 
 export const decimate ={
     name: "Decimate",
+    hitChance: 75,
     costType: "mp",
     costDataType: "int",
     cost: 10,

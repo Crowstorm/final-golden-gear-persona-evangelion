@@ -8,7 +8,7 @@ const enemyDefaultState = [
         combatGif: 'https://i.imgur.com/R5xhCzA.png',
         stats: {
             maxHp: 17,
-            hp: 11,
+            hp: 1,
             maxMp: 0,
             mp: 0,
             defence: 4,
@@ -65,6 +65,7 @@ const enemyReducer = (state = enemyDefaultState, action) => {
     return produce(state, draft => {
         switch (action.type) {
             case 'ENEMY_LOSE_HP':
+            console.log(draft[action.i], action.i)
                 draft[action.i].stats.hp -= action.hp
                 break;
             case 'KILL_ENEMY':
