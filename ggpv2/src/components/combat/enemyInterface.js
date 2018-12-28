@@ -135,6 +135,27 @@ class EnemyInterface extends React.Component {
         }
     }
 
+    payAbilityPrice = (ability, i) => {
+        let char = this.props.ally[i];
+        if (ability.costType === 'mp') {
+            if (ability.costDataType === 'int') {
+                this.props.allyLoseMana(ability.cost, i)
+            } else {
+                let mana = char.stats.maxMp;
+                let price = mana * ability.cost;
+                this.props.allyLoseMana(price, i)
+            }
+
+        } else {
+            if (ability.costDataType === 'int') {
+                this.props.allyLoseHp(ability.cost, i)
+            } else {
+                let hp = char.stats.maxHp;
+                let price = hp * ability.cost;
+                this.props.allyLoseHp(price, i)
+            }
+        }
+    }
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
         let combat = this.props.combat;
@@ -150,12 +171,13 @@ class EnemyInterface extends React.Component {
             let enemyEvasion = this.getEnemyEvasion(i);
 
             if (combat.activeAbility.type) {
-                // pay cost of ability
-
 
                 //find proper ability
                 let abilityName = _.findKey(skills, { name: combat.activeAbility.name });
                 let ability = skills[abilityName];
+                // pay cost of ability
+
+                this.payAbilityPrice(ability, attI);
                 let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
 
                 if (wasAttackSuccessful) {

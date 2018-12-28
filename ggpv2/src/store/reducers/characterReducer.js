@@ -19,7 +19,7 @@ let initial_state = [
             maxHp: 25,
             hp: 7,
             maxMp: 15,
-            mp: 5,
+            mp: 13,
             strength: 7,
             defence: 5,
             magic: 5,

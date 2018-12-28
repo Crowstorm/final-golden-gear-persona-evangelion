@@ -15,7 +15,17 @@ class AttackInterface extends React.Component {
             magic: false
         };
 
-        this.index = this.props.combat.attackerIndex;
+        // this.index = this.props.combat.attackerIndex;
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.combat.attackerIndex !== this.props.combat.attackerIndex) {
+            this.setState({
+                consumables: false,
+                skills: false,
+                magic: false
+            })
+        }
     }
 
     handleAllyAttack = (attackType) => {
@@ -41,28 +51,58 @@ class AttackInterface extends React.Component {
     }
 
     handleRenderSkills = () => {
-        let skills = this.props.characters[this.index].skills;
-        return skills.map((skill, i) => {
-            return (
-                <AbilityNode
-                    setActiveAbility={this.props.setActiveAbility}
-                    isAttackReady={this.props.isAttackReady}
-                    key={i}
-                    name={skill.name}
-                    icon={skill.icon}
-                    cost={skill.cost}
-                    type={skill.costType}
-                    dataType={skill.costDataType}
-                    info={skill.description}
-                    skill={true}
-                />
-            )
-        })
-
+        let index = this.props.combat.attackerIndex;
+        let skills = this.props.characters[index].skills;
+        let name = this.props.characters[index].name;
+        console.log(index);
+        if (skills) {
+            return skills.map((skill, i) => {
+                return (
+                    <AbilityNode
+                        setActiveAbility={this.props.setActiveAbility}
+                        isAttackReady={this.props.isAttackReady}
+                        key={i}
+                        name={skill.name}
+                        icon={skill.icon}
+                        cost={skill.cost}
+                        type={skill.costType}
+                        dataType={skill.costDataType}
+                        info={skill.description}
+                        skill={true}
+                    />
+                )
+            })
+        } else {
+            return <div style={{color: "white"}}>
+                {name} doesn't know any skills yet
+            </div>;
+        }
     }
 
     handleRenderMagic = () => {
 
+    }
+
+    handleRenderAdditionalMenus = () => {
+        let {skills, consumables, magic} = this.state;
+        let menu;
+        if (skills) {
+            menu = this.handleRenderSkills()
+        } else if (consumables) {
+            menu = this.handleRenderConsumables();
+        } else if (magic) {
+            menu = this.handleRenderMagic();
+        }
+
+        if(skills || magic || consumables){
+            return (
+                <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450, border: "2px solid silver", padding: "2px", backgroundColor: "black" }}>
+                    {menu}
+                </div>
+            )
+        } 
+        return null;
+      
     }
 
     handleRenderAttackInterface = () => {
@@ -95,12 +135,10 @@ class AttackInterface extends React.Component {
 
     render() {
         let attackInterface = (this.props.combat.whoseTurn === 'ally') ? this.handleRenderAttackInterface() : '';
-        let renderAdditionalMenus = this.handleRenderSkills();
+        let renderAdditionalMenus = this.handleRenderAdditionalMenus();
         return (
             <div id='attackInterface'>
-                <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450, border: "2px solid silver", padding:"2px", backgroundColor: "black" }}>
-                    {renderAdditionalMenus}
-                </div>
+                {renderAdditionalMenus}
                 {attackInterface}
 
             </div>

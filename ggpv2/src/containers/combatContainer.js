@@ -8,7 +8,7 @@ import InfoPanel from '../components/combat/infoPanel';
 
 import { isAttackReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility } from '../store/actions/combatActions';
 import { enemyLoseHp, nextAllyTurn } from '../store/actions/enemyActions';
-import { boostStat, allyLoseMana } from '../store/actions/characterActions';
+import { boostStat, allyLoseMana, allyLoseHp } from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -55,6 +55,9 @@ function mapDispatchToProps(dispatch) {
         },
         allyLoseMana: (val, i) => {
             dispatch(allyLoseMana(val, i))
+        },
+        allyLoseHp: (dmg, i) => {
+            dispatch(allyLoseHp(dmg, i))
         },
         setActiveAbility: (type, name) => {
             dispatch(setActiveAbility(type, name))

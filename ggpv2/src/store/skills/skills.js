@@ -17,9 +17,9 @@ export const strongBlow = {
     icon: strongBlowIcon2,
     name: "Strong Blow",
     hitChance: 80,
-    costType: "mp",
+    costType: "hp",
     costDataType: 'int',
-    cost: 10,
+    cost: 5,
     multiplier: 2,
     description: "A strong attack "
 }

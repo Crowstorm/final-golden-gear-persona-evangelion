@@ -65,7 +65,6 @@ const enemyReducer = (state = enemyDefaultState, action) => {
     return produce(state, draft => {
         switch (action.type) {
             case 'ENEMY_LOSE_HP':
-            console.log(draft[action.i], action.i)
                 draft[action.i].stats.hp -= action.hp
                 break;
             case 'KILL_ENEMY':
