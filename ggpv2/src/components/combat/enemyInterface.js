@@ -142,7 +142,7 @@ class EnemyInterface extends React.Component {
                 this.props.allyLoseMana(ability.cost, i)
             } else {
                 let mana = char.stats.maxMp;
-                let price = mana * ability.cost;
+                let price = mana * (ability.cost/100);
                 this.props.allyLoseMana(price, i)
             }
 
@@ -151,11 +151,12 @@ class EnemyInterface extends React.Component {
                 this.props.allyLoseHp(ability.cost, i)
             } else {
                 let hp = char.stats.maxHp;
-                let price = hp * ability.cost;
+                let price = hp * (ability.cost/100);
                 this.props.allyLoseHp(price, i)
             }
         }
     }
+    
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
         let combat = this.props.combat;

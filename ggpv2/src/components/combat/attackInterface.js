@@ -12,7 +12,8 @@ class AttackInterface extends React.Component {
         this.state = {
             consumables: false,
             skills: false,
-            magic: false
+            magic: false,
+            active: null
         };
 
         // this.index = this.props.combat.attackerIndex;
@@ -50,18 +51,38 @@ class AttackInterface extends React.Component {
 
     }
 
+    highlightNode = (i) => {
+        if (i === this.state.active) {
+            this.setState({
+                active: null
+            })
+        } else {
+            this.setState({
+                active: i
+            })
+        }
+    }
+
     handleRenderSkills = () => {
         let index = this.props.combat.attackerIndex;
         let skills = this.props.characters[index].skills;
         let name = this.props.characters[index].name;
-        console.log(index);
         if (skills) {
             return skills.map((skill, i) => {
+                let isActive = false;
+                if (i === this.state.active) {
+                    isActive = true;
+                }
+                console.log(isActive)
                 return (
                     <AbilityNode
                         setActiveAbility={this.props.setActiveAbility}
                         isAttackReady={this.props.isAttackReady}
+                        highlightNode={this.highlightNode}
+                        combat={this.props.combat}
+                        ally={this.props.ally}
                         key={i}
+                        index={i}
                         name={skill.name}
                         icon={skill.icon}
                         cost={skill.cost}
@@ -69,11 +90,12 @@ class AttackInterface extends React.Component {
                         dataType={skill.costDataType}
                         info={skill.description}
                         skill={true}
+                        active={isActive}
                     />
                 )
             })
         } else {
-            return <div style={{color: "white"}}>
+            return <div style={{ color: "white" }}>
                 {name} doesn't know any skills yet
             </div>;
         }
@@ -84,7 +106,7 @@ class AttackInterface extends React.Component {
     }
 
     handleRenderAdditionalMenus = () => {
-        let {skills, consumables, magic} = this.state;
+        let { skills, consumables, magic } = this.state;
         let menu;
         if (skills) {
             menu = this.handleRenderSkills()
@@ -94,15 +116,15 @@ class AttackInterface extends React.Component {
             menu = this.handleRenderMagic();
         }
 
-        if(skills || magic || consumables){
+        if (skills || magic || consumables) {
             return (
                 <div className='d-flex flex-column align-items-center justify-content-center' style={{ position: 'absolute', width: 360, height: 450, border: "2px solid silver", padding: "2px", backgroundColor: "black" }}>
                     {menu}
                 </div>
             )
-        } 
+        }
         return null;
-      
+
     }
 
     handleRenderAttackInterface = () => {
