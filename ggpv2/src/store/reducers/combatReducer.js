@@ -9,6 +9,9 @@ const enemyDefaultState = {
         type: null,
         name: null
     },
+    activeItem: {
+        name: null
+    },
     info: []
 }
 
@@ -33,12 +36,29 @@ const combatReducer = (state = enemyDefaultState, action) => {
                     name: action.name
                 }
             }
-        case 'RESET_ACTIVE_ABILITY':{
-            return{
+        case 'RESET_ACTIVE_ABILITY': {
+            return {
                 ...state,
-                activeAbility:{
+                activeAbility: {
                     ...state.activeAbility,
                     type: null,
+                    name: null
+                }
+            }
+        }
+        case 'SET_ACTIVE_ITEM':
+            return {
+                ...state,
+                activeItem: {
+                    ...state.activeItem,
+                    name: action.name
+                }
+            }
+        case 'RESET_ACTIVE_ITEM': {
+            return {
+                ...state,
+                activeItem: {
+                    ...state.activeItem,
                     name: null
                 }
             }

@@ -6,7 +6,7 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import { isAttackReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility } from '../store/actions/combatActions';
+import { isAttackReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility, setActiveItem, resetActiveItem } from '../store/actions/combatActions';
 import { enemyLoseHp, nextAllyTurn } from '../store/actions/enemyActions';
 import { boostStat, allyLoseMana, allyLoseHp } from '../store/actions/characterActions';
 
@@ -64,6 +64,12 @@ function mapDispatchToProps(dispatch) {
         },
         resetActiveAbility: () => {
             dispatch(resetActiveAbility())
+        },
+        setActiveItem: (name) =>{
+            dispatch(setActiveItem(name))
+        },
+        resetActiveItem: () =>{
+            dispatch(resetActiveItem())
         }
     }
 }

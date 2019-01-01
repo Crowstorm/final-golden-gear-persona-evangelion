@@ -25,6 +25,23 @@ export const resetActiveAbility = () => {
     }
 }
 
+export const setActiveItem = (name) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'SET_ACTIVE_ITEM',
+            name
+        })
+    }
+}
+
+export const resetActiveItem = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'RESET_ACTIVE_ITEM',
+        })
+    }
+}
+
 export const changeTurn = (whoseTurn) => {
     return function (dispatch, getState) {
         console.log({ whoseTurn })

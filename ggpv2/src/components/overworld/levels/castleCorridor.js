@@ -38,7 +38,7 @@ class CastleCorridor extends React.Component {
     }
 
     componentDidMount = () => {
-        document.addEventListener("keydown", _.throttle(this.handleKeyDown, 300));
+        document.addEventListener("keydown", _.throttle(this.handleKeyDown, this.props.level.movementSpeed));
         // document.getElementById('d12_17').innerHTML = `<img src=${king} />`
     }
 

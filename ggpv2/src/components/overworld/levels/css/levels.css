@@ -14,7 +14,7 @@
 }
 
 .castleCorridor{
-    background-image: url("../../../../assets/levelBackgrounds/corridor.png");
+    background-image: url("../../../../assets/levelBackgrounds/castleCorridor.png");
     box-sizing: border-box;
     height:800px;
     width:800px;

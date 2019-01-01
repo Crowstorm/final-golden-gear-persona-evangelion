@@ -80,7 +80,7 @@ export default class AbilityNode extends React.Component {
         let type = (this.props.skill) ? 'skill' : 'magic';
         this.props.setActiveAbility(type, this.props.name);
         this.props.isAttackReady(true);
-        this.props.highlightNode(this.props.index)
+        this.props.highlightAbility(this.props.index)
     }
 
     setBackgroundColor = () => {

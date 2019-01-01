@@ -4,6 +4,7 @@ import React from 'react';
 import './combat.css';
 
 import AbilityNode from './helperComponents/abilityNode';
+import ItemNode from './helperComponents/itemNode';
 
 
 class AttackInterface extends React.Component {
@@ -13,7 +14,8 @@ class AttackInterface extends React.Component {
             consumables: false,
             skills: false,
             magic: false,
-            active: null
+            activeAbility: null,
+            activeItem: null
         };
 
         // this.index = this.props.combat.attackerIndex;
@@ -36,7 +38,9 @@ class AttackInterface extends React.Component {
     }
 
     handleOpenConsumables = () => {
-        console.log('items')
+        this.setState({
+            consumables: !this.state.consumables
+        })
     }
     handleOpenSkills = () => {
         this.setState({
@@ -47,22 +51,69 @@ class AttackInterface extends React.Component {
         console.log('magic')
     }
 
-    handleRenderConsumables = () => {
-
+    sortConsumablesAlphabetically = (items) => {
+        return items.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+        })
     }
 
-    highlightNode = (i) => {
-        if (i === this.state.active) {
+    highlightItem = (i) => {
+        if (i === this.state.activeItem) {
             this.setState({
-                active: null
+                activeItem: null
             })
         } else {
             this.setState({
-                active: i
+                activeItem: i
             })
         }
     }
 
+
+    handleRenderConsumables = () => {
+        let items = this.props.characters[0].consumables;
+        if (items.length > 0) {
+            items = this.sortConsumablesAlphabetically(items);
+
+            return items.map((item, i) => {
+                let isActive = false;
+                if (i === this.state.activeItem) {
+                    isActive = true;
+                }
+                return (
+                    <ItemNode
+                        key={i}
+                        setActiveItem={this.props.setActiveItem}
+                        highlightItem={this.highlightItem}
+                        index={i}
+                        name={item.name}
+                        info={item.description}
+                        active={isActive}
+                    />
+                )
+            })
+        } else {
+            return (
+                <div style={{ color: "white" }}>
+                    The backpack is empty!
+            </div>
+            )
+        }
+    }
+
+    highlightAbility = (i) => {
+        if (i === this.state.activeAbility) {
+            this.setState({
+                activeAbility: null
+            })
+        } else {
+            this.setState({
+                activeAbility: i
+            })
+        }
+    }
     handleRenderSkills = () => {
         let index = this.props.combat.attackerIndex;
         let skills = this.props.characters[index].skills;
@@ -70,15 +121,14 @@ class AttackInterface extends React.Component {
         if (skills) {
             return skills.map((skill, i) => {
                 let isActive = false;
-                if (i === this.state.active) {
+                if (i === this.state.activeAbility) {
                     isActive = true;
                 }
-                console.log(isActive)
                 return (
                     <AbilityNode
                         setActiveAbility={this.props.setActiveAbility}
                         isAttackReady={this.props.isAttackReady}
-                        highlightNode={this.highlightNode}
+                        highlightAbility={this.highlightAbility}
                         combat={this.props.combat}
                         ally={this.props.ally}
                         key={i}

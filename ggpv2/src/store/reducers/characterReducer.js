@@ -4,6 +4,8 @@ import * as armor from '../items/armor';
 
 import * as skills from '../skills/skills';
 
+import * as items from '../items/items';
+
 let initial_state = [
     {
         name: 'BigBoss',
@@ -51,7 +53,9 @@ let initial_state = [
 
         ],
         consumables: [
-
+            items.healingPotion,
+            items.manaPotion,
+            items.healingPotion,
         ],
         questItems: [
 

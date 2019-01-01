@@ -35,7 +35,7 @@ class ThroneRoom extends React.Component {
         if (e.key === "Enter" && ((x === 11 && y === 16) || (x === 12 && y === 16))) {
             this.props.toggleDialogueState();
         }
-    }, 300)
+    }, this.props.level.movementSpeed)
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
