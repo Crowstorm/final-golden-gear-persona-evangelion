@@ -23,7 +23,8 @@ export default class ItemNode extends React.Component {
 
     itemClick = () =>{
         this.props.setActiveItem(this.props.name);
-        this.props.highlightItem(this.props.index)
+        this.props.highlightItem(this.props.index);
+        this.props.isHelpReady(true)
     }
 
     renderInfo = () => {

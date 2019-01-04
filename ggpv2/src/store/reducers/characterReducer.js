@@ -129,8 +129,21 @@ export default (state = initial_state, action) => {
             case 'ALLY_LOSE_MP':
                 draft[action.i].stats.mp -= action.val
                 break;
+            case 'ALLY_RESTORE':
+                draft[action.i].stats[action.statType] += action.amount;
+                break;
             case 'BOOST_STAT':
-                draft[action.i].stats[action.stat] += action.val
+                draft[action.i].stats[action.stat] += action.val;
+                break;
+            case 'REMOVE_ITEM_OR_ABILITY':
+                console.log(state[0][action.section], action.section, action.index)
+                let array = state[0][action.section]
+                // draft.splice(1,1)
+                // let newArray = array.slice(1, 1);
+                console.log(array)
+                draft[0][action.section].splice(action.index, 1);
+                break;
+            // state[0][action.section].splice(action.index, 1);
             default:
                 return draft;
         }

@@ -6,6 +6,14 @@ export const isAttackReady = (isReady) => {
         })
     }
 };
+export const isHelpReady = (isReady) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'IS_HELP_READY',
+            isReady
+        })
+    }
+};
 
 export const setActiveAbility = (abilityType, name) => {
     return function (dispatch) {

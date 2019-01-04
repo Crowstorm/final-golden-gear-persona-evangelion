@@ -6,9 +6,9 @@ import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
 
-import { isAttackReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility, setActiveItem, resetActiveItem } from '../store/actions/combatActions';
+import { isAttackReady, isHelpReady, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility, setActiveItem, resetActiveItem } from '../store/actions/combatActions';
 import { enemyLoseHp, nextAllyTurn } from '../store/actions/enemyActions';
-import { boostStat, allyLoseMana, allyLoseHp } from '../store/actions/characterActions';
+import { boostStat, charRestore, allyLoseMana, allyLoseHp, charAbilityItemRemover } from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -38,6 +38,9 @@ function mapDispatchToProps(dispatch) {
         isAttackReady: (isReady) => {
             dispatch(isAttackReady(isReady))
         },
+        isHelpReady: (isReady) => {
+            dispatch(isHelpReady(isReady))
+        },
         enemyLoseHp: (hp, i) => {
             dispatch(enemyLoseHp(hp, i))
         },
@@ -59,17 +62,23 @@ function mapDispatchToProps(dispatch) {
         allyLoseHp: (dmg, i) => {
             dispatch(allyLoseHp(dmg, i))
         },
+        charRestore: (statType, amount, i) => {
+            dispatch(charRestore(statType, amount, i))
+        },
         setActiveAbility: (type, name) => {
             dispatch(setActiveAbility(type, name))
         },
         resetActiveAbility: () => {
             dispatch(resetActiveAbility())
         },
-        setActiveItem: (name) =>{
+        setActiveItem: (name) => {
             dispatch(setActiveItem(name))
         },
-        resetActiveItem: () =>{
+        resetActiveItem: () => {
             dispatch(resetActiveItem())
+        },
+        charAbilityItemRemover: (section, name, i) => {
+            dispatch(charAbilityItemRemover(section, name, i))
         }
     }
 }
