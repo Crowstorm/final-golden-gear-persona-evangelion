@@ -17,11 +17,24 @@ class AllyInterface extends React.Component {
         let maxHp = char.stats.maxHp;
         let maxMp = char.stats.maxMp;
 
-        if (currentHp + item.amount < maxHp) {
-            this.props.charRestore('hp', item.amount, i);
+        if(item.type === 'hp'){
+            if (currentHp + item.amount < maxHp) {
+                this.props.charRestore('hp', item.amount, i);
+            } else {
+                let toRestore = maxHp - currentHp;
+                this.props.charRestore('hp', toRestore, i)
+            }
+        } else if(item.type==='mp'){
+            if(currentMp + item.amount < maxMp){
+                this.props.charRestore('mp', item.amount, i)
+            } else {
+                let toRestore = maxMp - currentMp;
+                this.props.charRestore('mp', toRestore, i)
+            }
         }
     }
 
+    // does action depending on combat state (inventory check, buffs etc)
     handleAllyClicked = (i) => {
         console.log(i);
         let combat = this.props.combat;
