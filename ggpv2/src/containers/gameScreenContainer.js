@@ -1,20 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight } from '../store/actions/characterMovementActions';
-import { toggleDialogueState } from '../store/actions/modalActions';
-import { changeLevel } from '../store/actions/levelActions';
-
-import Level from '../components/overworld/levelRenderer';
-import OverworldInterface from '../components/overworld/overworldInterface';
 import CombatContainer from './combatContainer';
+import MainMenuContainer from './mainMenuContainer';
+import OverworldContainer from './overworldContainer';
 
 class GameScreenContainer extends React.Component {
     overworld = () => {
         return (
             <div>
-                <OverworldInterface {...this.props} />
-                <Level {...this.props} />
+                <OverworldContainer {...this.props} />
             </div>
         )
     }
@@ -25,13 +20,31 @@ class GameScreenContainer extends React.Component {
         )
     }
 
+    mainMenu = () => {
+        return (
+            <MainMenuContainer {...this.props} />
+        )
+    }
+
+    renderContent = () => {
+        const { player, combat } = this.props;
+        if (!player.isAuth) {
+            return this.mainMenu();
+        }
+
+        if (combat.isCombat) {
+            return this.combat();
+        } else {
+            return this.overworld();
+        }
+    }
+
     render() {
-        let renderScreen = (this.props.combat.isCombat) ? this.combat() : this.overworld();
+        // let renderScreen = (this.props.combat.isCombat) ? this.combat() : this.overworld();
+        let content = this.renderContent();
         return (
             <div>
-                {/* {this.overworld()} */}
-                {/* {this.combat()} */}
-                {renderScreen}
+                {content}
             </div>
         )
     }
@@ -39,24 +52,14 @@ class GameScreenContainer extends React.Component {
 
 function mapStateToProps(store) {
     return {
-        position: store.position,
-        modal: store.modal,
-        level: store.level,
-        combat: store.combat
+        combat: store.combat,
+        player: store.player
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        //movement
-        moveCharUp: () => { dispatch(moveCharUp()) },
-        moveCharDown: () => { dispatch(moveCharDown()) },
-        moveCharRight: () => { dispatch(moveCharRight()) },
-        moveCharLeft: () => { dispatch(moveCharLeft()) },
-        //modals
-        toggleDialogueState: () => { dispatch(toggleDialogueState()) },
-        //level mechanics
-        changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
+
     }
 }
 

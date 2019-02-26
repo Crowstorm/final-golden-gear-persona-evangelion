@@ -1,11 +1,9 @@
-export const moveChar = (x, y) => {
+export const setCharacterPosition = (x, y) => {
     return function (dispatch) {
-        const _x = x;
-        const _y = y;
         dispatch({
-            type: 'MOVE_CHAR',
-            x: _x,
-            y: _y
+            type: 'SET_CHARACTER_POSITION',
+            x,
+            y
         })
     }
 }

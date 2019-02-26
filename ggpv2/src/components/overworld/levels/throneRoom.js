@@ -46,6 +46,7 @@ class ThroneRoom extends React.Component {
         let { x, y } = this.props.position;
 
         if (x === 12 && y === 2) {
+            this.props.setCharacterPosition(5,5);
             this.props.changeLevel('CastleCorridor');
         }
     }
