@@ -40,7 +40,6 @@ class GameScreenContainer extends React.Component {
     }
 
     render() {
-        // let renderScreen = (this.props.combat.isCombat) ? this.combat() : this.overworld();
         let content = this.renderContent();
         return (
             <div>
