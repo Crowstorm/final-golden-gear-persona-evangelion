@@ -1,5 +1,5 @@
 const playerDefaultState = {
-  isAuth: true,
+  isAuth: false,
   id: null,
   login: null,
 }

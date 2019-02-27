@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './loginForm';
+import RegisterForm from './registerForm';
 
 class MainMenuScreen extends React.Component {
     state = {
@@ -35,8 +36,13 @@ class MainMenuScreen extends React.Component {
                 )
                 break;
             case 'login':
-                return <LoginForm />
+                return <LoginForm {...this.props}/>
                 break;
+            case 'register':
+                return <RegisterForm {...this.props}/>
+                break;
+            default:
+                console.log('renderContent error')
         }
     }
 

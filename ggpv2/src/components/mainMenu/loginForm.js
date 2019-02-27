@@ -2,11 +2,12 @@ import React from 'react';
 
 import useForm from './useForm';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const { values, handleChange, handleSubmit } = useForm(login);
 
     function login() {
-        console.log(values)
+        const { username, password } = values;
+        props.login(username, password)
     }
 
     return (
@@ -14,7 +15,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Login</label>
-                    <input type="text" className="form-control" name="login" placeholder="Login" onChange={handleChange} value={values.login} />
+                    <input type="text" className="form-control" name="username" placeholder="Login" onChange={handleChange} value={values.username} />
                 </div>
                 <div className="form-group">
                     <label>Password</label>

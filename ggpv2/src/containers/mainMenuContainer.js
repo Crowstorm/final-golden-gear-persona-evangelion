@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import MainMenuScreen from '../components/mainMenu/mainMenuScreen';
 
+import { register, login } from '../store/actions/playerActions';
+
 class MainMenuContainer extends React.Component {
     render() {
         return (
@@ -21,6 +23,12 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        register: (username, password) => {
+            dispatch(register(username, password))
+        },
+        login: (username, password) => {
+            dispatch(login(username, password))
+        }
     }
 }
 
