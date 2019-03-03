@@ -83,5 +83,5 @@ export const characterPosition = (props) => {
         })
     };
 
-    renderMainGrid();
+    return renderMainGrid();
 }

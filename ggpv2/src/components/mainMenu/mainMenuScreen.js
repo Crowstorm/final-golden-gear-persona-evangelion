@@ -34,13 +34,10 @@ class MainMenuScreen extends React.Component {
                         <button onClick={() => this.renderRegisterForm()}>Register</button>
                     </div>
                 )
-                break;
             case 'login':
                 return <LoginForm {...this.props}/>
-                break;
             case 'register':
                 return <RegisterForm {...this.props}/>
-                break;
             default:
                 console.log('renderContent error')
         }

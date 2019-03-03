@@ -34,3 +34,16 @@
     2px -1px 0 #000,
     -2px -1px 0 #000;
 }
+
+.characterPortraitInterface{
+    width: 128px;
+    height: 128px;
+    border: 5px solid #828282;
+    outline: 3px solid silver;
+    margin-top: 8px;
+}
+
+.interfaceItem{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

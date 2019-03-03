@@ -6,6 +6,7 @@ import OverworldInterface from '../components/overworld/overworldInterface';
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
 import { toggleDialogueState } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
+import { setCurrentQuest } from '../store/actions/eventActions';
 
 
 class OverworldContainer extends React.Component {
@@ -24,6 +25,8 @@ function mapStateToProps(store) {
         position: store.position,
         modal: store.modal,
         level: store.level,
+        characters: store.characters,
+        event: store.event
     }
 }
 
@@ -39,6 +42,8 @@ function mapDispatchToProps(dispatch) {
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },
         //level mechanics
         changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
+        //quests
+        setCurrentQuest: (name) => { dispatch(setCurrentQuest(name)) },
     }
 }
 
