@@ -5,6 +5,7 @@ import GridBlocker from '../../assets/gridBlocker/gridBlocker';
 
 import ThroneRoom from './levels/throneRoom';
 import CastleCorridor from './levels/castleCorridor';
+import CastleFront from './levels/castleFront';
 
 
 class Game extends React.Component {
@@ -17,6 +18,10 @@ class Game extends React.Component {
             case "CastleCorridor":
                 return (
                     <CastleCorridor {...this.props} />
+                )
+            case "CastleFront":
+                return (
+                    <CastleFront {...this.props} />
                 )
             default:
                 alert('blad w level renderer')

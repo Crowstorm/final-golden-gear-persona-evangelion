@@ -20,3 +20,10 @@
     width:800px;
     float: right;
 }
+.castleFront{
+    background-image: url("../../../../assets/levelBackgrounds/castleFront.png");
+    box-sizing: border-box;
+    height:800px;
+    width:800px;
+    float: right;
+}

@@ -44,6 +44,11 @@ class CastleCorridor extends React.Component {
             this.props.setCharacterPosition(x, 3);
             this.props.changeLevel('ThroneRoom');
         }
+
+        if ((x >= 11 && x <= 14) && y === 2) {
+            this.props.setCharacterPosition(13, 21);
+            this.props.changeLevel('CastleFront');
+        }
     }
 
     componentWillUnmount = () => {
