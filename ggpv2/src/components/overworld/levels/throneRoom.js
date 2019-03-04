@@ -21,8 +21,8 @@ class ThroneRoom extends React.Component {
     componentDidUpdate() {
         let { x, y } = this.props.position;
 
-        if (x === 12 && y === 2) {
-            this.props.setCharacterPosition(5, 5);
+        if ((x >= 12 && x <= 14) && y === 2) {
+            this.props.setCharacterPosition(x, 23);
             this.props.changeLevel('CastleCorridor');
         }
     }
@@ -40,7 +40,6 @@ class ThroneRoom extends React.Component {
     }, this.props.level.movementSpeed)
 
     addSaveThePrincessQuest = () => {
-        console.log('DZIAŁA');
         this.props.setCurrentQuest('saveThePrincess')
     }
 

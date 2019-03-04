@@ -27,28 +27,32 @@ class CastleCorridor extends React.Component {
         })
     };
 
-    handleKeyDown = (e) => {
+    handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
-
         characterMovement(this.props, e, BLOCKED_CastleCorridor);
-        // if (e.key === "Enter" && ((x === 11 && y === 16) || (x === 12 && y === 16))) {
-        //     this.props.toggleDialogueState();
-        // }
-
-    }
+    
+    }, this.props.level.movementSpeed)
 
     componentDidMount = () => {
-        document.addEventListener("keydown", _.throttle(this.handleKeyDown, this.props.level.movementSpeed));
-        // document.getElementById('d12_17').innerHTML = `<img src=${king} />`
+        document.addEventListener("keydown", this.handleKeyDown);
+    }
+
+    componentDidUpdate() {
+        let { x, y } = this.props.position;
+
+        if ((x >= 12 && x <= 13) && y === 24) {
+            this.props.setCharacterPosition(x, 3);
+            this.props.changeLevel('ThroneRoom');
+        }
     }
 
     componentWillUnmount = () => {
         document.removeEventListener("keydown", this.handleKeyDown);
     }
 
-    render() {
-        console.log('test')
 
+
+    render() {
         // let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue} /> : '';
         return (
             <div className="castleCorridor">

@@ -7,12 +7,12 @@ import right from '../../assets/sprites/mainCharacter/overworld/mainCharRight.gi
 
 let initial_state = {
     x: 13,
-    y: 2,
+    y: 3,
     model: back
 }
 
 export default (state = initial_state, action) => {
-   return produce(state, draft => {
+    return produce(state, draft => {
         switch (action.type) {
             case 'MOVE_CHAR_UP': {
                 draft.y += 1;
@@ -55,8 +55,9 @@ export default (state = initial_state, action) => {
                 // }
             }
             case 'SET_CHARACTER_POSITION': {
-                draft.x = action.x,
+                draft.x = action.x;
                 draft.y = action.y
+                break;
             }
             default: {
                 return draft;
