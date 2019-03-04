@@ -43,6 +43,9 @@ class OverworldInterface extends React.Component {
                         <p>{currentQuest}</p>
                     </div>
 
+                    <div>
+                        <button>Show eq</button>
+                    </div>
                 </div>
 
             </div>
