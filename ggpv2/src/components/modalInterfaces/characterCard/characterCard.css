@@ -1,0 +1,10 @@
+.characterCard{
+    border: 1px solid teal;
+    position: absolute;
+    background-color: white;
+    margin-top: 450px;
+    margin-left: 160px;
+    width: 600px;
+    height: 200px;
+}
+

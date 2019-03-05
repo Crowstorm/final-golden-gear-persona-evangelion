@@ -5,6 +5,9 @@ import CombatContainer from './combatContainer';
 import MainMenuContainer from './mainMenuContainer';
 import OverworldContainer from './overworldContainer';
 
+//modals
+import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
+
 class GameScreenContainer extends React.Component {
     overworld = () => {
         return (
@@ -44,6 +47,8 @@ class GameScreenContainer extends React.Component {
         return (
             <div>
                 {content}
+                {/* modals */}
+                <CharacterCard {...this.props} />
             </div>
         )
     }
@@ -52,7 +57,8 @@ class GameScreenContainer extends React.Component {
 function mapStateToProps(store) {
     return {
         combat: store.combat,
-        player: store.player
+        player: store.player,
+        characters: store.characters
     }
 }
 
