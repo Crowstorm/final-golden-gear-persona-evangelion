@@ -50,7 +50,14 @@ let initial_state = [
         magic: [
         ],
         items: [
-
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
+            armor.woodenShirt,
         ],
         consumables: [
             items.healingPotion,

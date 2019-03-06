@@ -8,3 +8,14 @@
     height: 200px;
 }
 
+.characterEquipped{
+    /* border: 1px solid brown;
+    box-sizing: border-box; */
+    width: 192px;
+}
+
+.inventoryContainer{
+    margin-left: 16px;
+    width: 384px;
+}
+
