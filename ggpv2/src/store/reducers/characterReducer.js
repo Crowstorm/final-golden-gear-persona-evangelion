@@ -51,12 +51,13 @@ let initial_state = [
         ],
         items: [
             armor.woodenShirt,
+            armor.steelLegs,
             armor.woodenShirt,
             armor.woodenShirt,
             armor.woodenShirt,
+            armor.steelArmor,
             armor.woodenShirt,
-            armor.woodenShirt,
-            armor.woodenShirt,
+            armor.steelHelmet,
             armor.woodenShirt,
         ],
         consumables: [
@@ -145,12 +146,20 @@ export default (state = initial_state, action) => {
             case 'REMOVE_ITEM_OR_ABILITY':
                 console.log(state[0][action.section], action.section, action.index)
                 let array = state[0][action.section]
-                // draft.splice(1,1)
-                // let newArray = array.slice(1, 1);
                 console.log(array)
                 draft[0][action.section].splice(action.index, 1);
                 break;
-            // state[0][action.section].splice(action.index, 1);
+            case 'ADD_TO_INVENTORY':
+                draft[0].items.push(action.item);
+                break;
+            case 'REMOVE_FROM_INVENTORY':
+                let i = draft[0].items.findIndex(item => item.name === action.item.name);
+                draft[0].items.splice(i, 1);
+                break;
+            case 'EQUIP':
+                console.log(action.item, action.slot);
+                draft[0].armor[action.slot] = action.item;
+                break;
             default:
                 return draft;
         }

@@ -8,6 +8,8 @@ import OverworldContainer from './overworldContainer';
 //modals
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
 
+import { equip } from '../store/actions/characterActions';
+
 class GameScreenContainer extends React.Component {
     overworld = () => {
         return (
@@ -64,7 +66,9 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        equip: (i, item) => {
+            dispatch(equip(i, item))
+        }
     }
 }
 

@@ -41,7 +41,7 @@ export default class CharacterCard extends React.Component {
         if (this.state.menu === 'items') {
             return _.map(items, (item, i) => {
                 return (
-                    <ItemImage key={i} img={item.img} />
+                    <ItemImage key={i} img={item.img} equip={this.props.equip} item={item} />
                 )
             })
         }

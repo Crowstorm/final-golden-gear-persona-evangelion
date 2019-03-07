@@ -81,22 +81,54 @@ export const charRestore = (statType, amount, i) => {
 export const charAbilityItemRemover = (section, name, i) => {
     return function (dispatch, getState) {
         // znajdz w odpowiedniej sekcji
-        switch(section){
+        switch (section) {
             case 'consumables':
                 let currentItems = getState().characters[0].consumables;
                 console.log(currentItems);
                 console.log(name)
-                let indexToRemove = _.findIndex(currentItems, {name: name})
+                let indexToRemove = _.findIndex(currentItems, { name: name })
                 dispatch({
                     type: 'REMOVE_ITEM_OR_ABILITY',
                     section,
                     index: indexToRemove
                 })
-            break;
+                break;
             default:
-            console.error('Couldnt find section')
+                console.error('Couldnt find section')
         }
         // znajdz index
         //usunac po indeksie
     }
+}
+
+export const addToInventory = (item) => dispatch => {
+    dispatch({
+        type: 'ADD_TO_INVENTORY',
+        item
+    })
+}
+
+export const removeFromInventory = (item) => dispatch => {
+    dispatch({
+        type: 'REMOVE_FROM_INVENTORY',
+        item
+    })
+}
+
+export const equip = (charIndex, item) => (dispatch, getState) => {
+    //check for the type of item to equip
+    let slot = item.slot;
+    //equip on proper slot
+
+    //currentItem
+    let currentItem = getState().characters[0].armor[slot];
+    dispatch(addToInventory(currentItem));
+
+    dispatch({
+        type: 'EQUIP',
+        slot,
+        item
+    })
+
+    dispatch(removeFromInventory(item))
 }

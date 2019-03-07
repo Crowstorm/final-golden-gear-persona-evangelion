@@ -34,3 +34,28 @@ export const woodenShield = {
     }
 }
 
+export const steelArmor = {
+    name: "Steel Armor",
+    slot: "chest",
+    img: 'https://www.tibiaforsale.com.br/image/cache/data/Armaduras/d76c4dbed535f72571c70c4dba70df7c-200x200.gif',
+    bonus: {
+        defence: 4
+    }
+}
+export const steelHelmet = {
+    name: "Steel Helmet",
+    slot: "head",
+    img: 'https://www.seekpng.com/png/detail/154-1548200_the-diamond-helmet-minecraft-diamond-helmet-png.png',
+    bonus: {
+        defence: 2
+    }
+}
+export const steelLegs = {
+    name: "Steel Legs",
+    slot: "legs",
+    img: 'https://www.tibia-wiki.net/images/6/6f/Plate_Legs.gif',
+    bonus: {
+        defence: 3
+    }
+}
+
