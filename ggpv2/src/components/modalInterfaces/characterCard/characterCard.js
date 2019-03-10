@@ -7,11 +7,12 @@ import ItemImage from './itemImage';
 
 export default class CharacterCard extends React.Component {
     state = {
-        menu: 'items'
+        menu: 'items',
+        charIndex: 0
     }
 
     getEq = () => {
-        let char = this.props.characters[0];
+        let char = this.props.characters[this.state.charIndex];
         let armor = char.armor;
         let weapon = char.weapon;
 
@@ -53,6 +54,20 @@ export default class CharacterCard extends React.Component {
         })
     }
 
+    getPortraits = () => {
+        let characters = this.props.characters;
+        let border;
+
+        return _.map(characters, (char, i) => {
+            if(i === this.state.charIndex){
+                border = "3px solid green"
+            } else {
+                border = null
+            }
+            return <img src={char.portrait} style={{ width: 64, height: 64, border }} onClick={() => this.setState({charIndex: i})} />
+        })
+    }
+
     handleChangeButtonClick = () => {
         if (this.state.menu === 'items') {
             this.setState({
@@ -69,23 +84,31 @@ export default class CharacterCard extends React.Component {
         let name = (this.state.menu === 'items') ? 'Consumables' : 'Items';
 
         return (
-            <button onClick={() => { this.handleChangeButtonClick() }}>{name}</button>
+            <div onClick={() => { this.handleChangeButtonClick() }} className="woodenButton">
+                {name}
+            </div>
         )
     }
 
     render() {
-        this.getInventory();
         return (
             <div className="characterCard d-flex flex-row">
-                <div className="eqContainer">
+                <div className="characterCardLeftContainer d-flex flex-column">
+                    <div className="portraitContainer d-flex flex-row">
+                        {this.getPortraits()}
+                    </div>
                     {this.getEq()}
                 </div>
-                <div className="characterCardButtonContainer">
-                    {this.renderChangeButton()}
+
+                <div className="characterCardRightContainer d-flex flex-column">
+                    <div className="characterCardButtonContainer d-flex justify-content-center">
+                        {this.renderChangeButton()}
+                    </div>
+                    <div className="inventoryContainer">
+                        {this.getInventory()}
+                    </div>
                 </div>
-                <div className="inventoryContainer">
-                    {this.getInventory()}
-                </div>
+
             </div>
         )
     }

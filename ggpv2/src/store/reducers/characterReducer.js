@@ -87,6 +87,12 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        armor: {
+            head: armor.woodenHelmet,
+            chest: armor.steelArmor,
+            shield: armor.woodenShield,
+            legs: armor.woodenLegs
+        },
     },
     {
         name: 'Kaz',
@@ -106,6 +112,12 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        armor: {
+            head: armor.steelHelmet,
+            chest: armor.woodenShirt,
+            shield: armor.woodenShield,
+            legs: armor.woodenLegs
+        },
     },
     {
         name: 'Random Guy',
@@ -124,6 +136,12 @@ let initial_state = [
             agility: 5,
             luck: 5,
             speed: 5,
+        },
+        armor: {
+            head: armor.woodenHelmet,
+            chest: armor.woodenShirt,
+            shield: armor.woodenShield,
+            legs: armor.steelLegs
         },
     }
 ];

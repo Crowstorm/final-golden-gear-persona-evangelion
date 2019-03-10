@@ -2,16 +2,28 @@
     border: 1px solid teal;
     position: absolute;
     background-color: white;
-    margin-top: 450px;
+    margin-top: 150px;
     margin-left: 160px;
-    width: 600px;
-    height: 200px;
+    width: 700px;
+    height: 400px;
+}
+
+.characterCardLeftContainer{
+    width: 288px;
+    padding: 16px;
+}
+
+.portraitContainer{
+    width: 256px;
+    margin-bottom: 32px;
 }
 
 .characterEquipped{
     /* border: 1px solid brown;
     box-sizing: border-box; */
-    width: 192px;
+    /* width: 192px; */
+    width: 100%;
+
 }
 
 .inventoryContainer{
@@ -19,3 +31,12 @@
     width: 384px;
 }
 
+.woodenButton{
+    background-image: url('../../../assets//interface/woodenBackground.jpg');
+    background-size: contain;
+    width: 128px;
+    height: 32px;
+    border: 1px solid brown;
+    box-sizing: border-box;
+    color: white;
+}
