@@ -121,13 +121,14 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
     //equip on proper slot
 
     //currentItem
-    let currentItem = getState().characters[0].armor[slot];
+    let currentItem = getState().characters[charIndex].armor[slot];
     dispatch(addToInventory(currentItem));
 
     dispatch({
         type: 'EQUIP',
         slot,
-        item
+        item,
+        index: charIndex
     })
 
     dispatch(removeFromInventory(item))

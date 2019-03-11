@@ -46,11 +46,13 @@ class GameScreenContainer extends React.Component {
 
     render() {
         let content = this.renderContent();
+        let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         return (
             <div>
                 {content}
                 {/* modals */}
-                <CharacterCard {...this.props} />
+                {/* <CharacterCard {...this.props} /> */}
+                {characterCard}
             </div>
         )
     }
@@ -60,7 +62,8 @@ function mapStateToProps(store) {
     return {
         combat: store.combat,
         player: store.player,
-        characters: store.characters
+        characters: store.characters,
+        modal: store.modal
     }
 }
 

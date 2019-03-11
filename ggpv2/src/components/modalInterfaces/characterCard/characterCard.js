@@ -42,7 +42,7 @@ export default class CharacterCard extends React.Component {
         if (this.state.menu === 'items') {
             return _.map(items, (item, i) => {
                 return (
-                    <ItemImage key={i} img={item.img} equip={this.props.equip} item={item} />
+                    <ItemImage key={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} />
                 )
             })
         }
@@ -59,12 +59,12 @@ export default class CharacterCard extends React.Component {
         let border;
 
         return _.map(characters, (char, i) => {
-            if(i === this.state.charIndex){
+            if (i === this.state.charIndex) {
                 border = "3px solid green"
             } else {
                 border = null
             }
-            return <img src={char.portrait} style={{ width: 64, height: 64, border }} onClick={() => this.setState({charIndex: i})} />
+            return <img key={char.name} src={char.portrait} style={{ width: 64, height: 64, border }} onClick={() => this.setState({ charIndex: i })} />
         })
     }
 

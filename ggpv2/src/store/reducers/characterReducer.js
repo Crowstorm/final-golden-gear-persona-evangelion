@@ -176,7 +176,7 @@ export default (state = initial_state, action) => {
                 break;
             case 'EQUIP':
                 console.log(action.item, action.slot);
-                draft[0].armor[action.slot] = action.item;
+                draft[action.index].armor[action.slot] = action.item;
                 break;
             default:
                 return draft;

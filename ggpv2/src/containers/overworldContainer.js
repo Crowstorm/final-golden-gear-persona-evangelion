@@ -4,7 +4,7 @@ import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface';
 
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
-import { toggleDialogueState } from '../store/actions/modalActions';
+import { toggleDialogueState, toggleCharacterCard } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest } from '../store/actions/eventActions';
 
@@ -40,6 +40,7 @@ function mapDispatchToProps(dispatch) {
         setCharacterPosition: (x, y) => { dispatch(setCharacterPosition(x, y)) },
         //modals
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },
+        toggleCharacterCard: () => { dispatch(toggleCharacterCard()) },
         //level mechanics
         changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
         //quests

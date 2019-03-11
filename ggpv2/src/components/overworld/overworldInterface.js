@@ -44,7 +44,7 @@ class OverworldInterface extends React.Component {
                     </div>
 
                     <div>
-                        <button>Show eq</button>
+                        <button onClick={this.props.toggleCharacterCard}>Show eq</button>
                     </div>
                 </div>
 
