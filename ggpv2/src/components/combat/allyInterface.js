@@ -46,7 +46,6 @@ class AllyInterface extends React.Component {
                 //find item
                 let itemName = _.findKey(items, { name: combat.activeItem.name });
                 let item = items[itemName];
-                console.log(item.actionType)
                 switch (item.actionType) {
                     case 'restore':
                         this.useRestorationItem(item, character, i);

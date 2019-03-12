@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as skills from '../../store/skills/skills'
+import * as spells from '../../store/skills/spells';
 import { Bar } from './bar';
 import './combat.css';
 
@@ -142,7 +143,7 @@ class EnemyInterface extends React.Component {
                 this.props.allyLoseMana(ability.cost, i)
             } else {
                 let mana = char.stats.maxMp;
-                let price = mana * (ability.cost/100);
+                let price = mana * (ability.cost / 100);
                 this.props.allyLoseMana(price, i)
             }
 
@@ -151,12 +152,12 @@ class EnemyInterface extends React.Component {
                 this.props.allyLoseHp(ability.cost, i)
             } else {
                 let hp = char.stats.maxHp;
-                let price = hp * (ability.cost/100);
+                let price = hp * (ability.cost / 100);
                 this.props.allyLoseHp(price, i)
             }
         }
     }
-    
+
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
         let combat = this.props.combat;
@@ -177,7 +178,7 @@ class EnemyInterface extends React.Component {
                 let abilityName = _.findKey(skills, { name: combat.activeAbility.name });
                 let ability = skills[abilityName];
                 // pay cost of ability
-
+                console.log({ ability })
                 this.payAbilityPrice(ability, attI);
                 let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
 

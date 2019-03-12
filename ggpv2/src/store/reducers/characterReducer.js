@@ -1,9 +1,8 @@
 import produce from "immer";
 import * as weapons from '../items/weapons';
 import * as armor from '../items/armor';
-
 import * as skills from '../skills/skills';
-
+import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
 let initial_state = [
@@ -21,7 +20,7 @@ let initial_state = [
             maxHp: 25,
             hp: 7,
             maxMp: 15,
-            mp: 3,
+            mp: 15,
             strength: 7,
             defence: 5,
             magic: 5,
@@ -48,6 +47,7 @@ let initial_state = [
             skills.whirlwind
         ],
         magic: [
+            spells.fireball
         ],
         items: [
             armor.woodenShirt,

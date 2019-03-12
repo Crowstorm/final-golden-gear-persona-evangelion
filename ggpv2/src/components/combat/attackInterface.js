@@ -193,7 +193,7 @@ class AttackInterface extends React.Component {
                         type={spell.costType}
                         dataType={spell.costDataType}
                         info={spell.description}
-                        skill={true}
+                        skill={false}
                         active={isActive}
                     />
                 )
