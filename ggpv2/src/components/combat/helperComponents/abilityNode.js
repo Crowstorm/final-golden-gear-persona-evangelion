@@ -26,7 +26,7 @@ export default class AbilityNode extends React.Component {
                         canUse: false
                     })
                 } else {
-                    cost = maxMp * (cost/100);
+                    cost = maxMp * (cost / 100);
                     if (currentMp < cost) {
                         this.setState({
                             canUse: false
@@ -42,7 +42,7 @@ export default class AbilityNode extends React.Component {
                         canUse: false
                     })
                 } else {
-                    cost = maxHp * (cost/100);
+                    cost = maxHp * (cost / 100);
                     if (currentHp < cost) {
                         this.setState({
                             canUse: false
@@ -75,11 +75,17 @@ export default class AbilityNode extends React.Component {
     }
 
     abilityClick = () => {
-        //check if can use
         if (!this.state.canUse) return;
+
         let type = (this.props.skill) ? 'skill' : 'magic';
         this.props.setActiveAbility(type, this.props.name);
-        this.props.isAttackReady(true);
+
+        //prevent using when unclicked
+        if (!this.props.active) {
+            this.props.isAttackReady(true);
+        } else {
+            this.props.isAttackReady(false);
+        }
         this.props.highlightAbility(this.props.index)
     }
 
@@ -91,7 +97,7 @@ export default class AbilityNode extends React.Component {
         }
     }
 
-    setBorderColor = () =>{
+    setBorderColor = () => {
         if (this.props.active) {
             return '2px solid green'
         } else {
@@ -106,7 +112,7 @@ export default class AbilityNode extends React.Component {
         //potrzebny bedzie jakis unfocus
         let info = (this.state.info) ? this.renderInfo() : null;
         return (
-            <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" style={{ backgroundColor: backgroundColor, border: borderColor}} onClick={() => this.abilityClick()}>
+            <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" style={{ backgroundColor: backgroundColor, border: borderColor }} onClick={() => this.abilityClick()}>
                 <img className="abilityIcon" src={this.props.icon} />
                 {this.props.name} Cost: {this.props.cost}{costDatatype} {this.props.type}
                 <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>

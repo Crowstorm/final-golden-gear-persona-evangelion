@@ -39,16 +39,24 @@ class AttackInterface extends React.Component {
 
     handleOpenConsumables = () => {
         this.setState({
-            consumables: !this.state.consumables
+            consumables: !this.state.consumables,
+            skills: false,
+            magic: false
         })
     }
     handleOpenSkills = () => {
         this.setState({
-            skills: !this.state.skills
+            skills: !this.state.skills,
+            magic: false,
+            consumables: false
         })
     }
     handleOpenMagic = () => {
-        console.log('magic')
+        this.setState({
+            magic: !this.state.magic,
+            skills: false,
+            consumables: false
+        })
     }
 
     sortConsumablesAlphabetically = (items) => {
@@ -119,7 +127,12 @@ class AttackInterface extends React.Component {
         let index = this.props.combat.attackerIndex;
         let skills = this.props.characters[index].skills;
         let name = this.props.characters[index].name;
-        if (skills) {
+
+        if (!skills || skills.length === 0) {
+            return <div style={{ color: "white" }}>
+                {name} doesn't know any skills yet
+                 </div>;
+        } else {
             return skills.map((skill, i) => {
                 let isActive = false;
                 if (i === this.state.activeAbility) {
@@ -145,15 +158,47 @@ class AttackInterface extends React.Component {
                     />
                 )
             })
-        } else {
-            return <div style={{ color: "white" }}>
-                {name} doesn't know any skills yet
-            </div>;
         }
     }
 
     handleRenderMagic = () => {
+        let index = this.props.combat.attackerIndex;
+        let magic = this.props.characters[index].magic;
+        let name = this.props.characters[index].name;
 
+        if (!magic || magic.length === 0) {
+            return (
+                <div style={{ color: "white" }}>
+                    {name} doesn't know any spells yet
+                </div>
+            )
+        } else {
+            return magic.map((spell, i) => {
+                let isActive = false;
+                if (i === this.state.activeAbility) {
+                    isActive = true;
+                }
+                return (
+                    <AbilityNode
+                        setActiveAbility={this.props.setActiveAbility}
+                        isAttackReady={this.props.isAttackReady}
+                        highlightAbility={this.highlightAbility}
+                        combat={this.props.combat}
+                        ally={this.props.ally}
+                        key={i}
+                        index={i}
+                        name={spell.name}
+                        icon={spell.icon}
+                        cost={spell.cost}
+                        type={spell.costType}
+                        dataType={spell.costDataType}
+                        info={spell.description}
+                        skill={true}
+                        active={isActive}
+                    />
+                )
+            })
+        }
     }
 
     handleRenderAdditionalMenus = () => {

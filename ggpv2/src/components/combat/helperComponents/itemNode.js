@@ -4,27 +4,23 @@ import './abilityNode.css';
 export default class ItemNode extends React.Component {
     state = {
         info: false,
-        // canUse: true,
         active: false,
     }
 
     componentDidMount = () => {
         console.log(this.props)
-        // let cost = this.props.cost;
-        // let dataType = this.props.dataType;
-        // let type = this.props.type;
-        // let i = this.props.combat.attackerIndex;
-        // let char = this.props.ally[i];
-        // let maxHp = char.stats.maxHp;
-        // let currentHp = char.stats.hp;
-        // let maxMp = char.stats.mp;
-        // let currentMp = char.stats.mp;
     }
 
     itemClick = () =>{
         this.props.setActiveItem(this.props.name);
         this.props.highlightItem(this.props.index);
-        this.props.isHelpReady(true)
+
+        //prevent using when unclicked
+        if (!this.props.active) {
+            this.props.isHelpReady(true)
+        } else {
+            this.props.isHelpReady(false)
+        }
     }
 
     renderInfo = () => {

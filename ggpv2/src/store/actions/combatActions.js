@@ -16,12 +16,17 @@ export const isHelpReady = (isReady) => {
 };
 
 export const setActiveAbility = (abilityType, name) => {
-    return function (dispatch) {
-        dispatch({
-            type: 'SET_ACTIVE_ABILITY',
-            abilityType,
-            name
-        })
+    return function (dispatch, getState) {
+        let currentAbility = getState().combat.activeAbility.name;
+        if (name === currentAbility) {
+            dispatch(resetActiveAbility())
+        } else {
+            dispatch({
+                type: 'SET_ACTIVE_ABILITY',
+                abilityType,
+                name
+            })
+        }
     }
 }
 

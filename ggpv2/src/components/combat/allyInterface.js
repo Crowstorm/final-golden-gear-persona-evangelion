@@ -17,15 +17,15 @@ class AllyInterface extends React.Component {
         let maxHp = char.stats.maxHp;
         let maxMp = char.stats.maxMp;
 
-        if(item.type === 'hp'){
+        if (item.type === 'hp') {
             if (currentHp + item.amount < maxHp) {
                 this.props.charRestore('hp', item.amount, i);
             } else {
                 let toRestore = maxHp - currentHp;
                 this.props.charRestore('hp', toRestore, i)
             }
-        } else if(item.type==='mp'){
-            if(currentMp + item.amount < maxMp){
+        } else if (item.type === 'mp') {
+            if (currentMp + item.amount < maxMp) {
                 this.props.charRestore('mp', item.amount, i)
             } else {
                 let toRestore = maxMp - currentMp;
@@ -36,7 +36,6 @@ class AllyInterface extends React.Component {
 
     // does action depending on combat state (inventory check, buffs etc)
     handleAllyClicked = (i) => {
-        console.log(i);
         let combat = this.props.combat;
         let attI = combat.attackerIndex;
         let character = this.props.ally[i];
@@ -60,6 +59,7 @@ class AllyInterface extends React.Component {
                 //usunac itemek
                 this.props.charAbilityItemRemover('consumables', combat.activeItem.name, null)
                 //skonczyc ture
+                this.props.nextAllyTurn();
             }
         }
     }

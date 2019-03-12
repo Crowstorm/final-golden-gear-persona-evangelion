@@ -1,5 +1,5 @@
 const enemyDefaultState = {
-    isCombat: false,
+    isCombat: true,
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     whoseTurn: "ally",
