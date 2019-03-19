@@ -12,6 +12,8 @@ const enemyDefaultState = [
             maxMp: 0,
             mp: 0,
             defence: 4,
+            magic: 5,
+            magicResist: 5,
             agility: 11,
             speed: 6,
             strength: 9,
@@ -33,6 +35,8 @@ const enemyDefaultState = [
             defence: 4,
             agility: 4,
             speed: 2,
+            magic: 5,
+            magicResist: 5,
             strength: 15,
             luck: 12
         },
@@ -52,6 +56,8 @@ const enemyDefaultState = [
             defence: 4,
             agility: 7,
             speed: 7,
+            magic: 5,
+            magicResist: 5,
             strength: 11,
             luck: 14
         },

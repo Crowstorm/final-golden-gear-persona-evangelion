@@ -158,6 +158,12 @@ class EnemyInterface extends React.Component {
         }
     }
 
+    findAbility = (abilityType, name) => {
+        let abilityName = _.findKey(abilityType, { name: name });
+        let ability = abilityType[abilityName];
+        return ability;
+    }
+
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
         let combat = this.props.combat;
@@ -172,14 +178,18 @@ class EnemyInterface extends React.Component {
             let allyAgility = this.getAllyAgility();
             let enemyEvasion = this.getEnemyEvasion(i);
 
-            if (combat.activeAbility.type) {
+            let abilityType = null;
+            if (combat.activeAbility.type === 'magic') {
+                abilityType = spells;
+            } else if (combat.activeAbility.type === 'skill') {
+                abilityType = skills;
+            }
 
-                //find proper ability
-                let abilityName = _.findKey(skills, { name: combat.activeAbility.name });
-                let ability = skills[abilityName];
+            if (abilityType) {
+                const ability = this.findAbility(abilityType, combat.activeAbility.name);
                 // pay cost of ability
-                console.log({ ability })
                 this.payAbilityPrice(ability, attI);
+                
                 let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
 
                 if (wasAttackSuccessful) {
