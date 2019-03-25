@@ -164,6 +164,179 @@ class EnemyInterface extends React.Component {
         return ability;
     }
 
+    handlePhysicalAttack = async (i) => {
+        let combat = this.props.combat;
+        let attI = this.props.combat.attackerIndex;
+        let name = this.props.ally[attI].name;
+        let enemies = this.props.enemy;
+        let enemy = this.props.enemy[i];
+
+        let allyAgility = this.getAllyAgility();
+        let enemyEvasion = this.getEnemyEvasion(i);
+
+        const ability = this.findAbility(skills, combat.activeAbility.name);
+        this.payAbilityPrice(ability, attI);
+
+        let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
+
+        if (wasAttackSuccessful) {
+            let wasCritical = this.wasAttackCritical();
+            let allyDmg = 0;
+            let enemyDef = 0;
+            let totalDmg = 0;
+
+            //bonusy przed jesli sa
+
+            if (ability.multiplier) {
+                allyDmg = this.calculateAllyDmg(ability.multiplier);
+                enemyDef = this.getEnemyDefence(i);
+                totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                this.props.enemyLoseHp(totalDmg, i);
+                let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                this.props.addInfoToArray(info)
+
+            } else if (ability.dmgType === 'flat') {
+
+                if (ability.aoe) {
+                    let noOfEnemies = this.props.enemy.length;
+                    for (let [index, enemy] of enemies.entries()) {
+                        index = noOfEnemies - index - 1;
+                        enemyDef = this.getEnemyDefence(index);
+                        allyDmg = ability.dmg;
+                        totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                        this.props.enemyLoseHp(totalDmg, index);
+                        let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                        this.props.addInfoToArray(info);
+                    }
+                } else {
+                    enemyDef = this.getEnemyDefence(i);
+                    allyDmg = ability.dmg;
+                    totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                    this.props.enemyLoseHp(totalDmg, i);
+                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                    this.props.addInfoToArray(info)
+                }
+
+            } else if (ability.dmgType === 'perc') {
+                if (ability.aoe) {
+                    let noOfEnemies = this.props.enemy.length;
+                    for (let [index, ene] of enemies.entries()) {
+                        index = noOfEnemies - index - 1;
+                        let enemyHp = ene.stats.hp;
+                        totalDmg = enemyHp / ability.dmg;
+                        this.props.enemyLoseHp(totalDmg, index);
+                        let info = `${name} dealt ${totalDmg} damage to ${ene.name}`;
+                        this.props.addInfoToArray(info)
+                    }
+                } else {
+                    let enemyHp = enemy.stats.hp;
+                    totalDmg = enemyHp / ability.dmg;
+                    this.props.enemyLoseHp(totalDmg, i);
+                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                    this.props.addInfoToArray(info)
+                }
+
+            } else {
+                alert('new skill type?')
+            }
+
+            this.props.nextAllyTurn();
+            //deactivate ability
+            this.props.resetActiveAbility();
+        } else {
+            let info = `${name} missed!`;
+            this.props.addInfoToArray(info)
+            this.props.nextAllyTurn();
+        }
+    }
+
+    handleMagicAttack = async (i) => {
+        let combat = this.props.combat;
+        let attI = this.props.combat.attackerIndex;
+        let name = this.props.ally[attI].name;
+        let enemies = this.props.enemy;
+        let enemy = this.props.enemy[i];
+
+        let allyAgility = this.getAllyAgility();
+        let enemyEvasion = this.getEnemyEvasion(i);
+
+        const ability = this.findAbility(skills, combat.activeAbility.name);
+        this.payAbilityPrice(ability, attI);
+
+        let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
+
+        if (wasAttackSuccessful) {
+            let wasCritical = this.wasAttackCritical();
+            let allyDmg = 0;
+            let enemyDef = 0;
+            let totalDmg = 0;
+
+            //bonusy przed jesli sa
+
+            if (ability.multiplier) {
+                allyDmg = this.calculateAllyDmg(ability.multiplier);
+                enemyDef = this.getEnemyDefence(i);
+                totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                this.props.enemyLoseHp(totalDmg, i);
+                let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                this.props.addInfoToArray(info)
+
+            } else if (ability.dmgType === 'flat') {
+
+                if (ability.aoe) {
+                    let noOfEnemies = this.props.enemy.length;
+                    for (let [index, enemy] of enemies.entries()) {
+                        index = noOfEnemies - index - 1;
+                        enemyDef = this.getEnemyDefence(index);
+                        allyDmg = ability.dmg;
+                        totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                        this.props.enemyLoseHp(totalDmg, index);
+                        let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                        this.props.addInfoToArray(info);
+                    }
+                } else {
+                    enemyDef = this.getEnemyDefence(i);
+                    allyDmg = ability.dmg;
+                    totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+                    this.props.enemyLoseHp(totalDmg, i);
+                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                    this.props.addInfoToArray(info)
+                }
+
+            } else if (ability.dmgType === 'perc') {
+                if (ability.aoe) {
+                    let noOfEnemies = this.props.enemy.length;
+                    for (let [index, ene] of enemies.entries()) {
+                        index = noOfEnemies - index - 1;
+                        let enemyHp = ene.stats.hp;
+                        totalDmg = enemyHp / ability.dmg;
+                        this.props.enemyLoseHp(totalDmg, index);
+                        let info = `${name} dealt ${totalDmg} damage to ${ene.name}`;
+                        this.props.addInfoToArray(info)
+                    }
+                } else {
+                    let enemyHp = enemy.stats.hp;
+                    totalDmg = enemyHp / ability.dmg;
+                    this.props.enemyLoseHp(totalDmg, i);
+                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+                    this.props.addInfoToArray(info)
+                }
+
+            } else {
+                alert('new skill type?')
+            }
+
+            this.props.nextAllyTurn();
+            //deactivate ability
+            this.props.resetActiveAbility();
+        } else {
+            let info = `${name} missed!`;
+            this.props.addInfoToArray(info)
+            this.props.nextAllyTurn();
+        }
+    }
+
+
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
         let combat = this.props.combat;
@@ -173,100 +346,20 @@ class EnemyInterface extends React.Component {
 
         if (combat.attackReady && combat.whoseTurn === 'ally') {
             let enemy = this.props.enemy[i];
-            let enemies = this.props.enemy;
+            // let enemies = this.props.enemy;
             this.props.isAttackReady(false)
             let allyAgility = this.getAllyAgility();
             let enemyEvasion = this.getEnemyEvasion(i);
 
-            let abilityType = null;
+            // let abilityType = null;
             if (combat.activeAbility.type === 'magic') {
-                abilityType = spells;
+                // abilityType = spells;
+                this.handleMagicAttack(i);
             } else if (combat.activeAbility.type === 'skill') {
-                abilityType = skills;
-            }
-
-            if (abilityType) {
-                const ability = this.findAbility(abilityType, combat.activeAbility.name);
-                // pay cost of ability
-                this.payAbilityPrice(ability, attI);
-                
-                let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion, ability.hitChance);
-
-                if (wasAttackSuccessful) {
-                    let wasCritical = this.wasAttackCritical();
-                    let allyDmg = 0;
-                    let enemyDef = 0;
-                    let totalDmg = 0;
-
-                    //bonusy przed jesli sa
-
-                    if (ability.multiplier) {
-                        allyDmg = this.calculateAllyDmg(ability.multiplier);
-                        enemyDef = this.getEnemyDefence(i);
-                        totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
-                        this.props.enemyLoseHp(totalDmg, i);
-                        let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                        this.props.addInfoToArray(info)
-
-                    } else if (ability.dmgType === 'flat') {
-
-                        if (ability.aoe) {
-                            let noOfEnemies = this.props.enemy.length;
-                            for (let [index, enemy] of enemies.entries()) {
-                                index = noOfEnemies - index - 1;
-                                enemyDef = this.getEnemyDefence(index);
-                                allyDmg = ability.dmg;
-                                totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
-                                this.props.enemyLoseHp(totalDmg, index);
-                                let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                                this.props.addInfoToArray(info);
-                            }
-                        } else {
-                            enemyDef = this.getEnemyDefence(i);
-                            allyDmg = ability.dmg;
-                            totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
-                            this.props.enemyLoseHp(totalDmg, i);
-                            let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                            this.props.addInfoToArray(info)
-                        }
-
-                    } else if (ability.dmgType === 'perc') {
-                        if (ability.aoe) {
-                            let noOfEnemies = this.props.enemy.length;
-                            for (let [index, ene] of enemies.entries()) {
-                                index = noOfEnemies - index - 1;
-                                let enemyHp = ene.stats.hp;
-                                totalDmg = enemyHp / ability.dmg;
-                                this.props.enemyLoseHp(totalDmg, index);
-                                let info = `${name} dealt ${totalDmg} damage to ${ene.name}`;
-                                this.props.addInfoToArray(info)
-                            }
-                        } else {
-                            let enemyHp = enemy.stats.hp;
-                            totalDmg = enemyHp / ability.dmg;
-                            this.props.enemyLoseHp(totalDmg, i);
-                            let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                            this.props.addInfoToArray(info)
-                        }
-
-                    } else {
-                        alert('new skill type?')
-                    }
-
-                    this.props.nextAllyTurn();
-                    //deactivate ability
-                    this.props.resetActiveAbility();
-                } else {
-                    let info = `${name} missed!`;
-                    this.props.addInfoToArray(info)
-                    this.props.nextAllyTurn();
-                }
-
-
-                //jesli flat dmg pobranie danych i atak
+                // abilityType = skills;
+                this.handlePhysicalAttack(i);
             } else {
                 let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
-
 
                 if (wasAttackSuccessful) {
                     let wasCritical = this.wasAttackCritical();
@@ -283,10 +376,9 @@ class EnemyInterface extends React.Component {
                     this.props.nextAllyTurn();
                 }
             }
-
-
         }
     }
+
 
     getEnemies = () => {
         const { enemy } = this.props;

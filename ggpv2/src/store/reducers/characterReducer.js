@@ -130,7 +130,7 @@ let initial_state = [
             maxMp: 15,
             mp: 10,
             strength: 10,
-            defence: 5,
+            defence: 1,
             magic: 5,
             magicResist: 5,
             agility: 5,

@@ -69,6 +69,13 @@ export const changeTurn = (whoseTurn) => {
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })
                 i++;
+                //albo przerwac kombat
+                if (i === 5) {
+                    dispatch({
+                        type: 'CHANGE_TURN',
+                        whoseTurn
+                    })
+                }
             }
         }
         dispatch({
