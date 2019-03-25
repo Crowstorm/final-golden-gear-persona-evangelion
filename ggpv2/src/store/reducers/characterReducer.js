@@ -47,7 +47,8 @@ let initial_state = [
             skills.whirlwind
         ],
         magic: [
-            spells.fireball
+            spells.fireball,
+            spells.inferno
         ],
         items: [
             armor.woodenShirt,

@@ -10,3 +10,16 @@ export const fireball = {
     dmgType: "flat",
     description: "Goronce "
 }
+
+export const inferno ={
+    icon: null,
+    name: "Inferno",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 7,
+    dmg: 10,
+    dmgType: "flat",
+    aoe: true,
+    description: "Smells like chicken"
+}

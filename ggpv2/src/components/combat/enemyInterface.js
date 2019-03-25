@@ -304,10 +304,10 @@ class EnemyInterface extends React.Component {
             if (ability.dmgType === 'flat') {
                 if (ability.aoe) {
                     let noOfEnemies = this.props.enemy.length;
+                    allyDmg += ability.dmg;
                     for (let [index, enemy] of enemies.entries()) {
                         index = noOfEnemies - index - 1;
                         enemyRes = this.getEnemyResistance(index);
-                        allyDmg += ability.dmg;
                         totalDmg = await this.calculateTotalDmg(allyDmg, enemyRes, false, attI, true);
                         this.props.enemyLoseHp(totalDmg, index);
                         let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
