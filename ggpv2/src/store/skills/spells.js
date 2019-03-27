@@ -23,3 +23,16 @@ export const inferno ={
     aoe: true,
     description: "Smells like chicken"
 }
+
+export const soulDrain ={
+    icon: null,
+    name: "Soul Drain",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 7,
+    dmg: 10,
+    dmgType: "perc",
+    aoe: false,
+    description: "Dunno"
+}

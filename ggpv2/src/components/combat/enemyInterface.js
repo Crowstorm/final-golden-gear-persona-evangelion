@@ -157,9 +157,15 @@ class EnemyInterface extends React.Component {
 
         if (!wasCritical) {
             totalDmg += allyDmg - enemyDef;
+            if (totalDmg < 0) {
+                totalDmg = 0;
+            }
             return totalDmg;
         } else {
             totalDmg += (allyDmg * criticalMultiplier - enemyDef / 2);
+            if (totalDmg < 0) {
+                totalDmg = 0;
+            }
             return totalDmg;
         }
     }
@@ -355,6 +361,27 @@ class EnemyInterface extends React.Component {
         }
     }
 
+    handleBasicAttack = async (i, attI, name) => {
+        let enemy = this.props.enemy[i];
+
+        let wasCritical = this.wasAttackCritical();
+        let allyDmg = this.calculateAllyDmg();
+        let enemyDef = this.getEnemyDefence(i);
+        let totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
+
+        this.props.enemyLoseHp(totalDmg, i);
+
+        let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
+        this.props.addInfoToArray(info)
+        this.props.nextAllyTurn();
+    }
+
+    handleAttackMissed = (name) => {
+        let info = `${name} missed!`;
+        this.props.addInfoToArray(info)
+        this.props.nextAllyTurn();
+    }
+
 
     // calculates damage and/or effects affecting targeted enemy
     handleEnemyAttacked = async (i) => {
@@ -362,37 +389,22 @@ class EnemyInterface extends React.Component {
         let attI = this.props.combat.attackerIndex;
         let name = this.props.ally[attI].name;
 
-
         if (combat.attackReady && combat.whoseTurn === 'ally') {
-            let enemy = this.props.enemy[i];
-            // let enemies = this.props.enemy;
             this.props.isAttackReady(false)
-            let allyAgility = this.getAllyAgility();
-            let enemyEvasion = this.getEnemyEvasion(i);
 
-            // let abilityType = null;
             if (combat.activeAbility.type === 'magic') {
-                // abilityType = spells;
                 this.handleMagicAttack(i);
             } else if (combat.activeAbility.type === 'skill') {
-                // abilityType = skills;
                 this.handlePhysicalAttack(i);
             } else {
+                let allyAgility = this.getAllyAgility();
+                let enemyEvasion = this.getEnemyEvasion(i);
                 let wasAttackSuccessful = this.calculateAttackSuccessChance(allyAgility, enemyEvasion);
 
                 if (wasAttackSuccessful) {
-                    let wasCritical = this.wasAttackCritical();
-                    let allyDmg = this.calculateAllyDmg();
-                    let enemyDef = this.getEnemyDefence(i);
-                    let totalDmg = await this.calculateTotalDmg(allyDmg, enemyDef, wasCritical, attI);
-                    this.props.enemyLoseHp(totalDmg, i);
-                    let info = `${name} dealt ${totalDmg} damage to ${enemy.name}`;
-                    this.props.addInfoToArray(info)
-                    this.props.nextAllyTurn();
+                    this.handleBasicAttack(i, attI, name);
                 } else {
-                    let info = `${name} missed!`;
-                    this.props.addInfoToArray(info)
-                    this.props.nextAllyTurn();
+                    this.handleAttackMissed(name);
                 }
             }
         }
