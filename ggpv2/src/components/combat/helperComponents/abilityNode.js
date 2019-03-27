@@ -1,4 +1,8 @@
 import React from 'react';
+import _ from 'lodash';
+
+import * as spells from '../../../store/skills/spells';
+import * as skills from '../../../store/skills/skills';
 import './abilityNode.css';
 
 export default class AbilityNode extends React.Component {
@@ -74,17 +78,33 @@ export default class AbilityNode extends React.Component {
         })
     }
 
+    isAbilityBuff = (abilityType, name) => {
+        abilityType = (abilityType === 'skill') ? skills : spells;
+        let abilityName = _.findKey(abilityType, { name: name });
+        let ability = abilityType[abilityName];
+        console.log({ ability })
+        if (ability) {
+            return ability.buff;
+        } else {
+            console.error('Couldnt find ability');
+        }
+    }
+
     abilityClick = () => {
         if (!this.state.canUse) return;
 
         let type = (this.props.skill) ? 'skill' : 'magic';
         this.props.setActiveAbility(type, this.props.name);
 
+        //check if ability is buff or heal
+        let isBuff = this.isAbilityBuff(type, this.props.name);
+        console.log(isBuff);
+
         //prevent using when unclicked
         if (!this.props.active) {
-            this.props.isAttackReady(true);
+            (isBuff) ? this.props.isHelpReady(true) : this.props.isAttackReady(true);
         } else {
-            this.props.isAttackReady(false);
+            (isBuff) ? this.props.isHelpReady(false) : this.props.isAttackReady(false);
         }
         this.props.highlightAbility(this.props.index)
     }

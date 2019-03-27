@@ -142,6 +142,7 @@ class AttackInterface extends React.Component {
                     <AbilityNode
                         setActiveAbility={this.props.setActiveAbility}
                         isAttackReady={this.props.isAttackReady}
+                        isHelpReady={this.props.isHelpReady}
                         highlightAbility={this.highlightAbility}
                         combat={this.props.combat}
                         ally={this.props.ally}
@@ -182,6 +183,7 @@ class AttackInterface extends React.Component {
                     <AbilityNode
                         setActiveAbility={this.props.setActiveAbility}
                         isAttackReady={this.props.isAttackReady}
+                        isHelpReady={this.props.isHelpReady}
                         highlightAbility={this.highlightAbility}
                         combat={this.props.combat}
                         ally={this.props.ally}

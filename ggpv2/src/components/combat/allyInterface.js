@@ -53,7 +53,6 @@ class AllyInterface extends React.Component {
                     default:
                         console.error('Unknown item type')
                 }
-
                 this.props.resetActiveItem();
                 //usunac itemek
                 this.props.charAbilityItemRemover('consumables', combat.activeItem.name, null)

@@ -49,7 +49,8 @@ let initial_state = [
         magic: [
             spells.fireball,
             spells.inferno,
-            spells.soulDrain
+            spells.soulDrain,
+            spells.heal
         ],
         items: [
             armor.woodenShirt,

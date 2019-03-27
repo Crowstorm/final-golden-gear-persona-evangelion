@@ -36,3 +36,17 @@ export const soulDrain ={
     aoe: false,
     description: "Dunno"
 }
+
+export const heal = {
+    icon: null,
+    name: "Heal",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 7,
+    dmg: 10,
+    dmgType: "flat",
+    aoe: false,
+    buff: true,
+    description: "Heals for 10"
+}
