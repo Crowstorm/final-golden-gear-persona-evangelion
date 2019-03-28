@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as skills from '../../store/skills/skills';
+import * as spells from '../../store/skills/spells';
 import * as items from '../../store/items/items';
 
 
@@ -34,6 +35,29 @@ class AllyInterface extends React.Component {
         }
     }
 
+    useRestorationAbility = (ability, char, i) => {
+        let currentHp = char.stats.hp;
+        let currentMp = char.stats.mp;
+        let maxHp = char.stats.maxHp;
+        let maxMp = char.stats.maxMp;
+
+        if (ability.restore === 'hp') {
+            if (currentHp + ability.dmg < maxHp) {
+                this.props.charRestore('hp', ability.dmg, i);
+            } else {
+                let toRestore = maxHp - currentHp;
+                this.props.charRestore('hp', toRestore, i)
+            }
+        } else if (ability.restore === 'mp') {
+            if (currentMp + ability.dmg < maxMp) {
+                this.props.charRestore('mp', ability.dmg, i);
+            } else {
+                let toRestore = maxMp - currentMp;
+                this.props.charRestore('mp', toRestore, i)
+            }
+        }
+    }
+
     // does action depending on combat state (inventory check, buffs etc)
     handleAllyClicked = (i) => {
         let combat = this.props.combat;
@@ -43,9 +67,9 @@ class AllyInterface extends React.Component {
         if (combat.helpReady && combat.whoseTurn === 'ally') {
             //item logic
             if (combat.activeItem.name) {
-                //find item
                 let itemName = _.findKey(items, { name: combat.activeItem.name });
                 let item = items[itemName];
+
                 switch (item.actionType) {
                     case 'restore':
                         this.useRestorationItem(item, character, i);
@@ -57,6 +81,24 @@ class AllyInterface extends React.Component {
                 //usunac itemek
                 this.props.charAbilityItemRemover('consumables', combat.activeItem.name, null)
                 //skonczyc ture
+                this.props.nextAllyTurn();
+            }
+
+            //spell logic
+            if (combat.activeAbility.name) {
+                let type = (combat.activeAbility.type === 'magic') ? spells : skills;
+                let skillName = _.findKey(type, { name: combat.activeAbility.name });
+                let ability = type[skillName];
+
+                switch (ability.helpType) {
+                    case 'restore':
+                        this.useRestorationAbility(ability, character, i);
+                        break;
+                    default:
+                        console.error('Unknown ability type')
+                }
+
+                this.props.resetActiveAbility();
                 this.props.nextAllyTurn();
             }
         }

@@ -48,5 +48,7 @@ export const heal = {
     dmgType: "flat",
     aoe: false,
     buff: true,
+    helpType: 'restore',
+    restore: "hp",
     description: "Heals for 10"
 }
