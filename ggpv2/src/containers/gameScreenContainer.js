@@ -9,6 +9,7 @@ import OverworldContainer from './overworldContainer';
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
 
 import { equip } from '../store/actions/characterActions';
+import CombatRewardsContainer from './modals/combatRewardsContainer';
 
 class GameScreenContainer extends React.Component {
     overworld = () => {
@@ -47,12 +48,14 @@ class GameScreenContainer extends React.Component {
     render() {
         let content = this.renderContent();
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
+        let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
         return (
             <div>
                 {content}
                 {/* modals */}
                 {/* <CharacterCard {...this.props} /> */}
                 {characterCard}
+                {combatRewardsCard}
             </div>
         )
     }

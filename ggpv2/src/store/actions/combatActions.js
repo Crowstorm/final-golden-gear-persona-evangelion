@@ -1,3 +1,9 @@
+export const toggleCombat = () => (dispatch) => {
+    dispatch({
+        type: 'TOGGLE_COMBAT'
+    })
+}
+
 export const isAttackReady = (isReady) => {
     return function (dispatch) {
         dispatch({

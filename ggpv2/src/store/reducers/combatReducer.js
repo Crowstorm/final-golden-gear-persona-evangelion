@@ -13,7 +13,12 @@ const enemyDefaultState = {
     activeItem: {
         name: null
     },
-    info: []
+    info: [],
+    reward:{
+        exp: 100,
+        gold: 50,
+        items: []
+    }
 }
 
 const combatReducer = (state = enemyDefaultState, action) => {
