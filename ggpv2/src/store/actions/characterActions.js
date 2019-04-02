@@ -133,3 +133,49 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
 
     dispatch(removeFromInventory(item))
 }
+
+export const addExpPoints = (amount) => (dispatch, getState) => {
+    let characters = getState().characters;
+
+    if (amount) {
+        characters.forEach((char, i) => {
+            dispatch({
+                type: 'ADD_EXP_POINTS',
+                i,
+                exp: amount
+            })
+        })
+    } else {
+        let exp = getState().combat.reward.exp;
+
+        characters.forEach((char, i) => {
+            dispatch({
+                type: 'ADD_EXP_POINTS',
+                i,
+                exp
+            })
+        })
+    }
+}
+
+export const alterGoldAmount = (amount) => (dispatch, getState) => {
+    if (amount) {
+        dispatch({
+            type: 'ALTER_GOLD_AMOUNT',
+            gold: amount
+        })
+    } else {
+        let gold = getState().combat.reward.gold;
+        dispatch({
+            type: 'ALTER_GOLD_AMOUNT',
+            gold
+        })
+    }
+}
+
+export const grantCombatRewards = () => async (dispatch, getState) => {
+    dispatch(addExpPoints());
+    dispatch(alterGoldAmount())
+    let characters = getState().characters;
+    let expTable = getState().player.expTable;
+}

@@ -1,5 +1,5 @@
 import { changeTurn, addInfoToArray } from './combatActions';
-import { allyLoseHp, checkIfCharactersAlive } from './characterActions';
+import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards } from './characterActions';
 import {toggleCombatRewardsCard} from './modalActions';
 
 const getEnemyHp = (i) => {
@@ -37,13 +37,11 @@ export const enemyLoseHp = (hp, i) => {
         if (remainingHp <= 0) {
             dispatch(killEnemy(i));
             if (getState().enemy.length === 0) {
-                // alert('wygrales');
-
                 //Ekran z nagrodami i info
                 dispatch(toggleCombatRewardsCard())
-                // dispatch({
-                //     type: 'TOGGLE_COMBAT'
-                // })
+                //add rewards
+                dispatch(grantCombatRewards())
+
             }
         }
     }

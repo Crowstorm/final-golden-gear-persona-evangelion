@@ -52,6 +52,7 @@ let initial_state = [
             spells.soulDrain,
             spells.heal
         ],
+        gold: 0,
         items: [
             armor.woodenShirt,
             armor.steelLegs,
@@ -165,9 +166,7 @@ export default (state = initial_state, action) => {
                 draft[action.i].stats[action.stat] += action.val;
                 break;
             case 'REMOVE_ITEM_OR_ABILITY':
-                console.log(state[0][action.section], action.section, action.index)
                 let array = state[0][action.section]
-                console.log(array)
                 draft[0][action.section].splice(action.index, 1);
                 break;
             case 'ADD_TO_INVENTORY':
@@ -178,8 +177,13 @@ export default (state = initial_state, action) => {
                 draft[0].items.splice(i, 1);
                 break;
             case 'EQUIP':
-                console.log(action.item, action.slot);
                 draft[action.index].armor[action.slot] = action.item;
+                break;
+            case 'ADD_EXP_POINTS':
+                draft[action.i].stats.exp += action.exp;
+                break;
+            case 'ALTER_GOLD_AMOUNT':
+                draft[0].gold += action.gold;
                 break;
             default:
                 return draft;
