@@ -58,6 +58,26 @@ class AllyInterface extends React.Component {
         }
     }
 
+    useBuffAbility = (ability, char, i) =>{
+        console.log(ability, char);
+        let newBuffs;
+        // boost: ['all'],
+        // boostType: "flat",
+        // boostAmount: 5,
+        // boostDuration: 2,
+
+        //trza bedzie pobrac obecne i dopisac
+        if(ability.boostType === "flat"){
+            newBuffs = [
+                {
+                    amount: 5,
+                    duration: 2,
+                    stat: "defence"
+                }
+            ]
+        }
+    }
+
     // does action depending on combat state (inventory check, buffs etc)
     handleAllyClicked = (i) => {
         let combat = this.props.combat;
@@ -93,6 +113,9 @@ class AllyInterface extends React.Component {
                 switch (ability.helpType) {
                     case 'restore':
                         this.useRestorationAbility(ability, character, i);
+                        break;
+                    case 'buff':
+                        this.useBuffAbility(ability, character, i);
                         break;
                     default:
                         console.error('Unknown ability type')

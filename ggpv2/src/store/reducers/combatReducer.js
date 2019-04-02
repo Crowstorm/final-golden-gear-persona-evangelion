@@ -15,7 +15,7 @@ const enemyDefaultState = {
     },
     info: [],
     reward:{
-        exp: 400,
+        exp: 100,
         gold: 50,
         items: []
     }

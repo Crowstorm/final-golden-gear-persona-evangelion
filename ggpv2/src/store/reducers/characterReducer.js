@@ -29,6 +29,7 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        buffs: [],
         quests: [
 
         ],
@@ -50,7 +51,8 @@ let initial_state = [
             spells.fireball,
             spells.inferno,
             spells.soulDrain,
-            spells.heal
+            spells.heal,
+            spells.buff
         ],
         gold: 0,
         items: [
@@ -91,6 +93,7 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        buffs: [],
         armor: {
             head: armor.woodenHelmet,
             chest: armor.steelArmor,
@@ -116,6 +119,7 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        buffs: [],
         armor: {
             head: armor.steelHelmet,
             chest: armor.woodenShirt,
@@ -141,6 +145,7 @@ let initial_state = [
             luck: 5,
             speed: 5,
         },
+        buffs: [],
         armor: {
             head: armor.woodenHelmet,
             chest: armor.woodenShirt,
@@ -187,6 +192,8 @@ export default (state = initial_state, action) => {
                 break;
             case 'LEVEL_UP':
                 draft[action.i].stats = action.newStats;
+            case 'APPLY_BUFF':
+                draft[action.i].buffs = action.newBuffs
             default:
                 return draft;
         }

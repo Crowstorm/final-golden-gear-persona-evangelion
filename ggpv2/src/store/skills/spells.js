@@ -52,3 +52,22 @@ export const heal = {
     restore: "hp",
     description: "Heals for 10"
 }
+
+export const buff = {
+    icon: null,
+    name: "Buff",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 7,
+    // dmg: 10,
+    // dmgType: "flat",
+    // aoe: false,
+    buff: true,
+    helpType: 'buff',
+    boost: ['all'],
+    boostType: "flat",
+    boostAmount: 5,
+    boostDuration: 2,
+    description: "Buff test"
+}
