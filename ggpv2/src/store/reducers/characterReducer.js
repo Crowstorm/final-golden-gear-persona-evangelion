@@ -185,6 +185,8 @@ export default (state = initial_state, action) => {
             case 'ALTER_GOLD_AMOUNT':
                 draft[0].gold += action.gold;
                 break;
+            case 'LEVEL_UP':
+                draft[action.i].stats = action.newStats;
             default:
                 return draft;
         }

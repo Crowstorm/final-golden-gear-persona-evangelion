@@ -173,9 +173,45 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
     }
 }
 
+export const levelUp = (i, boost) => (dispatch, getState) => {
+    let stats = getState().characters[i].stats;
+    console.log({ stats });
+    let newStats = {...stats};
+    newStats.level += 1;
+    newStats.strength += boost;
+    newStats.defence += boost;
+    newStats.magic += boost;
+    newStats.magicResist += boost;
+    newStats.agility += boost;
+    newStats.luck += boost - 1;
+    newStats.speed += boost;
+
+    newStats.maxHp += 3;
+    newStats.hp += 3;
+    newStats.maxMp += 3;
+    newStats.mp += 3;
+
+    dispatch({
+        type: 'LEVEL_UP',
+        i,
+        newStats
+    })
+}
+
 export const grantCombatRewards = () => async (dispatch, getState) => {
     dispatch(addExpPoints());
     dispatch(alterGoldAmount())
     let characters = getState().characters;
     let expTable = getState().player.expTable;
+
+    while(characters[0].stats.exp >= expTable[0].exp) {
+        characters.forEach((char, i) => {
+            dispatch(levelUp(i, expTable[0].boost));
+        })
+        dispatch({
+            type: 'SHIFT_EXP_TABLE'
+        })
+        expTable = getState().player.expTable;
+    }
+
 }
