@@ -192,8 +192,13 @@ export default (state = initial_state, action) => {
                 break;
             case 'LEVEL_UP':
                 draft[action.i].stats = action.newStats;
+                break;
             case 'APPLY_BUFF':
-                draft[action.i].buffs = action.newBuffs
+                draft[action.i].buffs = action.newBuffs;
+                break;
+            case 'REMOVE_BUFF':
+                draft[action.charIndex].buffs.splice(action.buffIndex, 1);
+                break;
             default:
                 return draft;
         }

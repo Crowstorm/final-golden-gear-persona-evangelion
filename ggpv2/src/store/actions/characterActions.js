@@ -237,16 +237,39 @@ export const applyBuff = (newBuffs, i, isNew = true) => (dispatch) => {
     }
 }
 
+export const removeBuff = (buff, buffIndex, charIndex) => (dispatch) => {
+    let stat = buff.stat;
+    let val = -buff.amount;
+    dispatch({
+        type: 'BOOST_STAT',
+        val,
+        stat,
+        i: charIndex
+    })
+
+    dispatch({
+        type: 'REMOVE_BUFF',
+        charIndex,
+        buffIndex
+    })
+}
+
 export const changeBuffsCounter = () => (dispatch, getState) => {
     let characters = getState().characters;
     characters.forEach((char, i) => {
         if (char.buffs && char.buffs.length > 0) {
             let buffs = char.buffs;
             let newBuffs = [];
-            buffs.forEach(buff => {
-                let newBuff = {...buff};
+            buffs.forEach((buff, buffIndex) => {
+                let newBuff = { ...buff };
                 newBuff.duration--;
-                newBuffs.push(newBuff)
+
+                //iff buff duration over, remove the buff from character
+                if (newBuff.duration <= 0) {
+                    dispatch(removeBuff(newBuff, buffIndex, i));
+                } else {
+                    newBuffs.push(newBuff)
+                }
             })
             dispatch(applyBuff(newBuffs, i, false))
         }
