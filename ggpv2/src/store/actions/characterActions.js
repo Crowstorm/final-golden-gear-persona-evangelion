@@ -176,7 +176,7 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
 export const levelUp = (i, boost) => (dispatch, getState) => {
     let stats = getState().characters[i].stats;
     console.log({ stats });
-    let newStats = {...stats};
+    let newStats = { ...stats };
     newStats.level += 1;
     newStats.strength += boost;
     newStats.defence += boost;
@@ -204,7 +204,7 @@ export const grantCombatRewards = () => async (dispatch, getState) => {
     let characters = getState().characters;
     let expTable = getState().player.expTable;
 
-    while(characters[0].stats.exp >= expTable[0].exp) {
+    while (characters[0].stats.exp >= expTable[0].exp) {
         characters.forEach((char, i) => {
             dispatch(levelUp(i, expTable[0].boost));
         })
@@ -213,5 +213,30 @@ export const grantCombatRewards = () => async (dispatch, getState) => {
         })
         expTable = getState().player.expTable;
     }
+}
+
+export const applyBuff = (newBuffs, i) => (dispatch) => {
+    dispatch({
+        type: 'APPLY_BUFF',
+        newBuffs,
+        i
+    })
+    // case 'BOOST_STAT':
+    // draft[action.i].stats[action.stat] += action.val;
+    newBuffs.forEach(buff => {
+        console.log(buff)
+        let stat = buff.stat;
+        let val = buff.amount;
+
+        dispatch({
+            type: 'BOOST_STAT',
+            val,
+            stat,
+            i
+        })
+    })
+}
+
+export const checkIfBuffOver = () => (dispatch, getState) => {
 
 }
