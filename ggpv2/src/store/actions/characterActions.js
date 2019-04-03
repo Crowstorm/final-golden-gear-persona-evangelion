@@ -215,28 +215,49 @@ export const grantCombatRewards = () => async (dispatch, getState) => {
     }
 }
 
-export const applyBuff = (newBuffs, i) => (dispatch) => {
+export const applyBuff = (newBuffs, i, isNew = true) => (dispatch) => {
+    //sprawdzic czy juz nie byl jakis nalozony wczesniej o tej samej nazwie
     dispatch({
         type: 'APPLY_BUFF',
         newBuffs,
         i
     })
-    // case 'BOOST_STAT':
-    // draft[action.i].stats[action.stat] += action.val;
-    newBuffs.forEach(buff => {
-        console.log(buff)
-        let stat = buff.stat;
-        let val = buff.amount;
 
-        dispatch({
-            type: 'BOOST_STAT',
-            val,
-            stat,
-            i
+    if (isNew) {
+        newBuffs.forEach(buff => {
+            let stat = buff.stat;
+            let val = buff.amount;
+            dispatch({
+                type: 'BOOST_STAT',
+                val,
+                stat,
+                i
+            })
         })
+    }
+}
+
+export const changeBuffsCounter = () => (dispatch, getState) => {
+    let characters = getState().characters;
+    characters.forEach((char, i) => {
+        if (char.buffs && char.buffs.length > 0) {
+            let buffs = char.buffs;
+            let newBuffs = [];
+            buffs.forEach(buff => {
+                let newBuff = {...buff};
+                newBuff.duration--;
+                newBuffs.push(newBuff)
+            })
+            dispatch(applyBuff(newBuffs, i, false))
+        }
     })
 }
 
-export const checkIfBuffOver = () => (dispatch, getState) => {
+// export const checkIfAllyBuffOver = () => (dispatch, getState) => {
+//     let characters = getState().characters;
+//     characters.forEach((char, i) => {
+//         if (char.buffs && char.buffs.length > 0) {
 
-}
+//         }
+//     })
+// }

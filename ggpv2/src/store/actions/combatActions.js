@@ -1,3 +1,5 @@
+import { changeBuffsCounter } from './characterActions';
+
 export const toggleCombat = () => (dispatch) => {
     dispatch({
         type: 'TOGGLE_COMBAT'
@@ -63,13 +65,11 @@ export const resetActiveItem = () => {
 
 export const changeTurn = (whoseTurn) => {
     return function (dispatch, getState) {
-        console.log({ whoseTurn })
-        // dispatch({
-        //     type: 'INCREMENT_ATTACKER_INDEX'
-        // })
-
         if (whoseTurn === 'ally') {
             let i = 0;
+            //zdjecie counteru z buffa
+            dispatch(changeBuffsCounter());
+            //zdjecie buffow jesli sie skonczyly
             while (getState().characters[i].stats.hp < 1 && i < 4) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'

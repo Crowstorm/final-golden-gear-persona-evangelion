@@ -61,11 +61,7 @@ class AllyInterface extends React.Component {
     useBuffAbility = (ability, char, i) => {
         console.log(ability, char);
         let newBuffs;
-        // boost: ['all'],
-        // boostType: "flat",
-        // boostAmount: 5,
-        // boostDuration: 2,
-
+        
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
             newBuffs = [
