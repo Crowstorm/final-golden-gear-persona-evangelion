@@ -1,6 +1,6 @@
-import { changeTurn, addInfoToArray } from './combatActions';
+import { changeTurn, addInfoToArray, isHelpReady } from './combatActions';
 import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards } from './characterActions';
-import {toggleCombatRewardsCard} from './modalActions';
+import { toggleCombatRewardsCard } from './modalActions';
 
 const getEnemyHp = (i) => {
     return function (dispatch, getState) {
@@ -260,6 +260,9 @@ export const nextAllyTurn = () => {
         let currentIndex = await dispatch(getAliveCharacter());
 
         let numberOfAllies = getState().characters.length;
+
+        dispatch(isHelpReady(false));
+
         if (currentIndex + 1 === numberOfAllies) {
             dispatch({
                 type: 'RESET_ATTACKER_INDEX'
