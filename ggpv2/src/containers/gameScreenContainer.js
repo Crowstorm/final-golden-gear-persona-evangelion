@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import CombatContainer from './combatContainer';
 import MainMenuContainer from './mainMenuContainer';
 import OverworldContainer from './overworldContainer';
+import CombatRewardsContainer from './modals/combatRewardsContainer';
 
 //modals
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
 
 import { equip } from '../store/actions/characterActions';
-import CombatRewardsContainer from './modals/combatRewardsContainer';
+
+//cursors
+import swordIcon from '../assets/sprites/cursor/sword.ani';
+import king from '../assets/sprites/npc/king_overworld.png';
 
 class GameScreenContainer extends React.Component {
     overworld = () => {
@@ -50,7 +54,7 @@ class GameScreenContainer extends React.Component {
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
         return (
-            <div>
+            <div style={{cursor: 'url("../assets/sprites/cursor/sword.ani"), auto'}}>
                 {content}
                 {/* modals */}
                 {/* <CharacterCard {...this.props} /> */}
