@@ -61,7 +61,7 @@ class AllyInterface extends React.Component {
     useBuffAbility = (ability, char, i) => {
         console.log(ability, char);
         let newBuffs;
-        
+
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
             newBuffs = [
@@ -128,6 +128,13 @@ class AllyInterface extends React.Component {
     getCharacters = () => {
         const { ally } = this.props;
         return ally.map((char, i) => {
+            let buffed = false;
+
+            if (char.buffs && char.buffs.length > 0) {
+                buffed = true
+            }
+
+            const buff = (buffed) ? <div>Zbuffowany</div> : null;
             return (
                 <div key={char.name} className="d-flex flex-row" onClick={() => this.handleAllyClicked(i)}>
                     <div>
@@ -145,6 +152,7 @@ class AllyInterface extends React.Component {
                             {char.name}
                         </div>
                         <img className="characterPortrait" alt="ally" src={char.portrait} />
+                        {buff}
                     </div>
 
                     <Bar
