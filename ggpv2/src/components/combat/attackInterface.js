@@ -26,7 +26,9 @@ class AttackInterface extends React.Component {
             this.setState({
                 consumables: false,
                 skills: false,
-                magic: false
+                magic: false,
+                activeAbility: null,
+                activeItem: null
             })
         }
     }
