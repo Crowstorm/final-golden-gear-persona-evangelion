@@ -18,7 +18,7 @@ let initial_state = [
             level: 1,
             exp: 0,
             maxHp: 25,
-            hp: 25,
+            hp: 1,
             maxMp: 15,
             mp: 15,
             strength: 7,

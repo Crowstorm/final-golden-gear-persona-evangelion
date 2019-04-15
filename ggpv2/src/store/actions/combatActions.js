@@ -1,4 +1,5 @@
 import { changeBuffsCounter } from './characterActions';
+import { getAliveCharacter, enemyTurn } from './enemyActions';
 
 export const toggleCombat = () => (dispatch) => {
     dispatch({
@@ -30,6 +31,28 @@ export const isHelpReady = (isReady) => {
         })
     }
 };
+
+export const nextAllyTurn = () => {
+    return async function (dispatch, getState) {
+        let currentIndex = await dispatch(getAliveCharacter());
+
+        let numberOfAllies = getState().characters.length;
+
+        dispatch(isHelpReady(false));
+
+        if (currentIndex + 1 === numberOfAllies) {
+            dispatch({
+                type: 'RESET_ATTACKER_INDEX'
+            })
+            dispatch(changeTurn('enemy'));
+            dispatch(enemyTurn());
+        } else {
+            dispatch({
+                type: 'INCREMENT_ATTACKER_INDEX'
+            })
+        }
+    }
+}
 
 export const setActiveAbility = (abilityType, name) => {
     return function (dispatch, getState) {
@@ -78,17 +101,18 @@ export const changeTurn = (whoseTurn) => {
             //zdjecie counteru z buffa
             dispatch(changeBuffsCounter());
             //zdjecie buffow jesli sie skonczyly
-            while (getState().characters[i].stats.hp < 1 && i < 4) {
+            while (getState().characters[i].stats.hp < 1 && i < 3) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })
                 i++;
                 //albo przerwac kombat
-                if (i === 5) {
-                    dispatch({
-                        type: 'CHANGE_TURN',
-                        whoseTurn
-                    })
+                if (i === 4) {
+                    // dispatch({
+                    //     type: 'CHANGE_TURN',
+                    //     whoseTurn: 'enemy'
+                    // })
+                    dispatch(toggleCombat())
                 }
             }
         }
