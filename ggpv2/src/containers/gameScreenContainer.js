@@ -49,12 +49,25 @@ class GameScreenContainer extends React.Component {
         }
     }
 
+    getCursor = () => {
+        let { attackReady, helpReady } = this.props.combat;
+        if (attackReady) {
+            return 'crosshair';
+        }
+        if(helpReady){
+            return 'cell';
+        }
+
+        return 'default';
+    }
+
     render() {
+        let cursor = this.getCursor();
         let content = this.renderContent();
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
         return (
-            <div style={{cursor: 'url("../assets/sprites/cursor/sword.ani"), auto'}}>
+            <div style={{ cursor: cursor }}>
                 {content}
                 {/* modals */}
                 {/* <CharacterCard {...this.props} /> */}
