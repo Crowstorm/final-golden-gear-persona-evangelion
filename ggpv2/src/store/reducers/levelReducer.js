@@ -1,7 +1,7 @@
 import produce from "immer";
 
 let initial_state = {
-    currentLevel: 'CastleFront',
+    currentLevel: 'ThroneRoom',
     movementSpeed: 100
 }
 

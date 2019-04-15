@@ -95,7 +95,7 @@ export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
                 break;
             case 'items':
                 let currentItems = getState().characters[0].items;
-                indexToRemove = _.findIndex(currentItems, { name: toRemove.name })
+                indexToRemove = _.findIndex(currentItems, { name: toRemove })
                 dispatch({
                     type: 'REMOVE_ITEM_OR_ABILITY',
                     section,
@@ -137,7 +137,7 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
         index: charIndex
     })
 
-    dispatch(removeItemOrAbility('items', item, 0))
+    dispatch(removeItemOrAbility('items', item.name, 0))
 }
 
 export const addExpPoints = (amount) => (dispatch, getState) => {
