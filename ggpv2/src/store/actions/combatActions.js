@@ -7,7 +7,11 @@ export const toggleCombat = () => (dispatch) => {
 }
 
 export const isAttackReady = (isReady) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
+        if (getState().combat.helpReady) {
+            dispatch(isHelpReady(false));
+        }
+
         dispatch({
             type: 'IS_ATTACK_READY',
             isReady
@@ -15,7 +19,11 @@ export const isAttackReady = (isReady) => {
     }
 };
 export const isHelpReady = (isReady) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
+        if (getState().combat.attackReady) {
+            dispatch(isAttackReady(false));
+        }
+
         dispatch({
             type: 'IS_HELP_READY',
             isReady

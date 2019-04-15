@@ -31,6 +31,13 @@ class AttackInterface extends React.Component {
                 activeItem: null
             })
         }
+        if(prevProps.combat.activeAbility.type && !this.props.combat.activeAbility.type){
+            this.setState({
+                activeAbility: null
+            })
+            this.props.isHelpReady(false);
+            this.props.isAttackReady(false);
+        }
     }
 
     handleAllyAttack = (attackType) => {
@@ -40,6 +47,8 @@ class AttackInterface extends React.Component {
     }
 
     handleOpenConsumables = () => {
+        this.props.resetActiveAbility();
+        this.props.resetActiveItem();
         this.setState({
             consumables: !this.state.consumables,
             skills: false,
@@ -47,6 +56,8 @@ class AttackInterface extends React.Component {
         })
     }
     handleOpenSkills = () => {
+        this.props.resetActiveAbility();
+        this.props.resetActiveItem();
         this.setState({
             skills: !this.state.skills,
             magic: false,
@@ -54,6 +65,8 @@ class AttackInterface extends React.Component {
         })
     }
     handleOpenMagic = () => {
+        this.props.resetActiveAbility();
+        this.props.resetActiveItem();
         this.setState({
             magic: !this.state.magic,
             skills: false,
@@ -129,6 +142,7 @@ class AttackInterface extends React.Component {
         let index = this.props.combat.attackerIndex;
         let skills = this.props.characters[index].skills;
         let name = this.props.characters[index].name;
+        let abilityType = this.props.combat.activeAbility.type;
 
         if (!skills || skills.length === 0) {
             return <div style={{ color: "white" }}>
@@ -138,7 +152,9 @@ class AttackInterface extends React.Component {
             return skills.map((skill, i) => {
                 let isActive = false;
                 if (i === this.state.activeAbility) {
-                    isActive = true;
+                    // if (abilityType === 'skill') {
+                        isActive = true;
+                    // }
                 }
                 return (
                     <AbilityNode
@@ -168,6 +184,7 @@ class AttackInterface extends React.Component {
         let index = this.props.combat.attackerIndex;
         let magic = this.props.characters[index].magic;
         let name = this.props.characters[index].name;
+        let abilityType = this.props.combat.activeAbility.type;
 
         if (!magic || magic.length === 0) {
             return (
@@ -179,7 +196,9 @@ class AttackInterface extends React.Component {
             return magic.map((spell, i) => {
                 let isActive = false;
                 if (i === this.state.activeAbility) {
-                    isActive = true;
+                    // if (abilityType === 'magic') {
+                        isActive = true;
+                    // }
                 }
                 return (
                     <AbilityNode
@@ -209,7 +228,7 @@ class AttackInterface extends React.Component {
         let { skills, consumables, magic } = this.state;
         let menu;
         if (skills) {
-            menu = this.handleRenderSkills()
+            menu = this.handleRenderSkills();
         } else if (consumables) {
             menu = this.handleRenderConsumables();
         } else if (magic) {
