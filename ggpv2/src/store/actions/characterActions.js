@@ -101,11 +101,37 @@ export const charAbilityItemRemover = (section, name, i) => {
     }
 }
 
-export const addToInventory = (item) => dispatch => {
+export const addToConsumables = (item) => dispatch => {
     dispatch({
-        type: 'ADD_TO_INVENTORY',
+        type: 'ADD_TO_CONSUMABLES',
         item
     })
+}
+
+export const addItemOrAbility = (section, toAdd, i = 0) => dispatch => {
+    //SECTION:
+    //items - armors, weapons, etc
+    //consumables - potions, scrolls
+    // questItems - quest items
+
+
+    dispatch({
+        type: 'ADD_ITEM_OR_ABILITY',
+        section,
+        toAdd,
+        i
+    })
+
+    // switch (section) {
+    //     case 'consumables':
+
+    //         break;
+    //         case 'items':
+    //         dispatch()
+    //         break;
+    //     default:
+    //         console.error('Couldnt find section')
+    // }
 }
 
 export const removeFromInventory = (item) => dispatch => {
@@ -122,7 +148,8 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
 
     //currentItem
     let currentItem = getState().characters[charIndex].armor[slot];
-    dispatch(addToInventory(currentItem));
+    dispatch(addItemOrAbility('items', currentItem, 0))
+    // dispatch(addToInventory(currentItem));
 
     dispatch({
         type: 'EQUIP',
@@ -276,11 +303,3 @@ export const changeBuffsCounter = () => (dispatch, getState) => {
     })
 }
 
-// export const checkIfAllyBuffOver = () => (dispatch, getState) => {
-//     let characters = getState().characters;
-//     characters.forEach((char, i) => {
-//         if (char.buffs && char.buffs.length > 0) {
-
-//         }
-//     })
-// }

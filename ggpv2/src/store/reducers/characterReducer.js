@@ -170,6 +170,9 @@ export default (state = initial_state, action) => {
             case 'BOOST_STAT':
                 draft[action.i].stats[action.stat] += action.val;
                 break;
+            case 'ADD_ITEM_OR_ABILITY':
+                draft[action.i][action.section].push(action.toAdd)
+                break;
             case 'REMOVE_ITEM_OR_ABILITY':
                 let array = state[0][action.section]
                 draft[0][action.section].splice(action.index, 1);
