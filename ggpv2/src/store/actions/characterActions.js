@@ -78,42 +78,42 @@ export const charRestore = (statType, amount, i) => {
 
 
 //removes inventory or abilities from characters
-export const charAbilityItemRemover = (section, name, i) => {
+export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
     return function (dispatch, getState) {
         // znajdz w odpowiedniej sekcji
+        let indexToRemove;
         switch (section) {
             case 'consumables':
-                let currentItems = getState().characters[0].consumables;
-                console.log(currentItems);
-                console.log(name)
-                let indexToRemove = _.findIndex(currentItems, { name: name })
+                let currentConsumables = getState().characters[0].consumables;
+                indexToRemove = _.findIndex(currentConsumables, { name: toRemove })
                 dispatch({
                     type: 'REMOVE_ITEM_OR_ABILITY',
                     section,
-                    index: indexToRemove
+                    index: indexToRemove,
+                    charIndex
+                })
+                break;
+            case 'items':
+                let currentItems = getState().characters[0].items;
+                indexToRemove = _.findIndex(currentItems, { name: toRemove.name })
+                dispatch({
+                    type: 'REMOVE_ITEM_OR_ABILITY',
+                    section,
+                    index: indexToRemove,
+                    charIndex
                 })
                 break;
             default:
                 console.error('Couldnt find section')
         }
-        // znajdz index
-        //usunac po indeksie
     }
-}
-
-export const addToConsumables = (item) => dispatch => {
-    dispatch({
-        type: 'ADD_TO_CONSUMABLES',
-        item
-    })
 }
 
 export const addItemOrAbility = (section, toAdd, i = 0) => dispatch => {
     //SECTION:
     //items - armors, weapons, etc
     //consumables - potions, scrolls
-    // questItems - quest items
-
+    //questItems - quest items
 
     dispatch({
         type: 'ADD_ITEM_OR_ABILITY',
@@ -121,35 +121,14 @@ export const addItemOrAbility = (section, toAdd, i = 0) => dispatch => {
         toAdd,
         i
     })
-
-    // switch (section) {
-    //     case 'consumables':
-
-    //         break;
-    //         case 'items':
-    //         dispatch()
-    //         break;
-    //     default:
-    //         console.error('Couldnt find section')
-    // }
-}
-
-export const removeFromInventory = (item) => dispatch => {
-    dispatch({
-        type: 'REMOVE_FROM_INVENTORY',
-        item
-    })
 }
 
 export const equip = (charIndex, item) => (dispatch, getState) => {
     //check for the type of item to equip
     let slot = item.slot;
-    //equip on proper slot
 
-    //currentItem
     let currentItem = getState().characters[charIndex].armor[slot];
     dispatch(addItemOrAbility('items', currentItem, 0))
-    // dispatch(addToInventory(currentItem));
 
     dispatch({
         type: 'EQUIP',
@@ -158,7 +137,7 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
         index: charIndex
     })
 
-    dispatch(removeFromInventory(item))
+    dispatch(removeItemOrAbility('items', item, 0))
 }
 
 export const addExpPoints = (amount) => (dispatch, getState) => {

@@ -96,7 +96,7 @@ class AllyInterface extends React.Component {
                 }
                 this.props.resetActiveItem();
                 //usunac itemek
-                this.props.charAbilityItemRemover('consumables', combat.activeItem.name, null)
+                this.props.removeItemOrAbility('consumables', combat.activeItem.name, null)
                 //skonczyc ture
                 this.props.nextAllyTurn();
             }

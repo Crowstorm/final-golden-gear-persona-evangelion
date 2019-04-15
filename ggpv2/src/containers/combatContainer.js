@@ -8,7 +8,7 @@ import InfoPanel from '../components/combat/infoPanel';
 
 import { isAttackReady, isHelpReady, nextAllyTurn, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility, setActiveItem, resetActiveItem } from '../store/actions/combatActions';
 import { enemyLoseHp,  } from '../store/actions/enemyActions';
-import { boostStat, charRestore, allyLoseMana, allyLoseHp, charAbilityItemRemover, applyBuff } from '../store/actions/characterActions';
+import { boostStat, charRestore, allyLoseMana, allyLoseHp, removeItemOrAbility, applyBuff } from '../store/actions/characterActions';
 
 
 class CombatContainer extends React.Component {
@@ -77,8 +77,8 @@ function mapDispatchToProps(dispatch) {
         resetActiveItem: () => {
             dispatch(resetActiveItem())
         },
-        charAbilityItemRemover: (section, name, i) => {
-            dispatch(charAbilityItemRemover(section, name, i))
+        removeItemOrAbility: (section, name, i) => {
+            dispatch(removeItemOrAbility(section, name, i))
         },
         applyBuff: (newBuffs, i) => {
             dispatch(applyBuff(newBuffs, i))
