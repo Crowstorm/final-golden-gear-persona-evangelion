@@ -3,8 +3,6 @@ import React from 'react';
 import _ from 'lodash';
 import { MAIN_GRID } from '../grids/grids';
 
-
-
 export const characterMovement = (props, e, BLOCKED) => {
     //Quit dialogue on movement
     if(props.modal.dialogueVisibility){
@@ -85,3 +83,17 @@ export const characterPosition = (props) => {
 
     return renderMainGrid();
 }
+
+export const checkIfQuestTaken = (name, props) =>{
+    let questLog = props.event.questLog;
+    let i = _.findIndex(questLog, { name: name });
+    console.log(i)
+    if (i > -1) {
+        return true;
+    }
+    return false;
+}
+
+// export const checkIfQuestCompleted = (name) => (dispatch, getState) => {
+
+// }

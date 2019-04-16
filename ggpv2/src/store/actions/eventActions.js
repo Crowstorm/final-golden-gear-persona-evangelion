@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const setCurrentQuest = (name) => (dispatch) => {
     dispatch(pushToQuestList(name))
 
@@ -13,3 +15,4 @@ export const pushToQuestList = (name) => dispatch => {
         quest: name
     })
 }
+

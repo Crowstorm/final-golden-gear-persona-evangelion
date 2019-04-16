@@ -30,9 +30,6 @@ let initial_state = [
             speed: 5,
         },
         buffs: [],
-        quests: [
-
-        ],
         armor: {
             head: armor.woodenHelmet,
             chest: armor.woodenShirt,

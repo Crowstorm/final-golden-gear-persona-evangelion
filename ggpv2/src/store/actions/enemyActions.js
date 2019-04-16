@@ -254,25 +254,3 @@ export const getAliveCharacter = () => {
         })
     }
 }
-
-// export const nextAllyTurn = () => {
-//     return async function (dispatch, getState) {
-//         let currentIndex = await dispatch(getAliveCharacter());
-
-//         let numberOfAllies = getState().characters.length;
-
-//         dispatch(isHelpReady(false));
-
-//         if (currentIndex + 1 === numberOfAllies) {
-//             dispatch({
-//                 type: 'RESET_ATTACKER_INDEX'
-//             })
-//             dispatch(changeTurn('enemy'));
-//             dispatch(enemyTurn());
-//         } else {
-//             dispatch({
-//                 type: 'INCREMENT_ATTACKER_INDEX'
-//             })
-//         }
-//     }
-// }
