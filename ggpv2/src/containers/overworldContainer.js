@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Level from '../components/overworld/levelRenderer';
-import OverworldInterface from '../components/overworld/overworldInterface';
+import OverworldInterface from '../components/overworld/overworldInterface/overworldInterface';
 
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
 import { toggleDialogueState, toggleCharacterCard } from '../store/actions/modalActions';

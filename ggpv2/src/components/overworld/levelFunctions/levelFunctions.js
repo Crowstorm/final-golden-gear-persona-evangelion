@@ -87,7 +87,6 @@ export const characterPosition = (props) => {
 export const checkIfQuestTaken = (name, props) =>{
     let questLog = props.event.questLog;
     let i = _.findIndex(questLog, { name: name });
-    console.log(i)
     if (i > -1) {
         return true;
     }

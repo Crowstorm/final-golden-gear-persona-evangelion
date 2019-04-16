@@ -1,6 +1,8 @@
 import React from 'react';
 import './overworldInterface.css';
 
+import CurrentQuest from './currentQuest';
+
 // import _ from 'lodash'
 
 class OverworldInterface extends React.Component {
@@ -41,6 +43,7 @@ class OverworldInterface extends React.Component {
                     <div className="questContainer interfaceItem d-flex align-items-center flex-column">
                         <p>Current quest: </p>
                         <p>{currentQuest}</p>
+                        {/* <CurrentQuest currentQuest={currentQuest} /> */}
                     </div>
 
                     <div>

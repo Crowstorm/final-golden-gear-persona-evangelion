@@ -9,6 +9,9 @@ import CastleFront from './levels/castleFront';
 
 
 class Game extends React.Component {
+    state = {
+        gridBlocker: false
+    }
     getCurrentLevel = () => {
         switch (this.props.level.currentLevel) {
             case "ThroneRoom":
@@ -27,13 +30,23 @@ class Game extends React.Component {
                 alert('blad w level renderer')
         }
     }
+
+    toggleGridBlocker = () => {
+        this.setState({
+            gridBlocker: !this.state.gridBlocker
+        })
+        console.log(this.state.gridBlocker)
+    }
     render() {
-        // console.log(this.props)
         let renderCurrentLevel = this.getCurrentLevel();
+        let gridBlocker = (this.state.gridBlocker) ? <GridBlocker {...this.props} /> : null;
+
         return (
             <div className="level">
                 {renderCurrentLevel}
-                {/* <GridBlocker {...this.props} /> */}
+                {gridBlocker}
+                <button style={{float: "right", marginTop: 50, zIndex: 10000}} onClick={() => this.toggleGridBlocker()}>GridBlocker</button>
+
             </div>
         )
     }

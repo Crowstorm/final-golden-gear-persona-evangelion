@@ -11,6 +11,15 @@ import { characterMovement } from '../levelFunctions/levelFunctions';
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 class CastleCorridor extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dialogue: null
+        }  
+        this.roadBlocked = [
+            { text: "Guards won't let me through here", name: "Shujin" }
+        ]
+    }
 
     renderPosition = (cell) => {
         if (this.props.position.x === cell.x && this.props.position.y === cell.y) {
@@ -39,6 +48,12 @@ class CastleCorridor extends React.Component {
 
     componentDidUpdate() {
         let { x, y } = this.props.position;
+        let { dialogueVisibility } = this.props.modal;
+        if (dialogueVisibility) {
+            document.removeEventListener("keydown", this.handleKeyDown);
+        } else {
+            document.addEventListener("keydown", this.handleKeyDown);
+        }
 
         if ((x >= 12 && x <= 13) && y === 24) {
             this.props.setCharacterPosition(x, 3);
@@ -49,6 +64,17 @@ class CastleCorridor extends React.Component {
             this.props.setCharacterPosition(13, 21);
             this.props.changeLevel('CastleFront');
         }
+
+        if(((y>=5 && y <=9) && x === 2) || ((y>=5 && y <=9) && x === 24)){
+            if (this.state.dialogue !== this.roadBlocked) {
+                this.setState({
+                    dialogue: this.roadBlocked
+                })
+                this.props.toggleDialogueState();
+            }
+        }
+
+
     }
 
     componentWillUnmount = () => {
@@ -58,10 +84,10 @@ class CastleCorridor extends React.Component {
 
 
     render() {
-        // let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={dialogue} /> : '';
+        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : null;
         return (
             <div className="castleCorridor">
-                {/* {renderDialogue} */}
+                {renderDialogue}
                 {this.renderMainGrid()}
             </div>
         )
