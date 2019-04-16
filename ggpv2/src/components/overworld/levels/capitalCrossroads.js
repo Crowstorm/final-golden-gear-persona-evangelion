@@ -27,13 +27,19 @@ class CapitalCrossroads extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         let { x, y } = this.props.position;
+        let {oldX, oldY} = prevProps.position;
         let { dialogueVisibility } = this.props.modal;
         if (dialogueVisibility) {
             document.removeEventListener("keydown", this.handleKeyDown);
         } else {
             document.addEventListener("keydown", this.handleKeyDown);
+            if (this.state.dialogue && (oldX !== x || oldY !== y)) {
+                this.setState({
+                    dialogue: null
+                })
+            }
         }
 
         if ((x >= 10 && x <= 16) && y === 25) {
@@ -41,6 +47,7 @@ class CapitalCrossroads extends React.Component {
             this.props.changeLevel('CastleFront');
         }
 
+        //start quest
         if ((x >= 10 && x <= 16) && y === 19) {
             let isTroubleAtTheCrossroadsQuestTaken = checkIfQuestTaken('Trouble at the Crossroads', this.props);
             if (!isTroubleAtTheCrossroadsQuestTaken) {
@@ -50,8 +57,16 @@ class CapitalCrossroads extends React.Component {
                     })
                     this.props.toggleDialogueState();
                 }
-            } else {
+            }
+        }
 
+        //roadblock during Trouble at the crossroads quest
+        if (((x >= 10 && x <= 16) && y === 1) || ((y >= 13 && y <= 18) && x === 25)) {
+            if (this.state.dialogue !== this.troubleAtTheCrossroadRoadblock) {
+                this.setState({
+                    dialogue: this.troubleAtTheCrossroadRoadblock
+                })
+                this.props.toggleDialogueState();
             }
         }
 
