@@ -6,6 +6,7 @@ import GridBlocker from '../../assets/gridBlocker/gridBlocker';
 import ThroneRoom from './levels/throneRoom';
 import CastleCorridor from './levels/castleCorridor';
 import CastleFront from './levels/castleFront';
+import CapitalCrossroads from './levels/capitalCrossroads';
 
 
 class Game extends React.Component {
@@ -26,8 +27,12 @@ class Game extends React.Component {
                 return (
                     <CastleFront {...this.props} />
                 )
+            case "CapitalCrossroads":
+                return (
+                    <CapitalCrossroads {...this.props} />
+                )
             default:
-                alert('blad w level renderer')
+                console.error("Can't render current level")
         }
     }
 
@@ -45,7 +50,7 @@ class Game extends React.Component {
             <div className="level">
                 {renderCurrentLevel}
                 {gridBlocker}
-                <button style={{float: "right", marginTop: 50, zIndex: 10000}} onClick={() => this.toggleGridBlocker()}>GridBlocker</button>
+                <button style={{ float: "right", marginTop: 50, zIndex: 10000 }} onClick={() => this.toggleGridBlocker()}>GridBlocker</button>
 
             </div>
         )

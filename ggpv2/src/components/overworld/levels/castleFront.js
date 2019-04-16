@@ -21,6 +21,11 @@ class CastleFront extends React.Component {
             this.props.setCharacterPosition(13, 3);
             this.props.changeLevel('CastleCorridor');
         }
+
+        if((x >=12 && x <=14) && y===1){
+            this.props.setCharacterPosition(x, 24);
+            this.props.changeLevel('CapitalCrossroads');
+        }
     }
 
     componentWillUnmount = () => {
@@ -36,7 +41,7 @@ class CastleFront extends React.Component {
 
     render() {
         return (
-            <div className="castleFront">
+            <div className="level castleFront">
                 {characterPosition(this.props)}
             </div>
         )

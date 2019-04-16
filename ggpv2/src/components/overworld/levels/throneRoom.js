@@ -85,7 +85,7 @@ class ThroneRoom extends React.Component {
     render() {
         let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
-            <div className="throneRoom">
+            <div className="level throneRoom">
                 {renderDialogue}
                 {characterPosition(this.props)}
             </div>

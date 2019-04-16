@@ -5,25 +5,23 @@
     border: 1px solid blue; */
 }
 
-.throneRoom{
-    background-image: url("../../../../assets/levelBackgrounds/throneRoomTest.png");
+.level{
     box-sizing: border-box;
     height:800px;
     width:800px;
     float: right;
 }
 
+.throneRoom{
+    background-image: url("../../../../assets/levelBackgrounds/throneRoomTest.png");
+}
+
 .castleCorridor{
     background-image: url("../../../../assets/levelBackgrounds/castleCorridor.png");
-    box-sizing: border-box;
-    height:800px;
-    width:800px;
-    float: right;
 }
 .castleFront{
     background-image: url("../../../../assets/levelBackgrounds/castleFront.png");
-    box-sizing: border-box;
-    height:800px;
-    width:800px;
-    float: right;
+}
+.capitalCrossroads{
+    background-image: url("../../../../assets/levelBackgrounds/capitalCrossroads.png");
 }

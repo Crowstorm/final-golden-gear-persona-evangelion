@@ -24,7 +24,7 @@ export default (state = eventDefaultState, action) => {
                 draft.currentQuest = quests[action.quest];
                 break;
             case 'PUSH_TO_QUEST_LIST':
-                draft.questLog.push(quests[action.quest]);
+                draft.questLog.unshift(quests[action.quest]);
                 break;
             default:
                 return draft;

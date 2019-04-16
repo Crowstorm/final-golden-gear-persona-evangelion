@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 export const setCurrentQuest = (name) => (dispatch) => {
     dispatch(pushToQuestList(name))
-
     dispatch({
         type: 'SET_CURRENT_QUEST',
         quest: name

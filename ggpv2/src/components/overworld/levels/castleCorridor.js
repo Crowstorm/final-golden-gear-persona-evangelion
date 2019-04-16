@@ -61,7 +61,7 @@ class CastleCorridor extends React.Component {
         }
 
         if ((x >= 11 && x <= 14) && y === 2) {
-            this.props.setCharacterPosition(13, 21);
+            this.props.setCharacterPosition(13, 19);
             this.props.changeLevel('CastleFront');
         }
 
@@ -86,7 +86,7 @@ class CastleCorridor extends React.Component {
     render() {
         let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : null;
         return (
-            <div className="castleCorridor">
+            <div className="level castleCorridor">
                 {renderDialogue}
                 {this.renderMainGrid()}
             </div>
