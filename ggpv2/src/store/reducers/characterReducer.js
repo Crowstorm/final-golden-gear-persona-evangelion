@@ -170,8 +170,7 @@ export default (state = initial_state, action) => {
             case 'ADD_ITEM_OR_ABILITY':
                 draft[action.i][action.section].push(action.toAdd)
                 break;
-            case 'REMOVE_ITEM_OR_ABILITY':
-                // let array = state[0][action.section]
+            case 'REMOVE_ITEM_OR_ABILITY':       
                 draft[action.charIndex][action.section].splice(action.index, 1);
                 break;
             case 'ADD_TO_INVENTORY':
