@@ -2,6 +2,17 @@ import { changeTurn, addInfoToArray, isHelpReady } from './combatActions';
 import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards } from './characterActions';
 import { toggleCombatRewardsCard } from './modalActions';
 
+
+export const addEnemiesToCombat = (enemies) => (dispatch) => {
+    enemies.forEach(enemy => {
+        console.log({enemy})
+        dispatch({
+            type: 'ADD_ENEMY_TO_COMBAT',
+            enemy
+        })
+    })
+}
+
 const getEnemyHp = (i) => {
     return function (dispatch, getState) {
         return getState().enemy[i].stats.hp;

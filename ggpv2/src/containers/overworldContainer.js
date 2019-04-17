@@ -6,7 +6,9 @@ import OverworldInterface from '../components/overworld/overworldInterface/overw
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
 import { toggleDialogueState, toggleCharacterCard } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
-import { setCurrentQuest,  } from '../store/actions/eventActions';
+import { setCurrentQuest, } from '../store/actions/eventActions';
+import { toggleCombat, } from '../store/actions/combatActions';
+import { addEnemiesToCombat } from '../store/actions/enemyActions';
 
 
 class OverworldContainer extends React.Component {
@@ -38,11 +40,14 @@ function mapDispatchToProps(dispatch) {
         moveCharRight: () => { dispatch(moveCharRight()) },
         moveCharLeft: () => { dispatch(moveCharLeft()) },
         setCharacterPosition: (x, y) => { dispatch(setCharacterPosition(x, y)) },
+        //combat
+        addEnemiesToCombat: (enemies) => { dispatch(addEnemiesToCombat(enemies)) },
         //modals
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },
         toggleCharacterCard: () => { dispatch(toggleCharacterCard()) },
         //level mechanics
         changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
+        toggleCombat: () => { dispatch(toggleCombat()) },
         //quests
         setCurrentQuest: (name) => { dispatch(setCurrentQuest(name)) },
         // checkIfQuestTaken: (name) => { dispatch(checkIfQuestTaken(name)) },

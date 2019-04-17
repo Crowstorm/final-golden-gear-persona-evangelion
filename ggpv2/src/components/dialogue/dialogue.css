@@ -12,6 +12,7 @@
 
 .dialogue_text{
     width: 450px;
+    padding: 10px;
     justify-content: center;
     text-align: center;
     color: white;
@@ -46,8 +47,8 @@
 .dialogue_image{
     height: 150px;
     width: 150px;
-    border: 5px solid #828282;
-    outline: 3px solid silver;
+    /* border: 5px solid #828282;
+    outline: 3px solid silver; */
 }
 
 .dialogue_next{

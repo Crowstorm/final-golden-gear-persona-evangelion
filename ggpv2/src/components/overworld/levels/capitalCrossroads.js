@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import './css/levels.css';
+import * as enemies from '../../../store/enemies/enemies';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
@@ -21,6 +22,13 @@ class CapitalCrossroads extends React.Component {
         this.troubleAtTheCrossroadRoadblock = [
             { text: "No, I need to go west, someone is in danger", name: "Shujin" }
         ]
+
+        this.damselInDistress = [
+            { text: "Stop right there, scum!", name: "Shujin" },
+            { text: "Huhu, you're approaching me?", name: "Bandit" },
+            { text: "I can't beat the shit out of you without getting closer", name: "Shujin" },
+            { text: "", name: "", effect: this.startBanditCombat },
+        ]
     }
 
     componentDidMount = () => {
@@ -29,7 +37,6 @@ class CapitalCrossroads extends React.Component {
 
     componentDidUpdate(prevProps) {
         let { x, y } = this.props.position;
-        // let { oldX, oldY } = prevProps.position;
         let oldX = prevProps.position.x;
         let oldY = prevProps.position.y;
         let { dialogueVisibility } = this.props.modal;
@@ -37,11 +44,6 @@ class CapitalCrossroads extends React.Component {
             document.removeEventListener("keydown", this.handleKeyDown);
         } else {
             document.addEventListener("keydown", this.handleKeyDown);
-            // if (this.state.dialogue && (oldX !== x || oldY !== y)) {
-            //     this.setState({
-            //         dialogue: null
-            //     })
-            // }
         }
 
         if ((x >= 10 && x <= 16) && y === 25) {
@@ -72,6 +74,15 @@ class CapitalCrossroads extends React.Component {
             }
         }
 
+        //PLACEHOLDER FOR NEXT LEVEL
+        if ((y >= 13 && y <= 18) && x === 4) {
+            if (this.state.dialogue !== this.damselInDistress) {
+                this.setState({
+                    dialogue: this.damselInDistress
+                })
+                this.props.toggleDialogueState();
+            }
+        }
 
     }
 
@@ -88,6 +99,16 @@ class CapitalCrossroads extends React.Component {
         this.props.setCurrentQuest('troubleAtTheCrossroads')
     }
 
+    startBanditCombat = () => {
+        const foes = [
+            enemies.beholder,
+            enemies.beholder,
+            enemies.beholder
+        ]
+        this.props.addEnemiesToCombat(foes);
+        this.props.toggleCombat();
+        console.log('combat')
+    }
 
 
     render() {

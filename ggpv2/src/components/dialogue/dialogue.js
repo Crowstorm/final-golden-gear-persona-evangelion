@@ -19,6 +19,12 @@ class Dialogue extends React.Component {
         }
     }
 
+    componentWillUnmount = () => {
+        if (this.props.modal.dialogueVisibility) {
+            this.props.toggleDialogueState()
+        }
+    }
+
     nextDialogueLine = () => {
         if (this.state.i === this.state.length - 1) {
             this.setState({ i: 0 });
