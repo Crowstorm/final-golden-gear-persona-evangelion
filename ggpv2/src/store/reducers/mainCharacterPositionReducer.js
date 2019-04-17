@@ -15,6 +15,9 @@ export default (state = initial_state, action) => {
     return produce(state, draft => {
         switch (action.type) {
             case 'MOVE_CHAR_UP': {
+                if (draft.y + 1 > 25) {
+                    return;
+                }
                 draft.y += 1;
                 draft.model = back;
                 break;
@@ -25,6 +28,9 @@ export default (state = initial_state, action) => {
                 // }
             }
             case 'MOVE_CHAR_DOWN': {
+                if (draft.y - 1 < 1) {
+                    return;
+                }
                 draft.y -= 1;
                 draft.model = front;
                 break;
@@ -35,6 +41,9 @@ export default (state = initial_state, action) => {
                 // }
             }
             case 'MOVE_CHAR_RIGHT': {
+                if (draft.x + 1 > 25) {
+                    return;
+                }
                 draft.x += 1;
                 draft.model = right;
                 break;
@@ -45,6 +54,9 @@ export default (state = initial_state, action) => {
                 // }
             }
             case 'MOVE_CHAR_LEFT': {
+                if (draft.x - 1 < 1) {
+                    return;
+                }
                 draft.x -= 1;
                 draft.model = left;
                 break;

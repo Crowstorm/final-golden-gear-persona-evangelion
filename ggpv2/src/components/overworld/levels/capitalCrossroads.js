@@ -29,17 +29,19 @@ class CapitalCrossroads extends React.Component {
 
     componentDidUpdate(prevProps) {
         let { x, y } = this.props.position;
-        let {oldX, oldY} = prevProps.position;
+        // let { oldX, oldY } = prevProps.position;
+        let oldX = prevProps.position.x;
+        let oldY = prevProps.position.y;
         let { dialogueVisibility } = this.props.modal;
         if (dialogueVisibility) {
             document.removeEventListener("keydown", this.handleKeyDown);
         } else {
             document.addEventListener("keydown", this.handleKeyDown);
-            if (this.state.dialogue && (oldX !== x || oldY !== y)) {
-                this.setState({
-                    dialogue: null
-                })
-            }
+            // if (this.state.dialogue && (oldX !== x || oldY !== y)) {
+            //     this.setState({
+            //         dialogue: null
+            //     })
+            // }
         }
 
         if ((x >= 10 && x <= 16) && y === 25) {
