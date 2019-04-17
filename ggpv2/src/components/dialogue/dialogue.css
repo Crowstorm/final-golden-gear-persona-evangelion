@@ -1,16 +1,69 @@
 .dialogue{
-    border: 1px solid teal;
+    /* border: 1px solid teal; */
     position: absolute;
-    background-color: white;
-    margin-top: 450px;
-    margin-left: 160px;
+    background-image: url('../../assets/interface/woodBackground.jpg');
+    background-size: cover;
+    /* background-color: white; */
+    margin-top: 325px;
+    margin-left: 100px;
     width: 600px;
-    height: 200px;
+    height: 150px;
 }
 
 .dialogue_text{
-    width: 430px;
+    width: 450px;
     justify-content: center;
     text-align: center;
-    border: 1px solid blue;
+    color: white;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
+    /* border: 1px solid blue; */
+}
+
+.dialogue_image{
+    height: 150px;
+    width: 150px;
+    border: 5px solid #828282;
+    outline: 3px solid silver;
+}
+
+.dialogue_next{
+    position: absolute;
+    margin-left: 275px;
+    margin-top: 110px;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    /* border: 1px solid red; */
+    background-image: url('../../assets/interface/rightArrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.dialogue_next:active {
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }

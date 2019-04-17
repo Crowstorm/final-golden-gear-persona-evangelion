@@ -21,11 +21,6 @@ export default (state = initial_state, action) => {
                 draft.y += 1;
                 draft.model = back;
                 break;
-                // return {
-                //     ...state,
-                //     y: state.y + 1,
-                //     model: back
-                // }
             }
             case 'MOVE_CHAR_DOWN': {
                 if (draft.y - 1 < 1) {
@@ -34,11 +29,6 @@ export default (state = initial_state, action) => {
                 draft.y -= 1;
                 draft.model = front;
                 break;
-                // return {
-                //     ...state,
-                //     y: state.y - 1,
-                //     model: front
-                // }
             }
             case 'MOVE_CHAR_RIGHT': {
                 if (draft.x + 1 > 25) {
@@ -47,11 +37,6 @@ export default (state = initial_state, action) => {
                 draft.x += 1;
                 draft.model = right;
                 break;
-                // return {
-                //     ...state,
-                //     x: state.x + 1,
-                //     model: right
-                // }
             }
             case 'MOVE_CHAR_LEFT': {
                 if (draft.x - 1 < 1) {
@@ -60,11 +45,6 @@ export default (state = initial_state, action) => {
                 draft.x -= 1;
                 draft.model = left;
                 break;
-                // return {
-                //     ...state,
-                //     x: state.x - 1,
-                //     model: left
-                // }
             }
             case 'SET_CHARACTER_POSITION': {
                 draft.x = action.x;

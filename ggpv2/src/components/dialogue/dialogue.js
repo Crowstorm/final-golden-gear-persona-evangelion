@@ -42,13 +42,13 @@ class Dialogue extends React.Component {
     render() {
         return (
             <div className="dialogue d-flex flex-column align-items-center">
-                <div className="d-flex flex-row" style={{ border: "1px solid black" }}>
-                    <img src="https://s3.envato.com/files/196880359/Cartoon%20King.jpg" alt="x" style={{ height: "150px" }} />
+                <div className="d-flex flex-row">
+                    <img className="dialogue_image" src="https://s3.envato.com/files/196880359/Cartoon%20King.jpg" alt="x" />
                     <div className="dialogue_text d-flex flex-column align-items-center">
                         <p>{this.props.dialogue[this.state.i].text}</p>
                     </div>
                 </div>
-                <button onClick={() => this.nextDialogueLine()}>Next</button>
+                <div className="dialogue_next" onClick={() => this.nextDialogueLine()}></div>
             </div>
         )
     }
