@@ -7,6 +7,18 @@ export const toggleCombat = () => (dispatch) => {
     })
 }
 
+export const updateQuestRewards = (exp, gold, items, trigger) => dispatch => {
+    if (!exp) exp = 0;
+    if (!gold) gold = 0;
+    console.log({ trigger })
+    // if (!items) items = [];
+    // if (!trigger) trigger = [];
+    dispatch({
+        type: 'UPDATE_COMBAT_REWARDS',
+        exp, gold, items, trigger
+    })
+}
+
 export const isAttackReady = (isReady) => {
     return function (dispatch, getState) {
         if (getState().combat.helpReady) {

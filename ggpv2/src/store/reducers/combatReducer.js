@@ -65,6 +65,12 @@ const combatReducer = (state = enemyDefaultState, action) => {
             case 'ADD_INFO_TO_ARRAY':
                 draft.info.unshift(action.info);
                 break;
+            case 'UPDATE_COMBAT_REWARDS':
+                draft.reward.exp += action.exp;
+                draft.reward.gold += action.gold;
+                if (action.items) draft.reward.items.push(action.items);
+                if (action.trigger) draft.reward.trigger.push(action.trigger);
+                break;
             default:
                 return draft;
         }

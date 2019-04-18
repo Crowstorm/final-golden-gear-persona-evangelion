@@ -179,6 +179,13 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
     }
 }
 
+export const usePostcombatTriggers = () => (dispatch, getState) => {
+    const triggers = getState().combat.reward.trigger;
+    triggers.map(trigger => {
+        trigger.effect();
+    })
+}
+
 export const levelUp = (i, boost) => (dispatch, getState) => {
     let stats = getState().characters[i].stats;
     console.log({ stats });
@@ -207,6 +214,7 @@ export const levelUp = (i, boost) => (dispatch, getState) => {
 export const grantCombatRewards = () => async (dispatch, getState) => {
     dispatch(addExpPoints());
     dispatch(alterGoldAmount())
+    dispatch(usePostcombatTriggers());
     let characters = getState().characters;
     let expTable = getState().player.expTable;
 

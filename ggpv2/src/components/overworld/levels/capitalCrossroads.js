@@ -18,7 +18,6 @@ class CapitalCrossroads extends React.Component {
         this.troubleAtTheCrossroadsDialogue = [
             { text: "HELP!!! SOMEBODY HELP ME!!!", name: "Unknown" },
             { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.addTroubleAtTheCrossroadsQuest },
-            { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.test },
         ]
         this.troubleAtTheCrossroadRoadblock = [
             { text: "No, I need to go west, someone is in danger", name: "Shujin" }
@@ -32,7 +31,8 @@ class CapitalCrossroads extends React.Component {
         ]
     }
 
-    test = () =>{
+    test = () => {
+        console.log('test zadziałał')
         this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
     }
 
@@ -59,7 +59,7 @@ class CapitalCrossroads extends React.Component {
         //start quest
         if ((x >= 10 && x <= 16) && y === 19) {
             let isTroubleAtTheCrossroadsQuestTaken = checkIfQuestTaken('Trouble at the Crossroads', this.props);
-            console.log({isTroubleAtTheCrossroadsQuestTaken})
+            console.log({ isTroubleAtTheCrossroadsQuestTaken })
             if (!isTroubleAtTheCrossroadsQuestTaken) {
                 if (this.state.dialogue !== this.troubleAtTheCrossroadsDialogue) {
                     this.setState({
@@ -113,6 +113,7 @@ class CapitalCrossroads extends React.Component {
             enemies.beholder
         ]
         this.props.toggleDialogueState()
+        this.props.updateQuestRewards(10, 10, null, { effect: this.test });
         this.props.addEnemiesToCombat(foes);
         this.props.toggleCombat();
         console.log('combat')

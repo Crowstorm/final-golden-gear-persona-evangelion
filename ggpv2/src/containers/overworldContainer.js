@@ -7,7 +7,7 @@ import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosi
 import { toggleDialogueState, toggleCharacterCard } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress } from '../store/actions/eventActions';
-import { toggleCombat, } from '../store/actions/combatActions';
+import { toggleCombat, updateQuestRewards } from '../store/actions/combatActions';
 import { addEnemiesToCombat } from '../store/actions/enemyActions';
 
 
@@ -42,6 +42,7 @@ function mapDispatchToProps(dispatch) {
         setCharacterPosition: (x, y) => { dispatch(setCharacterPosition(x, y)) },
         //combat
         addEnemiesToCombat: (enemies) => { dispatch(addEnemiesToCombat(enemies)) },
+        updateQuestRewards: (exp, gold, items, trigger) => { dispatch(updateQuestRewards(exp, gold, items, trigger)) },
         //modals
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },
         toggleCharacterCard: () => { dispatch(toggleCharacterCard()) },
