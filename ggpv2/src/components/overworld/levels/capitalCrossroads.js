@@ -83,7 +83,7 @@ class CapitalCrossroads extends React.Component {
         //PLACEHOLDER FOR NEXT LEVEL
         if ((y >= 13 && y <= 18) && x === 4) {
             let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
-            if (this.state.dialogue !== this.damselInDistress) {
+            if (this.state.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
                 this.setState({
                     dialogue: this.damselInDistress
                 })
