@@ -11,7 +11,7 @@ class Dialogue extends React.Component {
     componentDidUpdate = () => {
         let i = this.state.i
         //Listening for quest related events
-        if (this.props.dialogue[i].effect && !this.state.effectUsed) {
+        if (this.props.dialogue && this.props.dialogue[i].effect && !this.state.effectUsed) {
             this.props.dialogue[i].effect();
             this.setState({
                 effectUsed: true
@@ -19,11 +19,11 @@ class Dialogue extends React.Component {
         }
     }
 
-    componentWillUnmount = () => {
-        if (this.props.modal.dialogueVisibility) {
-            this.props.toggleDialogueState()
-        }
-    }
+    // componentWillUnmount = () => {
+    //     if (this.props.modal.dialogueVisibility) {
+    //         this.props.toggleDialogueState()
+    //     }
+    // }
 
     nextDialogueLine = () => {
         if (this.state.i === this.state.length - 1) {
@@ -42,10 +42,15 @@ class Dialogue extends React.Component {
 
     componentDidMount() {
         //setting dialogue length to state
-        this.setState({ length: this.props.dialogue.length });
+        if(this.props.dialogue){
+            this.setState({ length: this.props.dialogue.length });
+        }
     }
 
     render() {
+        // if (!this.props.dialogue) {
+        //     return null;
+        // }
         return (
             <div className="dialogue d-flex flex-column align-items-center">
                 <div className="d-flex flex-row">

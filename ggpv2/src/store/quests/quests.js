@@ -9,5 +9,7 @@ export const troubleAtTheCrossroads={
     name: "Trouble at the Crossroads",
     description: "I heard cries for help. Can't ignore a lady in distress",
     reward: null,
-    log:[]
+    log:[],
+    enemiesDefeated: false,
+    innVisited: false
 }

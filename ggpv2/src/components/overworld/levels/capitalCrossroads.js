@@ -7,7 +7,7 @@ import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
-import { characterMovement, characterPosition, checkIfQuestTaken } from '../levelFunctions/levelFunctions';
+import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
 class CapitalCrossroads extends React.Component {
     constructor(props) {
@@ -17,7 +17,8 @@ class CapitalCrossroads extends React.Component {
         }
         this.troubleAtTheCrossroadsDialogue = [
             { text: "HELP!!! SOMEBODY HELP ME!!!", name: "Unknown" },
-            { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.addTroubleAtTheCrossroadsQuest }
+            { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.addTroubleAtTheCrossroadsQuest },
+            { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.test },
         ]
         this.troubleAtTheCrossroadRoadblock = [
             { text: "No, I need to go west, someone is in danger", name: "Shujin" }
@@ -29,6 +30,10 @@ class CapitalCrossroads extends React.Component {
             { text: "I can't beat the shit out of you without getting closer", name: "Shujin" },
             { text: "", name: "", effect: this.startBanditCombat },
         ]
+    }
+
+    test = () =>{
+        this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
     }
 
     componentDidMount = () => {
@@ -54,6 +59,7 @@ class CapitalCrossroads extends React.Component {
         //start quest
         if ((x >= 10 && x <= 16) && y === 19) {
             let isTroubleAtTheCrossroadsQuestTaken = checkIfQuestTaken('Trouble at the Crossroads', this.props);
+            console.log({isTroubleAtTheCrossroadsQuestTaken})
             if (!isTroubleAtTheCrossroadsQuestTaken) {
                 if (this.state.dialogue !== this.troubleAtTheCrossroadsDialogue) {
                     this.setState({
@@ -76,6 +82,7 @@ class CapitalCrossroads extends React.Component {
 
         //PLACEHOLDER FOR NEXT LEVEL
         if ((y >= 13 && y <= 18) && x === 4) {
+            let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
             if (this.state.dialogue !== this.damselInDistress) {
                 this.setState({
                     dialogue: this.damselInDistress
@@ -105,6 +112,7 @@ class CapitalCrossroads extends React.Component {
             enemies.beholder,
             enemies.beholder
         ]
+        this.props.toggleDialogueState()
         this.props.addEnemiesToCombat(foes);
         this.props.toggleCombat();
         console.log('combat')

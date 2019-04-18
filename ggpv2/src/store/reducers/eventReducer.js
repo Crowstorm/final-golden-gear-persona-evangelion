@@ -26,6 +26,10 @@ export default (state = eventDefaultState, action) => {
             case 'PUSH_TO_QUEST_LIST':
                 draft.questLog.unshift(quests[action.quest]);
                 break;
+            case 'UPDATE_QUEST_PROGRESS':
+                const { i, progressName, questName, value } = action;
+                draft.questLog[i][progressName] = value;
+                break;
             default:
                 return draft;
         }

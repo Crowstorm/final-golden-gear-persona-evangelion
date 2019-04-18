@@ -35,10 +35,10 @@ class ThroneRoom extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
         document.getElementById('d12_17').innerHTML = `<img src=${king} />`
-        this.setState({
-            dialogue: this.kingDialogue
-        })
-        this.props.toggleDialogueState();
+        // this.setState({
+        //     dialogue: this.kingDialogue
+        // })
+        // this.props.toggleDialogueState();
     }
 
     componentDidUpdate(prevProps) {

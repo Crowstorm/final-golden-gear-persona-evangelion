@@ -6,7 +6,7 @@ import OverworldInterface from '../components/overworld/overworldInterface/overw
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
 import { toggleDialogueState, toggleCharacterCard } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
-import { setCurrentQuest, } from '../store/actions/eventActions';
+import { setCurrentQuest, updateQuestProgress } from '../store/actions/eventActions';
 import { toggleCombat, } from '../store/actions/combatActions';
 import { addEnemiesToCombat } from '../store/actions/enemyActions';
 
@@ -50,6 +50,7 @@ function mapDispatchToProps(dispatch) {
         toggleCombat: () => { dispatch(toggleCombat()) },
         //quests
         setCurrentQuest: (name) => { dispatch(setCurrentQuest(name)) },
+        updateQuestProgress: (name, progress, value) => { dispatch(updateQuestProgress(name, progress, value)) },
         // checkIfQuestTaken: (name) => { dispatch(checkIfQuestTaken(name)) },
     }
 }

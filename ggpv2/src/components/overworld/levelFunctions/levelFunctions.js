@@ -5,7 +5,7 @@ import { MAIN_GRID } from '../grids/grids';
 
 export const characterMovement = (props, e, BLOCKED) => {
     //Quit dialogue on movement
-    if(props.modal.dialogueVisibility){
+    if (props.modal.dialogueVisibility) {
         props.toggleDialogueState();
     }
     switch (e.key) {
@@ -84,13 +84,25 @@ export const characterPosition = (props) => {
     return renderMainGrid();
 }
 
-export const checkIfQuestTaken = (name, props) =>{
+export const checkIfQuestTaken = (name, props) => {
     let questLog = props.event.questLog;
     let i = _.findIndex(questLog, { name: name });
+    console.log({ i })
     if (i > -1) {
         return true;
     }
     return false;
+}
+
+export const checkQuestProgress = (questName, questProgress, props) => {
+    let questLog = props.event.questLog;
+    let i = _.findIndex(questLog, { name: questName });
+    if (i > -1) {
+        console.log('progres', questLog[i][questProgress])
+        if (questLog[i] && questLog[i][questProgress]) {
+            return true;
+        }
+    }
 }
 
 // export const checkIfQuestCompleted = (name) => (dispatch, getState) => {
