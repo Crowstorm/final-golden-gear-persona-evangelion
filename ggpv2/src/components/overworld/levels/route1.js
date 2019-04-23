@@ -24,7 +24,7 @@ class Route1 extends React.Component {
         ]
         this.damselSaved = [
             { text: "Lol thanks", name: "Woman" },
-            // { text: "", name: "", effect: this.startBanditCombat },
+            { text: "", name: "", effect: this.goToInn },
         ]
     }
 
@@ -63,16 +63,6 @@ class Route1 extends React.Component {
                 })
                 this.props.toggleDialogueState();
             }
-
-            // if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated) {
-            //     console.log('pls?')
-            //     this.setState({
-            //         dialogue: this.damselSaved
-            //     })
-            //     this.props.toggleDialogueState();
-            // }
-
-
         }
 
     }
@@ -97,7 +87,12 @@ class Route1 extends React.Component {
         this.props.updateQuestRewards(10, 10, null, { effect: this.test });
         this.props.addEnemiesToCombat(foes);
         this.props.toggleCombat();
-        console.log('combat')
+    }
+
+    goToInn = () => {
+        this.props.toggleDialogueState()
+        this.props.setCharacterPosition(10, 10);
+        this.props.changeLevel('WestsideInn');
     }
 
     render() {

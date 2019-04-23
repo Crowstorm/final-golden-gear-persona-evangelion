@@ -10,6 +10,7 @@
     height:800px;
     width:800px;
     float: right;
+    background-color: black;
 }
 
 .throneRoom{
@@ -24,4 +25,9 @@
 }
 .capitalCrossroads{
     background-image: url("../../../../assets/levelBackgrounds/capitalCrossroads.png");
+}
+
+
+.westsideInn{
+    background-image: url("../../../../assets/levelBackgrounds/betrayalInn.png");
 }
