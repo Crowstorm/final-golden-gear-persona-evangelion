@@ -89,6 +89,7 @@ class AllyInterface extends React.Component {
 
                 switch (item.actionType) {
                     case 'restore':
+                        if (character.stats.hp <= 0) return;
                         this.useRestorationItem(item, character, i);
                         break;
                     default:
