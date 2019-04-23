@@ -2,7 +2,7 @@ import produce from "immer";
 
 let initial_state = {
     currentLevel: 'CapitalCrossroads',
-    movementSpeed: 80
+    movementSpeed: 20
 }
 
 export default (state = initial_state, action) => {

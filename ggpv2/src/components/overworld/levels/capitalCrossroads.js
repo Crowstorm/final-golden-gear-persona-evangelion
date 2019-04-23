@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 
 import './css/levels.css';
-import * as enemies from '../../../store/enemies/enemies';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
@@ -22,19 +21,9 @@ class CapitalCrossroads extends React.Component {
         this.troubleAtTheCrossroadRoadblock = [
             { text: "No, I need to go west, someone is in danger", name: "Shujin" }
         ]
-
-        this.damselInDistress = [
-            { text: "Stop right there, scum!", name: "Shujin" },
-            { text: "Huhu, you're approaching me?", name: "Bandit" },
-            { text: "I can't beat the shit out of you without getting closer", name: "Shujin" },
-            { text: "", name: "", effect: this.startBanditCombat },
-        ]
     }
 
-    test = () => {
-        console.log('test zadziałał')
-        // this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
-    }
+ 
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
@@ -54,6 +43,10 @@ class CapitalCrossroads extends React.Component {
         if ((x >= 10 && x <= 16) && y === 25) {
             this.props.setCharacterPosition(13, 2);
             this.props.changeLevel('CastleFront');
+        }
+        if ((y >= 13 && y <= 18) && x === 1) {
+            this.props.setCharacterPosition(23, y);
+            this.props.changeLevel('Route1');
         }
 
         //start quest
@@ -81,15 +74,15 @@ class CapitalCrossroads extends React.Component {
         }
 
         //PLACEHOLDER FOR NEXT LEVEL
-        if ((y >= 13 && y <= 18) && x === 4) {
-            let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
-            if (this.state.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
-                this.setState({
-                    dialogue: this.damselInDistress
-                })
-                this.props.toggleDialogueState();
-            }
-        }
+        // if ((y >= 13 && y <= 18) && x === 4) {
+        //     let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
+        //     if (this.state.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
+        //         this.setState({
+        //             dialogue: this.damselInDistress
+        //         })
+        //         this.props.toggleDialogueState();
+        //     }
+        // }
 
     }
 
@@ -106,18 +99,7 @@ class CapitalCrossroads extends React.Component {
         this.props.setCurrentQuest('troubleAtTheCrossroads')
     }
 
-    startBanditCombat = () => {
-        const foes = [
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder
-        ]
-        this.props.toggleDialogueState()
-        this.props.updateQuestRewards(10, 10, null, { effect: this.test });
-        this.props.addEnemiesToCombat(foes);
-        this.props.toggleCombat();
-        console.log('combat')
-    }
+  
 
 
     render() {

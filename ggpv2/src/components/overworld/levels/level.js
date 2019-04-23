@@ -1,12 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
 
+import * as enemies from '../../../store/enemies/enemies';
+
 import './css/levels.css';
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { BLOCKED_ThroneRoom } from '../grids/blockedLevelGrids';
 
-import { characterMovement, characterPosition, checkIfQuestTaken } from '../levelFunctions/levelFunctions';
+import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
 class Level extends React.Component {
     constructor(props) {

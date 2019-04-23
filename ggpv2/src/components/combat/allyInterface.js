@@ -110,6 +110,7 @@ class AllyInterface extends React.Component {
 
                 switch (ability.helpType) {
                     case 'restore':
+                        if (character.stats.hp <= 0) return;
                         this.useRestorationAbility(ability, character, i);
                         break;
                     case 'buff':

@@ -209,7 +209,7 @@ export const levelUp = (i, boost) => (dispatch, getState) => {
 export const grantCombatRewards = () => async (dispatch, getState) => {
     dispatch(addExpPoints());
     dispatch(alterGoldAmount())
-    dispatch(usePostcombatTriggers());
+    // dispatch(usePostcombatTriggers());
     let characters = getState().characters;
     let expTable = getState().player.expTable;
 

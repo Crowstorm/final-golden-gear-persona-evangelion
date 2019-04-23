@@ -7,6 +7,7 @@ import ThroneRoom from './levels/throneRoom';
 import CastleCorridor from './levels/castleCorridor';
 import CastleFront from './levels/castleFront';
 import CapitalCrossroads from './levels/capitalCrossroads';
+import Route1 from './levels/route1';
 
 
 class Game extends React.Component {
@@ -30,6 +31,10 @@ class Game extends React.Component {
             case "CapitalCrossroads":
                 return (
                     <CapitalCrossroads {...this.props} />
+                )
+            case "Route1":
+                return (
+                    <Route1 {...this.props} />
                 )
             default:
                 console.error("Can't render current level")

@@ -6,9 +6,19 @@ export const toggleCombat = () => (dispatch, getState) => {
     dispatch({
         type: 'TOGGLE_COMBAT'
     })
+    dispatch(usePostcombatTriggers());
+
     if (isCombat) {
         dispatch(resetCombatReducer());
     }
+}
+
+//Triggers functions stored in reducer at the end of combat (for example qquest update)
+export const usePostcombatTriggers = () => (dispatch, getState) => {
+    const triggers = getState().combat.reward.trigger;
+    triggers.map(trigger => {
+        trigger.effect();
+    })
 }
 
 export const resetCombatReducer = () => dispatch => {
