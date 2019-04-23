@@ -293,3 +293,10 @@ export const changeBuffsCounter = () => (dispatch, getState) => {
     })
 }
 
+export const addNewAlly = (newAlly) => dispatch =>{
+    dispatch({
+        type: 'ADD_NEW_ALLY',
+        newAlly
+    })
+}
+

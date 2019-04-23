@@ -72,89 +72,92 @@ let initial_state = [
 
         ]
     },
-    {
-        name: 'Ocelot',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",
-        stats: {
-            level: 1,
-            exp: 0,
-            maxHp: 25,
-            hp: 2,
-            maxMp: 15,
-            mp: 15,
-            strength: 5,
-            defence: 5,
-            magic: 5,
-            magicResist: 5,
-            agility: 5,
-            luck: 5,
-            speed: 5,
-        },
-        buffs: [],
-        armor: {
-            head: armor.woodenHelmet,
-            chest: armor.steelArmor,
-            shield: armor.woodenShield,
-            legs: armor.woodenLegs
-        },
-    },
-    {
-        name: 'Kaz',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_miller.png",
-        stats: {
-            level: 1,
-            exp: 0,
-            maxHp: 25,
-            hp: 0,
-            maxMp: 15,
-            mp: 15,
-            strength: 9,
-            defence: 5,
-            magic: 5,
-            magicResist: 5,
-            agility: 5,
-            luck: 5,
-            speed: 5,
-        },
-        buffs: [],
-        armor: {
-            head: armor.steelHelmet,
-            chest: armor.woodenShirt,
-            shield: armor.woodenShield,
-            legs: armor.woodenLegs
-        },
-    },
-    {
-        name: 'Random Guy',
-        portrait: "https://vignette.wikia.nocookie.net/metalgear/images/5/51/Ui_face_635_0.png/revision/latest?cb=20160226135114",
-        stats: {
-            level: 1,
-            exp: 0,
-            maxHp: 25,
-            hp: 5,
-            maxMp: 15,
-            mp: 10,
-            strength: 10,
-            defence: 1,
-            magic: 5,
-            magicResist: 5,
-            agility: 5,
-            luck: 5,
-            speed: 5,
-        },
-        buffs: [],
-        armor: {
-            head: armor.woodenHelmet,
-            chest: armor.woodenShirt,
-            shield: armor.woodenShield,
-            legs: armor.steelLegs
-        },
-    }
+    // {
+    //     name: 'Ocelot',
+    //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",
+    //     stats: {
+    //         level: 1,
+    //         exp: 0,
+    //         maxHp: 25,
+    //         hp: 2,
+    //         maxMp: 15,
+    //         mp: 15,
+    //         strength: 5,
+    //         defence: 5,
+    //         magic: 5,
+    //         magicResist: 5,
+    //         agility: 5,
+    //         luck: 5,
+    //         speed: 5,
+    //     },
+    //     buffs: [],
+    //     armor: {
+    //         head: armor.woodenHelmet,
+    //         chest: armor.steelArmor,
+    //         shield: armor.woodenShield,
+    //         legs: armor.woodenLegs
+    //     },
+    // },
+    // {
+    //     name: 'Kaz',
+    //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_miller.png",
+    //     stats: {
+    //         level: 1,
+    //         exp: 0,
+    //         maxHp: 25,
+    //         hp: 0,
+    //         maxMp: 15,
+    //         mp: 15,
+    //         strength: 9,
+    //         defence: 5,
+    //         magic: 5,
+    //         magicResist: 5,
+    //         agility: 5,
+    //         luck: 5,
+    //         speed: 5,
+    //     },
+    //     buffs: [],
+    //     armor: {
+    //         head: armor.steelHelmet,
+    //         chest: armor.woodenShirt,
+    //         shield: armor.woodenShield,
+    //         legs: armor.woodenLegs
+    //     },
+    // },
+    // {
+    //     name: 'Random Guy',
+    //     portrait: "https://vignette.wikia.nocookie.net/metalgear/images/5/51/Ui_face_635_0.png/revision/latest?cb=20160226135114",
+    //     stats: {
+    //         level: 1,
+    //         exp: 0,
+    //         maxHp: 25,
+    //         hp: 5,
+    //         maxMp: 15,
+    //         mp: 10,
+    //         strength: 10,
+    //         defence: 1,
+    //         magic: 5,
+    //         magicResist: 5,
+    //         agility: 5,
+    //         luck: 5,
+    //         speed: 5,
+    //     },
+    //     buffs: [],
+    //     armor: {
+    //         head: armor.woodenHelmet,
+    //         chest: armor.woodenShirt,
+    //         shield: armor.woodenShield,
+    //         legs: armor.steelLegs
+    //     },
+    // }
 ];
 
 export default (state = initial_state, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'ADD_NEW_ALLY':
+                draft.push(action.newAlly);
+                break;
             case 'ALLY_LOSE_HP':
                 draft[action.i].stats.hp -= action.dmg
                 break;
@@ -170,7 +173,7 @@ export default (state = initial_state, action) => {
             case 'ADD_ITEM_OR_ABILITY':
                 draft[action.i][action.section].push(action.toAdd)
                 break;
-            case 'REMOVE_ITEM_OR_ABILITY':       
+            case 'REMOVE_ITEM_OR_ABILITY':
                 draft[action.charIndex][action.section].splice(action.index, 1);
                 break;
             case 'ADD_TO_INVENTORY':

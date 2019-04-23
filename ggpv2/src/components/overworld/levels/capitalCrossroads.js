@@ -4,6 +4,8 @@ import _ from 'lodash';
 import './css/levels.css';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
+import {ocelot} from '../../../store/allies/allies';
+
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';

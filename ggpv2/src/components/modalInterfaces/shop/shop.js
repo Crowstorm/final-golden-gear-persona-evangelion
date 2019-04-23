@@ -1,4 +1,5 @@
 import React from 'react';
+import "./shop.css"
 
 class CombatRewards extends React.Component {
 

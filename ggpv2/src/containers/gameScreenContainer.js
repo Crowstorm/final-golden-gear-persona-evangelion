@@ -5,6 +5,8 @@ import CombatContainer from './combatContainer';
 import MainMenuContainer from './mainMenuContainer';
 import OverworldContainer from './overworldContainer';
 import CombatRewardsContainer from './modals/combatRewardsContainer';
+import ShopModal from '../components/modalInterfaces/shop/shop';
+
 
 //modals
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
@@ -73,6 +75,8 @@ class GameScreenContainer extends React.Component {
                 {/* <CharacterCard {...this.props} /> */}
                 {characterCard}
                 {combatRewardsCard}
+                {/* <ShopModal {...this.props} /> */}
+
             </div>
         )
     }

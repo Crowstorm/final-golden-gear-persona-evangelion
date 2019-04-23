@@ -20,3 +20,11 @@ export const toggleCombatRewardsCard = () => {
         })
     }
 }
+
+export const toggleShop = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'TOGGLE_SHOP'
+        })
+    }
+}

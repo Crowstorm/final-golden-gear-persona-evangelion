@@ -6,6 +6,12 @@ const initial_state = {
     dialogueVisibility: false,
     characterCardVisibility: false,
     combatRewardsCardVisibility: false,
+    shopVisibility: false,
+    shopContent:{
+        armor:[],
+        weapon: [],
+        consumables: []
+    }
 }
 
 export default (state = initial_state, action) => {
@@ -23,6 +29,9 @@ export default (state = initial_state, action) => {
                 draft.combatRewardsCardVisibility = !draft.combatRewardsCardVisibility;
                 break;
             }
+            case 'TOGGLE_SHOP':
+                draft.shopVisibility = !draft.shopVisibility
+                break;
             default: {
                 return draft;
             }
