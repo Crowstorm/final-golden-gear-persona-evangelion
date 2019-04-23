@@ -33,7 +33,7 @@ class CapitalCrossroads extends React.Component {
 
     test = () => {
         console.log('test zadziałał')
-        this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
+        // this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
     }
 
     componentDidMount = () => {

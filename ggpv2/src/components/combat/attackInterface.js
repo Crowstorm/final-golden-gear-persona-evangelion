@@ -31,7 +31,7 @@ class AttackInterface extends React.Component {
                 activeItem: null
             })
         }
-        if(prevProps.combat.activeAbility.type && !this.props.combat.activeAbility.type){
+        if (prevProps.combat.activeAbility.type && !this.props.combat.activeAbility.type) {
             this.setState({
                 activeAbility: null
             })
@@ -142,7 +142,6 @@ class AttackInterface extends React.Component {
         let index = this.props.combat.attackerIndex;
         let skills = this.props.characters[index].skills;
         let name = this.props.characters[index].name;
-        let abilityType = this.props.combat.activeAbility.type;
 
         if (!skills || skills.length === 0) {
             return <div style={{ color: "white" }}>
@@ -152,9 +151,7 @@ class AttackInterface extends React.Component {
             return skills.map((skill, i) => {
                 let isActive = false;
                 if (i === this.state.activeAbility) {
-                    // if (abilityType === 'skill') {
-                        isActive = true;
-                    // }
+                    isActive = true;
                 }
                 return (
                     <AbilityNode
@@ -184,7 +181,6 @@ class AttackInterface extends React.Component {
         let index = this.props.combat.attackerIndex;
         let magic = this.props.characters[index].magic;
         let name = this.props.characters[index].name;
-        let abilityType = this.props.combat.activeAbility.type;
 
         if (!magic || magic.length === 0) {
             return (
@@ -196,9 +192,7 @@ class AttackInterface extends React.Component {
             return magic.map((spell, i) => {
                 let isActive = false;
                 if (i === this.state.activeAbility) {
-                    // if (abilityType === 'magic') {
-                        isActive = true;
-                    // }
+                    isActive = true;
                 }
                 return (
                     <AbilityNode

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import _ from 'lodash';
 
 import './characterCard.css';
@@ -13,12 +13,8 @@ export default class CharacterCard extends React.Component {
 
     getEq = () => {
         let char = this.props.characters[this.state.charIndex];
-        let armor = char.armor;
-        let weapon = char.weapon;
+        const {chest, legs, head} = char.armor;
 
-        let chest = char.armor.chest;
-        let legs = char.armor.legs;
-        let head = char.armor.head;
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>

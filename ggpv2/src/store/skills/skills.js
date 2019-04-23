@@ -1,4 +1,4 @@
-import strongBlowIcon from './icons/skillIcons/strongBlow.png';
+// import strongBlowIcon from './icons/skillIcons/strongBlow.png';
 import strongBlowIcon2 from './icons/skillIcons/strongBlow2.png';
 import whirlwindIcon from './icons/skillIcons/whirlwind.png';
 

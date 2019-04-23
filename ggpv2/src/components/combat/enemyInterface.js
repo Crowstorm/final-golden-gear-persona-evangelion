@@ -415,7 +415,7 @@ class EnemyInterface extends React.Component {
         const { enemy } = this.props;
         return enemy.map((char, i) => {
             return (
-                <div key={char.name} className="d-flex flex-row" onClick={() => this.handleEnemyAttacked(i)}>
+                <div key={char.name + i} className="d-flex flex-row" onClick={() => this.handleEnemyAttacked(i)}>
                     <Bar
                         max={char.stats.maxHp}
                         current={char.stats.hp}

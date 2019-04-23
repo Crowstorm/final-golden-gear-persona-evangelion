@@ -20,7 +20,8 @@ export default (state = initial_state, action) => {
                 break;
             }
             case 'TOGGLE_COMBAT_REWARDS_CARD': {
-                draft.combatRewardsCardVisibility = !draft.combatRewardsCardVisibility
+                draft.combatRewardsCardVisibility = !draft.combatRewardsCardVisibility;
+                break;
             }
             default: {
                 return draft;

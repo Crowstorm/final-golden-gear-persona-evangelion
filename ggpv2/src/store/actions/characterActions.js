@@ -179,12 +179,7 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
     }
 }
 
-export const usePostcombatTriggers = () => (dispatch, getState) => {
-    const triggers = getState().combat.reward.trigger;
-    triggers.map(trigger => {
-        trigger.effect();
-    })
-}
+
 
 export const levelUp = (i, boost) => (dispatch, getState) => {
     let stats = getState().characters[i].stats;
@@ -227,6 +222,14 @@ export const grantCombatRewards = () => async (dispatch, getState) => {
         })
         expTable = getState().player.expTable;
     }
+}
+
+//Triggers functions stored in reducer at the end of combat (for example qquest update)
+export const usePostcombatTriggers = () => (dispatch, getState) => {
+    const triggers = getState().combat.reward.trigger;
+    triggers.map(trigger => {
+        trigger.effect();
+    })
 }
 
 export const applyBuff = (newBuffs, i, isNew = true) => (dispatch) => {

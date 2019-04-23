@@ -12,8 +12,8 @@ import CharacterCard from '../components/modalInterfaces/characterCard/character
 import { equip } from '../store/actions/characterActions';
 
 //cursors
-import swordIcon from '../assets/sprites/cursor/sword.ani';
-import king from '../assets/sprites/npc/king_overworld.png';
+// import swordIcon from '../assets/sprites/cursor/sword.ani';
+// import king from '../assets/sprites/npc/king_overworld.png';
 
 class GameScreenContainer extends React.Component {
     overworld = () => {

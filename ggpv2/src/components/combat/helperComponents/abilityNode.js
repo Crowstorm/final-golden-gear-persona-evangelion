@@ -133,7 +133,7 @@ export default class AbilityNode extends React.Component {
         let info = (this.state.info) ? this.renderInfo() : null;
         return (
             <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" style={{ backgroundColor: backgroundColor, border: borderColor }} onClick={() => this.abilityClick()}>
-                <img className="abilityIcon" src={this.props.icon} />
+                <img className="abilityIcon" src={this.props.icon} alt="Ability icon" />
                 {this.props.name} Cost: {this.props.cost}{costDatatype} {this.props.type}
                 <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
 

@@ -22,7 +22,7 @@ class ItemImage extends React.Component {
     }
     render() {
         return (
-            <img src={this.props.img} style={{ width: 64, height: 64 }} onClick={() => this.handleOnClick()} />
+            <img src={this.props.img} style={{ width: 64, height: 64 }} onClick={() => this.handleOnClick()} alt="Item" />
         )
     }
 }

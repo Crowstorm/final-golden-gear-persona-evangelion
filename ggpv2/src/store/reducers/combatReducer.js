@@ -1,6 +1,6 @@
 import produce from "immer";
 
-const enemyDefaultState = {
+const combatDefaultState = {
     isCombat: false,
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
@@ -24,12 +24,14 @@ const enemyDefaultState = {
     }
 }
 
-const combatReducer = (state = enemyDefaultState, action) => {
+const combatReducer = (state = combatDefaultState, action) => {
     return produce(state, draft => {
         switch (action.type) {
             case 'TOGGLE_COMBAT':
                 draft.isCombat = !draft.isCombat;
                 break;
+            case 'RESET_COMBAT_REDUCER':
+                return combatDefaultState;
             case 'IS_ATTACK_READY':
                 draft.attackReady = action.isReady
                 break;

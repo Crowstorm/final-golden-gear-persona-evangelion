@@ -1,9 +1,19 @@
 import { changeBuffsCounter } from './characterActions';
 import { getAliveCharacter, enemyTurn } from './enemyActions';
 
-export const toggleCombat = () => (dispatch) => {
+export const toggleCombat = () => (dispatch, getState) => {
+    const isCombat = getState().combat.isCombat;
     dispatch({
         type: 'TOGGLE_COMBAT'
+    })
+    if (isCombat) {
+        dispatch(resetCombatReducer());
+    }
+}
+
+export const resetCombatReducer = () => dispatch => {
+    dispatch({
+        type: 'RESET_COMBAT_REDUCER'
     })
 }
 
