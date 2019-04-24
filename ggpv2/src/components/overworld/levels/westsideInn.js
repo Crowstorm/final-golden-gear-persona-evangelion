@@ -10,6 +10,9 @@ import { BLOCKED_WestsideInn } from '../grids/blockedLevelGrids';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
+import damsel from '../../../assets/sprites/npc/damsel_down.png';
+
+
 class WestsideInn extends React.Component {
     constructor(props) {
         super(props);
@@ -20,6 +23,7 @@ class WestsideInn extends React.Component {
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
+        document.getElementById('d11_11').innerHTML = `<img src=${damsel} class="npcSprite" style="transform: translateY(-20px)"/>`
     }
 
     componentDidUpdate() {

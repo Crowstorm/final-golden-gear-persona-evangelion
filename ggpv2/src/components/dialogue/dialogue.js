@@ -8,6 +8,13 @@ class Dialogue extends React.Component {
         effectUsed: false
     }
 
+    componentDidMount() {
+        //setting dialogue length to state
+        if (this.props.dialogue) {
+            this.setState({ length: this.props.dialogue.length });
+        }
+    }
+
     componentDidUpdate = () => {
         let i = this.state.i
         //Listening for quest related events
@@ -18,12 +25,6 @@ class Dialogue extends React.Component {
             })
         }
     }
-
-    // componentWillUnmount = () => {
-    //     if (this.props.modal.dialogueVisibility) {
-    //         this.props.toggleDialogueState()
-    //     }
-    // }
 
     nextDialogueLine = () => {
         if (this.state.i === this.state.length - 1) {
@@ -40,21 +41,22 @@ class Dialogue extends React.Component {
         }
     }
 
-    componentDidMount() {
-        //setting dialogue length to state
-        if(this.props.dialogue){
-            this.setState({ length: this.props.dialogue.length });
+    renderPortrait = () => {
+        let i = this.state.i;
+        const portrait = this.props.dialogue[i].portrait
+        if (portrait) {
+            return <img className="dialogue_image" src={portrait} alt="dialogue portrait" />
         }
+        return <img className="dialogue_image" src="https://s3.envato.com/files/196880359/Cartoon%20King.jpg" alt="x" />
     }
 
+
     render() {
-        // if (!this.props.dialogue) {
-        //     return null;
-        // }
+        const portrait = this.renderPortrait();
         return (
             <div className="dialogue d-flex flex-column align-items-center">
                 <div className="d-flex flex-row">
-                    <img className="dialogue_image" src="https://s3.envato.com/files/196880359/Cartoon%20King.jpg" alt="x" />
+                    {portrait}
                     <div className="dialogue_text d-flex flex-column align-items-center">
                         <p>{this.props.dialogue[this.state.i].text}</p>
                     </div>

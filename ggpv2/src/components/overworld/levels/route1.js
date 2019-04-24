@@ -3,11 +3,14 @@ import _ from 'lodash';
 import * as enemies from '../../../store/enemies/enemies';
 
 import './css/levels.css';
+import '../level.css'
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
+
+import damsel from '../../../assets/sprites/npc/damsel_right.png';
 
 class Route1 extends React.Component {
     constructor(props) {
@@ -37,13 +40,16 @@ class Route1 extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
         let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
 
+        console.log('mount"')
         if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated) {
-            console.log('pls?')
             this.setState({
                 dialogue: this.damselSaved
             })
             this.props.toggleDialogueState();
         }
+
+        //Usunac ja jak skonczy sie quest
+        document.getElementById('d2_16').innerHTML = `<img src=${damsel} class="npcSprite" />`
     }
 
     componentDidUpdate() {
@@ -98,7 +104,7 @@ class Route1 extends React.Component {
     render() {
         let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
-            <div className="level route1">
+            <div className="level capitalCrossroads">
                 {renderDialogue}
                 {characterPosition(this.props)}
             </div>

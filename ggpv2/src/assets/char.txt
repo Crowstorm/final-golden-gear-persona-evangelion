@@ -1,0 +1,15 @@
+2_4
+
+2_2
+
+2_8 krol
+
+3_3 healer
+
+4_5 necro
+
+4_6 ksiezniczka
+
+military 1_2\\
+
+npc2_1 damsel

@@ -13,6 +13,11 @@
     background-color: black;
 }
 
+.npcSprite{
+    height: 40px;
+    transform: translateY(-10px)
+}
+
 .throneRoom{
     background-image: url("../../../../assets/levelBackgrounds/throneRoomTest.png");
 }
@@ -26,7 +31,6 @@
 .capitalCrossroads{
     background-image: url("../../../../assets/levelBackgrounds/capitalCrossroads.png");
 }
-
 
 .westsideInn{
     background-image: url("../../../../assets/levelBackgrounds/betrayalInn.png");
