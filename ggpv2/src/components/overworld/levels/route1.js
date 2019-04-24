@@ -40,7 +40,6 @@ class Route1 extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
         let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
 
-        console.log('mount"')
         if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated) {
             this.setState({
                 dialogue: this.damselSaved
