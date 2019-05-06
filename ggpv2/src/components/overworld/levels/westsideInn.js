@@ -63,6 +63,30 @@ class WestsideInn extends React.Component {
         }
     }
 
+    test = () => {
+        console.log('elo')
+    }
+    
+
+    startBanditsCombat = () => {
+        const foes = [
+            enemies.beholder,
+            enemies.beholder,
+            enemies.beholder
+        ]
+        const condition= {
+            type: 'hp',
+            percentage: 0.5,
+            name: 'BigBoss'
+        }
+
+        // this.props.addCombatTriggers([{effect:this.test}, condition])
+        this.props.addCombatTriggers({effect:this.test, condition})
+        this.props.addEnemiesToCombat(foes);
+        // this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
+        this.props.toggleCombat();
+    }
+
     componentDidUpdate() {
         let { x, y } = this.props.position;
         let { dialogueVisibility } = this.props.modal;
@@ -74,6 +98,7 @@ class WestsideInn extends React.Component {
         let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
         if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged) {
             //NEW QUEST
+            this.startBanditsCombat();
             //combat with extra conditions (new char after losing)
         }
     }

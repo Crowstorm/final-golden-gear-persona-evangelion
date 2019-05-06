@@ -87,7 +87,6 @@ export const characterPosition = (props) => {
 export const checkIfQuestTaken = (name, props) => {
     let questLog = props.event.questLog;
     let i = _.findIndex(questLog, { name: name });
-    console.log({ i })
     if (i > -1) {
         return true;
     }
@@ -99,9 +98,7 @@ export const checkQuestProgress = (questName, questProgress, props) => {
     let hasQuestProgressed = false;
     questLog.forEach(quest => {
         let i = _.findIndex(quest, { name: questName });
-        console.log({ quest }, questName, questProgress, i)
         if (i > -1) {
-            console.log('progres', quest[i][questProgress])
             if (quest[i] && quest[i][questProgress]) {
                 hasQuestProgressed = true;
             }

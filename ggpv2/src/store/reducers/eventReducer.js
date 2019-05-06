@@ -17,7 +17,8 @@ const eventDefaultState = {
         ]
     ],
     currentQuest: null,
-    journal: []
+    journal: [],
+    combatTriggers: []
 }
 
 export default (state = eventDefaultState, action) => {
@@ -39,6 +40,9 @@ export default (state = eventDefaultState, action) => {
             case 'UPDATE_QUEST_PROGRESS':
                 const { i, progressName, questName, value } = action;
                 draft.questLog[i][progressName] = value;
+                break;
+            case 'UPDATE_COMBAT_TRIGGERS':
+                draft.combatTriggers.push(action.combatTriggers);
                 break;
             default:
                 return draft;

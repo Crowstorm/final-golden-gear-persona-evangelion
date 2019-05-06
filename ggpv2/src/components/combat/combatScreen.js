@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import background from '../../assets/combat/backgrounds/battleBackground.png';
 
@@ -33,8 +34,39 @@ class CombatScreen extends React.Component {
         })
     }
 
+    findCharacter = (name) => {
+        const characters = this.props.characters;
+        console.log(characters, name)
+        let i = _.findIndex(characters, { name: name });
+        if (i > -1) {
+            return characters[i];
+        }
+    }
+
+    checkConditions = (condition) => {
+        if (condition.type === 'hp') {
+            const char = this.findCharacter(condition.name)
+            if (char.stats.hp <= char.stats.maxHp * condition.percentage) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     componentDidMount = () => {
         this.boostStatsFromEquipment();
+    }
+
+    componentDidUpdate = () => {
+        const combatTriggers = this.props.event.combatTriggers;
+        combatTriggers.forEach(trigger => {
+            // trigger[0].effect();
+            const areConditionsMet = this.checkConditions(trigger.condition);
+            if (areConditionsMet) {
+                trigger.effect();
+            }
+        })
     }
 
     render() {

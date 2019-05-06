@@ -29,7 +29,8 @@ function mapStateToProps(store) {
         ally: store.characters,
         enemy: store.enemy,
         combat: store.combat,
-        characters: store.characters
+        characters: store.characters,
+        event: store.event
     }
 }
 

@@ -12,7 +12,7 @@ export const beholder = {
         magicResist: 2,
         agility: 11,
         speed: 6,
-        strength: 9,
+        strength: 13,
         luck: 3
     },
     loot: {

@@ -20,7 +20,7 @@ const checkIfQuestAlreadyTaken = (name) => (dispatch, getState) => {
 
 export const pushToQuestList = (name) => dispatch => {
     const isQuestTaken = dispatch(checkIfQuestAlreadyTaken(name));
-    if(isQuestTaken){
+    if (isQuestTaken) {
         return;
     }
     dispatch({
@@ -42,6 +42,12 @@ export const updateQuestProgress = (questName, progressName, value) => (dispatch
             i
         })
     }
+}
 
+export const addCombatTriggers = (combatTriggers) => dispatch => {
+    dispatch({
+        type: 'UPDATE_COMBAT_TRIGGERS',
+        combatTriggers
+    })
 }
 
