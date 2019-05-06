@@ -44,6 +44,9 @@ export default (state = eventDefaultState, action) => {
             case 'UPDATE_COMBAT_TRIGGERS':
                 draft.combatTriggers.push(action.combatTriggers);
                 break;
+            case 'REMOVE_COMBAT_TRIGGER':
+                draft.combatTriggers.splice(action.i, 1);
+                break;
             default:
                 return draft;
         }

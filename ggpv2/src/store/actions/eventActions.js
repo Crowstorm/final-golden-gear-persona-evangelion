@@ -51,3 +51,10 @@ export const addCombatTriggers = (combatTriggers) => dispatch => {
     })
 }
 
+export const removeCombatTrigger = (i) => dispatch =>{
+    dispatch({
+        type: 'REMOVE_COMBAT_TRIGGER',
+        i
+    })
+}
+

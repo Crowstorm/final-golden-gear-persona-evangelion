@@ -60,11 +60,13 @@ class CombatScreen extends React.Component {
 
     componentDidUpdate = () => {
         const combatTriggers = this.props.event.combatTriggers;
-        combatTriggers.forEach(trigger => {
+        combatTriggers.forEach((trigger, i) => {
             // trigger[0].effect();
             const areConditionsMet = this.checkConditions(trigger.condition);
             if (areConditionsMet) {
                 trigger.effect();
+                //delete the effect
+                this.props.removeCombatTrigger(i)
             }
         })
     }
