@@ -28,26 +28,39 @@ class WestsideInn extends React.Component {
             { text: "I respectfully decline, my lady.", name: "Shujin" },
             { text: "Then at least allow me to offer you a drink.", name: "Woman" },
             { text: "Very well!", name: "Shujin" },
-            // { text: "", name: "", effect: this.mysteriousDrink },
+            { text: "", name: "", effect: this.mysteriousDrink },
+        ]
+
+        this.banditsAttack = [
+            { text: "Your journey ends here, 'Hero of the Realm'!", name: "Bandit" },
+            { text: "Do you lowlifes never learn?", name: "Shujin" },
+            { text: "Heh, come and find out!", name: "Bandit" },
         ]
     }
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
-        const isCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'charDrugged', this.props)
-        if(!isCharDrugged){
+        let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
+
+        if (!isMainCharDrugged) {
             document.getElementById('d11_11').innerHTML = `<img src=${damsel} class="npcSprite" style="transform: translateY(-20px)"/>`
         }
-    
 
-        let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
-        if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated) {
+
+        let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props);
+        if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated && !isMainCharDrugged) {
             this.setState({
                 dialogue: this.damselSaved
             })
             this.props.toggleDialogueState();
         }
 
+        if (this.state.dialogue !== this.banditsAttack && isMainCharDrugged) {
+            this.setState({
+                dialogue: this.banditsAttack
+            })
+            this.props.toggleDialogueState();
+        }
     }
 
     componentDidUpdate() {
@@ -58,8 +71,11 @@ class WestsideInn extends React.Component {
         } else {
             document.addEventListener("keydown", this.handleKeyDown);
         }
-
-
+        let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
+        if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged) {
+            //NEW QUEST
+            //combat with extra conditions (new char after losing)
+        }
     }
 
     componentWillUnmount = () => {
@@ -71,6 +87,12 @@ class WestsideInn extends React.Component {
         characterMovement(this.props, e, BLOCKED_WestsideInn);
     }, this.props.level.movementSpeed)
 
+    mysteriousDrink = () => {
+        this.props.updateQuestProgress('Trouble at the Crossroads', 'drugged', true)
+        this.props.toggleDialogueState()
+        this.props.setCharacterPosition(12, 12);
+        this.props.changeLevel('WestsideInnBedrooms');
+    }
 
 
     render() {

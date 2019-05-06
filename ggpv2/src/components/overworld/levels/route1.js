@@ -31,8 +31,7 @@ class Route1 extends React.Component {
         ]
     }
 
-    test = () => {
-        console.log('test zadziałał')
+    updateTroubleAtTheCrossroads = () => {
         this.props.updateQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', true)
     }
 
@@ -89,7 +88,7 @@ class Route1 extends React.Component {
             enemies.beholder
         ]
         this.props.toggleDialogueState()
-        this.props.updateQuestRewards(10, 10, null, { effect: this.test });
+        this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
         this.props.addEnemiesToCombat(foes);
         this.props.toggleCombat();
     }

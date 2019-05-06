@@ -30,3 +30,48 @@ export const ocelot = {
         legs: armor.woodenLegs
     },
 }
+
+export const mainChar = {
+    name: 'BigBoss',
+    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    stats: {
+        level: 1,
+        exp: 0,
+        maxHp: 25,
+        hp: 1,
+        maxMp: 15,
+        mp: 15,
+        strength: 7,
+        defence: 5,
+        magic: 5,
+        magicResist: 5,
+        agility: 5,
+        luck: 5,
+        speed: 5,
+    },
+    buffs: [],
+    armor: {
+        head: armor.woodenHelmet,
+        chest: armor.woodenShirt,
+        shield: armor.woodenShield,
+        legs: armor.woodenLegs
+    },
+    weapon: weapons.woodenSword
+    ,
+    skills: [
+
+    ],
+    magic: [
+
+    ],
+    gold: 0,
+    items: [
+
+    ],
+    consumables: [
+
+    ],
+    questItems: [
+
+    ]
+}

@@ -9,11 +9,6 @@ let initial_state = [
     {
         name: 'BigBoss',
         portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
-        position: {
-            x: 13,
-            y: 2,
-            model: ''
-        },
         stats: {
             level: 1,
             exp: 0,

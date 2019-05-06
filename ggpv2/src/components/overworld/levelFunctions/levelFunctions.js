@@ -96,13 +96,26 @@ export const checkIfQuestTaken = (name, props) => {
 
 export const checkQuestProgress = (questName, questProgress, props) => {
     let questLog = props.event.questLog;
-    let i = _.findIndex(questLog, { name: questName });
-    if (i > -1) {
-        console.log('progres', questLog[i][questProgress])
-        if (questLog[i] && questLog[i][questProgress]) {
-            return true;
+    let hasQuestProgressed = false;
+    questLog.forEach(quest => {
+        let i = _.findIndex(quest, { name: questName });
+        console.log({ quest }, questName, questProgress, i)
+        if (i > -1) {
+            console.log('progres', quest[i][questProgress])
+            if (quest[i] && quest[i][questProgress]) {
+                hasQuestProgressed = true;
+            }
         }
-    }
+    })
+    return hasQuestProgressed
+    // let i = _.findIndex(questLog, { name: questName });
+    // console.log({ questLog }, questName, questProgress, i)
+    // if (i > -1) {
+    //     console.log('progres', questLog[i][questProgress])
+    //     if (questLog[i] && questLog[i][questProgress]) {
+    //         return true;
+    //     }
+    // }
 }
 
 // export const checkIfQuestCompleted = (name) => (dispatch, getState) => {
