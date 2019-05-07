@@ -103,9 +103,7 @@ class WestsideInn extends React.Component {
         }
         let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
         if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged) {
-            //NEW QUEST
             this.startBanditsCombat();
-            //combat with extra conditions (new char after losing)
         }
     }
 

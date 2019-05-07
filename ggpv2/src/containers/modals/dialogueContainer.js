@@ -16,7 +16,8 @@ class DialogueContainer extends React.Component{
 
 const mapStateToProps = (store)=>{
     return{
-        modal: store.modal
+        modal: store.modal,
+        combat: store.combat,
     }
 }
 

@@ -59,8 +59,9 @@ class Dialogue extends React.Component {
 
     render() {
         const portrait = this.renderPortrait();
+        const margin = (this.props.combat.isCombat) ? '212px' : '324px';
         return (
-            <div className="dialogue d-flex flex-column align-items-center">
+            <div className="dialogue d-flex flex-column align-items-center" style={{ marginLeft: margin }}>
                 <div className="d-flex flex-row">
                     {portrait}
                     <div className="dialogue_text d-flex flex-column align-items-center">
