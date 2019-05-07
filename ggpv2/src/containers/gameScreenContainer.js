@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import CombatContainer from './combatContainer';
 import MainMenuContainer from './mainMenuContainer';
 import OverworldContainer from './overworldContainer';
-import CombatRewardsContainer from './modals/combatRewardsContainer';
-import ShopModal from '../components/modalInterfaces/shop/shop';
-
 
 //modals
+import DialogueContainer from '../containers/modals/dialogueContainer';
+import CombatRewardsContainer from './modals/combatRewardsContainer';
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
+import ShopModal from '../components/modalInterfaces/shop/shop';
 
 import { equip } from '../store/actions/characterActions';
 
@@ -56,7 +56,7 @@ class GameScreenContainer extends React.Component {
         if (attackReady) {
             return 'crosshair';
         }
-        if(helpReady){
+        if (helpReady) {
             return 'cell';
         }
 
@@ -66,6 +66,7 @@ class GameScreenContainer extends React.Component {
     render() {
         let cursor = this.getCursor();
         let content = this.renderContent();
+        let dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
         return (
@@ -73,6 +74,7 @@ class GameScreenContainer extends React.Component {
                 {content}
                 {/* modals */}
                 {/* <CharacterCard {...this.props} /> */}
+                {dialogue}
                 {characterCard}
                 {combatRewardsCard}
                 {/* <ShopModal {...this.props} /> */}

@@ -52,6 +52,7 @@ class WestsideInn extends React.Component {
             this.setState({
                 dialogue: this.damselSaved
             })
+            this.props.addDialogue(this.damselSaved);
             this.props.toggleDialogueState();
         }
 
@@ -59,14 +60,20 @@ class WestsideInn extends React.Component {
             this.setState({
                 dialogue: this.banditsAttack
             })
+            this.props.addDialogue(this.banditsAttack);
             this.props.toggleDialogueState();
         }
     }
 
     test = () => {
-        console.log('elo')
+        console.log('elo');
+        const dialogue = [
+            { text: "Thank you again for saving me from the bandits.", name: "Woman" },
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
     }
-    
+
 
     startBanditsCombat = () => {
         const foes = [
@@ -74,14 +81,13 @@ class WestsideInn extends React.Component {
             enemies.beholder,
             enemies.beholder
         ]
-        const condition= {
+        const condition = {
             type: 'hp',
             percentage: 0.5,
             name: 'BigBoss'
         }
 
-        // this.props.addCombatTriggers([{effect:this.test}, condition])
-        this.props.addCombatTriggers({effect:this.test, condition})
+        this.props.addCombatTriggers({ effect: this.test, condition })
         this.props.addEnemiesToCombat(foes);
         // this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
         this.props.toggleCombat();
@@ -121,10 +127,10 @@ class WestsideInn extends React.Component {
 
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
+        // let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
             <div className="level westsideInn">
-                {renderDialogue}
+                {/* {renderDialogue} */}
                 {characterPosition(this.props)}
             </div>
         )

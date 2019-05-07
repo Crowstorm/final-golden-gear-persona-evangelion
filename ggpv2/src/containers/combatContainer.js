@@ -5,6 +5,7 @@ import CombatScreen from '../components/combat/combatScreen';
 import AllyInterface from '../components/combat/allyInterface';
 import EnemyInterface from '../components/combat/enemyInterface';
 import InfoPanel from '../components/combat/infoPanel';
+import DialogueContainer from '../containers/modals/dialogueContainer';
 
 import { isAttackReady, isHelpReady, nextAllyTurn, changeTurn, addInfoToArray, setActiveAbility, resetActiveAbility, setActiveItem, resetActiveItem } from '../store/actions/combatActions';
 import { enemyLoseHp, } from '../store/actions/enemyActions';
@@ -14,8 +15,10 @@ import { removeCombatTrigger } from '../store/actions/eventActions';
 
 class CombatContainer extends React.Component {
     render() {
+        const dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
         return (
             <div>
+                {dialogue}
                 <CombatScreen {...this.props} />
                 <AllyInterface {...this.props} />
                 <EnemyInterface {...this.props} />
@@ -31,7 +34,8 @@ function mapStateToProps(store) {
         enemy: store.enemy,
         combat: store.combat,
         characters: store.characters,
-        event: store.event
+        event: store.event,
+        modal: store.modal
     }
 }
 

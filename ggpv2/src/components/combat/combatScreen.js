@@ -43,6 +43,17 @@ class CombatScreen extends React.Component {
         }
     }
 
+    checkForTriggers = () => {
+        const combatTriggers = this.props.event.combatTriggers;
+        combatTriggers.forEach((trigger, i) => {
+            const areConditionsMet = this.checkConditions(trigger.condition);
+            if (areConditionsMet) {
+                trigger.effect();
+                this.props.removeCombatTrigger(i)
+            }
+        })
+    }
+
     checkConditions = (condition) => {
         if (condition.type === 'hp') {
             const char = this.findCharacter(condition.name)
@@ -59,16 +70,7 @@ class CombatScreen extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const combatTriggers = this.props.event.combatTriggers;
-        combatTriggers.forEach((trigger, i) => {
-            // trigger[0].effect();
-            const areConditionsMet = this.checkConditions(trigger.condition);
-            if (areConditionsMet) {
-                trigger.effect();
-                //delete the effect
-                this.props.removeCombatTrigger(i)
-            }
-        })
+        this.checkForTriggers();
     }
 
     render() {

@@ -1,6 +1,7 @@
 .dialogue{
     /* border: 1px solid teal; */
     position: absolute;
+    z-index: 100000;
     background-image: url('../../assets/interface/woodBackground.jpg');
     background-size: cover;
     /* background-color: white; */

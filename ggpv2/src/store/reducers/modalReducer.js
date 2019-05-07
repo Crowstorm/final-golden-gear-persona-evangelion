@@ -4,11 +4,12 @@ import produce from "immer";
 const initial_state = {
     //dialogue
     dialogueVisibility: false,
+    dialogue: [],
     characterCardVisibility: false,
     combatRewardsCardVisibility: false,
     shopVisibility: false,
-    shopContent:{
-        armor:[],
+    shopContent: {
+        armor: [],
         weapon: [],
         consumables: []
     }
@@ -21,6 +22,9 @@ export default (state = initial_state, action) => {
                 draft.dialogueVisibility = !draft.dialogueVisibility
                 break;
             }
+            case 'ADD_DIALOGUE':
+                draft.dialogue = action.dialogue;
+                break;
             case 'TOGGLE_CHARACTER_CARD': {
                 draft.characterCardVisibility = !draft.characterCardVisibility
                 break;

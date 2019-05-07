@@ -10,16 +10,18 @@ class Dialogue extends React.Component {
 
     componentDidMount() {
         //setting dialogue length to state
-        if (this.props.dialogue) {
-            this.setState({ length: this.props.dialogue.length });
+        console.log('JESTE DIALOG')
+        if (this.props.modal.dialogue) {
+            this.setState({ length: this.props.modal.dialogue.length });
         }
     }
 
     componentDidUpdate = () => {
-        let i = this.state.i
+        let i = this.state.i;
+        const dialogue = this.props.modal.dialogue;
         //Listening for quest related events
-        if (this.props.dialogue && this.props.dialogue[i].effect && !this.state.effectUsed) {
-            this.props.dialogue[i].effect();
+        if (dialogue && dialogue[i].effect && !this.state.effectUsed) {
+            dialogue[i].effect();
             this.setState({
                 effectUsed: true
             })
@@ -43,7 +45,11 @@ class Dialogue extends React.Component {
 
     renderPortrait = () => {
         let i = this.state.i;
-        const portrait = this.props.dialogue[i].portrait
+        const dialogue = this.props.modal.dialogue;
+        let portrait = null;
+        if (dialogue && dialogue[i]) {
+            portrait = this.props.modal.dialogue[i].portrait
+        }
         if (portrait) {
             return <img className="dialogue_image" src={portrait} alt="dialogue portrait" />
         }
@@ -58,7 +64,7 @@ class Dialogue extends React.Component {
                 <div className="d-flex flex-row">
                     {portrait}
                     <div className="dialogue_text d-flex flex-column align-items-center">
-                        <p>{this.props.dialogue[this.state.i].text}</p>
+                        <p>{this.props.modal.dialogue[this.state.i].text}</p>
                     </div>
                 </div>
                 <div className="dialogue_next" onClick={() => this.nextDialogueLine()}></div>

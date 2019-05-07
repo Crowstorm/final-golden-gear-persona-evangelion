@@ -5,6 +5,14 @@ export const toggleDialogueState = () => {
         })
     }
 }
+
+export const addDialogue = (dialogue) => dispatch => {
+    dispatch({
+        type: 'ADD_DIALOGUE',
+        dialogue
+    })
+}
+
 export const toggleCharacterCard = () => {
     return function (dispatch) {
         dispatch({
