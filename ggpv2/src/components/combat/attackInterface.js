@@ -22,6 +22,17 @@ class AttackInterface extends React.Component {
     }
 
     componentDidUpdate = (prevProps) => {
+        //reset state when enemy turn
+        if (prevProps.combat.whoseTurn !== this.props.combat.whoseTurn) {
+            this.setState({
+                consumables: false,
+                skills: false,
+                magic: false,
+                activeAbility: null,
+                activeItem: null
+            })
+        }
+
         if (prevProps.combat.attackerIndex !== this.props.combat.attackerIndex) {
             this.setState({
                 consumables: false,
@@ -269,8 +280,8 @@ class AttackInterface extends React.Component {
     }
 
     render() {
-        let attackInterface = (this.props.combat.whoseTurn === 'ally') ? this.handleRenderAttackInterface() : '';
-        let renderAdditionalMenus = this.handleRenderAdditionalMenus();
+        let attackInterface = (this.props.combat.whoseTurn === 'ally') ? this.handleRenderAttackInterface() : null;
+        let renderAdditionalMenus = (this.props.combat.whoseTurn === 'ally') ? this.handleRenderAdditionalMenus() : null;
         return (
             <div id='attackInterface'>
                 {renderAdditionalMenus}
