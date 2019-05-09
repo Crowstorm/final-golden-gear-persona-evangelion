@@ -56,10 +56,8 @@ class CapitalCrossroads extends React.Component {
             let isTroubleAtTheCrossroadsQuestTaken = checkIfQuestTaken('Trouble at the Crossroads', this.props);
             console.log({ isTroubleAtTheCrossroadsQuestTaken })
             if (!isTroubleAtTheCrossroadsQuestTaken) {
-                if (this.state.dialogue !== this.troubleAtTheCrossroadsDialogue) {
-                    this.setState({
-                        dialogue: this.troubleAtTheCrossroadsDialogue
-                    })
+                if (this.props.modal.dialogue !== this.troubleAtTheCrossroadsDialogue) {
+                    this.props.addDialogue(this.troubleAtTheCrossroadsDialogue);
                     this.props.toggleDialogueState();
                 }
             }
@@ -67,25 +65,11 @@ class CapitalCrossroads extends React.Component {
 
         //roadblock during Trouble at the crossroads quest
         if (((x >= 10 && x <= 16) && y === 1) || ((y >= 13 && y <= 18) && x === 25)) {
-            if (this.state.dialogue !== this.troubleAtTheCrossroadRoadblock) {
-                this.setState({
-                    dialogue: this.troubleAtTheCrossroadRoadblock
-                })
+            if (this.props.modal.dialogue !== this.troubleAtTheCrossroadRoadblock) {
+                this.props.addDialogue(this.troubleAtTheCrossroadRoadblock);
                 this.props.toggleDialogueState();
             }
         }
-
-        //PLACEHOLDER FOR NEXT LEVEL
-        // if ((y >= 13 && y <= 18) && x === 4) {
-        //     let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
-        //     if (this.state.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
-        //         this.setState({
-        //             dialogue: this.damselInDistress
-        //         })
-        //         this.props.toggleDialogueState();
-        //     }
-        // }
-
     }
 
     componentWillUnmount = () => {
@@ -105,10 +89,8 @@ class CapitalCrossroads extends React.Component {
 
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
             <div className="level capitalCrossroads">
-                {renderDialogue}
                 {characterPosition(this.props)}
             </div>
         )

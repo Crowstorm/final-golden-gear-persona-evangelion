@@ -87,7 +87,7 @@ class WestsideInn extends React.Component {
             name: 'BigBoss'
         }
 
-        this.props.addCombatTriggers({ effect: this.test, condition })
+        this.props.addCombatTriggers({ effect: this.test, condition: condition })
         this.props.addEnemiesToCombat(foes);
         // this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
         this.props.toggleCombat();

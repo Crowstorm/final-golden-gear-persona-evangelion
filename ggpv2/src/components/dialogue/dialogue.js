@@ -10,7 +10,6 @@ class Dialogue extends React.Component {
 
     componentDidMount() {
         //setting dialogue length to state
-        console.log('JESTE DIALOG')
         if (this.props.modal.dialogue) {
             this.setState({ length: this.props.modal.dialogue.length });
         }

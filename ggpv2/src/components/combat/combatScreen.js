@@ -36,11 +36,15 @@ class CombatScreen extends React.Component {
 
     findCharacter = (name) => {
         const characters = this.props.characters;
-        console.log(characters, name)
         let i = _.findIndex(characters, { name: name });
         if (i > -1) {
             return characters[i];
         }
+    }
+
+    checkCurrentTurnNumber = () => {
+        const turn = this.props.combat.combatTurn;
+        return turn;
     }
 
     checkForTriggers = () => {
@@ -58,6 +62,11 @@ class CombatScreen extends React.Component {
         if (condition.type === 'hp') {
             const char = this.findCharacter(condition.name)
             if (char.stats.hp <= char.stats.maxHp * condition.percentage) {
+                return true;
+            }
+        } else if (condition.type === 'turn') {
+            const turn = this.checkCurrentTurnNumber();
+            if (turn === this.props.combat.combatTurn) {
                 return true;
             }
         }

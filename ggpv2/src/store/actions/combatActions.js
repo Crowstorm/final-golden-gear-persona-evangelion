@@ -126,10 +126,17 @@ export const resetActiveItem = () => {
     }
 }
 
+export const incrementCombatTurn = () => dispatch => {
+    dispatch({
+        type: 'INCREMENT_COMBAT_TURN'
+    })
+}
+
 export const changeTurn = (whoseTurn) => {
     return function (dispatch, getState) {
         if (whoseTurn === 'ally') {
             let i = 0;
+            dispatch(incrementCombatTurn());
             //zdjecie counteru z buffa
             dispatch(changeBuffsCounter());
             //zdjecie buffow jesli sie skonczyly

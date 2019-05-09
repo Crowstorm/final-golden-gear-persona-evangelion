@@ -4,6 +4,7 @@ const combatDefaultState = {
     isCombat: false,
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
+    combatTurn: 0,
     whoseTurn: "ally",
     attackerIndex: 0,
     attackReady: false,
@@ -32,6 +33,9 @@ const combatReducer = (state = combatDefaultState, action) => {
                 break;
             case 'RESET_COMBAT_REDUCER':
                 return combatDefaultState;
+            case 'INCREMENT_COMBAT_TURN':
+                draft.combatTurn++;
+                break;
             case 'IS_ATTACK_READY':
                 draft.attackReady = action.isReady
                 break;

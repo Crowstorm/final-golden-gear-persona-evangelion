@@ -39,10 +39,8 @@ class Route1 extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
         let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
 
-        if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated) {
-            this.setState({
-                dialogue: this.damselSaved
-            })
+        if (this.props.modal.dialogue !== this.damselSaved && areEnemiesDefeated) {
+            this.props.addDialogue(this.damselSaved);
             this.props.toggleDialogueState();
         }
 
@@ -61,10 +59,8 @@ class Route1 extends React.Component {
 
         if ((y >= 13 && y <= 18) && x === 4) {
             let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
-            if (this.state.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
-                this.setState({
-                    dialogue: this.damselInDistress
-                })
+            if (this.props.modal.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
+                this.props.addDialogue(this.damselInDistress);
                 this.props.toggleDialogueState();
             }
         }
@@ -80,6 +76,35 @@ class Route1 extends React.Component {
         characterMovement(this.props, e, BLOCKED_CapitalCrossroads);
     }, this.props.level.movementSpeed)
 
+    tutorial1 = () => {
+        const dialogue = [
+            { text: "Your character is extremely overpowered, but you never know what future might bring. Follow my instructions for now. Or don't, I'm not your mom.", name: "Narrator" },
+            { text: "Let's start with the basics. Nothing more basic than a Basic Attack.", name: "Narrator" },
+            { text: "Press the Basic Attack button and then click on portrait of the enemy you want to target", name: "Narrator" }
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+    tutorial2 = () => {
+        const dialogue = [
+            { text: "Great job! You killed the poor bastard, but there are more to come and you can only fight four at a time.", name: "Narrator" },
+            { text: "Regular slashing of the enemies won't bring you joy in the long run. Time to use some skills.", name: "Narrator" },
+            { text: "Press the Skills button, pick a skill you like (I blocked more overpowered skills so you can't ruin this tutorial) and target the enemy.", name: "Narrator" }
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+    tutorial3 = () => {
+        const dialogue = [
+            { text: "Another one bites the dust! I like to think you are listening to my instructions so there is a final one from me.", name: "Narrator" },
+            { text: "You are one of the few remaining battle mages in the world, that means your skills and magic alike are extremely powerful", name: "Narrator" },
+            { text: "Press the Magic button and pick a spell I made available for you. It's AOE, so it will target all visible enemies on the battlefield. Burn them to the ground.", name: "Narrator" },
+            { text: "If there are still enemies willing to fight you after that, that means either you didn't follow my instructions or I'm a terrible game designer. Or both.", name: "Narrator" },
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+
 
     startBanditCombat = () => {
         const foes = [
@@ -87,6 +112,22 @@ class Route1 extends React.Component {
             enemies.beholder,
             enemies.beholder
         ]
+        const condition1 = {
+            type: 'turn',
+            turn: 0
+        }
+        const condition2 = {
+            type: 'turn',
+            turn: 1
+        }
+        const condition3 = {
+            type: 'turn',
+            turn: 2
+        }
+        this.props.addCombatTriggers({ effect: this.tutorial1, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.tutorial2, condition: condition2 })
+        this.props.addCombatTriggers({ effect: this.tutorial3, condition: condition3 })
+
         this.props.toggleDialogueState()
         this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
         this.props.addEnemiesToCombat(foes);
@@ -100,10 +141,8 @@ class Route1 extends React.Component {
     }
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
             <div className="level capitalCrossroads">
-                {renderDialogue}
                 {characterPosition(this.props)}
             </div>
         )
