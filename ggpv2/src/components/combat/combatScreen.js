@@ -66,7 +66,7 @@ class CombatScreen extends React.Component {
             }
         } else if (condition.type === 'turn') {
             const turn = this.checkCurrentTurnNumber();
-            if (turn === this.props.combat.combatTurn) {
+            if (turn === condition.turn) {
                 return true;
             }
         }
