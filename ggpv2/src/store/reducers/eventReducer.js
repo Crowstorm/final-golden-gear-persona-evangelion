@@ -40,6 +40,9 @@ export default (state = eventDefaultState, action) => {
             case 'REMOVE_COMBAT_TRIGGER':
                 draft.combatTriggers.splice(action.i, 1);
                 break;
+            case 'CLEAR_COMBAT_TRIGGERS':
+                draft.combatTriggers = [];
+                break;
             default:
                 return draft;
         }

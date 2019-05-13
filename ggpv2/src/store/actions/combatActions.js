@@ -8,7 +8,11 @@ export const toggleCombat = () => (dispatch, getState) => {
     })
     dispatch(usePostcombatTriggers());
 
+
     if (isCombat) {
+        dispatch({
+            type: 'CLEAR_COMBAT_TRIGGERS'
+        })
         dispatch(resetCombatReducer());
     }
 }
