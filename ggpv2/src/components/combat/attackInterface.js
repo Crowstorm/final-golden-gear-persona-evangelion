@@ -86,7 +86,8 @@ class AttackInterface extends React.Component {
     }
 
     sortConsumablesAlphabetically = (items) => {
-        return items.sort((a, b) => {
+        let newItems = items.slice();
+        return newItems.sort((a, b) => {
             let nameA = a.name.toUpperCase();
             let nameB = b.name.toUpperCase();
             return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;

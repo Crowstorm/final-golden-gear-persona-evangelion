@@ -3,6 +3,11 @@ export const shujin = {
     name: "Shujin"
 }
 
+export const setsuna = {
+    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
+    name: "Setsuna"
+}
+
 export const king = {
     portrait: "https://vignette.wikia.nocookie.net/pathfinder/images/c/c5/King_of_Roses.jpeg/revision/latest?cb=20091124060304",
     name: "King Horace"

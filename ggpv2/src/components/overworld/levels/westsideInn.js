@@ -59,10 +59,23 @@ class WestsideInn extends React.Component {
         }
     }
 
-    test = () => {
-        console.log('elo');
+    weak = () =>{
         const dialogue = [
-            { text: "Thank you again for saving me from the bandits.", name: "Woman" },
+            { text: "I feel... Different.", char: dialogueCharacters.shujin },
+            { text: "And the sword seems to be heavier...", char: dialogueCharacters.shujin },
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+    deathIsNear = () => {
+        const dialogue = [
+            { text: "...Damn... At this rate... I'll die... Princess...", char: dialogueCharacters.shujin },
+            { text: "I've heard a noise, what's go...", char: dialogueCharacters.setsuna },
+            { text: "Piss off, lass, this doesn't concern you!", char: dialogueCharacters.banditLeader },
+            { text: "Listen to them... Run!", char: dialogueCharacters.shujin },
+            { text: "I won't leave someone in an uneven fight. Allow me to help. My name is Setsuna and I will offer you the power of the Blessings.", char: dialogueCharacters.setsuna },
+            { text: "MAY THE GODS BLUH BLUH BLUH, HEALING!!!!!!!!!", char: dialogueCharacters.setsuna },
+            { text: "Thank you! Now, let's finish this!", char: dialogueCharacters.shujin },
         ]
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();
@@ -75,13 +88,18 @@ class WestsideInn extends React.Component {
             enemies.beholder,
             enemies.beholder
         ]
-        const condition = {
+        const condition1 = {
+            type: 'turn',
+            turn: 0
+        }
+        const condition2 = {
             type: 'hp',
             percentage: 0.5,
             name: 'BigBoss'
         }
 
-        this.props.addCombatTriggers({ effect: this.test, condition: condition })
+        this.props.addCombatTriggers({ effect: this.weak, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.deathIsNear, condition: condition2 })
         this.props.addEnemiesToCombat(foes);
         // this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
         this.props.toggleCombat();
