@@ -46,8 +46,8 @@ class Dialogue extends React.Component {
         let i = this.state.i;
         const dialogue = this.props.modal.dialogue;
         let portrait = null;
-        if (dialogue && dialogue[i]) {
-            portrait = this.props.modal.dialogue[i].portrait
+        if (dialogue && dialogue[i] && dialogue[i].char && dialogue[i].char.portrait) {
+            portrait = dialogue[i].char.portrait
         }
         if (portrait) {
             return <img className="dialogue_image" src={portrait} alt="dialogue portrait" />

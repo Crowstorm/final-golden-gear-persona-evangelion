@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import * as enemies from '../../../store/enemies/enemies';
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 
 import './css/levels.css';
 import '../level.css'
@@ -20,14 +21,15 @@ class Route1 extends React.Component {
         }
 
         this.damselInDistress = [
-            { text: "Stop right there, scum!", name: "Shujin" },
-            { text: "Huhu, you're approaching me?", name: "Bandit" },
-            { text: "I can't beat the shit out of you without getting closer", name: "Shujin" },
-            { text: "", name: "", effect: this.startBanditCombat },
+            { text: "Stop right there, scum!", char: dialogueCharacters.shujin },
+            { text: "Huh, you're approaching me? Instead of running away you're coming straight at me?", char: dialogueCharacters.banditLeader },
+            { text: "I can't beat the shit out of you without getting closer", char: dialogueCharacters.shujin },
+            { text: "Hoho, then come as close as you like", char: dialogueCharacters.banditLeader },
+            { text: "", effect: this.startBanditCombat },
         ]
         this.damselSaved = [
-            { text: "Lol thanks", name: "Woman" },
-            { text: "", name: "", effect: this.goToInn },
+            { text: "...Such strength! Thank you! As a reward let me invite you to the best inn in the Kingdom", char: dialogueCharacters.damselInDistress},
+            { text: "", effect: this.goToInn },
         ]
     }
 
@@ -61,6 +63,11 @@ class Route1 extends React.Component {
             let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
             if (this.props.modal.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
                 this.props.addDialogue(this.damselInDistress);
+                this.props.toggleDialogueState();
+            }
+
+            if (this.props.modal.dialogue !== this.damselSaved && areEnemiesDefeated) {
+                this.props.addDialogue(this.damselSaved);
                 this.props.toggleDialogueState();
             }
         }
