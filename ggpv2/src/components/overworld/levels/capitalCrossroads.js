@@ -1,12 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
+
 import './css/levels.css';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
 import {ocelot} from '../../../store/allies/allies';
 
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
@@ -17,11 +18,11 @@ class CapitalCrossroads extends React.Component {
             dialogue: null
         }
         this.troubleAtTheCrossroadsDialogue = [
-            { text: "HELP!!! SOMEBODY HELP ME!!!", name: "Unknown" },
-            { text: "Crying for help! It comes from the west, I must investigate!", name: "Shujin", effect: this.addTroubleAtTheCrossroadsQuest },
+            { text: "HELP!!! SOMEBODY HELP ME!!!", char: dialogueCharacters.unknown },
+            { text: "Crying for help! It comes from the west, I must investigate!", char: dialogueCharacters.shujin, effect: this.addTroubleAtTheCrossroadsQuest },
         ]
         this.troubleAtTheCrossroadRoadblock = [
-            { text: "No, I need to go west, someone is in danger", name: "Shujin" }
+            { text: "No, I need to go west, someone is in danger", char: dialogueCharacters.shujin }
         ]
     }
 

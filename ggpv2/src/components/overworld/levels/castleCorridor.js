@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
+
 import './css/levels.css';
 
 import { MAIN_GRID } from '../grids/grids';
@@ -8,16 +10,15 @@ import { BLOCKED_CastleCorridor } from '../grids/blockedLevelGrids';
 
 import { characterMovement } from '../levelFunctions/levelFunctions';
 
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 class CastleCorridor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dialogue: null
-        }  
+        }
         this.roadBlocked = [
-            { text: "Guards won't let me through here", name: "Shujin" }
+            { text: "Guards won't let me through here", char: dialogueCharacters.shujin }
         ]
     }
 
@@ -39,7 +40,7 @@ class CastleCorridor extends React.Component {
     handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
         characterMovement(this.props, e, BLOCKED_CastleCorridor);
-    
+
     }, this.props.level.movementSpeed)
 
     componentDidMount = () => {
@@ -65,11 +66,9 @@ class CastleCorridor extends React.Component {
             this.props.changeLevel('CastleFront');
         }
 
-        if(((y>=5 && y <=9) && x === 2) || ((y>=5 && y <=9) && x === 24)){
-            if (this.state.dialogue !== this.roadBlocked) {
-                this.setState({
-                    dialogue: this.roadBlocked
-                })
+        if (((y >= 5 && y <= 9) && x === 2) || ((y >= 5 && y <= 9) && x === 24)) {
+            if (this.props.modal.dialogue !== this.roadBlocked) {
+                this.props.addDialogue(this.roadBlocked);
                 this.props.toggleDialogueState();
             }
         }
@@ -84,10 +83,8 @@ class CastleCorridor extends React.Component {
 
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : null;
         return (
             <div className="level castleCorridor">
-                {renderDialogue}
                 {this.renderMainGrid()}
             </div>
         )

@@ -2,9 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as enemies from '../../../store/enemies/enemies';
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 
 import './css/levels.css';
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { BLOCKED_ThroneRoom } from '../grids/blockedLevelGrids';
 
@@ -46,10 +46,8 @@ class Level extends React.Component {
 
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
             <div className="level ">
-                {renderDialogue}
                 {characterPosition(this.props)}
             </div>
         )

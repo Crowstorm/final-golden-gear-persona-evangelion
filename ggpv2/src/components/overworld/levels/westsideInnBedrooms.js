@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
+
 import './css/levels.css';
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { BLOCKED_WestsideInn } from '../grids/blockedLevelGrids';
 
@@ -15,18 +16,16 @@ class WestsideInnBedrooms extends React.Component {
             dialogue: null
         }
         this.drugged = [
-            { text: "Ughhh...", name: "Shujin" },
-            { text: "What happened?", name: "Shujin" },
-            { text: "Looks like I'm still at the inn, I better check on the lady, I hope she's alright", name: "Shujin" },
+            { text: "Ughhh...", char: dialogueCharacters.shujin },
+            { text: "What happened?", char: dialogueCharacters.shujin },
+            { text: "Looks like I'm still at the inn, I better check on the lady, I hope she's alright", char: dialogueCharacters.shujin },
         ]
     }
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
-        if (this.state.dialogue !== this.drugged) {
-            this.setState({
-                dialogue: this.drugged
-            })
+        if (this.props.modal.dialogue !== this.drugged) {
+            this.props.addDialogue(this.drugged);
             this.props.toggleDialogueState();
         }
     }
@@ -58,10 +57,8 @@ class WestsideInnBedrooms extends React.Component {
 
 
     render() {
-        let renderDialogue = (this.props.modal.dialogueVisibility) ? <DialogeContainer dialogue={this.state.dialogue} /> : '';
         return (
             <div className="level westsideInn">
-                {renderDialogue}
                 {characterPosition(this.props)}
             </div>
         )

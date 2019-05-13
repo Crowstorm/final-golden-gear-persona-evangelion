@@ -2,9 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as enemies from '../../../store/enemies/enemies';
+import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 
 import './css/levels.css';
-import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
 import { BLOCKED_WestsideInn } from '../grids/blockedLevelGrids';
 
@@ -20,21 +20,21 @@ class WestsideInn extends React.Component {
             dialogue: null
         }
         this.damselSaved = [
-            { text: "Thank you again for saving me from the bandits.", name: "Woman" },
-            { text: "If it wasn't for you I don't know what would have happened.", name: "Woman" },
-            { text: "No need to thank me, my lady. It is an honor to serve the citizens of the realm.", name: "Shujin" },
-            { text: "Still, I need to repay you for your bravery.", name: "Woman" },
-            { text: "I rent a room upstairs and we could...", name: "Woman" },
-            { text: "I respectfully decline, my lady.", name: "Shujin" },
-            { text: "Then at least allow me to offer you a drink.", name: "Woman" },
-            { text: "Very well!", name: "Shujin" },
-            { text: "", name: "", effect: this.mysteriousDrink },
+            { text: "Thank you again for saving me from the bandits.", char: dialogueCharacters.damselInDistress },
+            { text: "If it wasn't for you I don't know what would have happened.", char: dialogueCharacters.damselInDistress },
+            { text: "No need to thank me, my lady. It is an honor to serve the citizens of the realm.", char: dialogueCharacters.shujin },
+            { text: "Still, I need to repay you for your bravery.", char: dialogueCharacters.damselInDistress },
+            { text: "I rent a room upstairs and we could...", char: dialogueCharacters.damselInDistress },
+            { text: "I respectfully decline, my lady.", char: dialogueCharacters.shujin},
+            { text: "Then at least allow me to offer you a drink.", char: dialogueCharacters.damselInDistress },
+            { text: "Very well!", char: dialogueCharacters.shujin },
+            { text: "",effect: this.mysteriousDrink },
         ]
 
         this.banditsAttack = [
-            { text: "Your journey ends here, 'Hero of the Realm'!", name: "Bandit" },
-            { text: "Do you lowlifes never learn?", name: "Shujin" },
-            { text: "Heh, come and find out!", name: "Bandit" },
+            { text: "Your journey ends here, 'Hero of the Realm'!", char: dialogueCharacters.banditLeader },
+            { text: "Do you lowlifes never learn?", char: dialogueCharacters.shujin },
+            { text: "Heh, come and find out!", char: dialogueCharacters.banditLeader },
         ]
     }
 
@@ -48,18 +48,12 @@ class WestsideInn extends React.Component {
 
 
         let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props);
-        if (this.state.dialogue !== this.damselSaved && areEnemiesDefeated && !isMainCharDrugged) {
-            this.setState({
-                dialogue: this.damselSaved
-            })
+        if (this.props.modal.dialogue !== this.damselSaved && areEnemiesDefeated && !isMainCharDrugged) {
             this.props.addDialogue(this.damselSaved);
             this.props.toggleDialogueState();
         }
 
-        if (this.state.dialogue !== this.banditsAttack && isMainCharDrugged) {
-            this.setState({
-                dialogue: this.banditsAttack
-            })
+        if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged) {
             this.props.addDialogue(this.banditsAttack);
             this.props.toggleDialogueState();
         }
