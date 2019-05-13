@@ -6,10 +6,10 @@ export const toggleCombat = () => (dispatch, getState) => {
     dispatch({
         type: 'TOGGLE_COMBAT'
     })
-    dispatch(usePostcombatTriggers());
 
 
     if (isCombat) {
+        dispatch(usePostcombatTriggers());
         dispatch({
             type: 'CLEAR_COMBAT_TRIGGERS'
         })

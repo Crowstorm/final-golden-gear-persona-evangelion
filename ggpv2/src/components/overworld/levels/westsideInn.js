@@ -42,6 +42,7 @@ class WestsideInn extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
         let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
+        let isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
 
         if (!isMainCharDrugged) {
             document.getElementById('d11_11').innerHTML = `<img src=${damsel} class="npcSprite" style="transform: translateY(-20px)"/>`
@@ -54,9 +55,25 @@ class WestsideInn extends React.Component {
             this.props.toggleDialogueState();
         }
 
-        if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged) {
+        if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
             this.props.addDialogue(this.banditsAttack);
             this.props.toggleDialogueState();
+        }
+    }
+
+    componentDidUpdate() {
+        let { x, y } = this.props.position;
+        let { dialogueVisibility } = this.props.modal;
+        if (dialogueVisibility) {
+            document.removeEventListener("keydown", this.handleKeyDown);
+        } else {
+            document.addEventListener("keydown", this.handleKeyDown);
+        }
+
+        let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
+        let isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
+        if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
+            this.startBanditsCombat();
         }
     }
 
@@ -86,6 +103,9 @@ class WestsideInn extends React.Component {
         this.props.toggleDialogueState();
     }
 
+    banditsDefeated = () =>{
+        this.props.updateQuestProgress('Trouble at the Crossroads', 'finished', true)
+    }
 
     startBanditsCombat = () => {
         const foes = [
@@ -106,23 +126,11 @@ class WestsideInn extends React.Component {
         this.props.addCombatTriggers({ effect: this.weak, condition: condition1 })
         this.props.addCombatTriggers({ effect: this.deathIsNear, condition: condition2 })
         this.props.addEnemiesToCombat(foes);
-        // this.props.updateQuestRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });
+        this.props.updateQuestRewards(10, 10, null, { effect: this.banditsDefeated });
         this.props.toggleCombat();
     }
 
-    componentDidUpdate() {
-        let { x, y } = this.props.position;
-        let { dialogueVisibility } = this.props.modal;
-        if (dialogueVisibility) {
-            document.removeEventListener("keydown", this.handleKeyDown);
-        } else {
-            document.addEventListener("keydown", this.handleKeyDown);
-        }
-        let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
-        if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged) {
-            this.startBanditsCombat();
-        }
-    }
+  
 
     componentWillUnmount = () => {
         document.removeEventListener("keydown", this.handleKeyDown);

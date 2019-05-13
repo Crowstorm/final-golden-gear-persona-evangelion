@@ -11,5 +11,6 @@ export const troubleAtTheCrossroads={
     reward: null,
     log:[],
     enemiesDefeated: false,
-    innVisited: false
+    drugged: false,
+    finished: false
 }
