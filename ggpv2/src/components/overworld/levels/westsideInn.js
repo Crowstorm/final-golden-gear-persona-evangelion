@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as enemies from '../../../store/enemies/enemies';
+import * as allies from '../../../store/allies/allies';
 import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 
 import './css/levels.css';
@@ -67,6 +68,10 @@ class WestsideInn extends React.Component {
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();
     }
+
+    setsunaJoinTheParty = () =>{
+        this.props.addNewAlly(allies.setsuna)
+    }
     deathIsNear = () => {
         const dialogue = [
             { text: "...Damn... At this rate... I'll die... Princess...", char: dialogueCharacters.shujin },
@@ -75,7 +80,7 @@ class WestsideInn extends React.Component {
             { text: "Listen to them... Run!", char: dialogueCharacters.shujin },
             { text: "I won't leave someone in an uneven fight. Allow me to help. My name is Setsuna and I will offer you the power of the Blessings.", char: dialogueCharacters.setsuna },
             { text: "MAY THE GODS BLUH BLUH BLUH, HEALING!!!!!!!!!", char: dialogueCharacters.setsuna },
-            { text: "Thank you! Now, let's finish this!", char: dialogueCharacters.shujin },
+            { text: "Thank you! Now, let's finish this!", char: dialogueCharacters.shujin, effect: this.setsunaJoinTheParty },
         ]
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();

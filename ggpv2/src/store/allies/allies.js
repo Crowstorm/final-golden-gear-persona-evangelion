@@ -4,14 +4,14 @@ import * as skills from '../skills/skills';
 import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
-export const ocelot = {
-    name: 'Ocelot',
-    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",
+export const setsuna = {
+    name: 'Setsuna',
+    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
     stats: {
         level: 1,
         exp: 0,
         maxHp: 25,
-        hp: 2,
+        hp: 25,
         maxMp: 15,
         mp: 15,
         strength: 5,
