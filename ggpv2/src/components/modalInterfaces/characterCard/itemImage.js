@@ -26,7 +26,7 @@ class ItemImage extends React.Component {
         let { name } = this.props.item;
         return (
             <img
-                data-tip data-for={name+this.props.i}
+                data-tip data-for={name + this.props.i}
                 src={this.props.img}
                 style={{ width: 64, height: 64 }}
                 onClick={() => this.handleOnClick()}
@@ -36,23 +36,34 @@ class ItemImage extends React.Component {
     }
 
     renderTooltip = () => {
-        // console.log(this.props.item)
-        let { name, bonus: { defence, agility, strength, luck, magic, magicResist } } = this.props.item;
+        console.log(this.props)
+        const { type } = this.props;
+        if (type === "inventory" || this.props.equipped) {
+            const { name, bonus: { defence, agility, strength, luck, magic, magicResist } } = this.props.item;
+            return (
+                <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                    <p>{name}</p>
+                    {(defence) ? <p>Defence: {defence}</p> : null}
+                    {(agility) ? <p>Agility: {agility}</p> : null}
+                    {(strength) ? <p>Strength: {strength}</p> : null}
+                    {(luck) ? <p>Luck: {luck}</p> : null}
+                    {(magic) ? <p>Magic: {magic}</p> : null}
+                    {(magicResist) ? <p>Magic Resistance: {magicResist}</p> : null}
+                </ReactTooltip>
+            )
+        } else if (type === "consumables") {
+            const { name, description } = this.props.item;
+            return (
+                <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                    <p>{name}</p>
+                    <p>{description}</p>
+                </ReactTooltip>
+            )
+        }
 
-        return (
-            <ReactTooltip id={name+this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
-                <p>{name}</p>
-                {(defence) ? <p>Defence: {defence}</p> : null}
-                {(agility) ? <p>Agility: {agility}</p> : null}
-                {(strength) ? <p>Strength: {strength}</p> : null}
-                {(luck) ? <p>Luck: {luck}</p> : null}
-                {(magic) ? <p>Magic: {magic}</p> : null}
-                {(magicResist) ? <p>Magic Resistance: {magicResist}</p> : null}
-            </ReactTooltip>
-        )
     }
     render() {
-        console.log(this.props.item.name+this.props.i)
+        console.log(this.props.item.name + this.props.i)
         return (
             <div style={{ width: 64, height: 64 }}>
                 {this.renderImage()}

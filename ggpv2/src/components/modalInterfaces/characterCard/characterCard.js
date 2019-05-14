@@ -23,8 +23,8 @@ export default class CharacterCard extends React.Component {
                 </div>
                 <div className="d-flex flex-row">
                     <ItemImage img={chest.img} equipped={true} item={chest} />
-                    {/* <ItemImage img={chest.img} equipped={true} item={chest} />
-                    <ItemImage img={chest.img} equipped={true} item={chest} /> */}
+                    <ItemImage img={chest.img} equipped={true} item={chest} />
+                    <ItemImage img={chest.img} equipped={true} item={chest} />
                 </div>
                 <div>
                     <ItemImage img={legs.img} equipped={true} item={legs} />
@@ -56,7 +56,7 @@ export default class CharacterCard extends React.Component {
 
         return _.map(consumables, (consum, i) => {
             return (
-                <ItemImage key={i} img={consum.img} type="consumables" />
+                <ItemImage key={i} i={i} img={consum.img} type="consumables" item={consum} />
             )
         })
     }
