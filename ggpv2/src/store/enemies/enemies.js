@@ -16,6 +16,7 @@ export const beholder = {
         luck: 3
     },
     loot: {
-        exp: 50
+        exp: 50,
+        gold: 10
     }
 }

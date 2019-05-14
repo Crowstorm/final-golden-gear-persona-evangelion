@@ -2,10 +2,19 @@
     border: 1px solid teal;
     position: absolute;
     background-color: white;
-    margin-top: 450px;
-    margin-left: 160px;
+    margin-top: 300px;
+    margin-left: 212px;
     width: 600px;
-    height: 200px;
+    height: 232px;
+}
+
+.combatRewards h2{
+    margin-top: 16px;
+}
+
+.combatRewards button{
+    position: absolute;
+    bottom: 16px;
 }
 
 /* .dialogue_text{

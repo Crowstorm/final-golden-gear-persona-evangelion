@@ -126,7 +126,7 @@ class WestsideInn extends React.Component {
         this.props.addCombatTriggers({ effect: this.weak, condition: condition1 })
         this.props.addCombatTriggers({ effect: this.deathIsNear, condition: condition2 })
         this.props.addEnemiesToCombat(foes);
-        this.props.updateQuestRewards(10, 10, null, { effect: this.banditsDefeated });
+        this.props.updateCombatRewards(10, 10, null, { effect: this.banditsDefeated });
         this.props.toggleCombat();
     }
 

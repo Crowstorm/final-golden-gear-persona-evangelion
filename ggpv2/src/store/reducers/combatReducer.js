@@ -18,8 +18,8 @@ const combatDefaultState = {
     },
     info: [],
     reward: {
-        exp: 100,
-        gold: 50,
+        exp: 0,
+        gold: 0,
         items: [],
         trigger: []
     }

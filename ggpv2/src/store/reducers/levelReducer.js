@@ -1,7 +1,7 @@
 import produce from "immer";
 
 let initial_state = {
-    currentLevel: 'WestsideInn',
+    currentLevel: 'Route1',
     movementSpeed: 20
 }
 

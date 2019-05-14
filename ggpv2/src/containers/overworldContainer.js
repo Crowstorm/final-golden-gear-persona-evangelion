@@ -8,7 +8,7 @@ import { addNewAlly } from '../store/actions/characterActions';
 import { toggleDialogueState, addDialogue, toggleCharacterCard, toggleShop } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
-import { toggleCombat, updateQuestRewards } from '../store/actions/combatActions';
+import { toggleCombat, updateCombatRewards } from '../store/actions/combatActions';
 import { addEnemiesToCombat } from '../store/actions/enemyActions';
 
 
@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
         setCharacterPosition: (x, y) => { dispatch(setCharacterPosition(x, y)) },
         //combat
         addEnemiesToCombat: (enemies) => { dispatch(addEnemiesToCombat(enemies)) },
-        updateQuestRewards: (exp, gold, items, trigger) => { dispatch(updateQuestRewards(exp, gold, items, trigger)) },
+        updateCombatRewards: (exp, gold, items, trigger) => { dispatch(updateCombatRewards(exp, gold, items, trigger)) },
         addCombatTriggers: (combatTriggers) => dispatch(addCombatTriggers(combatTriggers)),
         //modals
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },

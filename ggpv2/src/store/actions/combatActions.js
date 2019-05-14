@@ -3,6 +3,12 @@ import { getAliveCharacter, enemyTurn } from './enemyActions';
 
 export const toggleCombat = () => (dispatch, getState) => {
     const isCombat = getState().combat.isCombat;
+    const enemies = getState().enemy;
+    enemies.forEach((enemy) => {
+        if (enemy.loot) {
+            dispatch(updateCombatRewards(enemy.loot.exp, enemy.loot.gold, enemy.loot.items))
+        }
+    })
     dispatch({
         type: 'TOGGLE_COMBAT'
     })
@@ -31,12 +37,9 @@ export const resetCombatReducer = () => dispatch => {
     })
 }
 
-export const updateQuestRewards = (exp, gold, items, trigger) => dispatch => {
+export const updateCombatRewards = (exp, gold, items, trigger) => dispatch => {
     if (!exp) exp = 0;
     if (!gold) gold = 0;
-    console.log({ trigger })
-    // if (!items) items = [];
-    // if (!trigger) trigger = [];
     dispatch({
         type: 'UPDATE_COMBAT_REWARDS',
         exp, gold, items, trigger
