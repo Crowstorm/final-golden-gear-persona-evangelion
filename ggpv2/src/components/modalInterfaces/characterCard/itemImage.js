@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip'
 
 // const ItemImage = (props) => {
 //     handleOnClick = () => {
@@ -13,16 +14,50 @@ class ItemImage extends React.Component {
     handleOnClick = () => {
         let { equipped, type } = this.props;
         if (!equipped) {
-            if(type === 'inventory'){
+            if (type === 'inventory') {
                 this.props.equip(this.props.index, this.props.item)
-            } else if (type === 'consumables'){
+            } else if (type === 'consumables') {
                 console.log('iksde')
             }
         }
     }
-    render() {
+
+    renderImage = () => {
+        let { name } = this.props.item;
         return (
-            <img src={this.props.img} style={{ width: 64, height: 64 }} onClick={() => this.handleOnClick()} alt="Item" />
+            <img
+                data-tip data-for={name+this.props.i}
+                src={this.props.img}
+                style={{ width: 64, height: 64 }}
+                onClick={() => this.handleOnClick()}
+                alt="Item"
+            />
+        )
+    }
+
+    renderTooltip = () => {
+        // console.log(this.props.item)
+        let { name, bonus: { defence, agility, strength, luck, magic, magicResist } } = this.props.item;
+
+        return (
+            <ReactTooltip id={name+this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                <p>{name}</p>
+                {(defence) ? <p>Defence: {defence}</p> : null}
+                {(agility) ? <p>Agility: {agility}</p> : null}
+                {(strength) ? <p>Strength: {strength}</p> : null}
+                {(luck) ? <p>Luck: {luck}</p> : null}
+                {(magic) ? <p>Magic: {magic}</p> : null}
+                {(magicResist) ? <p>Magic Resistance: {magicResist}</p> : null}
+            </ReactTooltip>
+        )
+    }
+    render() {
+        console.log(this.props.item.name+this.props.i)
+        return (
+            <div style={{ width: 64, height: 64 }}>
+                {this.renderImage()}
+                {this.renderTooltip()}
+            </div>
         )
     }
 }

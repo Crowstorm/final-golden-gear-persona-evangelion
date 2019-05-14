@@ -13,34 +13,45 @@ export default class CharacterCard extends React.Component {
 
     getEq = () => {
         let char = this.props.characters[this.state.charIndex];
-        const {chest, legs, head} = char.armor;
+        let { chest, legs, head } = char.armor;
+        // console.log(chest, legs, head);
 
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>
-                    <ItemImage img={head.img} equipped={true} />
+                    <ItemImage img={head.img} equipped={true} item={head} />
+                </div>
+                <div className="d-flex flex-row">
+                    <ItemImage img={chest.img} equipped={true} item={chest} />
+                    {/* <ItemImage img={chest.img} equipped={true} item={chest} />
+                    <ItemImage img={chest.img} equipped={true} item={chest} /> */}
                 </div>
                 <div>
-                    <ItemImage img={chest.img} equipped={true} />
-                    <ItemImage img={chest.img} equipped={true} />
-                    <ItemImage img={chest.img} equipped={true} />
-                </div>
-                <div>
-                    <ItemImage img={legs.img} equipped={true} />
+                    <ItemImage img={legs.img} equipped={true} item={legs} />
                 </div>
             </div>
         )
     }
 
+    sortItems = (items) => {
+        let newItems = items.slice();
+        return newItems.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+        })
+    }
+
     getInventory = () => {
         let { items, consumables } = this.props.characters[0];
-
+        let newItems = this.sortItems(items)
         if (this.state.menu === 'items') {
-            return _.map(items, (item, i) => {
+            return _.map(newItems, (item, i) => {
                 return (
-                    <ItemImage key={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} type='inventory' />
+                    <ItemImage key={i} i={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} type='inventory' />
                 )
             })
+            // return <ItemImage key={"xD"} index={this.state.charIndex} img={items[0].img} equip={this.props.equip} item={items[0]} type='inventory' />
         }
 
         return _.map(consumables, (consum, i) => {
@@ -100,7 +111,7 @@ export default class CharacterCard extends React.Component {
                     <div className="characterCardButtonContainer d-flex justify-content-center">
                         {this.renderChangeButton()}
                     </div>
-                    <div className="inventoryContainer">
+                    <div className="inventoryContainer d-flex flex-wrap">
                         {this.getInventory()}
                     </div>
                 </div>
