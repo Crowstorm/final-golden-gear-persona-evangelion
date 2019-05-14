@@ -1,5 +1,5 @@
 .characterCard{
-    border: 1px solid teal;
+    background-image: url('https://media.indiumgames.com/medialibrary/2014/07/MakingMap1.png');
     position: absolute;
     background-color: white;
     margin-top: 150px;
@@ -15,27 +15,34 @@
 
 .portraitContainer{
     width: 256px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 .characterEquipped{
     /* border: 1px solid brown;
     box-sizing: border-box; */
-    /* width: 192px; */
-    width: 100%;
-
+    width: 192px;
+    background-image: url('../../../assets/interface/woodBackground.jpg');
+    /* width: 100%; */
+    margin-left: 32px;
+    border: 5px solid #828282;
+    outline: 3px solid silver;
+    box-sizing: content-box;
+    background-color: gray;
 }
 
 .inventoryContainer{
-    margin-left: 16px;
     width: 384px;
+    margin-left: 16px;
+    margin-top: 32px;
 }
 
 .woodenButton{
-    background-image: url('../../../assets//interface/woodenBackground.jpg');
+    background-image: url('../../../assets/interface/woodenBackground.jpg');
     background-size: contain;
     width: 128px;
     height: 32px;
+    margin-top: 32px;
     border: 1px solid brown;
     box-sizing: border-box;
     color: white;
