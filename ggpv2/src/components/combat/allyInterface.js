@@ -12,6 +12,29 @@ import { Bar } from './bar';
 
 class AllyInterface extends React.Component {
 
+    payAbilityPrice = (ability, i) => {
+        let char = this.props.ally[i];
+        if (ability.costType === 'mp') {
+            if (ability.costDataType === 'int') {
+                this.props.allyLoseMana(ability.cost, i)
+            } else {
+                let mana = char.stats.maxMp;
+                let price = mana * (ability.cost / 100);
+                this.props.allyLoseMana(price, i)
+            }
+
+        } else {
+            if (ability.costDataType === 'int') {
+                this.props.allyLoseHp(ability.cost, i)
+            } else {
+                let hp = char.stats.maxHp;
+                let price = hp * (ability.cost / 100);
+                this.props.allyLoseHp(price, i)
+            }
+        }
+    }
+
+
     useRestorationItem = (item, char, i) => {
         let currentHp = char.stats.hp;
         let currentMp = char.stats.mp;
@@ -36,6 +59,7 @@ class AllyInterface extends React.Component {
     }
 
     useRestorationAbility = (ability, char, i) => {
+        let attI = this.props.combat.attackerIndex;
         let currentHp = char.stats.hp;
         let currentMp = char.stats.mp;
         let maxHp = char.stats.maxHp;
@@ -56,12 +80,13 @@ class AllyInterface extends React.Component {
                 this.props.charRestore('mp', toRestore, i)
             }
         }
+
+        this.payAbilityPrice(ability, attI)
     }
 
     useBuffAbility = (ability, char, i) => {
-        console.log(ability, char);
+        let attI = this.props.combat.attackerIndex;
         let newBuffs;
-
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
             newBuffs = [
@@ -73,6 +98,8 @@ class AllyInterface extends React.Component {
             ]
             this.props.applyBuff(newBuffs, i);
         }
+
+        this.payAbilityPrice(ability, attI)
     }
 
     // does action depending on combat state (inventory check, buffs etc)
