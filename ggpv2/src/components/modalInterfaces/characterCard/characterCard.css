@@ -21,6 +21,7 @@
 .characterCardItemSlot{
     background-image: url("../../../assets/interface/equipment/blank/blank.png");
     background-size: cover;
+    image-rendering: pixelated;
 }
 
 

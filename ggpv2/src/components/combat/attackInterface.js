@@ -124,6 +124,7 @@ class AttackInterface extends React.Component {
                         highlightItem={this.highlightItem}
                         isHelpReady={this.props.isHelpReady}
                         index={i}
+                        icon={item.icon}
                         name={item.name}
                         info={item.description}
                         active={isActive}

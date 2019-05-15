@@ -20,7 +20,7 @@ export default class CharacterCard extends React.Component {
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>
-                    {(head)? <ItemImage img={head.img} equipped={true} item={head} /> : <img src={HelmetSlot} style={{width: 64, height: 64}}/>}
+                    {(head) ? <ItemImage img={head.img} equipped={true} item={head} /> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
                 </div>
                 <div className="d-flex flex-row">
                     <ItemImage img={chest.img} equipped={true} item={chest} />
@@ -70,28 +70,38 @@ export default class CharacterCard extends React.Component {
     getInventory = () => {
         let { items, consumables } = this.props.characters[0];
         let newItems = this.sortItems(items);
-        while(newItems.length < 18){
+        let newConsumables = this.sortItems(consumables);
+        while (newItems.length < 18) {
             newItems.push('blank')
+        }
+        while (newConsumables.length < 18) {
+            newConsumables.push('blank')
         }
         if (this.state.menu === 'items') {
             return _.map(newItems, (item, i) => {
-                if(item==='blank'){
-                    return(
-                        <ItemImage key={i} blank={true}/>
+                if (item === 'blank') {
+                    return (
+                        <ItemImage key={i} blank={true} />
                     )
                 } else {
                     return (
-                        <ItemImage key={i} i={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} type='inventory' />
+                        <ItemImage key={i} i={i} index={this.state.charIndex} img={item.icon} equip={this.props.equip} item={item} type='inventory' />
                     )
                 }
             })
-            
+
         }
 
-        return _.map(consumables, (consum, i) => {
-            return (
-                <ItemImage key={i} i={i} img={consum.img} type="consumables" item={consum} />
-            )
+        return _.map(newConsumables, (consum, i) => {
+            if (consum === 'blank') {
+                return (
+                    <ItemImage key={i} blank={true} />
+                )
+            } else {
+                return (
+                    <ItemImage key={i} i={i} img={consum.icon} type="consumables" item={consum} />
+                )
+            }
         })
     }
 

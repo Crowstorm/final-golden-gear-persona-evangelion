@@ -89,9 +89,9 @@ export const mainChar = {
             // armor.woodenShirt,
         ],
         consumables: [
-            items.healingPotion,
-            items.manaPotion,
-            items.healingPotion,
+            items.minorHealingPotion,
+            items.minorManaPotion,
+            items.minorHealingPotion,
         ],
         questItems: [
 
@@ -150,9 +150,9 @@ export const mainCharPre = {
         armor.woodenShirt,
     ],
     consumables: [
-        items.healingPotion,
-        items.manaPotion,
-        items.healingPotion,
+        items.minorHealingPotion,
+        items.minorManaPotion,
+        items.minorHealingPotion,
     ],
     questItems: [
 
