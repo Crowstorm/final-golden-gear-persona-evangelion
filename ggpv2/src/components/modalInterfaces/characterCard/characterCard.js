@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import HelmetSlot from "../../../assets/interface/equipment/blank/helmet_slot.png";
 
 import './characterCard.css';
 
@@ -19,7 +20,7 @@ export default class CharacterCard extends React.Component {
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>
-                    <ItemImage img={head.img} equipped={true} item={head} />
+                    {(head)? <ItemImage img={head.img} equipped={true} item={head} /> : <img src={HelmetSlot} style={{width: 64, height: 64}}/>}
                 </div>
                 <div className="d-flex flex-row">
                     <ItemImage img={chest.img} equipped={true} item={chest} />
@@ -68,14 +69,23 @@ export default class CharacterCard extends React.Component {
 
     getInventory = () => {
         let { items, consumables } = this.props.characters[0];
-        let newItems = this.sortItems(items)
+        let newItems = this.sortItems(items);
+        while(newItems.length < 18){
+            newItems.push('blank')
+        }
         if (this.state.menu === 'items') {
             return _.map(newItems, (item, i) => {
-                return (
-                    <ItemImage key={i} i={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} type='inventory' />
-                )
+                if(item==='blank'){
+                    return(
+                        <ItemImage key={i} blank={true}/>
+                    )
+                } else {
+                    return (
+                        <ItemImage key={i} i={i} index={this.state.charIndex} img={item.img} equip={this.props.equip} item={item} type='inventory' />
+                    )
+                }
             })
-            // return <ItemImage key={"xD"} index={this.state.charIndex} img={items[0].img} equip={this.props.equip} item={items[0]} type='inventory' />
+            
         }
 
         return _.map(consumables, (consum, i) => {

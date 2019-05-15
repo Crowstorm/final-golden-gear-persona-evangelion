@@ -56,7 +56,7 @@ export const mainChar = {
         },
         buffs: [],
         armor: {
-            head: armor.woodenHelmet,
+            // head: armor.woodenHelmet,
             chest: armor.woodenShirt,
             shield: armor.woodenShield,
             legs: armor.woodenLegs

@@ -18,6 +18,11 @@
     margin-bottom: 16px;
 }
 
+.characterCardItemSlot{
+    background-image: url("../../../assets/interface/equipment/blank/blank.png");
+    background-size: cover;
+}
+
 
 .characterCardStats{
     margin-top: 16px;
