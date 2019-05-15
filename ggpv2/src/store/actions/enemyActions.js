@@ -4,12 +4,19 @@ import { toggleCombatRewardsCard } from './modalActions';
 
 
 export const addEnemiesToCombat = (enemies) => (dispatch) => {
-    enemies.forEach(enemy => {
-        console.log({enemy})
-        dispatch({
-            type: 'ADD_ENEMY_TO_COMBAT',
-            enemy
-        })
+    enemies.forEach((enemy, i) => {
+        if (i >= 0 && i <= 3) {
+            dispatch({
+                type: 'ADD_ENEMY_TO_COMBAT',
+                enemy
+            })
+        } else {
+            dispatch({
+                type: 'ADD_ENEMY_TO_RESERVE',
+                enemy
+            })
+        }
+
     })
 }
 
@@ -47,12 +54,14 @@ export const enemyLoseHp = (hp, i) => {
         let remainingHp = dispatch(getEnemyHp(i));
         if (remainingHp <= 0) {
             dispatch(killEnemy(i));
-            if (getState().enemy.length === 0) {
+            if (getState().enemy.length === 0 && getState().combat.enemiesInReserve.length === 0) {
                 //Ekran z nagrodami i info
                 dispatch(toggleCombatRewardsCard())
                 //add rewards
                 dispatch(grantCombatRewards())
 
+            } else if (getState().combat.enemiesInReserve.length > 0 && getState().enemy.length === 0) {
+                dispatch(addEnemiesFromReserve())
             }
         }
     }
@@ -185,6 +194,26 @@ function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+const addEnemiesFromReserve = () => (dispatch, getState) => {
+    let enemies = getState().enemy;
+    let reserve = getState().combat.enemiesInReserve;
+    console.log('test', enemies, reserve)
+    if (enemies.length < 4 && reserve.length > 0) {
+        while (enemies.length < 4 && reserve.length > 0) {
+            reserve = getState().combat.enemiesInReserve;
+            reserve.forEach(enemy => {
+                dispatch({
+                    type: 'ADD_ENEMY_TO_COMBAT',
+                    enemy
+                })
+                dispatch({
+                    type: 'REMOVE_ENEMY_FROM_RESERVE'
+                })
+            })
+        }
+    }
+}
+
 
 export const enemyTurn = () => {
     return async function (dispatch, getState) {
@@ -234,6 +263,7 @@ export const enemyTurn = () => {
                 noOfEnemiesAttacked += 1;
 
                 if (noOfEnemiesAttacked === enemies.length) {
+                    dispatch(addEnemiesFromReserve());
                     dispatch(changeTurn('ally'))
                 }
             }

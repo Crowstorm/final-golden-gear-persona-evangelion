@@ -1,4 +1,5 @@
 import produce from "immer";
+import * as allies from '../allies/allies';
 import * as weapons from '../items/weapons';
 import * as armor from '../items/armor';
 import * as skills from '../skills/skills';
@@ -6,67 +7,68 @@ import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
 let initial_state = [
-    {
-        name: 'BigBoss',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
-        stats: {
-            level: 1,
-            exp: 0,
-            maxHp: 25,
-            hp: 25,
-            maxMp: 15,
-            mp: 15,
-            strength: 7,
-            defence: 5,
-            magic: 5,
-            magicResist: 5,
-            agility: 5,
-            luck: 5,
-            speed: 5,
-        },
-        buffs: [],
-        armor: {
-            head: armor.woodenHelmet,
-            chest: armor.woodenShirt,
-            shield: armor.woodenShield,
-            legs: armor.woodenLegs
-        },
-        weapon: weapons.woodenSword
-        ,
-        skills: [
-            skills.strongBlow,
-            skills.allIn,
-            skills.decimate,
-            skills.whirlwind
-        ],
-        magic: [
-            spells.fireball,
-            spells.inferno,
-            spells.soulDrain,
-            spells.heal,
-            spells.buff
-        ],
-        gold: 0,
-        items: [
-            armor.woodenShirt,
-            armor.steelLegs,
-            armor.woodenShirt,
-            armor.woodenShirt,
-            armor.woodenShirt,
-            armor.steelArmor,
-            armor.woodenShirt,
-            armor.steelHelmet,
-            armor.woodenShirt,
-        ],
-        consumables: [
-            items.healingPotion,
-            items.manaPotion,
-            items.healingPotion,
-        ],
-        questItems: [
+    allies.mainCharPre,
+    // {
+    //     name: 'BigBoss',
+    //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    //     stats: {
+    //         level: 1,
+    //         exp: 0,
+    //         maxHp: 25,
+    //         hp: 25,
+    //         maxMp: 15,
+    //         mp: 15,
+    //         strength: 7,
+    //         defence: 5,
+    //         magic: 5,
+    //         magicResist: 5,
+    //         agility: 5,
+    //         luck: 5,
+    //         speed: 5,
+    //     },
+    //     buffs: [],
+    //     armor: {
+    //         head: armor.woodenHelmet,
+    //         chest: armor.woodenShirt,
+    //         shield: armor.woodenShield,
+    //         legs: armor.woodenLegs
+    //     },
+    //     weapon: weapons.woodenSword
+    //     ,
+    //     skills: [
+    //         skills.strongBlow,
+    //         skills.allIn,
+    //         skills.decimate,
+    //         skills.whirlwind
+    //     ],
+    //     magic: [
+    //         spells.fireball,
+    //         spells.inferno,
+    //         spells.soulDrain,
+    //         spells.heal,
+    //         spells.buff
+    //     ],
+    //     gold: 0,
+    //     items: [
+    //         armor.woodenShirt,
+    //         armor.steelLegs,
+    //         armor.woodenShirt,
+    //         armor.woodenShirt,
+    //         armor.woodenShirt,
+    //         armor.steelArmor,
+    //         armor.woodenShirt,
+    //         armor.steelHelmet,
+    //         armor.woodenShirt,
+    //     ],
+    //     consumables: [
+    //         items.healingPotion,
+    //         items.manaPotion,
+    //         items.healingPotion,
+    //     ],
+    //     questItems: [
 
-        ]
-    },
+    //     ]
+    // },
     // {
     //     name: 'Ocelot',
     //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_ocelot.png",

@@ -117,6 +117,9 @@ class Route1 extends React.Component {
         const foes = [
             enemies.beholder,
             enemies.beholder,
+            enemies.beholder,
+            enemies.beholder,
+            enemies.beholder,
             enemies.beholder
         ]
         const condition1 = {

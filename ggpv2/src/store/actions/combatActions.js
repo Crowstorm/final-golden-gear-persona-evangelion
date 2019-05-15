@@ -71,6 +71,7 @@ export const isHelpReady = (isReady) => {
     }
 };
 
+
 export const nextAllyTurn = () => {
     return async function (dispatch, getState) {
         let currentIndex = await dispatch(getAliveCharacter());
@@ -90,6 +91,8 @@ export const nextAllyTurn = () => {
                 type: 'INCREMENT_ATTACKER_INDEX'
             })
         }
+
+
     }
 }
 

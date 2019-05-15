@@ -17,6 +17,7 @@ const combatDefaultState = {
         name: null
     },
     info: [],
+    enemiesInReserve: [],
     reward: {
         exp: 0,
         gold: 0,
@@ -35,6 +36,12 @@ const combatReducer = (state = combatDefaultState, action) => {
                 return combatDefaultState;
             case 'INCREMENT_COMBAT_TURN':
                 draft.combatTurn++;
+                break;
+            case 'ADD_ENEMY_TO_RESERVE':
+                draft.enemiesInReserve.push(action.enemy);
+                break;
+            case 'REMOVE_ENEMY_FROM_RESERVE':
+                draft.enemiesInReserve.shift();
                 break;
             case 'IS_ATTACK_READY':
                 draft.attackReady = action.isReady
