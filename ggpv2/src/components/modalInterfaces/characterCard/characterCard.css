@@ -18,6 +18,52 @@
     margin-bottom: 16px;
 }
 
+
+.characterCardStats{
+    margin-top: 16px;
+    color: white;
+    font-size: 16px;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
+}
+
+.charactedCardSingleStat{
+    margin-left: 32px;
+}
+
+/* .charactedCardSingleStat :last-of-type{
+    margin-right: 24px;
+} */
+
+.characterCardStats img{
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}
+
 .characterEquipped{
     /* border: 1px solid brown;
     box-sizing: border-box; */

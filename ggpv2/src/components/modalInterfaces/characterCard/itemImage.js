@@ -1,15 +1,6 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip'
 
-// const ItemImage = (props) => {
-//     handleOnClick = () => {
-//         props.equip(props.index, props.item)
-//     }
-//     return (
-//         <img src={props.img} style={{ width: 64, height: 64 }} onClick={() => this.handleOnClick()} />
-//     )
-// }
-
 class ItemImage extends React.Component {
     handleOnClick = () => {
         let { equipped, type } = this.props;
@@ -36,7 +27,6 @@ class ItemImage extends React.Component {
     }
 
     renderTooltip = () => {
-        console.log(this.props)
         const { type } = this.props;
         if (type === "inventory" || this.props.equipped) {
             const { name, bonus: { defence, agility, strength, luck, magic, magicResist } } = this.props.item;
@@ -63,7 +53,6 @@ class ItemImage extends React.Component {
 
     }
     render() {
-        console.log(this.props.item.name + this.props.i)
         return (
             <div style={{ width: 64, height: 64 }}>
                 {this.renderImage()}

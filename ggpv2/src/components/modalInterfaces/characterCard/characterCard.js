@@ -33,6 +33,30 @@ export default class CharacterCard extends React.Component {
         )
     }
 
+    getStatistics = () => {
+        const char = this.props.characters[this.state.charIndex];
+        const { hp, maxHp, mp, maxMp } = char.stats;
+        const gold = this.props.characters[0].gold;
+        return (
+            <div className="characterCardStats d-flex flex-row">
+                <div>
+                    <div className=" charactedCardSingleStat d-flex flex-row">
+                        <img src="https://img1.androidappsapk.co/300/f/2/a/com.heartbattery.kc.png" />
+                        <p>{hp}/{maxHp}</p>
+                    </div>
+                    <div className="charactedCardSingleStat d-flex flex-row">
+                        <img src="https://cdn2.iconfinder.com/data/icons/retro-game-items-revamp-border/100/game_potion_mana_magic_flask_energy_elixir-512.png" />
+                        <p>{mp}/{maxMp}</p>
+                    </div>
+                </div>
+                <div className=" charactedCardSingleStat d-flex flex-row">
+                    <img src="https://cdn2.iconfinder.com/data/icons/retro-game-items-revamp/100/coin_money_shop_spend_gold-512.png" />
+                    <p>{gold}</p>
+                </div>
+            </div>
+        )
+    }
+
     sortItems = (items) => {
         let newItems = items.slice();
         return newItems.sort((a, b) => {
@@ -105,6 +129,7 @@ export default class CharacterCard extends React.Component {
                         {this.getPortraits()}
                     </div>
                     {this.getEq()}
+                    {this.getStatistics()}
                 </div>
 
                 <div className="characterCardRightContainer d-flex flex-column">
