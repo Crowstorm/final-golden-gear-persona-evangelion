@@ -135,9 +135,9 @@ class Route1 extends React.Component {
             type: 'turn',
             turn: 2
         }
-        // this.props.addCombatTriggers({ effect: this.tutorial1, condition: condition1 })
-        // this.props.addCombatTriggers({ effect: this.tutorial2, condition: condition2 })
-        // this.props.addCombatTriggers({ effect: this.tutorial3, condition: condition3 })
+        this.props.addCombatTriggers({ effect: this.tutorial1, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.tutorial2, condition: condition2 })
+        this.props.addCombatTriggers({ effect: this.tutorial3, condition: condition3 })
         
         this.props.toggleDialogueState()
         this.props.updateCombatRewards(10, 10, null, { effect: this.updateTroubleAtTheCrossroads });

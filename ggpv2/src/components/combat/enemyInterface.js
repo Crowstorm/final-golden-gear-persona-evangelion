@@ -139,7 +139,6 @@ class EnemyInterface extends React.Component {
                 resolve(0);
             }
         })
-
     }
 
     calculateTotalDmg = async (allyDmg, enemyDef, wasCritical, i, isSpell = false) => {

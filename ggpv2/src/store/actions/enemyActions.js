@@ -136,19 +136,37 @@ const wasAttackCritical = (i) => {
     }
 }
 
+const getWeaponDmg = (i, enemy) =>{
+    return new Promise(resolve => {
+        // const enemy = getState().enemy[i];
+        console.log({enemy})
+        if (enemy.weapon) {
+            let minDmg = enemy.weapon.attack[0];
+            let maxDmg = enemy.weapon.attack[1];
+            let dmg = Math.floor(Math.random() * (maxDmg - minDmg + 1)) + minDmg;
+            console.log({dmg})
+            resolve(dmg)
+        } else {
+            resolve(0);
+        }
+    })
+}
+
 const calculateEnemyDmg = (i) => {
-    return function (dispatch, getState) {
+    return async function (dispatch, getState) {
         let enemy = getState().enemy[i];
         let attack = 0;
         //sprawdz czy atakujacy ma bron z bonusami do strength
-
+        const weaponDmg = await getWeaponDmg(i, enemy);
+        console.log({weaponDmg})
+        attack += weaponDmg
         //pobierz strength postaci
         if (enemy && enemy.stats && enemy.stats.strength) {
             attack += enemy.stats.strength;
         } else {
             console.error('Couldnt get enemy attack');
         }
-
+        console.log({attack})
         return attack;
     }
 }
@@ -197,7 +215,6 @@ function timeout(ms) {
 const addEnemiesFromReserve = () => (dispatch, getState) => {
     let enemies = getState().enemy;
     let reserve = getState().combat.enemiesInReserve;
-    console.log('test', enemies, reserve)
     if (enemies.length < 4 && reserve.length > 0) {
         while (enemies.length < 4 && reserve.length > 0) {
 
@@ -214,18 +231,6 @@ const addEnemiesFromReserve = () => (dispatch, getState) => {
 
             reserve = getState().combat.enemiesInReserve;
             enemies = getState().enemy;
-            // reserve[0]
-            // reserve.forEach(enemy => {
-            //     dispatch({
-            //         type: 'ADD_ENEMY_TO_COMBAT',
-            //         enemy
-            //     })
-            //     const info = `${enemy.name} joins the fight!`
-            //     dispatch(addInfoToArray(info));
-            //     dispatch({
-            //         type: 'REMOVE_ENEMY_FROM_RESERVE'
-            //     })
-            // })
         }
     }
 }
@@ -259,7 +264,8 @@ export const enemyTurn = () => {
 
                 if (wasAttackSuccessful) {
                     let wasCritical = dispatch(wasAttackCritical(i));
-                    let enemyDmg = dispatch(calculateEnemyDmg(i));
+                    let enemyDmg = await dispatch(calculateEnemyDmg(i));
+                    console.log({enemyDmg})
                     let allyDef = dispatch(getAllyDefence(allyIndex));
                     let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 

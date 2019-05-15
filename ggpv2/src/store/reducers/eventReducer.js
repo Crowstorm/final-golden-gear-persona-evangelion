@@ -5,15 +5,15 @@ import * as quests from '../quests/quests';
 const eventDefaultState = {
     questLog: [
 
-        // {
-        //     name: "Trouble at the Crossroads",
-        //     description: "I heard cries for help. Can't ignore a lady in distress",
-        //     reward: null,
+        {
+            name: "Trouble at the Crossroads",
+            description: "I heard cries for help. Can't ignore a lady in distress",
+            reward: null,
 
-        //     enemiesDefeated: true,
-        //     innVisited: false,
-        //     drugged: true
-        // }
+            enemiesDefeated: true,
+            innVisited: false,
+            drugged: true
+        }
 
     ],
     currentQuest: null,

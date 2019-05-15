@@ -105,13 +105,17 @@ class WestsideInn extends React.Component {
 
     banditsDefeated = () =>{
         this.props.updateQuestProgress('Trouble at the Crossroads', 'finished', true)
+        this.props.setCurrentQuest('newAllies');
     }
 
     startBanditsCombat = () => {
         const foes = [
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.banditLeader,
         ]
         const condition1 = {
             type: 'turn',
