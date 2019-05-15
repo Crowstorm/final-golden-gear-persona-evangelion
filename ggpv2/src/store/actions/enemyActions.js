@@ -200,16 +200,32 @@ const addEnemiesFromReserve = () => (dispatch, getState) => {
     console.log('test', enemies, reserve)
     if (enemies.length < 4 && reserve.length > 0) {
         while (enemies.length < 4 && reserve.length > 0) {
-            reserve = getState().combat.enemiesInReserve;
-            reserve.forEach(enemy => {
-                dispatch({
-                    type: 'ADD_ENEMY_TO_COMBAT',
-                    enemy
-                })
-                dispatch({
-                    type: 'REMOVE_ENEMY_FROM_RESERVE'
-                })
+
+            const enemy = reserve[0];
+            dispatch({
+                type: 'ADD_ENEMY_TO_COMBAT',
+                enemy
             })
+            const info = `${enemy.name} joins the fight!`
+            dispatch(addInfoToArray(info));
+            dispatch({
+                type: 'REMOVE_ENEMY_FROM_RESERVE'
+            })
+
+            reserve = getState().combat.enemiesInReserve;
+            enemies = getState().enemy;
+            // reserve[0]
+            // reserve.forEach(enemy => {
+            //     dispatch({
+            //         type: 'ADD_ENEMY_TO_COMBAT',
+            //         enemy
+            //     })
+            //     const info = `${enemy.name} joins the fight!`
+            //     dispatch(addInfoToArray(info));
+            //     dispatch({
+            //         type: 'REMOVE_ENEMY_FROM_RESERVE'
+            //     })
+            // })
         }
     }
 }
