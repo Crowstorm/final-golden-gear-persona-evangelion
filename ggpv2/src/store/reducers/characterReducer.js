@@ -9,6 +9,7 @@ import * as items from '../items/items';
 let initial_state = [
     // allies.mainCharPre,
     allies.mainChar,
+    allies.setsuna
     // {
     //     name: 'BigBoss',
     //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",

@@ -190,7 +190,7 @@ class AllyInterface extends React.Component {
                         />
                     </div>
 
-                    <div>
+                    <div className="characterCombatUiContainer">
                         <div className="characterNameContainer d-flex justify-content-center">
                             {char.name}
                         </div>

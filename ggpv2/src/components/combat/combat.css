@@ -12,6 +12,16 @@
     margin-top: 32px;
 }
 
+.characterCombatUiContainer{
+    position: relative;
+}
+.buffIconContainer{
+    position: absolute;
+    top: 170px;
+    left: 8px;
+}
+
+
 .characterPortrait{
     width: 96px;
     height: 96px;
