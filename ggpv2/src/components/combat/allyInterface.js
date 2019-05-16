@@ -37,51 +37,12 @@ class AllyInterface extends React.Component {
 
 
     useRestorationItem = (item, char, i) => {
-        let currentHp = char.stats.hp;
-        let currentMp = char.stats.mp;
-        let maxHp = char.stats.maxHp;
-        let maxMp = char.stats.maxMp;
-
-        if (item.type === 'hp') {
-            if (currentHp + item.amount < maxHp) {
-                this.props.charRestore('hp', item.amount, i);
-            } else {
-                let toRestore = maxHp - currentHp;
-                this.props.charRestore('hp', toRestore, i)
-            }
-        } else if (item.type === 'mp') {
-            if (currentMp + item.amount < maxMp) {
-                this.props.charRestore('mp', item.amount, i)
-            } else {
-                let toRestore = maxMp - currentMp;
-                this.props.charRestore('mp', toRestore, i)
-            }
-        }
+        this.props.charRestore(item.type, item.amount, i)
     }
 
     useRestorationAbility = (ability, char, i) => {
         let attI = this.props.combat.attackerIndex;
-        let currentHp = char.stats.hp;
-        let currentMp = char.stats.mp;
-        let maxHp = char.stats.maxHp;
-        let maxMp = char.stats.maxMp;
-
-        if (ability.restore === 'hp') {
-            if (currentHp + ability.dmg < maxHp) {
-                this.props.charRestore('hp', ability.dmg, i);
-            } else {
-                let toRestore = maxHp - currentHp;
-                this.props.charRestore('hp', toRestore, i)
-            }
-        } else if (ability.restore === 'mp') {
-            if (currentMp + ability.dmg < maxMp) {
-                this.props.charRestore('mp', ability.dmg, i);
-            } else {
-                let toRestore = maxMp - currentMp;
-                this.props.charRestore('mp', toRestore, i)
-            }
-        }
-
+        this.props.charRestore(ability.restore, ability.dmg, i);
         this.payAbilityPrice(ability, attI)
     }
 
@@ -90,25 +51,15 @@ class AllyInterface extends React.Component {
         let newBuffs = [];
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
-            // newBuffs = [
-            //     {
-            //         amount: 5,
-            //         duration: 2,
-            //         stat: "defence"
-            //     }
-            // ]
-            if (ability.boost && ability.boost[0] && ability.boost[0] === 'all') {
+            ability.boost.forEach(boost => {
+                const newBuff = {
+                    amount: ability.boostAmount,
+                    duration: ability.boostDuration,
+                    stat: boost
+                }
+                newBuffs.push(newBuff);
+            })
 
-            } else {
-                ability.boost.forEach(boost => {
-                    const newBuff = {
-                        amount: ability.boostAmount,
-                        duration: ability.boostDuration,
-                        stat: boost
-                    }
-                    newBuffs.push(newBuff);
-                })
-            }
             this.props.applyBuff(newBuffs, i);
         }
 

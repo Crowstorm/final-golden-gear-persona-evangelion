@@ -26,10 +26,10 @@ class WestsideInn extends React.Component {
             { text: "No need to thank me, my lady. It is an honor to serve the citizens of the realm.", char: dialogueCharacters.shujin },
             { text: "Still, I need to repay you for your bravery.", char: dialogueCharacters.damselInDistress },
             { text: "I rent a room upstairs and we could...", char: dialogueCharacters.damselInDistress },
-            { text: "I respectfully decline, my lady.", char: dialogueCharacters.shujin},
+            { text: "I respectfully decline, my lady.", char: dialogueCharacters.shujin },
             { text: "Then at least allow me to offer you a drink.", char: dialogueCharacters.damselInDistress },
             { text: "Very well!", char: dialogueCharacters.shujin },
-            { text: "",effect: this.mysteriousDrink },
+            { text: "", effect: this.mysteriousDrink },
         ]
 
         this.banditsAttack = [
@@ -77,7 +77,7 @@ class WestsideInn extends React.Component {
         }
     }
 
-    weak = () =>{
+    weak = () => {
         const dialogue = [
             { text: "I feel... Different.", char: dialogueCharacters.shujin },
             { text: "And the sword seems to be heavier...", char: dialogueCharacters.shujin },
@@ -86,8 +86,11 @@ class WestsideInn extends React.Component {
         this.props.toggleDialogueState();
     }
 
-    setsunaJoinTheParty = () =>{
+    setsunaJoinTheParty = () => {
         this.props.addNewAlly(allies.setsuna)
+    }
+    healMainCharacter = () => {
+        this.props.charRestore('hp', 100, 0);
     }
     deathIsNear = () => {
         const dialogue = [
@@ -96,14 +99,14 @@ class WestsideInn extends React.Component {
             { text: "Piss off, lass, this doesn't concern you!", char: dialogueCharacters.banditLeader },
             { text: "Listen to them... Run!", char: dialogueCharacters.shujin },
             { text: "I won't leave someone in an uneven fight. Allow me to help. My name is Setsuna and I will offer you the power of the Blessings.", char: dialogueCharacters.setsuna },
-            { text: "MAY THE GODS BLUH BLUH BLUH, HEALING!!!!!!!!!", char: dialogueCharacters.setsuna },
+            { text: "MAY THE GODS BLUH BLUH BLUH, HEALING!!!!!!!!!", char: dialogueCharacters.setsuna, effect: this.healMainCharacter },
             { text: "Thank you! Now, let's finish this!", char: dialogueCharacters.shujin, effect: this.setsunaJoinTheParty },
         ]
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();
     }
 
-    banditsDefeated = () =>{
+    banditsDefeated = () => {
         this.props.updateQuestProgress('Trouble at the Crossroads', 'finished', true)
         this.props.setCurrentQuest('newAllies');
     }
@@ -134,7 +137,7 @@ class WestsideInn extends React.Component {
         this.props.toggleCombat();
     }
 
-  
+
 
     componentWillUnmount = () => {
         document.removeEventListener("keydown", this.handleKeyDown);

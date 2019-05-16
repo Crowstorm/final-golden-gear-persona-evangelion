@@ -4,7 +4,7 @@ import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface/overworldInterface';
 
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
-import { addNewAlly } from '../store/actions/characterActions';
+import { addNewAlly, charRestore } from '../store/actions/characterActions';
 import { toggleDialogueState, addDialogue, toggleCharacterCard, toggleShop } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
@@ -45,6 +45,7 @@ function mapDispatchToProps(dispatch) {
         addEnemiesToCombat: (enemies) => { dispatch(addEnemiesToCombat(enemies)) },
         updateCombatRewards: (exp, gold, items, trigger) => { dispatch(updateCombatRewards(exp, gold, items, trigger)) },
         addCombatTriggers: (combatTriggers) => dispatch(addCombatTriggers(combatTriggers)),
+        charRestore: (type, amount, i) => dispatch(charRestore(type, amount, i)),
         //modals
         toggleDialogueState: () => { dispatch(toggleDialogueState()) },
         addDialogue: (dialogue) => { dispatch(addDialogue(dialogue)) },

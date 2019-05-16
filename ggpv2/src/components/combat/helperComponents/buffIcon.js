@@ -18,6 +18,10 @@ export default class AbilityNode extends React.Component {
                 return <img src={DefIcon} className="buffIconCombat" />
             case 'agility':
                 return <img src={AgiIcon} className="buffIconCombat" />
+            case 'magic':
+                return <img src={MagIcon} className="buffIconCombat" />
+            case 'strength':
+                return <img src={StrIcon} className="buffIconCombat" />
             default:
                 return;
         }

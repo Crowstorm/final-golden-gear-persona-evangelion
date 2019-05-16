@@ -65,8 +65,25 @@ export const boostStat = (stat, val, i) => {
 }
 
 export const charRestore = (statType, amount, i) => {
-    console.log(statType, amount, i)
-    return function (dispatch) {
+    return function (dispatch, getState) {
+        const char = getState().characters[i];
+        const currentHp = char.stats.hp;
+        const currentMp = char.stats.mp;
+        const maxHp = char.stats.maxHp;
+        const maxMp = char.stats.maxMp;
+
+        if (statType === 'hp') {
+            if (currentHp + amount < maxHp) {
+            } else {
+                amount = maxHp - currentHp;
+            }
+        } else if (statType === 'mp') {
+            if (currentMp + amount < maxMp) {
+            } else {
+                amount = maxMp - currentMp;
+            }
+        }
+
         dispatch({
             type: 'ALLY_RESTORE',
             statType,
@@ -293,7 +310,7 @@ export const changeBuffsCounter = () => (dispatch, getState) => {
     })
 }
 
-export const addNewAlly = (newAlly) => dispatch =>{
+export const addNewAlly = (newAlly) => dispatch => {
     dispatch({
         type: 'ADD_NEW_ALLY',
         newAlly
