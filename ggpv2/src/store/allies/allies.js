@@ -74,7 +74,7 @@ export const mainChar = {
             // spells.inferno,
             // spells.soulDrain,
             // spells.heal,
-            // spells.buff
+            spells.buff
         ],
         gold: 0,
         items: [

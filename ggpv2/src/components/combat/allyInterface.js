@@ -8,6 +8,7 @@ import * as items from '../../store/items/items';
 
 import './combat.css';
 import { Bar } from './bar';
+import BuffIcon from './helperComponents/buffIcon';
 
 
 class AllyInterface extends React.Component {
@@ -86,16 +87,28 @@ class AllyInterface extends React.Component {
 
     useBuffAbility = (ability, char, i) => {
         let attI = this.props.combat.attackerIndex;
-        let newBuffs;
+        let newBuffs = [];
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
-            newBuffs = [
-                {
-                    amount: 5,
-                    duration: 2,
-                    stat: "defence"
-                }
-            ]
+            // newBuffs = [
+            //     {
+            //         amount: 5,
+            //         duration: 2,
+            //         stat: "defence"
+            //     }
+            // ]
+            if (ability.boost && ability.boost[0] && ability.boost[0] === 'all') {
+
+            } else {
+                ability.boost.forEach(boost => {
+                    const newBuff = {
+                        amount: ability.boostAmount,
+                        duration: ability.boostDuration,
+                        stat: boost
+                    }
+                    newBuffs.push(newBuff);
+                })
+            }
             this.props.applyBuff(newBuffs, i);
         }
 
@@ -153,17 +166,18 @@ class AllyInterface extends React.Component {
         }
     }
 
+    renderBuffIcons = (i) => {
+        const buffs = this.props.ally[i].buffs;
+        if (buffs && buffs.length > 0) {
+            return buffs.map((buff, i) => {
+                return <BuffIcon key={i} buff={buff} />
+            })
+        }
+    }
 
     getCharacters = () => {
         const { ally } = this.props;
         return ally.map((char, i) => {
-            let buffed = false;
-
-            if (char.buffs && char.buffs.length > 0) {
-                buffed = true
-            }
-
-            const buff = (buffed) ? <div>Zbuffowany</div> : null;
             return (
                 <div key={char.name} className="d-flex flex-row" onClick={() => this.handleAllyClicked(i)}>
                     <div>
@@ -181,7 +195,9 @@ class AllyInterface extends React.Component {
                             {char.name}
                         </div>
                         <img className="characterPortrait" alt="ally" src={char.portrait} />
-                        {buff}
+                        <div className="buffIconContainer d-flex flex-row">
+                            {this.renderBuffIcons(i)}
+                        </div>
                     </div>
 
                     <Bar

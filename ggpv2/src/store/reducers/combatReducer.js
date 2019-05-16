@@ -1,7 +1,7 @@
 import produce from "immer";
 
 const combatDefaultState = {
-    isCombat: false,
+    isCombat: true,
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     combatTurn: 0,
