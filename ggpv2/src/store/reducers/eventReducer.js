@@ -9,16 +9,29 @@ const eventDefaultState = {
             name: "Trouble at the Crossroads",
             description: "I heard cries for help. Can't ignore a lady in distress",
             reward: null,
-
+            finished: true,
             enemiesDefeated: true,
             innVisited: false,
             drugged: true
+        },
+        {
+            name: "New Allies",
+            description: "Something bad has happened to me, I can't save the princess on my own anymore. I need to find people willing to help",
+            reward: null,
+            log: [],
+            started: true,
+            searchStart: true,
+            gameCut: true,
+            finished: false
         }
 
     ],
     currentQuest: null,
     journal: [],
-    combatTriggers: []
+    combatTriggers: [],
+    chestsFound: [
+        { Route2_1: false }
+    ]
 }
 
 export default (state = eventDefaultState, action) => {

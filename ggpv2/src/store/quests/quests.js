@@ -21,5 +21,7 @@ export const newAllies = {
     reward: null,
     log: [],
     started: true,
-    finished: false
+    finished: false,
+    searchStart: false,
+    gameCut: false,
 }

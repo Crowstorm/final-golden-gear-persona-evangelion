@@ -106,9 +106,21 @@ class WestsideInn extends React.Component {
         this.props.toggleDialogueState();
     }
 
+    leaveTheInn = () => {
+        this.props.changeLevel('CapitalCrossroads');
+    }
     banditsDefeated = () => {
         this.props.updateQuestProgress('Trouble at the Crossroads', 'finished', true)
         this.props.setCurrentQuest('newAllies');
+        const dialogue = [
+            { text: "I would've died here without your help, thank you.", char: dialogueCharacters.shujin },
+            { text: "It's destiny you should be thanking. If it wasn't for it's design we wouldn't be talking right now.", char: dialogueCharacters.setsuna },
+            { text: "Just few hours ago it would never happen. At my full power I wouldn't even break a sweat at dispatching these worms, but now... Something's wrong with me.", char: dialogueCharacters.shujin },
+            { text: "We can talk about it elsewhere, let's leave before more bandits gather around here.", char: dialogueCharacters.setsuna },
+            { text: "", effect: this.leaveTheInn },
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
     }
 
     startBanditsCombat = () => {
