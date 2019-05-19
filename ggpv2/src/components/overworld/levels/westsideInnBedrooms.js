@@ -5,7 +5,7 @@ import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueC
 
 import './css/levels.css';
 
-import { BLOCKED_WestsideInn } from '../grids/blockedLevelGrids';
+import { BLOCKED_WestsideInnBedrooms } from '../grids/blockedLevelGrids';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
@@ -39,8 +39,8 @@ class WestsideInnBedrooms extends React.Component {
             document.addEventListener("keydown", this.handleKeyDown);
         }
 
-        if (x === 12 && y === 13) {
-            this.props.setCharacterPosition(10, 10);
+        if (x === 21 && y === 17) {
+            this.props.setCharacterPosition(21, 16);
             this.props.changeLevel('WestsideInn');
         }
     }
@@ -51,14 +51,14 @@ class WestsideInnBedrooms extends React.Component {
 
     handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
-        characterMovement(this.props, e, BLOCKED_WestsideInn);
+        characterMovement(this.props, e, BLOCKED_WestsideInnBedrooms);
     }, this.props.level.movementSpeed)
 
 
 
     render() {
         return (
-            <div className="level westsideInn">
+            <div className="level westsideInnBedrooms">
                 {characterPosition(this.props)}
             </div>
         )

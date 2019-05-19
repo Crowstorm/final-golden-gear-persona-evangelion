@@ -41,15 +41,15 @@ class WestsideInn extends React.Component {
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
-        let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
-        let isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
+        const isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
+        const isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
 
         if (!isMainCharDrugged) {
             document.getElementById('d11_11').innerHTML = `<img src=${damsel} class="npcSprite" style="transform: translateY(-20px)"/>`
         }
 
 
-        let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props);
+        const areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props);
         if (this.props.modal.dialogue !== this.damselSaved && areEnemiesDefeated && !isMainCharDrugged) {
             this.props.addDialogue(this.damselSaved);
             this.props.toggleDialogueState();
@@ -58,6 +58,18 @@ class WestsideInn extends React.Component {
         if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
             this.props.addDialogue(this.banditsAttack);
             this.props.toggleDialogueState();
+        }
+        //spawn enemies after drugging
+        if (isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
+            document.getElementById('d11_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d11_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d12_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d13_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d14_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d15_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            document.getElementById('d15_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
+            //setsuna
+            // document.getElementById('d13_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
         }
     }
 
@@ -74,6 +86,10 @@ class WestsideInn extends React.Component {
         let isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
         if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
             this.startBanditsCombat();
+        }
+        if (x === 21 && y === 17) {
+            this.props.setCharacterPosition(21, 16);
+            this.props.changeLevel('WestsideInnBedrooms');
         }
     }
 
@@ -110,6 +126,7 @@ class WestsideInn extends React.Component {
         this.props.changeLevel('CapitalCrossroads');
     }
     banditsDefeated = () => {
+        this.props.setCharacterPosition(13, 8);
         this.props.updateQuestProgress('Trouble at the Crossroads', 'finished', true)
         this.props.setCurrentQuest('newAllies');
         const dialogue = [
@@ -163,7 +180,7 @@ class WestsideInn extends React.Component {
     mysteriousDrink = () => {
         this.props.updateQuestProgress('Trouble at the Crossroads', 'drugged', true)
         this.props.toggleDialogueState()
-        this.props.setCharacterPosition(12, 12);
+        this.props.setCharacterPosition(6, 16);
         this.props.changeLevel('WestsideInnBedrooms');
     }
 

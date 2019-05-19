@@ -152,7 +152,7 @@ class Route1 extends React.Component {
 
     goToInn = () => {
         this.props.toggleDialogueState()
-        this.props.setCharacterPosition(10, 10);
+        this.props.setCharacterPosition(11, 9);
         this.props.changeLevel('WestsideInn');
     }
 

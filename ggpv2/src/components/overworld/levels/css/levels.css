@@ -35,6 +35,9 @@
 .westsideInn{
     background-image: url("../../../../assets/levelBackgrounds/betrayalInn.png");
 }
+.westsideInnBedrooms{
+    background-image: url("../../../../assets/levelBackgrounds/westsideInnBedroom.png");
+}
 
 .route1{
     background-image: url("../../../../assets/levelBackgrounds/route1.png");
