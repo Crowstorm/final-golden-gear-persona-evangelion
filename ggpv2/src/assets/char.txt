@@ -13,3 +13,5 @@
 military 1_2\\
 
 npc2_1 damsel
+
+//bandyci military 2_1

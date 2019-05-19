@@ -7,7 +7,7 @@ import './css/levels.css';
 import '../level.css'
 import DialogeContainer from '../../../containers/modals/dialogueContainer';
 
-import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
+import { BLOCKED_Route1 } from '../grids/blockedLevelGrids';
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
@@ -39,7 +39,7 @@ class Route1 extends React.Component {
 
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
-        let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
+        const areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
 
         if (this.props.modal.dialogue !== this.damselSaved && areEnemiesDefeated) {
             this.props.addDialogue(this.damselSaved);
@@ -47,7 +47,12 @@ class Route1 extends React.Component {
         }
 
         //Usunac ja jak skonczy sie quest
-        document.getElementById('d2_16').innerHTML = `<img src=${damsel} class="npcSprite" />`
+        document.getElementById('d2_4').innerHTML = `<img src=${damsel} class="npcSprite" />`
+        if(!areEnemiesDefeated){
+            document.getElementById('d3_3').innerHTML = `<img src=${enemies.bandit.left} class="npcSprite" />`
+            document.getElementById('d3_4').innerHTML = `<img src=${enemies.bandit.left} class="npcSprite" />`
+            document.getElementById('d3_5').innerHTML = `<img src=${enemies.bandit.left} class="npcSprite" />`
+        }
     }
 
     componentDidUpdate() {
@@ -59,7 +64,7 @@ class Route1 extends React.Component {
             document.addEventListener("keydown", this.handleKeyDown);
         }
 
-        if ((y >= 13 && y <= 18) && x === 4) {
+        if ((y >= 2 && y <= 7) && x === 4) {
             let areEnemiesDefeated = checkQuestProgress('Trouble at the Crossroads', 'enemiesDefeated', this.props)
             if (this.props.modal.dialogue !== this.damselInDistress && !areEnemiesDefeated) {
                 this.props.addDialogue(this.damselInDistress);
@@ -80,7 +85,7 @@ class Route1 extends React.Component {
 
     handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
-        characterMovement(this.props, e, BLOCKED_CapitalCrossroads);
+        characterMovement(this.props, e, BLOCKED_Route1);
     }, this.props.level.movementSpeed)
 
     tutorial1 = () => {
@@ -153,7 +158,7 @@ class Route1 extends React.Component {
 
     render() {
         return (
-            <div className="level capitalCrossroads">
+            <div className="level route1">
                 {characterPosition(this.props)}
             </div>
         )

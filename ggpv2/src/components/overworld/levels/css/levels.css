@@ -36,6 +36,9 @@
     background-image: url("../../../../assets/levelBackgrounds/betrayalInn.png");
 }
 
+.route1{
+    background-image: url("../../../../assets/levelBackgrounds/route1.png");
+}
 .route2{
     background-image: url("../../../../assets/levelBackgrounds/route2.png");
 }

@@ -117,6 +117,14 @@ export const checkQuestProgress = (questName, questProgress, props) => {
     return false
 }
 
+export const rollForRandomCombat = () => {
+    const roll = Math.floor((Math.random() * 100) + 1);
+    if (roll > 0 && roll < 4) {
+        return true;
+    }
+    return false;
+}
+
 // export const checkIfQuestCompleted = (name) => (dispatch, getState) => {
 
 // }
