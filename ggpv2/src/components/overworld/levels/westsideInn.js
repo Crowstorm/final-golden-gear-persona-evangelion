@@ -61,13 +61,11 @@ class WestsideInn extends React.Component {
         }
         //spawn enemies after drugging
         if (isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
-            document.getElementById('d11_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             document.getElementById('d11_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             document.getElementById('d12_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             document.getElementById('d13_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             document.getElementById('d14_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             document.getElementById('d15_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
-            document.getElementById('d15_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
             //setsuna
             // document.getElementById('d13_7').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
         }
@@ -124,6 +122,7 @@ class WestsideInn extends React.Component {
 
     leaveTheInn = () => {
         this.props.changeLevel('CapitalCrossroads');
+        this.props.toggleDialogueState();
     }
     banditsDefeated = () => {
         this.props.setCharacterPosition(13, 8);

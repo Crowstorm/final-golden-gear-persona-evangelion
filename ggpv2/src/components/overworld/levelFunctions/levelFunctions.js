@@ -68,7 +68,7 @@ export const characterMovement = (props, e, BLOCKED) => {
 export const characterPosition = (props) => {
     const renderPosition = (cell) => {
         if (props.position.x === cell.x && props.position.y === cell.y) {
-            return <img id="mainCharacter" alt="character" src={props.position.model} style={{ height: 40, transform: 'translateY(-10px)' }} />;
+            return <img id="mainCharacter" alt="character" src={props.position.model} style={{ height: 48, transform: 'translateY(-16px)' }} />;
         }
     }
 

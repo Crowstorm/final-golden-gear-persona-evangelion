@@ -3,6 +3,13 @@ import _ from 'lodash';
 import { changeTurn } from './combatActions';
 import * as items from '../items/items';
 
+export const replaceMainCharacter = () => (dispatch) =>{
+    console.log('teststststs')
+    dispatch({
+        type: 'REPLACE_MAIN_CHARACTER'
+    })
+}
+
 export const checkIfCharactersAlive = () => {
     return function (dispatch, getState) {
         const chars = getState().characters;

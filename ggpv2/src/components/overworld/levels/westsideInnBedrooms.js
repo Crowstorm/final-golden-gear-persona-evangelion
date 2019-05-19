@@ -25,6 +25,7 @@ class WestsideInnBedrooms extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
         if (this.props.modal.dialogue !== this.drugged) {
+            this.props.replaceMainCharacter();
             this.props.addDialogue(this.drugged);
             this.props.toggleDialogueState();
         }
