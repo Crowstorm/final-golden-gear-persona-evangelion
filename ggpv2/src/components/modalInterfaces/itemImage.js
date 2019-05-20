@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
-import Blank from "../../../assets/interface/equipment/blank/blank.png";
+import Blank from "../../assets/interface/equipment/blank/blank.png";
 
 
 class ItemImage extends React.Component {
@@ -18,11 +18,11 @@ class ItemImage extends React.Component {
 
     renderImage = () => {
         if (this.props.item) {
-            let { name } = this.props.item;
+            const { item, item: { name } } = this.props;
             return (
                 <img
                     data-tip data-for={name + this.props.i}
-                    src={this.props.img}
+                    src={item.icon}
                     style={{ width: 64, height: 64 }}
                     onClick={() => this.handleOnClick()}
                     alt="Item"

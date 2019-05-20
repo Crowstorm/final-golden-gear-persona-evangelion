@@ -4,7 +4,7 @@ import HelmetSlot from "../../../assets/interface/equipment/blank/helmet_slot.pn
 
 import './characterCard.css';
 
-import ItemImage from './itemImage';
+import ItemImage from '../itemImage';
 
 export default class CharacterCard extends React.Component {
     state = {
@@ -20,15 +20,15 @@ export default class CharacterCard extends React.Component {
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>
-                    {(head) ? <ItemImage img={head.img} equipped={true} item={head} /> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
+                    {(head) ? <ItemImage equipped={true} item={head} i={0}/> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
                 </div>
                 <div className="d-flex flex-row">
-                    <ItemImage img={chest.img} equipped={true} item={chest} />
-                    <ItemImage img={chest.img} equipped={true} item={chest} />
-                    <ItemImage img={chest.img} equipped={true} item={chest} />
+                    <ItemImage equipped={true} item={chest} i={0}/>
+                    <ItemImage equipped={true} item={chest} i={0}/>
+                    <ItemImage equipped={true} item={chest} i={0}/>
                 </div>
                 <div>
-                    <ItemImage img={legs.img} equipped={true} item={legs} />
+                    <ItemImage equipped={true} item={legs} i={0}/>
                 </div>
             </div>
         )
@@ -85,7 +85,7 @@ export default class CharacterCard extends React.Component {
                     )
                 } else {
                     return (
-                        <ItemImage key={i} i={i} index={this.state.charIndex} img={item.icon} equip={this.props.equip} item={item} type='inventory' />
+                        <ItemImage key={i} i={i} index={this.state.charIndex} equip={this.props.equip} item={item} type='inventory' />
                     )
                 }
             })
@@ -99,7 +99,7 @@ export default class CharacterCard extends React.Component {
                 )
             } else {
                 return (
-                    <ItemImage key={i} i={i} img={consum.icon} type="consumables" item={consum} />
+                    <ItemImage key={i} i={i} type="consumables" item={consum} />
                 )
             }
         })
