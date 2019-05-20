@@ -240,9 +240,9 @@ export const enemyTurn = () => {
         let enemies = getState().enemy;
         if (enemies) {
             //sort by speed stat
-            enemies = enemies.slice().sort((a, b) => {
-                return b.stats.speed - a.stats.speed
-            })
+            // enemies = enemies.slice().sort((a, b) => {
+            //     return b.stats.speed - a.stats.speed
+            // })
             let noOfEnemiesAttacked = 0;
 
             let offset = 1000;
@@ -276,8 +276,8 @@ export const enemyTurn = () => {
 
                     //Prevent main character dying and switch to ally turn if there is trigger for main char
                     const isMainCharWaitingForTrigger = dispatch(checkForMainCharTriggers());
-                    if (isMainCharWaitingForTrigger) {
-                        const mainCharCurrentHp = getState().characters[0].stats.hp;
+                    const mainCharCurrentHp = getState().characters[0].stats.hp;
+                    if (isMainCharWaitingForTrigger && totalDmg >= mainCharCurrentHp) {
                         totalDmg = mainCharCurrentHp - 1;
                         dispatch(allyLoseHp(totalDmg, allyIndex))
                         dispatch(changeTurn('ally'));
@@ -298,12 +298,9 @@ export const enemyTurn = () => {
                     dispatch(changeTurn('ally'))
                 }
             }
-
         } else {
             console.error('Couldnt get enemies')
         }
-
-
     }
 }
 
