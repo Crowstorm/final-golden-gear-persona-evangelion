@@ -2,12 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
+import { capitalCrossroadsShop } from '../../../store/shops/shops';
 
 import './css/levels.css';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
-
-import { ocelot } from '../../../store/allies/allies';
-
 
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
@@ -62,7 +60,7 @@ class CapitalCrossroads extends React.Component {
     findNewAlliesUpdate = () => {
         this.props.updateQuestProgress('New Allies', 'searchStart', true)
     }
-    endOfExcuses = () =>{
+    endOfExcuses = () => {
         this.props.updateQuestProgress('New Allies', 'gameCut', true)
     }
 
@@ -74,6 +72,8 @@ class CapitalCrossroads extends React.Component {
             this.props.addDialogue(this.newAllies);
             this.props.toggleDialogueState();
         }
+        this.props.loadShopInventory(capitalCrossroadsShop);
+        this.props.toggleShop();
     }
 
     componentDidUpdate(prevProps) {
@@ -95,6 +95,12 @@ class CapitalCrossroads extends React.Component {
         const isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
         const isSearchStarted = checkQuestProgress('New Allies', 'searchStart', this.props);
         const isGameCut = checkQuestProgress('New Allies', 'gameCut', this.props);
+
+        //setup shop
+        if (isGameCut) {
+            //place shopkeeper
+            // this.props.toggleShop();
+        }
 
         if ((y >= 13 && y <= 18) && x === 1 && !isNewAlliesQuestTaken) {
             this.props.setCharacterPosition(23, y);
@@ -128,7 +134,6 @@ class CapitalCrossroads extends React.Component {
 
         //Excuses for shortening the game
         if (((x >= 10 && x <= 16) && y === 1)) {
-      
             if (isSearchStarted) {
                 if (this.props.modal.dialogue !== this.excuses) {
                     this.props.addDialogue(this.excuses);
@@ -138,7 +143,7 @@ class CapitalCrossroads extends React.Component {
         }
 
         //route2
-        if(((y >= 13 && y <= 18) && x === 25 && isGameCut)){
+        if (((y >= 13 && y <= 18) && x === 25 && isGameCut)) {
             this.props.setCharacterPosition(1, y);
             this.props.changeLevel('Route2');
         }

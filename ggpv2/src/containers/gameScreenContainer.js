@@ -9,7 +9,7 @@ import OverworldContainer from './overworldContainer';
 import DialogueContainer from '../containers/modals/dialogueContainer';
 import CombatRewardsContainer from './modals/combatRewardsContainer';
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
-import ShopModal from '../components/modalInterfaces/shop/shop';
+import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip } from '../store/actions/characterActions';
 
@@ -69,16 +69,15 @@ class GameScreenContainer extends React.Component {
         let dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
+        let shopModal = (this.props.modal.shopVisibility) ? <ShopModalContainer /> : null;
         return (
             <div style={{ cursor: cursor }}>
                 {content}
                 {/* modals */}
-                {/* <CharacterCard {...this.props} /> */}
                 {dialogue}
                 {characterCard}
                 {combatRewardsCard}
-                {/* <ShopModal {...this.props} /> */}
-
+                {shopModal}
             </div>
         )
     }

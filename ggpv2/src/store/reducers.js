@@ -7,6 +7,7 @@ import enemyReducer from './reducers/enemyReducer';
 import combatReducer from './reducers/combatReducer';
 import playerReducer from './reducers/playerReducer';
 import eventReducer from './reducers/eventReducer';
+import shopReducer from './reducers/shopReducer';
 
 export default combineReducers({
     player: playerReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     level: levelReducer,
     enemy: enemyReducer,
     combat: combatReducer,
-    event: eventReducer
+    event: eventReducer,
+    shop: shopReducer
 })

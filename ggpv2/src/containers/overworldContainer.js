@@ -10,6 +10,7 @@ import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
 import { toggleCombat, updateCombatRewards } from '../store/actions/combatActions';
 import { addEnemiesToCombat } from '../store/actions/enemyActions';
+import { loadShopInventory } from '../store/actions/shopActions';
 
 
 class OverworldContainer extends React.Component {
@@ -29,7 +30,8 @@ function mapStateToProps(store) {
         modal: store.modal,
         level: store.level,
         characters: store.characters,
-        event: store.event
+        event: store.event,
+        shop: store.shop
     }
 }
 
@@ -58,6 +60,7 @@ function mapDispatchToProps(dispatch) {
         addNewAlly: (ally) => { dispatch(addNewAlly(ally)) },
         addItemOrAbility: (section, toAdd, i) => { dispatch(addItemOrAbility(section, toAdd, i)) },
         chestCleared: (name) => { dispatch(chestCleared(name)) },
+        loadShopInventory: (name) => { dispatch(loadShopInventory(name)) },
         //quests
         setCurrentQuest: (name) => { dispatch(setCurrentQuest(name)) },
         updateQuestProgress: (name, progress, value) => { dispatch(updateQuestProgress(name, progress, value)) },
