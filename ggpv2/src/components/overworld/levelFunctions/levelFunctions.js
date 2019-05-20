@@ -125,6 +125,9 @@ export const rollForRandomCombat = () => {
     return false;
 }
 
-// export const checkIfQuestCompleted = (name) => (dispatch, getState) => {
-
-// }
+export const isChestCleared = (name, props) => {
+    const chests = props.event.chestsCleared;
+    const i = chests.indexOf(name);
+    if (i > -1) return true;
+    return false;
+}

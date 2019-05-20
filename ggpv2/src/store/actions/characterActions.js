@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { changeTurn } from './combatActions';
 import * as items from '../items/items';
 
-export const replaceMainCharacter = () => (dispatch) =>{
+export const replaceMainCharacter = () => (dispatch) => {
     console.log('teststststs')
     dispatch({
         type: 'REPLACE_MAIN_CHARACTER'
@@ -138,6 +138,8 @@ export const addItemOrAbility = (section, toAdd, i = 0) => dispatch => {
     //items - armors, weapons, etc
     //consumables - potions, scrolls
     //questItems - quest items
+    //skills
+    //magic
 
     dispatch({
         type: 'ADD_ITEM_OR_ABILITY',
@@ -324,3 +326,9 @@ export const addNewAlly = (newAlly) => dispatch => {
     })
 }
 
+export const chestCleared = (name) => (dispatch) => {
+    dispatch({
+        type: 'CHEST_CLEARED',
+        name
+    })
+}

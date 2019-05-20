@@ -29,9 +29,8 @@ const eventDefaultState = {
     currentQuest: null,
     journal: [],
     combatTriggers: [],
-    chestsFound: [
-        { Route2_1: false }
-    ]
+    //{name of the level, uppercase}_{numberOfChest}
+    chestsCleared: []
 }
 
 export default (state = eventDefaultState, action) => {
@@ -55,6 +54,9 @@ export default (state = eventDefaultState, action) => {
                 break;
             case 'CLEAR_COMBAT_TRIGGERS':
                 draft.combatTriggers = [];
+                break;
+            case 'CHEST_CLEARED':
+                draft.chestsCleared.push(action.name);
                 break;
             default:
                 return draft;

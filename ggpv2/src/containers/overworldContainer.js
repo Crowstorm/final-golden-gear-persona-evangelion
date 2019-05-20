@@ -4,7 +4,7 @@ import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface/overworldInterface';
 
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
-import { addNewAlly, charRestore, replaceMainCharacter } from '../store/actions/characterActions';
+import { addNewAlly, charRestore, replaceMainCharacter, addItemOrAbility, chestCleared } from '../store/actions/characterActions';
 import { toggleDialogueState, addDialogue, toggleCharacterCard, toggleShop } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
@@ -52,10 +52,12 @@ function mapDispatchToProps(dispatch) {
         toggleCharacterCard: () => { dispatch(toggleCharacterCard()) },
         toggleShop: () => { dispatch(toggleShop()) },
         //level mechanics
-        replaceMainCharacter: () => {dispatch(replaceMainCharacter())},
+        replaceMainCharacter: () => { dispatch(replaceMainCharacter()) },
         changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
         toggleCombat: () => { dispatch(toggleCombat()) },
         addNewAlly: (ally) => { dispatch(addNewAlly(ally)) },
+        addItemOrAbility: (section, toAdd, i) => { dispatch(addItemOrAbility(section, toAdd, i)) },
+        chestCleared: (name) => { dispatch(chestCleared(name)) },
         //quests
         setCurrentQuest: (name) => { dispatch(setCurrentQuest(name)) },
         updateQuestProgress: (name, progress, value) => { dispatch(updateQuestProgress(name, progress, value)) },
