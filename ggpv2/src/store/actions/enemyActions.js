@@ -1,5 +1,5 @@
 import { changeTurn, addInfoToArray, isHelpReady } from './combatActions';
-import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards } from './characterActions';
+import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards, checkForMainCharTriggers } from './characterActions';
 import { toggleCombatRewardsCard } from './modalActions';
 
 
@@ -136,15 +136,15 @@ const wasAttackCritical = (i) => {
     }
 }
 
-const getWeaponDmg = (i, enemy) =>{
+const getWeaponDmg = (i, enemy) => {
     return new Promise(resolve => {
         // const enemy = getState().enemy[i];
-        console.log({enemy})
+        console.log({ enemy })
         if (enemy.weapon) {
             let minDmg = enemy.weapon.attack[0];
             let maxDmg = enemy.weapon.attack[1];
             let dmg = Math.floor(Math.random() * (maxDmg - minDmg + 1)) + minDmg;
-            console.log({dmg})
+            console.log({ dmg })
             resolve(dmg)
         } else {
             resolve(0);
@@ -158,7 +158,7 @@ const calculateEnemyDmg = (i) => {
         let attack = 0;
         //sprawdz czy atakujacy ma bron z bonusami do strength
         const weaponDmg = await getWeaponDmg(i, enemy);
-        console.log({weaponDmg})
+        console.log({ weaponDmg })
         attack += weaponDmg
         //pobierz strength postaci
         if (enemy && enemy.stats && enemy.stats.strength) {
@@ -166,7 +166,7 @@ const calculateEnemyDmg = (i) => {
         } else {
             console.error('Couldnt get enemy attack');
         }
-        console.log({attack})
+        console.log({ attack })
         return attack;
     }
 }
@@ -235,7 +235,6 @@ const addEnemiesFromReserve = () => (dispatch, getState) => {
     }
 }
 
-
 export const enemyTurn = () => {
     return async function (dispatch, getState) {
         let enemies = getState().enemy;
@@ -265,7 +264,7 @@ export const enemyTurn = () => {
                 if (wasAttackSuccessful) {
                     let wasCritical = dispatch(wasAttackCritical(i));
                     let enemyDmg = await dispatch(calculateEnemyDmg(i));
-                    console.log({enemyDmg})
+                    console.log({ enemyDmg })
                     let allyDef = dispatch(getAllyDefence(allyIndex));
                     let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 
@@ -275,7 +274,17 @@ export const enemyTurn = () => {
                     info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
                     dispatch(addInfoToArray(info))
 
-                    dispatch(allyLoseHp(totalDmg, allyIndex))
+                    //Prevent main character dying and switch to ally turn if there is trigger for main char
+                    const isMainCharWaitingForTrigger = dispatch(checkForMainCharTriggers());
+                    if (isMainCharWaitingForTrigger) {
+                        const mainCharCurrentHp = getState().characters[0].stats.hp;
+                        totalDmg = mainCharCurrentHp - 1;
+                        dispatch(allyLoseHp(totalDmg, allyIndex))
+                        dispatch(changeTurn('ally'));
+                        return;
+                    } else {
+                        dispatch(allyLoseHp(totalDmg, allyIndex))
+                    }
 
                 } else {
                     let info = `${enemy.name} missed!`

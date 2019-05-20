@@ -12,7 +12,7 @@ const eventDefaultState = {
             finished: false,
             enemiesDefeated: true,
             innVisited: false,
-            drugged: false
+            drugged: true
         },
         // {
         //     name: "New Allies",

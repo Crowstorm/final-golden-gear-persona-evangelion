@@ -29,16 +29,43 @@ export const checkIfCharactersAlive = () => {
     }
 }
 
+export const checkForMainCharTriggers = () => (dispatch, getState) => {
+    const triggers = getState().event.combatTriggers;
+    let isTrigger = false;
+    triggers.forEach(trigger => {
+        if (trigger.condition && trigger.condition.name && trigger.condition.name === "BigBoss" && trigger.condition.type === 'hp') {
+            isTrigger = true;
+        }
+    })
+    return isTrigger;
+}
+
 export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
     const currentHp = getState().characters[i].stats.hp;
     if (dmg > currentHp) {
         dmg = currentHp
     }
+    //Prevent death when there is trigger to be fired
+    // if (i === 0 && combatTriggers && combatTriggers.length > 0 && dmg === currentHp) {
+    //     const isMainCharWaitingForTrigger = checkForMainCharTriggers(combatTriggers);
+    //     console.log({ isMainCharWaitingForTrigger });
+    //     if (isMainCharWaitingForTrigger) {
+    //         dmg = currentHp - 1;
+    //         dispatch({
+    //             type: 'ALLY_LOSE_HP',
+    //             dmg,
+    //             i
+    //         })
+    //         dispatch(changeTurn('ally'));
+    //         // return;
+    //     }
+    // } else {
     dispatch({
         type: 'ALLY_LOSE_HP',
         dmg,
         i
     })
+    // }
     let areAlive = dispatch(checkIfCharactersAlive());
     if (!areAlive) {
         dispatch({

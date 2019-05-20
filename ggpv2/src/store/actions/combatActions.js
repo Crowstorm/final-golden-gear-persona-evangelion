@@ -147,9 +147,7 @@ export const changeTurn = (whoseTurn) => {
         if (whoseTurn === 'ally') {
             let i = 0;
             dispatch(incrementCombatTurn());
-            //zdjecie counteru z buffa
             dispatch(changeBuffsCounter());
-            //zdjecie buffow jesli sie skonczyly
             while (getState().characters[i].stats.hp < 1 && i < 3) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
@@ -157,10 +155,6 @@ export const changeTurn = (whoseTurn) => {
                 i++;
                 //albo przerwac kombat
                 if (i === 4) {
-                    // dispatch({
-                    //     type: 'CHANGE_TURN',
-                    //     whoseTurn: 'enemy'
-                    // })
                     dispatch(toggleCombat())
                 }
             }
