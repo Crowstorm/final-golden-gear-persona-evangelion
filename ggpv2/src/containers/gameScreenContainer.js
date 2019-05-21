@@ -12,6 +12,7 @@ import CharacterCard from '../components/modalInterfaces/characterCard/character
 import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip } from '../store/actions/characterActions';
+import { buyItemFromShop } from '../store/actions/shopActions';
 
 //cursors
 // import swordIcon from '../assets/sprites/cursor/sword.ani';
@@ -69,7 +70,7 @@ class GameScreenContainer extends React.Component {
         let dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
-        let shopModal = (this.props.modal.shopVisibility) ? <ShopModalContainer /> : null;
+        let shopModal = (this.props.modal.shopVisibility) ? <ShopModalContainer {...this.props} /> : null;
         return (
             <div style={{ cursor: cursor }}>
                 {content}
@@ -96,6 +97,9 @@ function mapDispatchToProps(dispatch) {
     return {
         equip: (i, item) => {
             dispatch(equip(i, item))
+        },
+        buyItemFromShop: (item) => {
+            dispatch(buyItemFromShop(item))
         }
     }
 }

@@ -1,9 +1,18 @@
 .shopModal{
-    border: 1px solid teal;
+    background-image: url('https://media.indiumgames.com/medialibrary/2014/07/MakingMap1.png');
     position: absolute;
     background-color: white;
-    margin-top: 450px;
+    margin-top: 150px;
     margin-left: 160px;
-    width: 600px;
-    height: 200px;
+    width: 704px;
+    height: 400px;
+}
+
+.shopLeftContainer{
+    width: 192px;
+}
+
+.shopRightContainer{
+    width: 512px;
+    margin: 16px;
 }

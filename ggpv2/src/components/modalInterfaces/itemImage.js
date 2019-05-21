@@ -6,12 +6,15 @@ import Blank from "../../assets/interface/equipment/blank/blank.png";
 
 class ItemImage extends React.Component {
     handleOnClick = () => {
-        let { equipped, type } = this.props;
+        let { equipped, type, shop, item, buy } = this.props;
         if (!equipped) {
             if (type === 'inventory') {
                 this.props.equip(this.props.index, this.props.item)
             } else if (type === 'consumables') {
                 console.log('iksde')
+            }
+            if (shop) {
+                this.props.buy(item)
             }
         }
     }
@@ -53,6 +56,16 @@ class ItemImage extends React.Component {
                     <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
                         <p>{name}</p>
                         <p>{description}</p>
+                    </ReactTooltip>
+                )
+            }
+            if (this.props.shop) {
+                const { name, description, price } = this.props.item;
+                return (
+                    <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                        <p>{name}</p>
+                        <p>{description}</p>
+                        <p>{price} gold</p>
                     </ReactTooltip>
                 )
             }

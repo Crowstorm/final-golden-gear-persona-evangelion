@@ -12,6 +12,9 @@ export default (state = initial_state, action) => {
                 draft.shopInventory = action.shopInventory;
                 break;
             }
+            case 'REMOVE_ITEM_FROM_SHOP_INVENTORY':
+                draft.shopInventory.inventory.splice(action.i, 1);
+                break;
             default: {
                 return draft;
             }

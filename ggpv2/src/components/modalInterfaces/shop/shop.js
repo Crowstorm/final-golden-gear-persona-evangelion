@@ -7,13 +7,33 @@ class ShopModal extends React.Component {
         content: 'Buy'
     }
 
+    sortItems = (items) => {
+        let newItems = items.slice();
+        return newItems.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+        })
+    }
+
     shopContent = () => {
         const inventory = this.props.shop.shopInventory.inventory;
-        if (inventory) {
-            return inventory.map((item, i) => {
-                return (
-                    <ItemImage key={i} shop={true} item={item}/>
-                )
+        let newInventory = this.sortItems(inventory);
+        while (newInventory.length < 28) {
+            newInventory.push('blank');
+        }
+        if (newInventory) {
+            return newInventory.map((item, i) => {
+                if (item === 'blank') {
+                    return (
+                        <ItemImage key={i} blank={true} />
+                    )
+                } else {
+                    return (
+                        <ItemImage key={i} shop={true} item={item} buy={this.props.buyItemFromShop}/>
+                    )
+                }
+
             })
         } else {
             return <div>Failed to load shop inventory.</div>
@@ -38,14 +58,16 @@ class ShopModal extends React.Component {
     render() {
         console.log(this.props)
         return (
-            <div className="shopModal d-flex flex-column align-items-center">
+            <div className="shopModal d-flex flex-row">
+                <div className="shopLeftContainer d-flex flex-column">
 
+                </div>
 
                 <div className="shopRightContainer d-flex flex-column">
                     <div className="characterCardButtonContainer d-flex justify-content-center">
                         {this.renderShopModeChangeButton()}
                     </div>
-                    <div className="shopInventoryContainer d-flex flex-wrap">
+                    <div className="shopInventoryContainer d-flex flex-wrap justify-content-center">
                         {this.shopContent()}
                     </div>
                 </div>

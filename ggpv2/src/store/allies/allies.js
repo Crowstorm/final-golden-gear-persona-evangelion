@@ -76,7 +76,7 @@ export const mainChar = {
             // spells.heal,
             spells.buff
         ],
-        gold: 0,
+        gold: 200,
         items: [
             // armor.woodenShirt,
             // armor.steelLegs,
