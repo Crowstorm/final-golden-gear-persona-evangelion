@@ -17,12 +17,12 @@ class ShopModal extends React.Component {
     }
 
     shopContent = () => {
-        const inventory = this.props.shop.shopInventory.inventory;
-        let newInventory = this.sortItems(inventory);
-        while (newInventory.length < 28) {
-            newInventory.push('blank');
-        }
-        if (newInventory) {
+        if (this.state.content === 'Buy') {
+            const inventory = this.props.shop.shopInventory.inventory;
+            let newInventory = this.sortItems(inventory);
+            while (newInventory.length < 28) {
+                newInventory.push('blank');
+            }
             return newInventory.map((item, i) => {
                 if (item === 'blank') {
                     return (
@@ -30,14 +30,24 @@ class ShopModal extends React.Component {
                     )
                 } else {
                     return (
-                        <ItemImage key={i} shop={true} item={item} buy={this.props.buyItemFromShop}/>
+                        <ItemImage key={i} shop={true} item={item} buy={this.props.buyItemFromShop} />
                     )
                 }
 
             })
-        } else {
-            return <div>Failed to load shop inventory.</div>
+        } else if (this.state.content === 'Sell') {
+            console.log("sell");
         }
+    }
+
+    renderCurrentGold = () => {
+        const gold = this.props.characters[0].gold;
+        return (
+            <div className=" shopSingleStat d-flex flex-row align-content-center">
+                <img src="https://cdn2.iconfinder.com/data/icons/retro-game-items-revamp/100/coin_money_shop_spend_gold-512.png" style={{height: "32px"}}/>
+                <p>{gold}</p>
+            </div>
+        )
     }
 
     handleShopModeChangeButtonClick = (mode) => {
@@ -59,9 +69,9 @@ class ShopModal extends React.Component {
         console.log(this.props)
         return (
             <div className="shopModal d-flex flex-row">
-                <div className="shopLeftContainer d-flex flex-column">
-
-                </div>
+                {/* <div className="shopLeftContainer d-flex flex-column">
+                    <img src="https://wolna-polska.pl/wp-content/uploads/2013/07/a5.gif" />
+                </div> */}
 
                 <div className="shopRightContainer d-flex flex-column">
                     <div className="characterCardButtonContainer d-flex justify-content-center">
@@ -70,6 +80,7 @@ class ShopModal extends React.Component {
                     <div className="shopInventoryContainer d-flex flex-wrap justify-content-center">
                         {this.shopContent()}
                     </div>
+                    {this.renderCurrentGold()}
                 </div>
             </div>
         )

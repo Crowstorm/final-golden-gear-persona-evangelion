@@ -5,5 +5,6 @@ export const woodenSword = {
     bonus:{
         agility: 3
     },
-    price: 40
+    price: 40,
+    itemType: 'items'
 }

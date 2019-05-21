@@ -14,6 +14,7 @@ class ItemImage extends React.Component {
                 console.log('iksde')
             }
             if (shop) {
+                console.log({item})
                 this.props.buy(item)
             }
         }
