@@ -11,8 +11,9 @@ import CombatRewardsContainer from './modals/combatRewardsContainer';
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
 import ShopModalContainer from '../containers/modals/shopModalContainer';
 
-import { equip } from '../store/actions/characterActions';
+import { equip, charRestore, removeItemOrAbility } from '../store/actions/characterActions';
 import { buyItemFromShop, sellItemToShop } from '../store/actions/shopActions';
+import { saveGame } from '../store/actions/playerActions';
 
 //cursors
 // import swordIcon from '../assets/sprites/cursor/sword.ani';
@@ -103,7 +104,16 @@ function mapDispatchToProps(dispatch) {
         },
         sellItemToShop: (item) => {
             dispatch(sellItemToShop(item))
-        }
+        },
+        charRestore: (type, amount, i) => {
+            dispatch(charRestore(type, amount, i))
+        },
+        removeItemOrAbility: (section, item, i) => {
+            dispatch(removeItemOrAbility(section, item, i))
+        },
+        saveGame: () => {
+            dispatch(saveGame())
+        },
     }
 }
 

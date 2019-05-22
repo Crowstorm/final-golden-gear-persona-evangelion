@@ -6,16 +6,16 @@ import Blank from "../../assets/interface/equipment/blank/blank.png";
 
 class ItemImage extends React.Component {
     handleOnClick = () => {
-        let { equipped, type, shop, item, buy } = this.props;
+        let { equipped, type, shop, item, buySell, charRestore, charIndex, removeItemFromInventory } = this.props;
         if (!equipped) {
             if (type === 'inventory') {
                 this.props.equip(this.props.index, this.props.item)
             } else if (type === 'consumables') {
-                console.log('iksde')
+                charRestore(item.type, item.amount, charIndex);
+                removeItemFromInventory(type, item);
             }
             if (shop) {
-                console.log({item})
-                this.props.buy(item)
+                buySell(item)
             }
         }
     }

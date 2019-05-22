@@ -68,6 +68,7 @@ export default class CharacterCard extends React.Component {
     }
 
     getInventory = () => {
+        const charIndex =this.state.charIndex;
         let { items, consumables } = this.props.characters[0];
         let newItems = this.sortItems(items);
         let newConsumables = this.sortItems(consumables);
@@ -98,8 +99,9 @@ export default class CharacterCard extends React.Component {
                     <ItemImage key={i} blank={true} />
                 )
             } else {
+                console.log(this.props)
                 return (
-                    <ItemImage key={i} i={i} type="consumables" item={consum} />
+                    <ItemImage key={i} i={i} type="consumables" item={consum} charRestore={this.props.charRestore} charIndex={charIndex} removeItemFromInventory={this.props.removeItemOrAbility}/>
                 )
             }
         })

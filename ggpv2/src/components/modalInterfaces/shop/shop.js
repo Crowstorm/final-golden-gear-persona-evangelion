@@ -30,7 +30,7 @@ class ShopModal extends React.Component {
                     )
                 } else {
                     return (
-                        <ItemImage key={i} i={i} shop={true} item={item} buy={this.props.buyItemFromShop} />
+                        <ItemImage key={i} i={i} shop={true} item={item} buySell={this.props.buyItemFromShop} />
                     )
                 }
 
@@ -56,7 +56,7 @@ class ShopModal extends React.Component {
                     )
                 } else {
                     return (
-                        <ItemImage key={i} i={i} shop={true} item={item} buy={this.props.sellItemToShop} />
+                        <ItemImage key={i} i={i} shop={true} item={item} buySell={this.props.sellItemToShop} />
                     )
                 }
 
