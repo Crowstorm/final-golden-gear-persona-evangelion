@@ -78,8 +78,8 @@ export const mainChar = {
         ],
         gold: 200,
         items: [
-            // armor.woodenShirt,
-            // armor.steelLegs,
+            armor.woodenShirt,
+            armor.steelLegs,
             // armor.woodenShirt,
             // armor.woodenShirt,
             // armor.woodenShirt,

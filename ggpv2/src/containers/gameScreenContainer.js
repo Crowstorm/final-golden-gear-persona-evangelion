@@ -12,7 +12,7 @@ import CharacterCard from '../components/modalInterfaces/characterCard/character
 import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip } from '../store/actions/characterActions';
-import { buyItemFromShop } from '../store/actions/shopActions';
+import { buyItemFromShop, sellItemToShop } from '../store/actions/shopActions';
 
 //cursors
 // import swordIcon from '../assets/sprites/cursor/sword.ani';
@@ -100,6 +100,9 @@ function mapDispatchToProps(dispatch) {
         },
         buyItemFromShop: (item) => {
             dispatch(buyItemFromShop(item))
+        },
+        sellItemToShop: (item) => {
+            dispatch(sellItemToShop(item))
         }
     }
 }

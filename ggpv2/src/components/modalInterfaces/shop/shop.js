@@ -26,17 +26,41 @@ class ShopModal extends React.Component {
             return newInventory.map((item, i) => {
                 if (item === 'blank') {
                     return (
-                        <ItemImage key={i} blank={true} />
+                        <ItemImage key={i} i={i} blank={true} />
                     )
                 } else {
                     return (
-                        <ItemImage key={i} shop={true} item={item} buy={this.props.buyItemFromShop} />
+                        <ItemImage key={i} i={i} shop={true} item={item} buy={this.props.buyItemFromShop} />
                     )
                 }
 
             })
         } else if (this.state.content === 'Sell') {
-            console.log("sell");
+            const consumables = this.props.characters[0].consumables;
+            const items = this.props.characters[0].items;
+            let newInventory = [];
+            consumables.forEach(consumable=>{
+                newInventory.push(consumable)
+            })
+            items.forEach(item=>{
+                newInventory.push(item)
+            })
+            newInventory = this.sortItems(newInventory);
+            while (newInventory.length < 28) {
+                newInventory.push('blank');
+            }
+            return newInventory.map((item, i) => {
+                if (item === 'blank') {
+                    return (
+                        <ItemImage key={i} i={i} blank={true} />
+                    )
+                } else {
+                    return (
+                        <ItemImage key={i} i={i} shop={true} item={item} buy={this.props.sellItemToShop} />
+                    )
+                }
+
+            })
         }
     }
 
@@ -44,7 +68,7 @@ class ShopModal extends React.Component {
         const gold = this.props.characters[0].gold;
         return (
             <div className=" shopSingleStat d-flex flex-row align-content-center">
-                <img src="https://cdn2.iconfinder.com/data/icons/retro-game-items-revamp/100/coin_money_shop_spend_gold-512.png" style={{height: "32px"}}/>
+                <img src="https://cdn2.iconfinder.com/data/icons/retro-game-items-revamp/100/coin_money_shop_spend_gold-512.png" style={{ height: "32px" }} />
                 <p>{gold}</p>
             </div>
         )

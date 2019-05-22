@@ -16,6 +16,12 @@ const removeItemFromShopInventory = (item) => (dispatch, getState) => {
         i
     })
 }
+const addItemToShopInventory = (item) => (dispatch, getState) => {
+    dispatch({
+        type: 'ADD_ITEM_TO_SHOP_INVENTORY',
+        item
+    })
+}
 
 export const buyItemFromShop = (item) => (dispatch, getState) => {
     const ownedGold = getState().characters[0].gold;
@@ -30,3 +36,15 @@ export const buyItemFromShop = (item) => (dispatch, getState) => {
         dispatch(removeItemFromShopInventory(item))
     }
 }
+
+export const sellItemToShop = (item) => (dispatch, getState) => {
+        const shopCut = getState().shop.shopCut;
+        //give gold
+        dispatch(alterGoldAmount(item.price * shopCut))
+        //addItem to player
+        dispatch(removeItemOrAbility(item.itemType, item));
+        //remove item from shop
+        dispatch(addItemToShopInventory(item))
+    
+}
+
