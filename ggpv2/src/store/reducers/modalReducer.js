@@ -8,6 +8,8 @@ const initial_state = {
     characterCardVisibility: false,
     combatRewardsCardVisibility: false,
     shopVisibility: false,
+    gameDataVisibility: true,
+    gameDataMode: 'save',
     shopContent: {
         armor: [],
         weapon: [],
@@ -27,6 +29,11 @@ export default (state = initial_state, action) => {
                 break;
             case 'TOGGLE_CHARACTER_CARD': {
                 draft.characterCardVisibility = !draft.characterCardVisibility
+                break;
+            }
+            case 'TOGGLE_GAME_DATA': {
+                draft.gameDataVisibility = !draft.gameDataVisibility
+                draft.gameDataMode = action.gameDataMode;
                 break;
             }
             case 'TOGGLE_COMBAT_REWARDS_CARD': {

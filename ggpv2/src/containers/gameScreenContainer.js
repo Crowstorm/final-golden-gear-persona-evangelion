@@ -9,6 +9,7 @@ import OverworldContainer from './overworldContainer';
 import DialogueContainer from '../containers/modals/dialogueContainer';
 import CombatRewardsContainer from './modals/combatRewardsContainer';
 import CharacterCard from '../components/modalInterfaces/characterCard/characterCard'
+import GameDataContainer from '../components/modalInterfaces/gameData/gameData'
 import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip, charRestore, removeItemOrAbility } from '../store/actions/characterActions';
@@ -72,6 +73,7 @@ class GameScreenContainer extends React.Component {
         let characterCard = (this.props.modal.characterCardVisibility) ? <CharacterCard {...this.props} /> : null;
         let combatRewardsCard = (this.props.modal.combatRewardsCardVisibility) ? <CombatRewardsContainer /> : null;
         let shopModal = (this.props.modal.shopVisibility) ? <ShopModalContainer {...this.props} /> : null;
+        let gameData = (this.props.modal.gameDataVisibility) ? <GameDataContainer {...this.props} /> : null;
         return (
             <div style={{ cursor: cursor }}>
                 {content}
@@ -80,6 +82,7 @@ class GameScreenContainer extends React.Component {
                 {characterCard}
                 {combatRewardsCard}
                 {shopModal}
+                {gameData}
             </div>
         )
     }
@@ -111,8 +114,8 @@ function mapDispatchToProps(dispatch) {
         removeItemOrAbility: (section, item, i) => {
             dispatch(removeItemOrAbility(section, item, i))
         },
-        saveGame: () => {
-            dispatch(saveGame())
+        saveGame: (slot) => {
+            dispatch(saveGame(slot))
         },
     }
 }
