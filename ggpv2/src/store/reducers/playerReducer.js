@@ -4,8 +4,8 @@ import produce from "immer";
 const playerDefaultState = {
     loading: false,
     isAuth: true,
-    id: "5c767c650577d047f076c054",
-    username: null,
+    id: "5ce84dcbd3e8ae7de4415f73",
+    username: 'admin5',
     savedGames: [],
     expTable: [
         { exp: 100, boost: 2 },

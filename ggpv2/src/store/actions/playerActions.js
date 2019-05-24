@@ -17,7 +17,7 @@ export const register = (username, password) => (dispatch) => {
 export const login = (username, password) => (dispatch) => {
     const form = { username, password }
     axios.post('/login', form).then(res => {
-    // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
+        // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
         console.log(res)
         if (res.data.success) {
             dispatch({
@@ -44,10 +44,12 @@ export const saveGame = (slot) => (dispatch, getState) => {
     const modalState = getState().modal;
     const shopState = getState().shop;
     const id = getState().player.id;
+    const username = getState().player.username;
 
     const gameData = {
         id,
-        data:{
+        username,
+        data: {
             saveSlot: slot,
             characterState,
             combatState,
@@ -60,7 +62,7 @@ export const saveGame = (slot) => (dispatch, getState) => {
         }
     }
 
-    axios.post('/saveGame', gameData).then(res =>{
-        console.log({res})
+    axios.post('/saveGame', gameData).then(res => {
+        console.log({ res })
     })
 }
