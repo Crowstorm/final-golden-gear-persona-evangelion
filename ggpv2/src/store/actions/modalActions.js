@@ -36,3 +36,12 @@ export const toggleShop = () => {
         })
     }
 }
+
+export const toggleGameData = (gameDataMode) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'TOGGLE_GAME_DATA',
+            gameDataMode
+        })
+    }
+}

@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import { toggleGameData } from './modalActions';
 
 export const register = (username, password) => (dispatch) => {
     console.log(username, password)
@@ -18,7 +19,6 @@ export const login = (username, password) => (dispatch) => {
     const form = { username, password }
     axios.post('/login', form).then(res => {
         // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
-        console.log(res)
         if (res.data.success) {
             dispatch({
                 type: 'PLAYER_LOGGED_IN',
@@ -27,6 +27,7 @@ export const login = (username, password) => (dispatch) => {
                 username: res.data.user.username,
                 savedGames: res.data.user.savedGames,
             })
+            dispatch(toggleGameData('load'));
         }
     }).catch(err => {
         console.error(err)
@@ -64,5 +65,25 @@ export const saveGame = (slot) => (dispatch, getState) => {
 
     axios.post('/saveGame', gameData).then(res => {
         console.log({ res })
+    })
+}
+
+export const getLoadGames = () => (dispatch, getState) => {
+    dispatch({
+        type: 'LOADING'
+    })
+
+    const username = getState().player.username;
+    const data = {
+        username
+    }
+
+    axios.post('/loadGame', data).then(res => {
+        console.log(res.data)
+    }).catch(err => {
+        dispatch({
+            type: 'LOADING'
+        })
+        console.log({ err })
     })
 }

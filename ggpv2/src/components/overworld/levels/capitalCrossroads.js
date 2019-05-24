@@ -65,7 +65,7 @@ class CapitalCrossroads extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.saveGame(2);
+        // this.props.saveGame(2);
         document.addEventListener("keydown", this.handleKeyDown);
         let isNewAlliesQuestTaken = checkQuestProgress('New Allies', 'started', this.props);
         let isSearchStarted = checkQuestProgress('New Allies', 'searchStart', this.props);

@@ -14,7 +14,8 @@ import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip, charRestore, removeItemOrAbility } from '../store/actions/characterActions';
 import { buyItemFromShop, sellItemToShop } from '../store/actions/shopActions';
-import { saveGame } from '../store/actions/playerActions';
+import { saveGame, getLoadGames } from '../store/actions/playerActions';
+import { toggleGameData } from '../store/actions/modalActions';
 
 //cursors
 // import swordIcon from '../assets/sprites/cursor/sword.ani';
@@ -114,8 +115,14 @@ function mapDispatchToProps(dispatch) {
         removeItemOrAbility: (section, item, i) => {
             dispatch(removeItemOrAbility(section, item, i))
         },
+        toggleGameData: (data) => {
+            dispatch(toggleGameData(data))
+        },
         saveGame: (slot) => {
             dispatch(saveGame(slot))
+        },
+        getLoadGames: () => {
+            dispatch(getLoadGames())
         },
     }
 }

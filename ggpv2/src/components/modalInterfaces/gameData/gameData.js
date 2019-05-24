@@ -16,7 +16,7 @@ class GameData extends React.Component {
         }
     }
     render() {
-
+        this.props.getLoadGames();
         console.log(this.props.player.savedGames);
         console.log(this.props.modal.gameDataMode);
         return (
