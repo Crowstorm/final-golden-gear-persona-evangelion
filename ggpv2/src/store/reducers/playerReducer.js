@@ -3,7 +3,7 @@ import produce from "immer";
 
 const playerDefaultState = {
     loading: false,
-    isAuth: false,
+    isAuth: true,
     id: "5ce84dcbd3e8ae7de4415f73",
     username: 'admin5',
     savedGames: [],

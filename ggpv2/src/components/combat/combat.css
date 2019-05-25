@@ -69,6 +69,15 @@
     overflow-y: auto;
 }
 
+.infoBox{
+    /* border: 1px solid blue; */
+    width: 90%;
+    /* height: 176px; */
+        height: 94px;
+
+    overflow: hidden;
+}
+
 .bar{
     position: relative;
     height: 96px;

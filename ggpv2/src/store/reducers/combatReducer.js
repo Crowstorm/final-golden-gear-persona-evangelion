@@ -1,7 +1,7 @@
 import produce from "immer";
 
 const combatDefaultState = {
-    isCombat: false,
+    isCombat: true,
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     combatTurn: 0,
@@ -77,6 +77,9 @@ const combatReducer = (state = combatDefaultState, action) => {
                 break;
             case 'ADD_INFO_TO_ARRAY':
                 draft.info.unshift(action.info);
+                if (draft.info.length > 4) {
+                    draft.info.pop();
+                }
                 break;
             case 'UPDATE_COMBAT_REWARDS':
                 draft.reward.exp += action.exp;
