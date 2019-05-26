@@ -23,5 +23,6 @@ export const newAllies = {
     started: true,
     finished: false,
     searchStart: false,
+    abandonedBuildingCleared: false,
     gameCut: false,
 }

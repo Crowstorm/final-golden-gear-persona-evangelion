@@ -5,6 +5,11 @@ import bandit_left from '../../assets/sprites/enemies/bandit/overworld/left_stan
 import bandit_right from '../../assets/sprites/enemies/bandit/overworld/right_stand.png';
 import bandit_front from '../../assets/sprites/enemies/bandit/overworld/down_stand.png';
 import bandit_back from '../../assets/sprites/enemies/bandit/overworld/up_stand.png';
+//militaryPolice
+import militaryPolice_left from '../../assets/sprites/enemies/militaryPolice/overworld/left_stand.png';
+import militaryPolice_right from '../../assets/sprites/enemies/militaryPolice/overworld/right_stand.png';
+import militaryPolice_front from '../../assets/sprites/enemies/militaryPolice/overworld/down_stand.png';
+import militaryPolice_back from '../../assets/sprites/enemies/militaryPolice/overworld/up_stand.png';
 
 
 export const beholder = {
@@ -100,6 +105,34 @@ export const wolf = {
     loot: {
         exp: 20,
         gold: 0
+    }
+}
+
+export const militaryPolice = {
+    name: 'Military Police',
+    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    combatGif: 'https://i.imgur.com/R5xhCzA.png',
+    left: militaryPolice_left,
+    right: militaryPolice_right,
+    front: militaryPolice_front,
+    back: militaryPolice_back,
+    stats: {
+        maxHp: 40,
+        hp: 40,
+        maxMp: 0,
+        mp: 0,
+        defence: 6,
+        magic: 0,
+        magicResist: 5,
+        agility: 20,
+        speed: 6,
+        strength: 13,
+        luck: 10
+    },
+    weapon: weapons.woodenSword,
+    loot: {
+        exp: 100,
+        gold: 100
     }
 }
 

@@ -2,13 +2,25 @@
     /* border: 1px solid teal; */
     position: absolute;
     z-index: 100000;
-    background-image: url('../../assets/interface/woodBackground.jpg');
-    background-size: cover;
+   
     /* background-color: white; */
     margin-top: 325px;
     margin-left: 324px;
     width: 600px;
     height: 150px;
+}
+.dialogue::after{
+    content: "";
+    background-image: url('../../assets/interface/woodBackground.jpg');
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+
 }
 
 .dialogue_text{

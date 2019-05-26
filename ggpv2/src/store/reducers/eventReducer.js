@@ -9,7 +9,7 @@ const eventDefaultState = {
             name: "Trouble at the Crossroads",
             description: "I heard cries for help. Can't ignore a lady in distress",
             reward: null,
-            finished: true,
+            finished: false,
             enemiesDefeated: true,
             innVisited: false,
             drugged: true
@@ -22,6 +22,7 @@ const eventDefaultState = {
             started: true,
             searchStart: true,
             gameCut: true,
+            abandonedBuildingCleared: false,
             finished: false
         }
 
