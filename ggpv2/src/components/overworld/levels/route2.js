@@ -32,18 +32,18 @@ class Route2 extends React.Component {
             document.addEventListener("keydown", this.handleKeyDown);
         }
         //random encounters
-        // if (prevProps.x != x || prevProps.y != y) {
-        //     const isRandomEncounter = rollForRandomCombat();
-        //     if (isRandomEncounter) {
-        //         const roll = Math.floor((Math.random() * 4) + 1);
-        //         let foes = []
-        //         for (let i = 0; i < roll; i++) {
-        //             foes.push(enemies.wolf);
-        //         }
-        //         this.props.addEnemiesToCombat(foes);
-        //         this.props.toggleCombat();
-        //     }
-        // }
+        if (prevProps.x != x || prevProps.y != y) {
+            const isRandomEncounter = rollForRandomCombat();
+            if (isRandomEncounter) {
+                const roll = Math.floor((Math.random() * 4) + 1);
+                let foes = []
+                for (let i = 0; i < roll; i++) {
+                    foes.push(enemies.wolf);
+                }
+                this.props.addEnemiesToCombat(foes);
+                this.props.toggleCombat();
+            }
+        }
 
         //Change levels
         if (x === 1 && (y >= 13 && y <= 18)) {

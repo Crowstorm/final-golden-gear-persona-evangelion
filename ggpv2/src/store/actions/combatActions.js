@@ -1,14 +1,37 @@
 import { changeBuffsCounter } from './characterActions';
 import { getAliveCharacter, enemyTurn } from './enemyActions';
 
-export const toggleCombat = () => (dispatch, getState) => {
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export const toggleCombat = () => async (dispatch, getState) => {
     const isCombat = getState().combat.isCombat;
     const enemies = getState().enemy;
+    const enemiesInReserve = getState().combat.enemiesInReserve;
     enemies.forEach((enemy) => {
         if (enemy.loot) {
             dispatch(updateCombatRewards(enemy.loot.exp, enemy.loot.gold, enemy.loot.items))
         }
     })
+    enemiesInReserve.forEach((enemy) => {
+        if (enemy.loot) {
+            dispatch(updateCombatRewards(enemy.loot.exp, enemy.loot.gold, enemy.loot.items))
+        }
+    })
+
+    //delay for animation
+    //wylaczyc chodzenie
+    dispatch({
+        type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+    })
+    console.log('1')
+    await timeout(5000);
+    dispatch({
+        type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+    })
+    console.log('2')
+
     dispatch({
         type: 'TOGGLE_COMBAT'
     })

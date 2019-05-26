@@ -30,7 +30,8 @@ const eventDefaultState = {
     journal: [],
     combatTriggers: [],
     //{name of the level, uppercase}_{numberOfChest}
-    chestsCleared: []
+    chestsCleared: [],
+    preCombatAnimation: false,
 }
 
 export default (state = eventDefaultState, action) => {
@@ -57,6 +58,9 @@ export default (state = eventDefaultState, action) => {
                 break;
             case 'CHEST_CLEARED':
                 draft.chestsCleared.push(action.name);
+                break;
+            case 'PRE_BATTLE_ANIMATION_TOGGLE':
+                draft.preCombatAnimation = !draft.preCombatAnimation;
                 break;
             default:
                 return draft;
