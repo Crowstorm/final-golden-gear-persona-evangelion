@@ -34,6 +34,32 @@ class CombatScreen extends React.Component {
         })
     }
 
+    loseStatsFromEquipment = () =>{
+        let characters = this.props.ally;
+
+        characters.forEach((char, i) => {
+            let armor = char.armor;
+            let weapon = char.weapon;
+            //armor bonus
+            if (armor) {
+                Object.entries(armor).forEach(([key, val]) => {
+                    let bonuses = val.bonus
+                    Object.entries(bonuses).forEach(([key, val]) => {
+                        this.props.boostStat(key, -val, i)
+                    })
+                })
+            }
+            //weapon bonus
+            if (weapon) {
+                console.log(weapon)
+                Object.entries(weapon.bonus).forEach(([key, val]) => {
+                    this.props.boostStat(key, -val, i)
+                })
+
+            }
+        })
+    }
+
     findCharacter = (name) => {
         const characters = this.props.characters;
         let i = _.findIndex(characters, { name: name });
@@ -80,6 +106,10 @@ class CombatScreen extends React.Component {
 
     componentDidUpdate = () => {
         this.checkForTriggers();
+    }
+
+    componentWillUnmount = () =>{
+        this.loseStatsFromEquipment();
     }
 
     render() {

@@ -90,8 +90,8 @@ export const wolf = {
     portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
-        maxHp: 20,
-        hp: 20,
+        maxHp: 16,
+        hp: 16,
         maxMp: 0,
         mp: 0,
         defence: 3,
@@ -99,11 +99,33 @@ export const wolf = {
         magicResist: 4,
         agility: 20,
         speed: 6,
-        strength: 17,
+        strength: 16,
         luck: 10
     },
     loot: {
         exp: 20,
+        gold: 0
+    }
+}
+export const boar = {
+    name: 'Boar',
+    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    combatGif: 'https://i.imgur.com/R5xhCzA.png',
+    stats: {
+        maxHp: 25,
+        hp: 25,
+        maxMp: 0,
+        mp: 0,
+        defence: 3,
+        magic: 0,
+        magicResist: 3,
+        agility: 1,
+        speed: 6,
+        strength: 22,
+        luck: 3
+    },
+    loot: {
+        exp: 40,
         gold: 0
     }
 }

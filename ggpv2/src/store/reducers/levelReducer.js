@@ -1,7 +1,7 @@
 import produce from "immer";
 
 let initial_state = {
-    currentLevel: 'AbandonedBuilding',
+    currentLevel: 'Route2',
     movementSpeed: 20
 }
 

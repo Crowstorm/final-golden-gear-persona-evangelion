@@ -55,7 +55,7 @@ class AbandonedBuilding extends React.Component {
                     this.props.toggleDialogueState();
                 }
             } else {
-                this.props.setCharacterPosition(1, 1);
+                this.props.setCharacterPosition(2, y);
                 this.props.changeLevel('CapitalForest')
             }
         }

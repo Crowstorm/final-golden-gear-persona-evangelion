@@ -35,7 +35,7 @@ class Route2 extends React.Component {
         if (prevProps.x != x || prevProps.y != y) {
             const isRandomEncounter = rollForRandomCombat();
             if (isRandomEncounter) {
-                const roll = Math.floor((Math.random() * 4) + 1);
+                const roll = Math.floor((Math.random() * 1) + 1);
                 let foes = []
                 for (let i = 0; i < roll; i++) {
                     foes.push(enemies.wolf);

@@ -26,3 +26,15 @@ export const newAllies = {
     abandonedBuildingCleared: false,
     gameCut: false,
 }
+
+export const theBridge = {
+    name:"The Bridge",
+    description: "We found Setsuna's companions. But it's gonna take some serious work to get to them in time.",
+    reward: null,
+    log: [],
+    started: true,
+    finished: false,
+    firstWave: false,
+    secondWave: false,
+    rescued: false
+}
