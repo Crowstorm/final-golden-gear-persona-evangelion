@@ -50,7 +50,7 @@ class EnemyInterface extends React.Component {
 
     calculateAttackSuccessChance = (agility, evasion, abilityHitChance) => {
         let roll = Math.floor((Math.random() * 100) + 1);
-
+        console.log({ abilityHitChance })
         if (!abilityHitChance) {
             let basicHitChance = this.props.combat.basicAllyHitChance;
             let finalHitChance = basicHitChance + agility * 1.5 - evasion;
@@ -278,13 +278,15 @@ class EnemyInterface extends React.Component {
             }
 
             this.props.nextAllyTurn();
-            //deactivate ability
-            this.props.resetActiveAbility();
+
         } else {
             let info = `${name} missed!`;
             this.props.addInfoToArray(info)
             this.props.nextAllyTurn();
         }
+
+        //deactivate ability
+        this.props.resetActiveAbility();
     }
 
     handleMagicAttack = async (i) => {
@@ -351,13 +353,14 @@ class EnemyInterface extends React.Component {
             }
 
             this.props.nextAllyTurn();
-            //deactivate ability
-            this.props.resetActiveAbility();
         } else {
             let info = `${name} missed!`;
             this.props.addInfoToArray(info)
             this.props.nextAllyTurn();
         }
+
+        //deactivate ability
+        this.props.resetActiveAbility();
     }
 
     handleBasicAttack = async (i, attI, name) => {

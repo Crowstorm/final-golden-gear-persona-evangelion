@@ -64,7 +64,7 @@ export const mainChar = {
         weapon: weapons.woodenSword
         ,
         skills: [
-            // skills.strongBlow,
+            skills.strongBlow,
             // skills.allIn,
             // skills.decimate,
             // skills.whirlwind
