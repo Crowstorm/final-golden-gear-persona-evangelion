@@ -31,6 +31,11 @@ class Route1 extends React.Component {
             { text: "...Such strength! Thank you! As a reward let me invite you to the best inn in the Kingdom", char: dialogueCharacters.damselInDistress},
             { text: "", effect: this.goToInn },
         ]
+        this.dialogue1 = [
+            { text: "Your character is extremely overpowered, but you never know what future might bring. Follow my instructions for now. Or don't, I'm not your mom.", char: dialogueCharacters.unknown },
+            { text: "Let's start with the basics. Nothing more basic than a Basic Attack.", char: dialogueCharacters.unknown },
+            { text: "Press the Basic Attack button and then click on portrait of the enemy you want to target", char: dialogueCharacters.unknown }
+        ]
     }
 
     updateTroubleAtTheCrossroads = () => {
@@ -89,29 +94,24 @@ class Route1 extends React.Component {
     }, this.props.level.movementSpeed)
 
     tutorial1 = () => {
-        const dialogue = [
-            { text: "Your character is extremely overpowered, but you never know what future might bring. Follow my instructions for now. Or don't, I'm not your mom.", name: "Narrator" },
-            { text: "Let's start with the basics. Nothing more basic than a Basic Attack.", name: "Narrator" },
-            { text: "Press the Basic Attack button and then click on portrait of the enemy you want to target", name: "Narrator" }
-        ]
-        this.props.addDialogue(dialogue);
+        this.props.addDialogue(this.dialogue1);
         this.props.toggleDialogueState();
     }
     tutorial2 = () => {
         const dialogue = [
-            { text: "Great job! You killed the poor bastard, but there are more to come and you can only fight four at a time.", name: "Narrator" },
-            { text: "Regular slashing of the enemies won't bring you joy in the long run. Time to use some skills.", name: "Narrator" },
-            { text: "Press the Skills button, pick a skill you like (I blocked more overpowered skills so you can't ruin this tutorial) and target the enemy.", name: "Narrator" }
+            { text: "Great job! You killed the poor bastard, but there are more to come and you can only fight four at a time.", char: dialogueCharacters.unknown },
+            { text: "Regular slashing of the enemies won't bring you joy in the long run. Time to use some skills.", char: dialogueCharacters.unknown },
+            { text: "Press the Skills button, pick a skill you like (I blocked more overpowered skills so you can't ruin this tutorial) and target the enemy.", char: dialogueCharacters.unknown }
         ]
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();
     }
     tutorial3 = () => {
         const dialogue = [
-            { text: "Another one bites the dust! I like to think you are listening to my instructions so there is a final one from me.", name: "Narrator" },
-            { text: "You are one of the few remaining battle mages in the world, that means your skills and magic alike are extremely powerful", name: "Narrator" },
-            { text: "Press the Magic button and pick a spell I made available for you. It's AOE, so it will target all visible enemies on the battlefield. Burn them to the ground.", name: "Narrator" },
-            { text: "If there are still enemies willing to fight you after that, that means either you didn't follow my instructions or I'm a terrible game designer. Or both.", name: "Narrator" },
+            { text: "Another one bites the dust! I like to think you are listening to my instructions so there is a final one from me.",  char: dialogueCharacters.unknown },
+            { text: "You are one of the few remaining battle mages in the world, that means your skills and magic alike are extremely powerful",  char: dialogueCharacters.unknown },
+            { text: "Press the Magic button and pick a spell I made available for you. It's AOE, so it will target all visible enemies on the battlefield. Burn them to the ground.",  char: dialogueCharacters.unknown },
+            { text: "If there are still enemies willing to fight you after that, that means either you didn't follow my instructions or I'm a terrible game designer. Or both.",  char: dialogueCharacters.unknown },
         ]
         this.props.addDialogue(dialogue);
         this.props.toggleDialogueState();

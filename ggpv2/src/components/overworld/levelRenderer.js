@@ -80,7 +80,6 @@ class Game extends React.Component {
         this.setState({
             gridBlocker: !this.state.gridBlocker
         })
-        console.log(this.state.gridBlocker)
     }
     render() {
         let renderCurrentLevel = this.getCurrentLevel();

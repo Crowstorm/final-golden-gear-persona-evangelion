@@ -29,7 +29,6 @@ export default class AbilityNode extends React.Component {
 
 
     render() {
-        console.log('buffy', this.props.buff)
         return (
             <div>
                 {this.renderIcon()}

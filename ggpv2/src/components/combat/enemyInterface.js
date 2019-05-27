@@ -50,7 +50,6 @@ class EnemyInterface extends React.Component {
 
     calculateAttackSuccessChance = (agility, evasion, abilityHitChance) => {
         let roll = Math.floor((Math.random() * 100) + 1);
-        console.log({ abilityHitChance })
         if (!abilityHitChance) {
             let basicHitChance = this.props.combat.basicAllyHitChance;
             let finalHitChance = basicHitChance + agility * 1.5 - evasion;

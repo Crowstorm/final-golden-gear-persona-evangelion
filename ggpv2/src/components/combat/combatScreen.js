@@ -25,7 +25,6 @@ class CombatScreen extends React.Component {
             }
             //weapon bonus
             if (weapon) {
-                console.log(weapon)
                 Object.entries(weapon.bonus).forEach(([key, val]) => {
                     this.props.boostStat(key, val, i)
                 })
@@ -51,7 +50,6 @@ class CombatScreen extends React.Component {
             }
             //weapon bonus
             if (weapon) {
-                console.log(weapon)
                 Object.entries(weapon.bonus).forEach(([key, val]) => {
                     this.props.boostStat(key, -val, i)
                 })

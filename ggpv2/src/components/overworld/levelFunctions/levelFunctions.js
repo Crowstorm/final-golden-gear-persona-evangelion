@@ -95,7 +95,6 @@ export const checkIfQuestTaken = (name, props) => {
 
 export const checkQuestProgress = (questName, questProgress, props) => {
     let questLog = props.event.questLog;
-    console.log({questLog})
     let hasQuestProgressed = false;
     // questLog.forEach(quest => {
     //     let i = _.findIndex(quest, { name: questName });
@@ -108,9 +107,7 @@ export const checkQuestProgress = (questName, questProgress, props) => {
     // })
     // return hasQuestProgressed
     let i = _.findIndex(questLog, { name: questName });
-    console.log({ questLog }, questName, questProgress, i)
     if (i > -1) {
-        console.log('progres', questLog[i][questProgress])
         if (questLog[i] && questLog[i][questProgress]) {
             return true;
         }

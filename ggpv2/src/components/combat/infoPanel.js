@@ -5,7 +5,6 @@ import './combat.css'
 
 class InfoPanel extends React.Component {
     handleDmgInfo = () => {
-        console.log(this.props.combat.info)
         let fontSize;
         let reseter = 0;
         let test = _.map(this.props.combat.info, (raport, i) => {
@@ -26,7 +25,7 @@ class InfoPanel extends React.Component {
                     fontSize = '10px'
                     break;
                 default:
-                    console.log('nie umisz')
+                    return;
             }
             reseter++;
             return <div key={i} style={{ fontSize: fontSize }}> {raport} </div>

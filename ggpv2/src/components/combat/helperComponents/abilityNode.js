@@ -82,7 +82,6 @@ export default class AbilityNode extends React.Component {
         abilityType = (abilityType === 'skill') ? skills : spells;
         let abilityName = _.findKey(abilityType, { name: name });
         let ability = abilityType[abilityName];
-        console.log({ ability })
         if (ability) {
             return ability.buff;
         } else {
@@ -98,7 +97,6 @@ export default class AbilityNode extends React.Component {
 
         //check if ability is buff or heal
         let isBuff = this.isAbilityBuff(type, this.props.name);
-        console.log(isBuff);
 
         //prevent using when unclicked
         if (!this.props.active) {

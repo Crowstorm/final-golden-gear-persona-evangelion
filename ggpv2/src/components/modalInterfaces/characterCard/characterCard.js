@@ -15,7 +15,6 @@ export default class CharacterCard extends React.Component {
     getEq = () => {
         let char = this.props.characters[this.state.charIndex];
         let { chest, legs, head } = char.armor;
-        // console.log(chest, legs, head);
 
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
@@ -99,7 +98,6 @@ export default class CharacterCard extends React.Component {
                     <ItemImage key={i} blank={true} />
                 )
             } else {
-                console.log(this.props)
                 return (
                     <ItemImage key={i} i={i} type="consumables" item={consum} charRestore={this.props.charRestore} charIndex={charIndex} removeItemFromInventory={this.props.removeItemOrAbility}/>
                 )

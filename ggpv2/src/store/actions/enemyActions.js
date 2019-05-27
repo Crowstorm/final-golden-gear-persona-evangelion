@@ -89,9 +89,7 @@ const getEnemyAgility = (i, enemies) => {
 
 const getAllyEvasion = (i) => {
     return function (dispatch, getState) {
-        console.log({ i })
         let ally = getState().characters[i];
-        console.log({ ally })
         let evasion = 0;
         //check for bonuses to evasion
         if (ally && ally.stats && ally.stats.agility) {
@@ -139,12 +137,10 @@ const wasAttackCritical = (i) => {
 const getWeaponDmg = (i, enemy) => {
     return new Promise(resolve => {
         // const enemy = getState().enemy[i];
-        console.log({ enemy })
         if (enemy.weapon) {
             let minDmg = enemy.weapon.attack[0];
             let maxDmg = enemy.weapon.attack[1];
             let dmg = Math.floor(Math.random() * (maxDmg - minDmg + 1)) + minDmg;
-            console.log({ dmg })
             resolve(dmg)
         } else {
             resolve(0);
@@ -158,7 +154,6 @@ const calculateEnemyDmg = (i) => {
         let attack = 0;
         //sprawdz czy atakujacy ma bron z bonusami do strength
         const weaponDmg = await getWeaponDmg(i, enemy);
-        console.log({ weaponDmg })
         attack += weaponDmg
         //pobierz strength postaci
         if (enemy && enemy.stats && enemy.stats.strength) {
@@ -166,7 +161,6 @@ const calculateEnemyDmg = (i) => {
         } else {
             console.error('Couldnt get enemy attack');
         }
-        console.log({ attack })
         return attack;
     }
 }
@@ -264,7 +258,6 @@ export const enemyTurn = () => {
                 if (wasAttackSuccessful) {
                     let wasCritical = dispatch(wasAttackCritical(i));
                     let enemyDmg = await dispatch(calculateEnemyDmg(i));
-                    console.log({ enemyDmg })
                     let allyDef = dispatch(getAllyDefence(allyIndex));
                     let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 

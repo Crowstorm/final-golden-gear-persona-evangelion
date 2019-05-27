@@ -90,7 +90,6 @@ class ShopModal extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="shopModal d-flex flex-row">
                 {/* <div className="shopLeftContainer d-flex flex-column">

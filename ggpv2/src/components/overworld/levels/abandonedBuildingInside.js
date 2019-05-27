@@ -52,7 +52,6 @@ class AbandonedBuildingInside extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
 
         let isAbandonedBuildingCleared = checkQuestProgress('New Allies', 'abandonedBuildingCleared', this.props);
-        console.log({isAbandonedBuildingCleared})
         if (!isAbandonedBuildingCleared) {
             document.getElementById('d16_13').innerHTML = `<img src=${enemies.bandit.right} class="npcSprite"/>`
             document.getElementById('d16_14').innerHTML = `<img src=${enemies.bandit.front} class="npcSprite"/>`

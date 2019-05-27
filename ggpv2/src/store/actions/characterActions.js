@@ -4,7 +4,6 @@ import { changeTurn } from './combatActions';
 import * as items from '../items/items';
 
 export const replaceMainCharacter = () => (dispatch) => {
-    console.log('teststststs')
     dispatch({
         type: 'REPLACE_MAIN_CHARACTER'
     })
@@ -45,27 +44,11 @@ export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
     if (dmg > currentHp) {
         dmg = currentHp
     }
-    //Prevent death when there is trigger to be fired
-    // if (i === 0 && combatTriggers && combatTriggers.length > 0 && dmg === currentHp) {
-    //     const isMainCharWaitingForTrigger = checkForMainCharTriggers(combatTriggers);
-    //     console.log({ isMainCharWaitingForTrigger });
-    //     if (isMainCharWaitingForTrigger) {
-    //         dmg = currentHp - 1;
-    //         dispatch({
-    //             type: 'ALLY_LOSE_HP',
-    //             dmg,
-    //             i
-    //         })
-    //         dispatch(changeTurn('ally'));
-    //         // return;
-    //     }
-    // } else {
     dispatch({
         type: 'ALLY_LOSE_HP',
         dmg,
         i
     })
-    // }
     let areAlive = dispatch(checkIfCharactersAlive());
     if (!areAlive) {
         dispatch({
@@ -236,7 +219,6 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
 
 export const levelUp = (i, boost) => (dispatch, getState) => {
     let stats = getState().characters[i].stats;
-    console.log({ stats });
     let newStats = { ...stats };
     newStats.level += 1;
     newStats.strength += boost;

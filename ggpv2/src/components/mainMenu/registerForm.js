@@ -10,7 +10,6 @@ const RegisterForm = (props) => {
     function register() {
         const { username, password, password2 } = values;
         if (password === password2) {
-            console.log('git')
             props.register(username, password)
         } else {
             setErrors([...errors, 'Passwords are not identical'])
@@ -18,7 +17,6 @@ const RegisterForm = (props) => {
     }
 
     const renderErrors = () => {
-        console.log(errors)
         return errors.map(error => {
             return <div>{error}</div>
         })
