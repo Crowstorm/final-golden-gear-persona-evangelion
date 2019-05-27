@@ -28,6 +28,16 @@ class CampBattlefield extends React.Component {
             { text: "Attack from both sides, stop dying one by one you stupid cunts!!!", char: dialogueCharacters.bandit },
             { text: "We have to help them, they're getting overwhelmed!", char: dialogueCharacters.shujin },
         ]
+
+        this.afterFirstWave = [
+            { text: "AAARGGGHHHH!!!", char: dialogueCharacters.tonoruk },
+            { text: "Tonoruk! Hold on, we're coming!", char: dialogueCharacters.setsuna },
+            { text: "Don't let those two come any closer, destroy the bridge!", char: dialogueCharacters.militaryRegular },
+            { text: "Hey, big boy, don't give up on me! Ah, shit! Die, you reeking meatsack!", char: dialogueCharacters.deth },
+            { text: "AAAAAAAAAAAAAAAAAHHHHHHHHHH!!!", char: dialogueCharacters.bandit },
+            { text: "Setsuna, quickly! They are about to destroy the bridge!", char: dialogueCharacters.shujin },
+            { text: "Deth, keep him alive at any cost! I will help him once we're done him!", char: dialogueCharacters.setsuna },
+        ]
     }
 
     componentDidMount = () => {
@@ -40,7 +50,7 @@ class CampBattlefield extends React.Component {
         document.getElementById('d23_19').innerHTML = `<img src=${tonoruk} class="npcSprite" style="transform: translateY(-20px)"/>`
         document.getElementById('d23_21').innerHTML = `<img src=${deth} class="npcSprite" style="transform: translateY(-20px)"/>`
 
-        if(!isSecondWaveDefeated && !isFirstWaveDefeated){
+        if (!isSecondWaveDefeated && !isFirstWaveDefeated) {
             // document.getElementById('d21_21').innerHTML = `<img src=${enemies.bandit.right} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d22_18').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d24_18').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
@@ -49,7 +59,7 @@ class CampBattlefield extends React.Component {
             document.getElementById('d22_17').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d23_17').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d24_17').innerHTML = `<img src=${enemies.militaryPolice.back} class="npcSprite" style="transform: translateY(-20px)"/>`
-        } else if (!isSecondWaveDefeated && isFirstWaveDefeated){
+        } else if (!isSecondWaveDefeated && isFirstWaveDefeated) {
             document.getElementById('d21_21').innerHTML = `<img src=${enemies.bandit.right} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d22_18').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
             document.getElementById('d23_18').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite" style="transform: translateY(-20px)"/>`
@@ -62,13 +72,17 @@ class CampBattlefield extends React.Component {
             document.getElementById('d16_14').innerHTML = `<img src=${enemies.bandit.left} class="npcSprite" style="transform: translateY(-20px)"/>`
         }
 
-        if(!isFirstWaveDefeated){
+        if (!isFirstWaveDefeated) {
             document.getElementById('d13_15').innerHTML = `<img src=${enemies.bandit.left} class="npcSprite" style="transform: translateY(-20px)"/>`
         }
 
 
         if (isTheBridgeStarted && !isFirstWaveDefeated) {
             this.props.addDialogue(this.arrival);
+            this.props.toggleDialogueState();
+        }
+        if (isFirstWaveDefeated && !isSecondWaveDefeated) {
+            this.props.addDialogue(this.afterFirstWave);
             this.props.toggleDialogueState();
         }
     }
