@@ -36,5 +36,5 @@ export const theBridge = {
     finished: false,
     firstWave: false,
     secondWave: false,
-    rescued: false
+    battleWon: false
 }
