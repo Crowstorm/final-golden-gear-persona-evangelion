@@ -16,6 +16,11 @@ class AbandonedBuilding extends React.Component {
         this.state = {
             dialogue: null
         }
+
+        this.ifBuildingNotCleared = [
+            { text: "You hear that? I think I heard someone in this abandoned building.", char: dialogueCharacters.setsuna },
+            { text: "I trust your ears, let's investigate.", char: dialogueCharacters.shujin },
+        ]
     }
 
     componentDidMount = () => {
@@ -41,8 +46,19 @@ class AbandonedBuilding extends React.Component {
             this.props.setCharacterPosition(17, 10);
             this.props.changeLevel('AbandonedBuildingInside');
         }
-
-        //xxxx
+        //CapitalForest
+        if (x === 25 && (y >= 22 && y <= 24)) {
+            let isBuildingCleared = checkQuestProgress('New Allies', 'abandonedBuildingCleared', this.props);
+            if (!isBuildingCleared) {
+                if (this.props.modal.dialogue !== this.ifBuildingNotCleared) {
+                    this.props.addDialogue(this.ifBuildingNotCleared);
+                    this.props.toggleDialogueState();
+                }
+            } else {
+                this.props.setCharacterPosition(1, 1);
+                this.props.changeLevel('CapitalForest')
+            }
+        }
     }
 
     componentWillUnmount = () => {

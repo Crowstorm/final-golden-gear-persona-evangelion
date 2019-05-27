@@ -13,6 +13,7 @@ import WestsideInn from './levels/westsideInn';
 import WestsideInnBedrooms from './levels/westsideInnBedrooms';
 import AbandonedBuilding from './levels/abandonedBuilding';
 import AbandonedBuildingInside from './levels/abandonedBuildingInside';
+import CapitalForest from './levels/capitalForest';
 
 
 class Game extends React.Component {
@@ -60,6 +61,10 @@ class Game extends React.Component {
             case "AbandonedBuildingInside":
                 return (
                     <AbandonedBuildingInside {...this.props} />
+                )
+            case "CapitalForest":
+                return (
+                    <CapitalForest {...this.props} />
                 )
             default:
                 console.error("Can't render current level")
