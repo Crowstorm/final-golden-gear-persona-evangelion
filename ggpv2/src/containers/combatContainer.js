@@ -15,10 +15,10 @@ import { removeCombatTrigger } from '../store/actions/eventActions';
 
 class CombatContainer extends React.Component {
     render() {
-        const dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
+        // const dialogue = (this.props.modal.dialogueVisibility) ? <DialogueContainer {...this.props} /> : null;
         return (
             <div>
-                {dialogue}
+                {/* {dialogue} */}
                 <CombatScreen {...this.props} />
                 <AllyInterface {...this.props} />
                 <EnemyInterface {...this.props} />
