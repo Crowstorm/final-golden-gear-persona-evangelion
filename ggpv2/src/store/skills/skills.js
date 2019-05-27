@@ -31,13 +31,15 @@ export const allIn = {
     cost: 20,
     multiplier: 2.5,
     bonus: {
-        strength: 10,
-        duration: 1,
+        boost: ['strength'],
+        boostType: "flat",
+        boostAmount: 10,
+        boostDuration: 2,
     },
     description: "Devastating blow increasing strength of the user but straining the muscles of the user"
 }
 
-export const decimate ={
+export const decimate = {
     name: "Decimate",
     hitChance: 75,
     costType: "mp",
@@ -48,7 +50,7 @@ export const decimate ={
     description: "Deals 10% of enemy's current health"
 }
 
-export const whirlwind ={
+export const whirlwind = {
     icon: whirlwindIcon,
     name: "Whirlwind",
     costType: "mp",

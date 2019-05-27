@@ -223,6 +223,19 @@ class EnemyInterface extends React.Component {
             let totalDmg = 0;
 
             //bonusy przed jesli sa
+            if (ability.bonus) {
+                let newBuffs = [];
+                ability.bonus.boost.forEach(boost => {
+                    const newBuff = {
+                        amount: ability.bonus.boostAmount,
+                        duration: ability.bonus.boostDuration,
+                        stat: boost
+                    }
+                    newBuffs.push(newBuff);
+                })
+
+                this.props.applyBuff(newBuffs, i);
+            }
 
             if (ability.multiplier) {
                 allyDmg = this.calculateAllyDmg(ability.multiplier);
@@ -307,6 +320,20 @@ class EnemyInterface extends React.Component {
             let totalDmg = 0;
 
             allyDmg += this.getAllyMagic();
+
+            if (ability.bonus) {
+                let newBuffs = [];
+                ability.bonus.boost.forEach(boost => {
+                    const newBuff = {
+                        amount: ability.boostAmount,
+                        duration: ability.boostDuration,
+                        stat: boost
+                    }
+                    newBuffs.push(newBuff);
+                })
+
+                this.props.applyBuff(newBuffs, i);
+            }
 
             if (ability.dmgType === 'flat') {
                 if (ability.aoe) {

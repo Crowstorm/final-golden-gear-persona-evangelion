@@ -65,7 +65,7 @@ export const mainChar = {
         ,
         skills: [
             skills.strongBlow,
-            // skills.allIn,
+            skills.allIn,
             // skills.decimate,
             // skills.whirlwind
         ],
