@@ -38,6 +38,72 @@ class CampBattlefield extends React.Component {
             { text: "Setsuna, quickly! They are about to destroy the bridge!", char: dialogueCharacters.shujin },
             { text: "Deth, keep him alive at any cost! I will help him once we're done him!", char: dialogueCharacters.setsuna },
         ]
+
+        this.afterSecondWave = [
+            { text: "That's all of them... Damn, that was exhausting...", char: dialogueCharacters.shujin },
+            { text: "*panting* I still... Can't believe... He did that... He promised...", char: dialogueCharacters.setsuna },
+            { text: "Will to live is stronger than any promise, priestess. You of all people should know it.", char: dialogueCharacters.deth },
+            { text: "Besides, I didn't rise him from the dead. I simply healed his wounds.", char: dialogueCharacters.deth },
+            { text: "With forbidden magic, you... You...", char: dialogueCharacters.setsuna },
+            { text: "Weeeee, hahagagagag!", char: dialogueCharacters.tonoruk },
+            { text: "Contrary to you, he seems to be happy.", char: dialogueCharacters.deth },
+        ]
+
+        this.secondWave1 = [
+            { text: "Hey, wake up, big boy!", char: dialogueCharacters.deth },
+            { text: "...", char: dialogueCharacters.deth },
+            { text: "Big boy?", char: dialogueCharacters.deth },
+            { text: "Out of my way, traitors of the Crown!", char: dialogueCharacters.shujin }
+        ]
+
+        this.secondWave2 = [
+            { text: "You leave me no choice, old friend...", char: dialogueCharacters.deth },
+            { text: "D... D-d-don't...", char: dialogueCharacters.tonoruk },
+            { text: "Just a little longer!!!", char: dialogueCharacters.setsuna },
+        ]
+
+        this.secondWave3 = [
+            { text: "What is that sound?!", char: dialogueCharacters.shujin },
+            { text: "By the gods, Deth, stop!!!", char: dialogueCharacters.setsuna },
+            { text: "I'm not dying here with him, dear!", char: dialogueCharacters.deth },
+        ]
+
+        this.secondWave4 = [
+            { text: "Stop looking, just kill him before he finishes his spell!!!", char: dialogueCharacters.militaryRegular },
+            { text: "What the fuck's that smell?!", char: dialogueCharacters.bandit },
+            { text: "Stop, I can still feel his lifeforce!", char: dialogueCharacters.setsuna },
+            { text: "There isn't any force left in this bag of bones, I'm about to give him one!", char: dialogueCharacters.deth },
+            { text: "RISE, OLD FRIEND!!! SHOW THEM WHAT'S REAL HEALING!!!", char: dialogueCharacters.deth },
+        ]
+    }
+
+    secondWaveFirstEvent = () => {
+
+    }
+
+    fightSecondWave = () => {
+        const condition1 = {
+            type: 'turn',
+            turn: 0
+        }
+        const condition2 = {
+            type: 'turn',
+            turn: 1
+        }
+        const condition3 = {
+            type: 'turn',
+            turn: 3
+        }
+        const condition4 = {
+            type: 'turn',
+            turn: 4
+        }
+
+
+        this.props.addCombatTriggers({ effect: this.secondWave1, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.secondWave2, condition: condition2 })
+        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition3 })
+        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition4 })
     }
 
     componentDidMount = () => {
