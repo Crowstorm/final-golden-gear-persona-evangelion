@@ -73,15 +73,16 @@ class CampBattlefield extends React.Component {
             { text: "What the fuck's that smell?!", char: dialogueCharacters.bandit },
             { text: "Stop, I can still feel his lifeforce!", char: dialogueCharacters.setsuna },
             { text: "There isn't any force left in this bag of bones, I'm about to give him one!", char: dialogueCharacters.deth },
-            { text: "RISE, OLD FRIEND!!! SHOW THEM WHAT'S REAL HEALING!!!", char: dialogueCharacters.deth },
+            { text: "RISE, OLD FRIEND!!! SHOW THEM WHAT REAL HEALING IS!!!", char: dialogueCharacters.deth },
         ]
     }
 
-    secondWaveFirstEvent = () => {
-
-    }
-
     fightSecondWave = () => {
+        const foes = [
+            enemies.militaryPolice,
+            enemies.bandit,
+        ]
+
         const condition1 = {
             type: 'turn',
             turn: 0
@@ -100,62 +101,40 @@ class CampBattlefield extends React.Component {
         }
 
 
-        this.props.addCombatTriggers({ effect: this.secondWave1, condition: condition1 })
-        this.props.addCombatTriggers({ effect: this.secondWave2, condition: condition2 })
-        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition3 })
-        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition4 })
+        this.props.addCombatTriggers({ effect: this.secondWaveTrigger1, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.secondWaveTrigger2, condition: condition2 })
+        this.props.addCombatTriggers({ effect: this.secondWaveTrigger3, condition: condition3 })
+        this.props.addCombatTriggers({ effect: this.secondWaveTrigger3, condition: condition4 })
+
+        this.props.updateCombatRewards(100, 100, null, { effect: this.secondWaveDefeated });
+        this.props.addEnemiesToCombat(foes);
+        this.props.toggleCombat();
     }
 
-    secondWave1 = () =>{
-        const dialogue = [
-            {text: "Hey, wake up, big boy!", char: dialogueCharacters.deth},
-            {text: "...", char: dialogueCharacters.deth},
-            {text: "Big boy?", char: dialogueCharacters.deth},
-            {text: "Out of my way, traitors of the Crown!", char: dialogueCharacters.shujin}
-        ]
-        this.props.addDialogue(dialogue);
-        this.props.toggleDialogueState();
+    secondWaveDefeated = () => {
+        console.log('gz');
+        this.props.updateQuestProgress('The Bridge', 'secondWave', true)
     }
-    secondWave2 = () =>{
-        const dialogue = [
-            {text: "You leave me no choice, old friend... I won't let us both die here.", char: dialogueCharacters.deth},
-            {text: "D-d-d-don't...", char: dialogueCharacters.tonoruk},
-            {text: "Deth, what are you trying to do?!", char: dialogueCharacters.setsuna},
-            {text: "The right thing. It's always the right thing.", char: dialogueCharacters.deth},
-         
-        ]
-        this.props.addDialogue(dialogue);
-        this.props.toggleDialogueState();
-    }
-    secondWave3 = () =>{
-        const dialogue = [
-            {text: "What was that sound?!", char: dialogueCharacters.shujin},
-            {text: "Deth, stop! I can still feel his life force!", char: dialogueCharacters.setsuna},
-            {text: "And I can feel the axe cutting the air right next to my head.", char: dialogueCharacters.deth},
-            {text: "Damn defiler...", char: dialogueCharacters.setsuna},
-        ]
-        this.props.addDialogue(dialogue);
-        this.props.toggleDialogueState();
+    firstWaveDefeated = () => {
+        console.log('gz');
+        this.props.updateQuestProgress('The Bridge', 'firstWave', true)
     }
 
-    fightSecondWave = () =>{
-        const condition1 = {
-            type: 'turn',
-            turn: 0
-        }
-        const condition2 = {
-            type: 'turn',
-            turn: 1
-        }
-        const condition3 = {
-            type: 'turn',
-            turn: 3
-        }
-      
-
-        this.props.addCombatTriggers({ effect: this.secondWave1, condition: condition1 })
-        this.props.addCombatTriggers({ effect: this.secondWave2, condition: condition2 })
-        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition3 })
+    secondWaveTrigger1 = () => {
+        this.props.addDialogue(this.secondWave1);
+        this.props.toggleDialogueState();
+    }
+    secondWaveTrigger2 = () => {
+        this.props.addDialogue(this.secondWave2);
+        this.props.toggleDialogueState();
+    }
+    secondWaveTrigger3 = () => {
+        this.props.addDialogue(this.secondWave3);
+        this.props.toggleDialogueState();
+    }
+    secondWaveTrigger4 = () => {
+        this.props.addDialogue(this.secondWave4);
+        this.props.toggleDialogueState();
     }
 
     componentDidMount = () => {
