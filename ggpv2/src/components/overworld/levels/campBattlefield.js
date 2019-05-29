@@ -106,6 +106,58 @@ class CampBattlefield extends React.Component {
         this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition4 })
     }
 
+    secondWave1 = () =>{
+        const dialogue = [
+            {text: "Hey, wake up, big boy!", char: dialogueCharacters.deth},
+            {text: "...", char: dialogueCharacters.deth},
+            {text: "Big boy?", char: dialogueCharacters.deth},
+            {text: "Out of my way, traitors of the Crown!", char: dialogueCharacters.shujin}
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+    secondWave2 = () =>{
+        const dialogue = [
+            {text: "You leave me no choice, old friend... I won't let us both die here.", char: dialogueCharacters.deth},
+            {text: "D-d-d-don't...", char: dialogueCharacters.tonoruk},
+            {text: "Deth, what are you trying to do?!", char: dialogueCharacters.setsuna},
+            {text: "The right thing. It's always the right thing.", char: dialogueCharacters.deth},
+         
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+    secondWave3 = () =>{
+        const dialogue = [
+            {text: "What was that sound?!", char: dialogueCharacters.shujin},
+            {text: "Deth, stop! I can still feel his life force!", char: dialogueCharacters.setsuna},
+            {text: "And I can feel the axe cutting the air right next to my head.", char: dialogueCharacters.deth},
+            {text: "Damn defiler...", char: dialogueCharacters.setsuna},
+        ]
+        this.props.addDialogue(dialogue);
+        this.props.toggleDialogueState();
+    }
+
+    fightSecondWave = () =>{
+        const condition1 = {
+            type: 'turn',
+            turn: 0
+        }
+        const condition2 = {
+            type: 'turn',
+            turn: 1
+        }
+        const condition3 = {
+            type: 'turn',
+            turn: 3
+        }
+      
+
+        this.props.addCombatTriggers({ effect: this.secondWave1, condition: condition1 })
+        this.props.addCombatTriggers({ effect: this.secondWave2, condition: condition2 })
+        this.props.addCombatTriggers({ effect: this.secondWave3, condition: condition3 })
+    }
+
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
         const isTheBridgeStarted = checkQuestProgress('The Bridge', 'started', this.props);
