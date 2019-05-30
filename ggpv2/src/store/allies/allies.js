@@ -25,7 +25,7 @@ export const setsuna = {
     magic: [
         spells.magicBullet,
         spells.fireball,
-        spells.heal,
+        spells.minorHealing,
         spells.buff
     ],
     buffs: [],
@@ -136,7 +136,7 @@ export const mainCharPre = {
         spells.fireball,
         spells.inferno,
         spells.soulDrain,
-        spells.heal,
+        spells.minorHealing,
         spells.buff
     ],
     gold: 0,

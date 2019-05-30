@@ -50,20 +50,52 @@ export const soulDrain ={
     description: "Dunno"
 }
 
-export const heal = {
+export const meditate = {
     icon: null,
-    name: "Heal",
+    name: "Meditate",
     hitChance: 100,
     costType: "mp",
     costDataType: "int",
-    cost: 7,
+    self: true, //o tutaj
+    cost: 0,
+    dmg: 15,
+    dmgType: "flat",
+    aoe: false,
+    buff: true,
+    helpType: 'restore',
+    restore: "mp",
+    description: "Caster connects with the magic realm and restores their mana. Can only target self."
+}
+
+export const minorHealing = {
+    icon: null,
+    name: "Minor Healing",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 5,
     dmg: 10,
     dmgType: "flat",
     aoe: false,
     buff: true,
     helpType: 'restore',
     restore: "hp",
-    description: "Heals for 10"
+    description: "Weaker spell that restores target's vitality."
+}
+export const healing = {
+    icon: null,
+    name: "Healing",
+    hitChance: 100,
+    costType: "mp",
+    costDataType: "int",
+    cost: 7,
+    dmg: 20,
+    dmgType: "flat",
+    aoe: false,
+    buff: true,
+    helpType: 'restore',
+    restore: "hp",
+    description: "Spell that restores target's vitality."
 }
 
 export const buff = {

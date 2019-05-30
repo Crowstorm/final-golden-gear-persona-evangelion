@@ -43,6 +43,8 @@ class AllyInterface extends React.Component {
     useRestorationAbility = (ability, char, i) => {
         let attI = this.props.combat.attackerIndex;
         this.props.charRestore(ability.restore, ability.dmg, i);
+        const info = `Restored ${ability.dmg} ${ability.restore}.`;
+        this.props.addInfoToArray(info)
         this.payAbilityPrice(ability, attI)
     }
 
