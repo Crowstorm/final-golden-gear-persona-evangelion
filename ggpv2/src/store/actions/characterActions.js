@@ -116,10 +116,15 @@ export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
     return function (dispatch, getState) {
         // znajdz w odpowiedniej sekcji
         let indexToRemove;
+        console.log({section}, {toRemove}, charIndex);
+
         switch (section) {
+
             case 'consumables':
                 let currentConsumables = getState().characters[0].consumables;
-                indexToRemove = _.findIndex(currentConsumables, { name: toRemove })
+                console.log({currentConsumables})
+                indexToRemove = _.findIndex(currentConsumables, { name: toRemove.name })
+                console.log(indexToRemove);
                 dispatch({
                     type: 'REMOVE_ITEM_OR_ABILITY',
                     section,
