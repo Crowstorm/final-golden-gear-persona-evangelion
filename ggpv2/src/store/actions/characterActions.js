@@ -114,12 +114,8 @@ export const charRestore = (statType, amount, i) => {
 //removes inventory or abilities from characters
 export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
     return function (dispatch, getState) {
-        // znajdz w odpowiedniej sekcji
         let indexToRemove;
-        console.log({section}, {toRemove}, charIndex);
-
         switch (section) {
-
             case 'consumables':
                 let currentConsumables = getState().characters[0].consumables;
                 console.log({currentConsumables})
