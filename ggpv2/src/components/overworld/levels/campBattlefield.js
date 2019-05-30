@@ -36,7 +36,7 @@ class CampBattlefield extends React.Component {
             { text: "Hey, big boy, don't give up on me! Ah, shit! Die, you reeking meatsack!", char: dialogueCharacters.deth },
             { text: "AAAAAAAAAAAAAAAAAHHHHHHHHHH!!!", char: dialogueCharacters.bandit },
             { text: "Setsuna, quickly! They are about to destroy the bridge!", char: dialogueCharacters.shujin },
-            { text: "Deth, keep him alive at any cost! I will help him once we're done him!", char: dialogueCharacters.setsuna },
+            { text: "Deth, keep him alive at any cost! I will help him once we're done here!", char: dialogueCharacters.setsuna },
         ]
 
         this.afterSecondWave = [
@@ -75,6 +75,20 @@ class CampBattlefield extends React.Component {
             { text: "There isn't any force left in this bag of bones, I'm about to give him one!", char: dialogueCharacters.deth },
             { text: "RISE, OLD FRIEND!!! SHOW THEM WHAT REAL HEALING IS!!!", char: dialogueCharacters.deth },
         ]
+    }
+
+    fightFirstWave = () => {
+        const foes = [
+            enemies.bandit,
+            enemies.bandit,
+            enemies.militaryPolice,
+            // enemies.bandit,
+            // enemies.bandit,
+        ]
+
+        this.props.updateCombatRewards(0, 0, null, { effect: this.firstWaveDefeated });
+        this.props.addEnemiesToCombat(foes);
+        this.props.toggleCombat();
     }
 
     fightSecondWave = () => {
@@ -193,7 +207,12 @@ class CampBattlefield extends React.Component {
             document.addEventListener("keydown", this.handleKeyDown);
         }
 
-
+        const isFirstWaveDefeated = checkQuestProgress('The Bridge', 'firstWave', this.props);
+        if (x === 12 && y === 15) {
+            if (!isFirstWaveDefeated) {
+                this.fightFirstWave();
+            }
+        }
     }
 
     componentWillUnmount = () => {
