@@ -48,8 +48,7 @@ class AllyInterface extends React.Component {
         this.payAbilityPrice(ability, attI)
     }
 
-    useBuffAbility = (ability, char, i) => {
-        let attI = this.props.combat.attackerIndex;
+    flatBuffAbility = (ability, i) => {
         let newBuffs = [];
         //trza bedzie pobrac obecne i dopisac
         if (ability.boostType === "flat") {
@@ -64,6 +63,18 @@ class AllyInterface extends React.Component {
 
             this.props.applyBuff(newBuffs, i);
         }
+    }
+    useBuffAbility = (ability, char, i) => {
+        let attI = this.props.combat.attackerIndex;
+        if (ability.aoe) {
+            const numberOfAllies = this.props.ally.length;
+            for (let x = 0; x < numberOfAllies; x++) {
+                this.flatBuffAbility(ability, x);
+            }
+        } else {
+            this.flatBuffAbility(ability, i);
+        }
+
 
         this.payAbilityPrice(ability, attI)
     }

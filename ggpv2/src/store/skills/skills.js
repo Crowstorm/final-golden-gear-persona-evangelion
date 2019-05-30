@@ -21,11 +21,24 @@ export const strongBlow = {
     costDataType: 'int',
     cost: 5,
     multiplier: 2,
-    description: "A strong attack "
+    description: "Attack with double the strength."
+}
+
+export const whimOfFate = {
+    icon: whirlwindIcon,
+    name: "Whim of Fate",
+    hitChance: 30,
+    costType: "mp",
+    costDataType: "int",
+    cost: 3,
+    dmg: 30,
+    dmgType: "flat",
+    description: "Overwhelming blow with a low chance of success."
 }
 
 export const allIn = {
     name: "All In Attack",
+    hitChance: 90,
     costType: "hp",
     costDataType: "perc",
     cost: 20,
@@ -60,4 +73,21 @@ export const whirlwind = {
     dmgType: "flat",
     aoe: true,
     description: "Whirling strike that hits all enemies"
+}
+
+export const guard = {
+    icon: null,
+    name: "Guard",
+    hitChance: 100,
+    costType: 'mp',
+    costDataType: 'int',
+    cost: 3,
+    buff: true,
+    aoe: true,
+    helpType: 'buff',
+    boost: ['defence'],
+    boostType: "flat",
+    boostAmount: 3,
+    boostDuration: 4,
+    description: "Slightly rise defence of all allies for 4 turns."
 }
