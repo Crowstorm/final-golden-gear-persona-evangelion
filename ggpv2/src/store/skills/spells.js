@@ -1,3 +1,16 @@
+export const magicBullet = {
+    icon: null,
+    name: "Magic Bullet",
+    hitChance: 90,
+    costType: "mp",
+    costDataType: 'int',
+    cost: 2,
+    dmg: 0,
+    // multiplier: 2,
+    dmgType: "flat",
+    description: "Basic magic attack with damage depending solely on caster's magic proficiency."
+}
+
 export const fireball = {
     icon: null,
     name: "Fireball",
@@ -8,7 +21,7 @@ export const fireball = {
     dmg: 10,
     // multiplier: 2,
     dmgType: "flat",
-    description: "Goronce "
+    description: "Ball of fire that will penetrate even the best armor of a single enemy."
 }
 
 export const inferno ={
@@ -17,11 +30,11 @@ export const inferno ={
     hitChance: 100,
     costType: "mp",
     costDataType: "int",
-    cost: 7,
+    cost: 12,
     dmg: 10,
     dmgType: "flat",
     aoe: true,
-    description: "Smells like chicken"
+    description: "Wall of flame that will engulf all enemies on the battlefield."
 }
 
 export const soulDrain ={
