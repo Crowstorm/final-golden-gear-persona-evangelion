@@ -2,13 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 
 import * as enemies from '../../../store/enemies/enemies';
+import * as consumables from '../../../store/items/items';
 import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 
 import './css/levels.css';
 
 import { BLOCKED_CapitalForest } from '../grids/blockedLevelGrids';
 
-import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress, rollForRandomCombat } from '../levelFunctions/levelFunctions';
+import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress, rollForRandomCombat, isChestCleared } from '../levelFunctions/levelFunctions';
 
 class CapitalForest extends React.Component {
     constructor(props) {
@@ -49,10 +50,16 @@ class CapitalForest extends React.Component {
         // }
 
         //Battlefield
-        if(x === 25 && (y >=2 && y <=4)){
+        if (x === 25 && (y >= 2 && y <= 4)) {
             this.props.setCurrentQuest('theBridge')
             this.props.setCharacterPosition(1, y);
             this.props.changeLevel('CampBattlefield')
+        }
+
+        //AbandonedBuilding
+        if(x ===1 && (y >=22 && y <= 24)){
+            this.props.setCharacterPosition(24, y);
+            this.props.changeLevel('AbandonedBuilding')
         }
     }
 
@@ -63,6 +70,25 @@ class CapitalForest extends React.Component {
     handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
         characterMovement(this.props, e, BLOCKED_CapitalForest);
+
+        //CHEST
+        if (e.key === "Enter" && (x === 1 && y === 5)) {
+            const chestName = 'CapitalForest_1';
+            const isChestFound = isChestCleared(chestName, this.props);
+            if (!isChestFound) {
+                this.props.addItemOrAbility('consumables', consumables.minorHealingPotion)
+                this.props.addItemOrAbility('consumables', consumables.minorManaPotion);
+
+                this.props.chestCleared(chestName);
+
+                const info = [
+                    { text: `You picked up ${consumables.minorHealingPotion.name} and ${consumables.minorManaPotion.name}`, char: dialogueCharacters.unknown },
+                ]
+                this.props.addDialogue(info);
+                this.props.toggleDialogueState();
+            }
+
+        }
     }, this.props.level.movementSpeed)
 
 
