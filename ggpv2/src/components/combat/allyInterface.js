@@ -101,6 +101,10 @@ class AllyInterface extends React.Component {
                 let skillName = _.findKey(type, { name: combat.activeAbility.name });
                 let ability = type[skillName];
 
+                //prevent targeting others on self cast spells
+                if (ability.self && attI !== i) {
+                    return;
+                }
                 switch (ability.helpType) {
                     case 'restore':
                         if (character.stats.hp <= 0) return;
