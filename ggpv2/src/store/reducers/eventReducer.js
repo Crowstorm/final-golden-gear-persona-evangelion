@@ -32,7 +32,7 @@ const eventDefaultState = {
             log: [],
             started: true,
             finished: false,
-            firstWave: false,
+            firstWave: true,
             secondWave: false,
             battleWon: false
         }

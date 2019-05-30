@@ -47,6 +47,7 @@ class CampBattlefield extends React.Component {
             { text: "With forbidden magic, you... You...", char: dialogueCharacters.setsuna },
             { text: "Weeeee, hahagagagag!", char: dialogueCharacters.tonoruk },
             { text: "Contrary to you, he seems to be happy.", char: dialogueCharacters.deth },
+            //Wjebać efekt i przeniesc z battlefielda
         ]
 
         this.secondWave1 = [
@@ -95,6 +96,13 @@ class CampBattlefield extends React.Component {
         const foes = [
             enemies.militaryPolice,
             enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            // enemies.bandit,
+            // enemies.bandit,
+            // enemies.bandit,
+            // enemies.bandit,
         ]
 
         const condition1 = {
@@ -120,6 +128,7 @@ class CampBattlefield extends React.Component {
         this.props.addCombatTriggers({ effect: this.secondWaveTrigger3, condition: condition3 })
         this.props.addCombatTriggers({ effect: this.secondWaveTrigger3, condition: condition4 })
 
+        //dodac jakies fajne nagrody bo zaraz boss fight
         this.props.updateCombatRewards(100, 100, null, { effect: this.secondWaveDefeated });
         this.props.addEnemiesToCombat(foes);
         this.props.toggleCombat();
@@ -156,7 +165,7 @@ class CampBattlefield extends React.Component {
         const isTheBridgeStarted = checkQuestProgress('The Bridge', 'started', this.props);
         const isFirstWaveDefeated = checkQuestProgress('The Bridge', 'firstWave', this.props);
         const isSecondWaveDefeated = checkQuestProgress('The Bridge', 'secondWave', this.props);
-        const isBattleWon = checkQuestProgress('The Bridge', 'battleWon', this.props);
+        // const isBattleWon = checkQuestProgress('The Bridge', 'battleWon', this.props);
 
         document.getElementById('d23_19').innerHTML = `<img src=${tonoruk} class="npcSprite" style="transform: translateY(-20px)"/>`
         document.getElementById('d23_21').innerHTML = `<img src=${deth} class="npcSprite" style="transform: translateY(-20px)"/>`
@@ -196,6 +205,11 @@ class CampBattlefield extends React.Component {
             this.props.addDialogue(this.afterFirstWave);
             this.props.toggleDialogueState();
         }
+
+        if(isFirstWaveDefeated && isSecondWaveDefeated){
+            this.props.addDialogue(this.afterSecondWave);
+            this.props.toggleDialogueState();
+        }
     }
 
     componentDidUpdate() {
@@ -208,9 +222,16 @@ class CampBattlefield extends React.Component {
         }
 
         const isFirstWaveDefeated = checkQuestProgress('The Bridge', 'firstWave', this.props);
+        const isSecondWaveDefeated = checkQuestProgress('The Bridge', 'secondWave', this.props);
         if (x === 12 && y === 15) {
             if (!isFirstWaveDefeated) {
                 this.fightFirstWave();
+            }
+        }
+
+        if (x === 15 && y === 15) {
+            if (!isSecondWaveDefeated) {
+                this.fightSecondWave();
             }
         }
     }
