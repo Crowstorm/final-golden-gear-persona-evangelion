@@ -30,6 +30,10 @@ class ThroneRoom extends React.Component {
         this.noPrincessQuestDialogue = [
             { text: "I can't leave yet, King has an important matter to discuss", char: dialogueCharacters.shujin }
         ]
+
+        this.tutorial = [
+            {text: "In order to interact with objects or people you need to get near them and press 'Enter'.", char: dialogueCharacters.unknown}
+        ]
     }
 
 
@@ -39,7 +43,8 @@ class ThroneRoom extends React.Component {
         // this.setState({
         //     dialogue: this.kingDialogue
         // })
-        // this.props.toggleDialogueState();
+        this.props.addDialogue(this.tutorial)
+        this.props.toggleDialogueState();
     }
 
     componentDidUpdate(prevProps) {

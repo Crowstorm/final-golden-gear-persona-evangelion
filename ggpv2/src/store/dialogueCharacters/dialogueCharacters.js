@@ -1,3 +1,5 @@
+import kingPortrait from '../../assets/portraits/king.png'
+
 export const shujin = {
     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
     name: "Shujin"
@@ -17,7 +19,7 @@ export const tonoruk = {
 }
 
 export const king = {
-    portrait: "https://vignette.wikia.nocookie.net/pathfinder/images/c/c5/King_of_Roses.jpeg/revision/latest?cb=20091124060304",
+    portrait: kingPortrait,
     name: "King Horace"
 }
 

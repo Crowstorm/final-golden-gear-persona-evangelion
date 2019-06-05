@@ -2,8 +2,8 @@
     background-image: url('https://media.indiumgames.com/medialibrary/2014/07/MakingMap1.png');
     position: absolute;
     background-color: white;
-    margin-top: 150px;
-    margin-left: 160px;
+    margin-top: 190px;
+    margin-left: 275px;
     width: 704px;
     height: 400px;
 }
@@ -95,7 +95,10 @@
     width: 128px;
     height: 32px;
     margin-top: 32px;
-    border: 1px solid brown;
+    border: 1px solid black;
     box-sizing: border-box;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

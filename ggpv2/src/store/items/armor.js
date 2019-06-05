@@ -1,7 +1,18 @@
+import leatherArmorIcon from '../../assets/interface/equipment/armor/leatherArmor.png';
+import steelArmorIcon from '../../assets/interface/equipment/armor/steelArmor.png';
+
+import steelHelmetIcon from '../../assets/interface/equipment/armor/steelHelmet.png';
+import leatherHelmetIcon from '../../assets/interface/equipment/armor/leatherHelmet.png';
+
+import leatherBootsIcon from '../../assets/interface/equipment/armor/leatherBoots.png';
+import steelBootsIcon from '../../assets/interface/equipment/armor/steelBoots.png';
+
+
+
 export const woodenHelmet = {
     name: "Wooden Helmet",
     slot: "head",
-    img: 'https://i.pinimg.com/originals/2e/a8/51/2ea851e26242a29461b14ec21004dfe2.png',
+    icon: leatherHelmetIcon,
     bonus: {
         defence: 1
     },
@@ -9,9 +20,9 @@ export const woodenHelmet = {
 }
 
 export const woodenShirt = {
-    name: "Wooden Shirt",
+    name: "Leather Shirt",
     slot: "chest",
-    img: 'http://piq.codeus.net/static/media/userpics/piq_65251_400x400.png',
+    icon: leatherArmorIcon,
     bonus: {
         defence: 2
     },
@@ -21,7 +32,7 @@ export const woodenShirt = {
 export const woodenLegs = {
     name: "Wooden Legs",
     slot: "legs",
-    img: 'https://orig00.deviantart.net/ba0b/f/2015/019/7/8/minecraft_leather_pants_by_dragonshadow3-d8ekmni.png',
+    icon: leatherBootsIcon,
     bonus: {
         defence: 1
     },
@@ -42,7 +53,7 @@ export const woodenShield = {
 export const steelArmor = {
     name: "Steel Armor",
     slot: "chest",
-    icon: 'https://www.tibiaforsale.com.br/image/cache/data/Armaduras/d76c4dbed535f72571c70c4dba70df7c-200x200.gif',
+    icon: steelArmorIcon,
     bonus: {
         defence: 4
     },
@@ -52,7 +63,7 @@ export const steelArmor = {
 export const steelHelmet = {
     name: "Steel Helmet",
     slot: "head",
-    icon: 'https://www.seekpng.com/png/detail/154-1548200_the-diamond-helmet-minecraft-diamond-helmet-png.png',
+    icon: steelHelmetIcon,
     bonus: {
         defence: 2
     },
@@ -62,7 +73,7 @@ export const steelHelmet = {
 export const steelLegs = {
     name: "Steel Legs",
     slot: "legs",
-    icon: 'https://www.tibia-wiki.net/images/6/6f/Plate_Legs.gif',
+    icon: steelBootsIcon,
     bonus: {
         defence: 3
     },

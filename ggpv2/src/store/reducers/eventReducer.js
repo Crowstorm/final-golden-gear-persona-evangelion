@@ -25,17 +25,17 @@ const eventDefaultState = {
         //     abandonedBuildingCleared: false,
         //     finished: false
         // }
-        {
-            name: "The Bridge",
-            description: "We found Setsuna's companions. But it's gonna take some serious work to get to them in time.",
-            reward: null,
-            log: [],
-            started: true,
-            finished: false,
-            firstWave: true,
-            secondWave: false,
-            battleWon: false
-        }
+        // {
+        //     name: "The Bridge",
+        //     description: "We found Setsuna's companions. But it's gonna take some serious work to get to them in time.",
+        //     reward: null,
+        //     log: [],
+        //     started: true,
+        //     finished: false,
+        //     firstWave: true,
+        //     secondWave: false,
+        //     battleWon: false
+        // }
 
     ],
     currentQuest: null,

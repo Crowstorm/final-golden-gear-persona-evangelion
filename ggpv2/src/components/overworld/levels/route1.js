@@ -120,13 +120,12 @@ class Route1 extends React.Component {
 
     startBanditCombat = () => {
         const foes = [
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder,
-            enemies.beholder
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
+            enemies.bandit,
         ]
         const condition1 = {
             type: 'turn',

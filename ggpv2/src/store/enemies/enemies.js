@@ -37,7 +37,7 @@ export const beholder = {
 
 export const bandit = {
     name: 'Bandit',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: 'https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417',
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     left: bandit_left,
     right: bandit_right,
