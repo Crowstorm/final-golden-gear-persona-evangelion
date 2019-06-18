@@ -59,32 +59,12 @@ export default class AbilityNode extends React.Component {
 
     }
 
-    renderInfo = () => {
-        return (
-            <div className="infoStyle">
-                <div style={{ padding: 8 }}>
-                    {this.props.info}
-                </div>
-                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
-            </div>
-
-        )
-    }
-
     renderTooltipWithInfo = () => {
         return (
             <ReactTooltip id={this.props.name} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
                 {this.props.info}
             </ReactTooltip>
         )
-    }
-
-    toggleInfo = (e) => {
-        e.stopPropagation();
-
-        this.setState({
-            info: !this.state.info
-        })
     }
 
     isAbilityBuff = (abilityType, name) => {
