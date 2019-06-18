@@ -73,7 +73,7 @@ export default class AbilityNode extends React.Component {
 
     renderTooltipWithInfo = () => {
         return (
-            <ReactTooltip id={this.props.info} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+            <ReactTooltip id={this.props.name} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
                 {this.props.info}
             </ReactTooltip>
         )
@@ -140,16 +140,14 @@ export default class AbilityNode extends React.Component {
         let info = (this.state.info) ? this.renderInfo() : null;
         return (
             <div
-                data-tip data-for={this.props.info}
+                data-tip data-for={this.props.name}
                 className="skillButton d-flex flex-direction-row justify-content-between align-items-center"
                 style={{ backgroundColor: backgroundColor, border: borderColor }}
                 onClick={() => this.abilityClick()}
             >
                 <img className="abilityIcon" src={this.props.icon} alt="Ability icon" />
-                {this.props.name} Cost: {this.props.cost}{costDatatype} {this.props.type}
-                {/* <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div> */}
-
-                {/* {info} */}
+                <div> {this.props.name}</div>
+                <div> {this.props.cost}{costDatatype} {this.props.type}</div>
                 {this.renderTooltipWithInfo()}
             </div>
         )

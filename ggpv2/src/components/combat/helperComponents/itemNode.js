@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
+
 import './abilityNode.css';
 
 export default class ItemNode extends React.Component {
@@ -7,7 +9,7 @@ export default class ItemNode extends React.Component {
         active: false,
     }
 
-    itemClick = () =>{
+    itemClick = () => {
         this.props.setActiveItem(this.props.name);
         this.props.highlightItem(this.props.index);
 
@@ -19,27 +21,15 @@ export default class ItemNode extends React.Component {
         }
     }
 
-    renderInfo = () => {
+    renderTooltipWithInfo = () => {
         return (
-            <div className="infoStyle">
-                <div style={{ padding: 8 }}>
-                    {this.props.info}
-                </div>
-                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
-            </div>
-
+            <ReactTooltip id={this.props.name} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                {this.props.info}
+            </ReactTooltip>
         )
     }
 
-    toggleInfo = (e) => {
-        e.stopPropagation();
-
-        this.setState({
-            info: !this.state.info
-        })
-    }
-
-    setBorderColor = () =>{
+    setBorderColor = () => {
         if (this.props.active) {
             return '2px solid green'
         } else {
@@ -53,12 +43,15 @@ export default class ItemNode extends React.Component {
         let borderColor = this.setBorderColor();
 
         return (
-            <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" style={{ border: borderColor }}  onClick={() => this.itemClick()}>
+            <div
+                data-tip data-for={this.props.name}
+                className="skillButton d-flex flex-direction-row justify-content-between align-items-center"
+                style={{ border: borderColor }}
+                onClick={() => this.itemClick()}
+            >
                 <img className="abilityIcon" src={this.props.icon} />
                 {this.props.name}
-                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
-
-                {info}
+                {this.renderTooltipWithInfo()}
             </div>
         )
     }
