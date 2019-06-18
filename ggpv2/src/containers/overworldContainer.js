@@ -8,7 +8,7 @@ import { addNewAlly, charRestore, replaceMainCharacter, addItemOrAbility, chestC
 import { toggleDialogueState, addDialogue, toggleCharacterCard, toggleShop } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
-import { toggleCombat, updateCombatRewards } from '../store/actions/combatActions';
+import { toggleCombat, updateCombatRewards, setBattleBackground } from '../store/actions/combatActions';
 import { addEnemiesToCombat } from '../store/actions/enemyActions';
 import { loadShopInventory } from '../store/actions/shopActions';
 
@@ -45,6 +45,7 @@ function mapDispatchToProps(dispatch) {
         setCharacterPosition: (x, y) => { dispatch(setCharacterPosition(x, y)) },
         //combat
         addEnemiesToCombat: (enemies) => { dispatch(addEnemiesToCombat(enemies)) },
+        setBattleBackground: (background) => { dispatch(setBattleBackground(background)) },
         updateCombatRewards: (exp, gold, items, trigger) => { dispatch(updateCombatRewards(exp, gold, items, trigger)) },
         addCombatTriggers: (combatTriggers) => dispatch(addCombatTriggers(combatTriggers)),
         charRestore: (type, amount, i) => dispatch(charRestore(type, amount, i)),

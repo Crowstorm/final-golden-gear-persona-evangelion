@@ -198,3 +198,10 @@ export const addInfoToArray = (info) => {
         })
     }
 }
+
+export const setBattleBackground = (background) => (dispatch) =>{
+    dispatch({
+        type: 'SET_BATTLE_BACKGROUND',
+        background
+    })
+}

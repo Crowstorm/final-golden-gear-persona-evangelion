@@ -116,8 +116,6 @@ export default class AbilityNode extends React.Component {
         let backgroundColor = this.setBackgroundColor();
         let borderColor = this.setBorderColor();
         let costDatatype = (this.props.dataType === "perc") ? "%" : '';
-        //potrzebny bedzie jakis unfocus
-        let info = (this.state.info) ? this.renderInfo() : null;
         return (
             <div
                 data-tip data-for={this.props.name}

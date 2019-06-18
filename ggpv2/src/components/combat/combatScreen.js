@@ -1,11 +1,21 @@
 import React from 'react';
 import _ from 'lodash';
 
-import background from '../../assets/combat/backgrounds/battleBackground.png';
-
 import AttackInterface from './attackInterface';
 
 class CombatScreen extends React.Component {
+
+    componentDidMount = () => {
+        this.boostStatsFromEquipment();
+    }
+
+    componentDidUpdate = () => {
+        this.checkForTriggers();
+    }
+
+    componentWillUnmount = () => {
+        this.loseStatsFromEquipment();
+    }
 
     //At the start of combat boost allies statistics depending on equipment they use
     boostStatsFromEquipment = () => {
@@ -33,7 +43,7 @@ class CombatScreen extends React.Component {
         })
     }
 
-    loseStatsFromEquipment = () =>{
+    loseStatsFromEquipment = () => {
         let characters = this.props.ally;
 
         characters.forEach((char, i) => {
@@ -98,21 +108,15 @@ class CombatScreen extends React.Component {
         return false;
     }
 
-    componentDidMount = () => {
-        this.boostStatsFromEquipment();
-    }
-
-    componentDidUpdate = () => {
-        this.checkForTriggers();
-    }
-
-    componentWillUnmount = () =>{
-        this.loseStatsFromEquipment();
+    renderBattleBackground = () => {
+        const background = this.props.combat.battleBackground;
+        return background;
     }
 
     render() {
+        const background = this.renderBattleBackground();
         return (
-            <div className="combatScreen d-flex flex-wrap align-content-center justify-content-center" style={{ backgroundImage: { background }, }}>
+            <div className="combatScreen d-flex flex-wrap align-content-center justify-content-center" style={{ backgroundImage: `url(${background})`, backgroundPosition: 'center' }}>
                 <AttackInterface {...this.props} />
             </div>
         )

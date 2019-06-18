@@ -2,6 +2,7 @@ import produce from "immer";
 
 const combatDefaultState = {
     isCombat: true,
+    battleBackground: "http://www.sclance.com/backgrounds/rpg-battle-background/rpg-battle-background_1947994.png",
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
     combatTurn: 0,
@@ -87,96 +88,13 @@ const combatReducer = (state = combatDefaultState, action) => {
                 if (action.items) draft.reward.items.push(action.items);
                 if (action.trigger) draft.reward.trigger.push(action.trigger);
                 break;
+            case 'SET_BATTLE_BACKGROUND':
+                draft.battleBackground = action.background;
+                break;
             default:
                 return draft;
         }
     })
-    // switch (action.type) {
-    //     case 'TOGGLE_COMBAT':
-    //         return {
-    //             ...state,
-    //             isCombat: !state.isCombat
-    //         }
-    //     case 'IS_ATTACK_READY':
-    //         return {
-    //             ...state,
-    //             attackReady: action.isReady
-    //         }
-    //     case 'IS_HELP_READY':
-    //         return {
-    //             ...state,
-    //             helpReady: action.isReady
-    //         }
-    //     case 'SET_ACTIVE_ABILITY':
-    //         return {
-    //             ...state,
-    //             activeAbility: {
-    //                 ...state.activeAbility,
-    //                 type: action.abilityType,
-    //                 name: action.name
-    //             }
-    //         }
-    //     case 'RESET_ACTIVE_ABILITY': {
-    //         return {
-    //             ...state,
-    //             activeAbility: {
-    //                 ...state.activeAbility,
-    //                 type: null,
-    //                 name: null
-    //             }
-    //         }
-    //     }
-    //     case 'SET_ACTIVE_ITEM':
-    //         return {
-    //             ...state,
-    //             activeItem: {
-    //                 ...state.activeItem,
-    //                 name: action.name
-    //             }
-    //         }
-    //     case 'RESET_ACTIVE_ITEM': {
-    //         return {
-    //             ...state,
-    //             activeItem: {
-    //                 ...state.activeItem,
-    //                 name: null
-    //             }
-    //         }
-    //     }
-    //     case 'CHANGE_TURN':
-    //         return {
-    //             ...state,
-    //             whoseTurn: action.whoseTurn
-    //         }
-    //     case 'INCREMENT_ATTACKER_INDEX':
-    //         return {
-    //             ...state,
-    //             attackerIndex: state.attackerIndex + 1
-    //         }
-    //     case 'SET_ATTACKER_INDEX':
-    //         return {
-    //             ...state,
-    //             attackerIndex: action.i
-    //         }
-    //     case 'RESET_ATTACKER_INDEX':
-    //         return {
-    //             ...state,
-    //             attackerIndex: 0
-    //         }
-    //     case 'ADD_INFO_TO_ARRAY': {
-    //         return {
-    //             ...state,
-    //             info: [action.info, ...state.info]
-    //         }
-    //     }
-    //     case 'UPDATE_QUEST_REWARDS': {
-
-    //     }
-
-    //     default:
-    //         return state;
-    // }
-
 }
 
 export default combatReducer;
