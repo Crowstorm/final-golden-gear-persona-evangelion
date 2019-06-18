@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import ReactTooltip from 'react-tooltip';
 
 import * as spells from '../../../store/skills/spells';
 import * as skills from '../../../store/skills/skills';
@@ -70,6 +71,14 @@ export default class AbilityNode extends React.Component {
         )
     }
 
+    renderTooltipWithInfo = () => {
+        return (
+            <ReactTooltip id={this.props.info} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                {this.props.info}
+            </ReactTooltip>
+        )
+    }
+
     toggleInfo = (e) => {
         e.stopPropagation();
 
@@ -130,12 +139,18 @@ export default class AbilityNode extends React.Component {
         //potrzebny bedzie jakis unfocus
         let info = (this.state.info) ? this.renderInfo() : null;
         return (
-            <div className="skillButton d-flex flex-direction-row justify-content-between align-items-center" style={{ backgroundColor: backgroundColor, border: borderColor }} onClick={() => this.abilityClick()}>
+            <div
+                data-tip data-for={this.props.info}
+                className="skillButton d-flex flex-direction-row justify-content-between align-items-center"
+                style={{ backgroundColor: backgroundColor, border: borderColor }}
+                onClick={() => this.abilityClick()}
+            >
                 <img className="abilityIcon" src={this.props.icon} alt="Ability icon" />
                 {this.props.name} Cost: {this.props.cost}{costDatatype} {this.props.type}
-                <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div>
+                {/* <div className="toggleButton" onClick={(e) => this.toggleInfo(e)}></div> */}
 
-                {info}
+                {/* {info} */}
+                {this.renderTooltipWithInfo()}
             </div>
         )
     }
