@@ -142,8 +142,7 @@ export const mainCharPre = {
         spells.inferno,
         spells.soulDrain,
         spells.minorHealing,
-        spells.buff,
-        spells.buff2,
+        spells.buff
     ],
     gold: 0,
     items: [

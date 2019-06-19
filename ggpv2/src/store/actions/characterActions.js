@@ -118,7 +118,7 @@ export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
         switch (section) {
             case 'consumables':
                 let currentConsumables = getState().characters[0].consumables;
-                console.log({ currentConsumables })
+                console.log({currentConsumables})
                 indexToRemove = _.findIndex(currentConsumables, { name: toRemove.name })
                 console.log(indexToRemove);
                 dispatch({
@@ -268,25 +268,11 @@ export const usePostcombatTriggers = () => (dispatch, getState) => {
     })
 }
 
-export const applyBuff = (newBuffs, i, isNew = true) => (dispatch, getState) => {
+export const applyBuff = (newBuffs, i, isNew = true) => (dispatch) => {
     //sprawdzic czy juz nie byl jakis nalozony wczesniej o tej samej nazwie
-
-    let buffsToApply = [];
-    newBuffs.forEach(buff => {
-        buffsToApply.push(buff)
-    })
-
-    
-    const currentBuffs = getState().characters[i].buffs;
-    currentBuffs.forEach(currBuff => {
-        buffsToApply.push(currBuff);
-    })
-
-    console.log({ buffsToApply })
-
     dispatch({
         type: 'APPLY_BUFF',
-        buffsToApply,
+        newBuffs,
         i
     })
 
@@ -337,13 +323,8 @@ export const changeBuffsCounter = () => (dispatch, getState) => {
                 } else {
                     newBuffs.push(newBuff)
                 }
-                dispatch({
-                    type: 'REMOVE_BUFF_COUNTER',
-                    i,
-                    buffIndex
-                })
             })
-            // dispatch(applyBuff(newBuffs, i, false))
+            dispatch(applyBuff(newBuffs, i, false))
         }
     })
 }

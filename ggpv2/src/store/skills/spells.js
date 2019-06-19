@@ -110,21 +110,6 @@ export const buff = {
     boost: ['defence', 'agility', 'strength'],
     boostType: "flat",
     boostAmount: 5,
-    boostDuration: 3,
-    description: "Buff test"
-}
-export const buff2 = {
-    icon: null,
-    name: "Buff2",
-    hitChance: 100,
-    costType: "mp",
-    costDataType: "int",
-    cost: 7,
-    buff: true,
-    helpType: 'buff',
-    boost: ['defence', 'magic', 'magicResist'],
-    boostType: "flat",
-    boostAmount: 5,
-    boostDuration: 3,
+    boostDuration: 2,
     description: "Buff test"
 }

@@ -198,11 +198,7 @@ export default (state = initial_state, action) => {
                 draft[action.i].stats = action.newStats;
                 break;
             case 'APPLY_BUFF':
-                draft[action.i].buffs = action.buffsToApply;
-                // draft[action.i].buffs.push(action.buff);
-                break;
-            case 'REMOVE_BUFF_COUNTER':
-                draft[action.i].buffs[action.buffIndex].duration--;
+                draft[action.i].buffs = action.newBuffs;
                 break;
             case 'REMOVE_BUFF':
                 draft[action.charIndex].buffs.splice(action.buffIndex, 1);
