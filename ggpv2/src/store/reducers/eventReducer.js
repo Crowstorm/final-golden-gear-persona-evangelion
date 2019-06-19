@@ -5,15 +5,15 @@ import * as quests from '../quests/quests';
 const eventDefaultState = {
     questLog: [
 
-        // {
-        //     name: "Trouble at the Crossroads",
-        //     description: "I heard cries for help. Can't ignore a lady in distress",
-        //     reward: null,
-        //     finished: false,
-        //     enemiesDefeated: true,
-        //     innVisited: false,
-        //     drugged: true
-        // },
+        {
+            name: "Trouble at the Crossroads",
+            description: "I heard cries for help. Can't ignore a lady in distress",
+            reward: null,
+            finished: false,
+            enemiesDefeated: true,
+            innVisited: false,
+            drugged: true
+        },
         // {
         //     name: "New Allies",
         //     description: "Something bad has happened to me, I can't save the princess on my own anymore. I need to find people willing to help",

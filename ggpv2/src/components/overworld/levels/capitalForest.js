@@ -32,22 +32,22 @@ class CapitalForest extends React.Component {
             document.addEventListener("keydown", this.handleKeyDown);
         }
         //random encounters
-        // if (prevProps.x != x || prevProps.y != y) {
-        //     const isRandomEncounter = rollForRandomCombat();
-        //     if (isRandomEncounter) {
-        //         const roll1 = Math.floor((Math.random() * 2) + 1);
-        //         const roll2 = Math.floor((Math.random() * 3) + 1);
-        //         let foes = []
-        //         for (let i = 0; i < roll1; i++) {
-        //             foes.push(enemies.boar);
-        //         }
-        //         for (let i = 0; i < roll2; i++) {
-        //             foes.push(enemies.wolf);
-        //         }
-        //         this.props.addEnemiesToCombat(foes);
-        //         this.props.toggleCombat();
-        //     }
-        // }
+        if (prevProps.x != x || prevProps.y != y) {
+            const isRandomEncounter = rollForRandomCombat();
+            if (isRandomEncounter) {
+                const roll1 = Math.floor((Math.random() * 2) + 1);
+                const roll2 = Math.floor((Math.random() * 3) + 1);
+                let foes = []
+                for (let i = 0; i < roll1; i++) {
+                    foes.push(enemies.boar);
+                }
+                for (let i = 0; i < roll2; i++) {
+                    foes.push(enemies.wolf);
+                }
+                this.props.addEnemiesToCombat(foes);
+                this.props.toggleCombat();
+            }
+        }
 
         //Battlefield
         if (x === 25 && (y >= 2 && y <= 4)) {

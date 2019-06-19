@@ -8,6 +8,11 @@ export const characterMovement = (props, e, BLOCKED) => {
     if (props.modal.dialogueVisibility) {
         props.toggleDialogueState();
     }
+
+    if(props.event.preCombatAnimation){
+        return;
+    }
+
     switch (e.key) {
         case "ArrowUp": {
             let err = [];

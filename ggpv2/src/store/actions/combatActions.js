@@ -22,15 +22,18 @@ export const toggleCombat = () => async (dispatch, getState) => {
 
     //delay for animation
     //wylaczyc chodzenie
-    // dispatch({
-    //     type: 'PRE_BATTLE_ANIMATION_TOGGLE'
-    // })
-    // console.log('1')
-    // await timeout(1000);
-    // dispatch({
-    //     type: 'PRE_BATTLE_ANIMATION_TOGGLE'
-    // })
-    // console.log('2')
+
+    if(!getState().combat.isCombat){
+        dispatch({
+            type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+        })
+        console.log('1')
+        await timeout(2000);
+        dispatch({
+            type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+        })
+        console.log('2')
+    }
 
     dispatch({
         type: 'TOGGLE_COMBAT'

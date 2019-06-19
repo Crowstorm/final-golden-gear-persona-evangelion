@@ -36,6 +36,7 @@ class WestsideInn extends React.Component {
             { text: "Your journey ends here, 'Hero of the Realm'!", char: dialogueCharacters.banditLeader },
             { text: "Do you lowlifes never learn?", char: dialogueCharacters.shujin },
             { text: "Heh, come and find out!", char: dialogueCharacters.banditLeader },
+            { text: "", effect: this.startBanditsCombat},
         ]
     }
 
@@ -55,10 +56,7 @@ class WestsideInn extends React.Component {
             this.props.toggleDialogueState();
         }
 
-        if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
-            this.props.addDialogue(this.banditsAttack);
-            this.props.toggleDialogueState();
-        }
+     
         //spawn enemies after drugging
         if (isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
             document.getElementById('d11_8').innerHTML = `<img src=${enemies.bandit.back} class="npcSprite"/>`
@@ -83,7 +81,10 @@ class WestsideInn extends React.Component {
         let isMainCharDrugged = checkQuestProgress('Trouble at the Crossroads', 'drugged', this.props);
         let isTroubleAtTheCrossroadsFinished = checkQuestProgress('Trouble at the Crossroads', 'finished', this.props);
         if ((x >= 10 && x <= 16) && (y >= 7 && y <= 9) && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
-            this.startBanditsCombat();
+            if (this.props.modal.dialogue !== this.banditsAttack && isMainCharDrugged && !isTroubleAtTheCrossroadsFinished) {
+                this.props.addDialogue(this.banditsAttack);
+                this.props.toggleDialogueState();
+            }
         }
         if (x === 21 && y === 17) {
             this.props.setCharacterPosition(21, 16);

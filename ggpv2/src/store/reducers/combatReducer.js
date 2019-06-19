@@ -1,7 +1,7 @@
 import produce from "immer";
 
 const combatDefaultState = {
-    isCombat: true,
+    isCombat: false,
     battleBackground: "http://www.sclance.com/backgrounds/rpg-battle-background/rpg-battle-background_1947994.png",
     basicAllyHitChance: 100,
     basicCriticalMultiplier: 1.5,
