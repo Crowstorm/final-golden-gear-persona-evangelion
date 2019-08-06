@@ -21,19 +21,15 @@ export const toggleCombat = () => async (dispatch, getState) => {
     })
 
     //delay for animation
-    //wylaczyc chodzenie
-
-    if(!getState().combat.isCombat){
-        dispatch({
-            type: 'PRE_BATTLE_ANIMATION_TOGGLE'
-        })
-        console.log('1')
-        await timeout(2000);
-        dispatch({
-            type: 'PRE_BATTLE_ANIMATION_TOGGLE'
-        })
-        console.log('2')
-    }
+    // if (!getState().combat.isCombat) {
+    //     dispatch({
+    //         type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+    //     })
+    //     await timeout(2000);
+    //     dispatch({
+    //         type: 'PRE_BATTLE_ANIMATION_TOGGLE'
+    //     })
+    // }
 
     dispatch({
         type: 'TOGGLE_COMBAT'
@@ -202,7 +198,7 @@ export const addInfoToArray = (info) => {
     }
 }
 
-export const setBattleBackground = (background) => (dispatch) =>{
+export const setBattleBackground = (background) => (dispatch) => {
     dispatch({
         type: 'SET_BATTLE_BACKGROUND',
         background

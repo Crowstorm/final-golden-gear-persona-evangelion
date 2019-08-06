@@ -31,6 +31,7 @@ class CapitalForest extends React.Component {
         } else {
             document.addEventListener("keydown", this.handleKeyDown);
         }
+        
         //random encounters
         if (prevProps.x != x || prevProps.y != y) {
             const isRandomEncounter = rollForRandomCombat();

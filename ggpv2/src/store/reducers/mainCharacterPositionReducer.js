@@ -4,9 +4,10 @@ import front from '../../assets/sprites/mainCharacter/overworld/mainCharFront.gi
 import back from '../../assets/sprites/mainCharacter/overworld/mainCharBack.gif';
 import left from '../../assets/sprites/mainCharacter/overworld/mainCharLeft.gif';
 import right from '../../assets/sprites/mainCharacter/overworld/mainCharRight.gif';
+import combat from '../../assets/sprites/mainCharacter/overworld/combat.png';
 
 let initial_state = {
-    x: 13,
+    x: 3,
     y: 3,
     model: back
 }
@@ -44,6 +45,10 @@ export default (state = initial_state, action) => {
                 }
                 draft.x -= 1;
                 draft.model = left;
+                break;
+            }
+            case 'PRE_BATTLE_ANIMATION_TOGGLE': {
+                draft.model = combat;
                 break;
             }
             case 'SET_CHARACTER_POSITION': {
