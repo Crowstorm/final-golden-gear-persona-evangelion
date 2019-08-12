@@ -14,7 +14,7 @@ import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip, charRestore, removeItemOrAbility } from '../store/actions/characterActions';
 import { buyItemFromShop, sellItemToShop } from '../store/actions/shopActions';
-import { saveGame, getLoadGames } from '../store/actions/playerActions';
+import { saveGame, getSavesData, loadGame } from '../store/actions/playerActions';
 import { toggleGameData } from '../store/actions/modalActions';
 
 //cursors
@@ -121,9 +121,12 @@ function mapDispatchToProps(dispatch) {
         saveGame: (slot) => {
             dispatch(saveGame(slot))
         },
-        getLoadGames: () => {
-            dispatch(getLoadGames())
+        getSavesData: () => {
+            dispatch(getSavesData())
         },
+        loadGame: (i) =>{
+            dispatch(loadGame(i))
+        }
     }
 }
 

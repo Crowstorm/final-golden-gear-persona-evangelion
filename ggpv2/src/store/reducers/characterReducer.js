@@ -154,6 +154,8 @@ let initial_state = [
 export default (state = initial_state, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'LOAD_GAME':
+                return action.characterState;
             case 'REPLACE_MAIN_CHARACTER':
                 draft[0] = allies.mainChar;
                 break;
