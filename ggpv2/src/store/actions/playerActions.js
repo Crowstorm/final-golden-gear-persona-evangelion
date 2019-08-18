@@ -69,21 +69,21 @@ export const saveGame = (slot) => (dispatch, getState) => {
 }
 
 export const getSavesData = () => (dispatch, getState) => {
-    dispatch({
-        type: 'LOADING'
-    })
+    const id = getState().player.id;
 
-    const username = getState().player.username;
     const data = {
-        username
+        id: id
     }
 
-    axios.post('/loadGame', data).then(res => {
-        console.log(res.data)
+    axios.post('/getSavesData', data).then(res => {
+        if (res.data.success) {
+            dispatch({
+                type: 'GET_SAVES_DATA',
+                saves: res.data.gameData
+            })
+        }
+
     }).catch(err => {
-        dispatch({
-            type: 'LOADING'
-        })
         console.log({ err })
     })
 }
@@ -106,7 +106,7 @@ export const loadGame = (i) => (dispatch, getState) => {
                 combatState,
                 eventState,
                 levelState,
-                modalState,
+                // modalState,
                 positionState,
                 shopState
             })

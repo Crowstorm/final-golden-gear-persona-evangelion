@@ -3,51 +3,126 @@ import _ from 'lodash';
 
 import './gameData.css';
 
+const SaveInfo = (props) => {
+    return (
+        <div
+            className="d-flex flex-row justify-content-between"
+            style={{ width: '80%', height: '50px', border: '3px solid black', margin: 8 }}
+            onClick={props.onClick}
+        >
+            <div style={{ height: 50, width: 50, textAlign: 'center' }} className="d-flex  justify-content-center align-items-center">
+                {props.saveSlot}
+            </div>
+            <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
+                Lvl {props.characterLevel} / {props.currentQuest} / {props.currentLevel}
+            </div>
+        </div>
+    )
+}
+
 class GameData extends React.Component {
+    state = {
+        gameDataMode: 'load'
+    }
+
+    componentDidMount = () => {
+        this.props.getSavesData();
+    }
+
     loadGame = (i) => {
         this.props.loadGame(i);
     }
 
+    modesContainer = () => {
+        const loadGameBorder = (this.state.gameDataMode === 'load') ? '3px solid green' : '3px solid black'
+        const saveGameBorder = (this.state.gameDataMode === 'save') ? '3px solid green' : '3px solid black'
+        return (
+            <div style={{ width: '80%' }}
+                className="d-flex flex-row justify-content-around"
+            >
+                <div style={{ border: loadGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'load' })}>Load Game</div>
+
+                <div style={{ border: saveGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'save' })}>Save Game</div>
+            </div>
+        )
+    }
+
     renderContent = () => {
-        const savedGames = this.props.player.savedGames;
-        if (this.props.modal.gameDataMode === 'save') {
-            //render slots
-
-            //on click save on this slot (pass save game with i)
-            return (
-                <p>saves</p>
-            )
-        } else {
-            //render slots
-            //on click load game
-
+        const { savedGames } = this.props.player;
+        const { gameDataMode } = this.state;
+        if (gameDataMode === 'save') {
             return savedGames.map((save, i) => {
                 // const { saveSlot, levelState: { currentLevel } } = save;
                 const saveSlot = _.get(save, 'saveSlot');
                 const currentLevel = _.get(save, 'levelState.currentLevel');
+                const characterLevel = _.get(save, 'characterState[0].stats.level');
+                const currentQuest = _.get(save, 'eventState.currentQuest');
                 if (currentLevel) {
                     return (
-                        <div key={i} style={{ border: "1px solid blue" }} onClick={() => this.loadGame(i)}>
-                            <p>{saveSlot}</p>
-                            <p>{currentLevel}</p>
-                        </div>
+                        <SaveInfo
+                            saveSlot={saveSlot}
+                            currentQuest={currentQuest}
+                            currentLevel={currentLevel}
+                            characterLevel={characterLevel}
+                            onClick={() => this.loadGame(i)}
+                        />
                     )
                 } else {
                     return (
-                        <div key={i}>Pusty sjew</div>
+                        <div key={i} className="d-flex flex-row justify-content-between"
+                            style={{ width: '80%', height: '50px', border: '3px solid black', margin: 8 }}
+                        >
+                            <div style={{ height: 50, width: 50, textAlign: 'center' }} className="d-flex  justify-content-center align-items-center">
+                                {i}
+                            </div>
+
+                            <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
+                                Empty Slot
+                            </div>
+                        </div>
                     )
                 }
+            })
+        } else {
+            return savedGames.map((save, i) => {
+                // const { saveSlot, levelState: { currentLevel } } = save;
+                const saveSlot = _.get(save, 'saveSlot');
+                const currentLevel = _.get(save, 'levelState.currentLevel');
+                const characterLevel = _.get(save, 'characterState[0].stats.level');
+                const currentQuest = _.get(save, 'eventState.currentQuest');
+                if (currentLevel) {
+                    return (
+                        <SaveInfo
+                            saveSlot={saveSlot}
+                            currentQuest={currentQuest}
+                            currentLevel={currentLevel}
+                            characterLevel={characterLevel}
+                            onClick={() => this.loadGame(i)}
+                        />
+                    )
+                } else {
+                    return (
+                        <div key={i} className="d-flex flex-row justify-content-between"
+                            style={{ width: '80%', height: '50px', border: '3px solid black', margin: 8 }}
+                        >
+                            <div style={{ height: 50, width: 50, textAlign: 'center' }} className="d-flex  justify-content-center align-items-center">
+                                {i}
+                            </div>
 
+                            <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
+                                Empty Slot
+                            </div>
+                        </div>
+                    )
+                }
             })
 
         }
     }
     render() {
-        this.props.getSavesData();
-        console.log(this.props.player.savedGames);
-        console.log(this.props.modal.gameDataMode);
         return (
-            <div className="gameData d-flex flex-column align-items-center">
+            <div className="gameData d-flex flex-column align-items-center justify-content-center">
+                {this.modesContainer()}
                 {this.renderContent()}
             </div>
         )

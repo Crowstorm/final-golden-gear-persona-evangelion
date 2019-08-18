@@ -37,11 +37,10 @@ export const toggleShop = () => {
     }
 }
 
-export const toggleGameData = (gameDataMode) => {
+export const toggleGameData = () => {
     return function (dispatch) {
         dispatch({
-            type: 'TOGGLE_GAME_DATA',
-            gameDataMode
+            type: 'TOGGLE_GAME_DATA'
         })
     }
 }

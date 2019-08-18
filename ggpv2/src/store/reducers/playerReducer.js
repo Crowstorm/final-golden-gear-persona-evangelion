@@ -3,7 +3,7 @@ import produce from "immer";
 
 const playerDefaultState = {
     loading: false,
-    isAuth: false,
+    isAuth: true,
     id: "5ce84dcbd3e8ae7de4415f73",
     username: 'admin5',
     savedGames: [],
@@ -22,6 +22,9 @@ const playerReducer = (state = playerDefaultState, action) => {
                 draft.expTable.shift();
                 break;
             }
+            case 'GET_SAVES_DATA':
+                draft.savedGames = action.saves;
+                break;
             case 'PLAYER_LOGGED_IN':
                 draft.isAuth = action.isAuth;
                 draft.id = action.id;

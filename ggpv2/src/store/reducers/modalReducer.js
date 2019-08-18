@@ -8,8 +8,7 @@ const initial_state = {
     characterCardVisibility: false,
     combatRewardsCardVisibility: false,
     shopVisibility: false,
-    gameDataVisibility: false,
-    gameDataMode: 'save',
+    gameDataVisibility: true,
     shopContent: {
         armor: [],
         weapon: [],
@@ -20,6 +19,8 @@ const initial_state = {
 export default (state = initial_state, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'LOAD_GAME':
+                return action.modalState;
             case 'TOGGLE_DIALOGUE': {
                 draft.dialogueVisibility = !draft.dialogueVisibility
                 break;
@@ -33,7 +34,6 @@ export default (state = initial_state, action) => {
             }
             case 'TOGGLE_GAME_DATA': {
                 draft.gameDataVisibility = !draft.gameDataVisibility
-                draft.gameDataMode = action.gameDataMode;
                 break;
             }
             case 'TOGGLE_COMBAT_REWARDS_CARD': {

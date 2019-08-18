@@ -30,6 +30,8 @@ const combatDefaultState = {
 const combatReducer = (state = combatDefaultState, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'LOAD_GAME':
+                return action.combatState;
             case 'TOGGLE_COMBAT':
                 draft.isCombat = !draft.isCombat;
                 break;

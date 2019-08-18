@@ -7,7 +7,7 @@ import right from '../../assets/sprites/mainCharacter/overworld/mainCharRight.gi
 import combat from '../../assets/sprites/mainCharacter/overworld/combat.png';
 
 let initial_state = {
-    x: 3,
+    x: 13,
     y: 3,
     model: back
 }
@@ -15,6 +15,8 @@ let initial_state = {
 export default (state = initial_state, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'LOAD_GAME':
+                return action.positionState;
             case 'MOVE_CHAR_UP': {
                 if (draft.y + 1 > 25) {
                     return;

@@ -44,7 +44,7 @@ class ThroneRoom extends React.Component {
         //     dialogue: this.kingDialogue
         // })
         this.props.addDialogue(this.tutorial)
-        this.props.toggleDialogueState();
+        // this.props.toggleDialogueState();
     }
 
     componentDidUpdate(prevProps) {
