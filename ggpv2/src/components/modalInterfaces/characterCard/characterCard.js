@@ -135,7 +135,7 @@ export default class CharacterCard extends React.Component {
         let name = (this.state.menu === 'items') ? 'Consumables' : 'Items';
 
         return (
-            <div onClick={() => { this.handleChangeButtonClick() }} className="woodenButton">
+            <div onClick={() => { this.handleChangeButtonClick() }} className="eightbit-btn" style={{width: "80%", marginLeft: 16}}>
                 {name}
             </div>
         )
@@ -152,10 +152,10 @@ export default class CharacterCard extends React.Component {
                     {this.getStatistics()}
                 </div>
 
-                <div className="characterCardRightContainer d-flex flex-column">
-                    <div className="characterCardButtonContainer d-flex justify-content-center">
+                <div className="characterCardRightContainer d-flex flex-column justify-content-center align-items-center">
+                    {/* <div className="characterCardButtonContainer d-flex justify-content-center"> */}
                         {this.renderChangeButton()}
-                    </div>
+                    {/* </div> */}
                     <div className="inventoryContainer d-flex flex-wrap">
                         {this.getInventory()}
                     </div>

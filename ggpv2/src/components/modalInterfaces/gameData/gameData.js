@@ -14,7 +14,7 @@ const SaveInfo = (props) => {
                 {props.saveSlot}
             </div>
             <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
-                Lvl {props.characterLevel} / {props.currentQuest} / {props.currentLevel}
+                Lvl {props.characterLevel} / {(props.currentQuest) ? props.currentQuest.name: ''} / {props.currentLevel}
             </div>
         </div>
     )
@@ -29,8 +29,15 @@ class GameData extends React.Component {
         this.props.getSavesData();
     }
 
+    componentDidUpdate = () => {
+        this.props.getSavesData();
+    }
+
     loadGame = (i) => {
         this.props.loadGame(i);
+    }
+    saveGame = (i) => {
+        this.props.saveGame(i);
     }
 
     modesContainer = () => {
@@ -64,7 +71,7 @@ class GameData extends React.Component {
                             currentQuest={currentQuest}
                             currentLevel={currentLevel}
                             characterLevel={characterLevel}
-                            onClick={() => this.loadGame(i)}
+                            onClick={() => this.saveGame(i)}
                         />
                     )
                 } else {

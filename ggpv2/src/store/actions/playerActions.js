@@ -27,7 +27,7 @@ export const login = (username, password) => (dispatch) => {
                 username: res.data.user.username,
                 savedGames: res.data.user.savedGames,
             })
-            dispatch(toggleGameData('load'));
+            // dispatch(toggleGameData('load'));
         }
     }).catch(err => {
         console.error(err)
@@ -65,6 +65,7 @@ export const saveGame = (slot) => (dispatch, getState) => {
 
     axios.post('/saveGame', gameData).then(res => {
         console.log({ res })
+        console.log('zapisalem')
     })
 }
 
@@ -89,7 +90,6 @@ export const getSavesData = () => (dispatch, getState) => {
 }
 
 export const loadGame = (i) => (dispatch, getState) => {
-    console.log('WCZYTUJE')
     const id = getState().player.id;
     const data = {
         id: id,
@@ -110,8 +110,10 @@ export const loadGame = (i) => (dispatch, getState) => {
                 positionState,
                 shopState
             })
+            dispatch(toggleGameData());
         }
     }).catch(err => {
         console.log({ err })
     })
 }
+

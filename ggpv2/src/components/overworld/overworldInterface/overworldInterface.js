@@ -46,12 +46,12 @@ class OverworldInterface extends React.Component {
                         {/* <CurrentQuest currentQuest={currentQuest} /> */}
                     </div>
 
-                    <div>
-                        <button onClick={this.props.toggleCharacterCard}>Equipment</button>
+                    <div className="eightbit-btn" onClick={this.props.toggleCharacterCard}>
+                        Equipment
                     </div>
 
-                    <div>
-                        <button onClick={this.props.toggleGameData}>Game Data</button>
+                    <div className="eightbit-btn" onClick={this.props.toggleGameData}>
+                        Game Data
                     </div>
                 </div>
 
