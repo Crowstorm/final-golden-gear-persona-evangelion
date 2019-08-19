@@ -170,14 +170,16 @@ export const changeTurn = (whoseTurn) => {
             let i = 0;
             dispatch(incrementCombatTurn());
             dispatch(changeBuffsCounter());
-            while (getState().characters[i].stats.hp < 1 && i < getState().characters.length) {
+            while (!getState().combat.gameOver && getState().characters[i].stats.hp < 1 && i < getState().characters.length) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })
                 i++;
                 //albo przerwac kombat
                 if (i === getState().characters.length) {
-                    dispatch(toggleCombat())
+                    dispatch({
+                        type: 'GAME_OVER'
+                    })
                 }
             }
         }

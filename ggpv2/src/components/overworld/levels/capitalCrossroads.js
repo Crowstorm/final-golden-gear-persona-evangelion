@@ -38,8 +38,8 @@ class CapitalCrossroads extends React.Component {
             { text: "...", char: dialogueCharacters.setsuna },
             { text: "Well, I was traveling with two adventurers before one of them wandered away and the other went looking for him.", char: dialogueCharacters.setsuna },
             { text: "But I cannot vouch for their loyalty nor resolve. They are a weird bunch.", char: dialogueCharacters.setsuna },
-            { text: "Anyone will do at this point. Let's find them!", char: dialogueCharacters.shujin },
-            { text: '', effect: this.findNewAlliesUpdate }
+            { text: "Anyone will do at this point. Let's find them!", char: dialogueCharacters.shujin,  effect: this.findNewAlliesUpdate },
+            // { text: '', }
         ]
         this.roadBlockNewAllies = [
             { text: "Better not go there, we don't have time to deal with more bandits", char: dialogueCharacters.shujin }
@@ -52,8 +52,8 @@ class CapitalCrossroads extends React.Component {
             { text: "To make matters worse, one of Setsuna's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
             { text: "As for the second companion, known for his good nature, went east to find out about the mysterious group working in the capital. This is your best shot at finding him.", char: dialogueCharacters.unknown },
             { text: "Before you enter a new level you will be able to talk to a 'traveling' merchant, so you can upgrade your equipment if you wish.", char: dialogueCharacters.unknown },
-            { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown },
-            { text: '', effect: this.endOfExcuses }
+            { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown, effect: this.endOfExcuses  },
+            // { text: '', }
         ]
     }
 

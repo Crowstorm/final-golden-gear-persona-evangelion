@@ -29,7 +29,7 @@ class WestsideInn extends React.Component {
             { text: "I respectfully decline, my lady.", char: dialogueCharacters.shujin },
             { text: "Then at least allow me to offer you a drink.", char: dialogueCharacters.damselInDistress },
             { text: "Very well!", char: dialogueCharacters.shujin },
-            { text: "", effect: this.mysteriousDrink },
+            { text: "You empty the cup", effect: this.mysteriousDrink },
         ]
 
         this.banditsAttack = [
