@@ -1,6 +1,7 @@
 import produce from "immer";
 
 const combatDefaultState = {
+    gameOver: false,
     isCombat: false,
     battleBackground: "http://www.sclance.com/backgrounds/rpg-battle-background/rpg-battle-background_1947994.png",
     basicAllyHitChance: 100,
@@ -30,6 +31,9 @@ const combatDefaultState = {
 const combatReducer = (state = combatDefaultState, action) => {
     return produce(state, draft => {
         switch (action.type) {
+            case 'GAME_OVER':
+                draft.gameOver = true;
+                break;
             case 'LOAD_GAME':
                 return action.combatState;
             case 'TOGGLE_COMBAT':

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import { changeTurn } from './combatActions';
+import { toggleGameData } from './modalActions';
 import * as items from '../items/items';
 
 export const replaceMainCharacter = () => (dispatch) => {
@@ -20,7 +21,7 @@ export const checkIfCharactersAlive = () => {
             }
         })
 
-        if (counter >= 4) {
+        if (counter >= chars.length) {
             areAlive = false;
         }
 
@@ -50,10 +51,12 @@ export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
         i
     })
     let areAlive = dispatch(checkIfCharactersAlive());
+    console.log({ areAlive })
     if (!areAlive) {
         dispatch({
-            type: 'TOGGLE_COMBAT'
+            type: 'GAME_OVER'
         })
+        dispatch(toggleGameData());
     }
 }
 
@@ -118,7 +121,7 @@ export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
         switch (section) {
             case 'consumables':
                 let currentConsumables = getState().characters[0].consumables;
-                console.log({currentConsumables})
+                console.log({ currentConsumables })
                 indexToRemove = _.findIndex(currentConsumables, { name: toRemove.name })
                 console.log(indexToRemove);
                 dispatch({

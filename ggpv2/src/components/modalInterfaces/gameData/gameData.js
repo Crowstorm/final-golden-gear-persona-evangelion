@@ -14,7 +14,7 @@ const SaveInfo = (props) => {
                 {props.saveSlot}
             </div>
             <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
-                Lvl {props.characterLevel} / {(props.currentQuest) ? props.currentQuest.name: ''} / {props.currentLevel}
+                Lvl {props.characterLevel} / {(props.currentQuest) ? props.currentQuest.name : ''} / {props.currentLevel}
             </div>
         </div>
     )
@@ -29,9 +29,12 @@ class GameData extends React.Component {
         this.props.getSavesData();
     }
 
-    componentDidUpdate = () => {
-        this.props.getSavesData();
-    }
+    // componentDidUpdate = (prevProps) => {
+    //     if (this.props.player.savedGames !== prevProps.player.savedGames) {
+    //         console.log('?')
+    //         this.props.getSavesData();
+    //     }
+    // }
 
     loadGame = (i) => {
         this.props.loadGame(i);
@@ -43,21 +46,28 @@ class GameData extends React.Component {
     modesContainer = () => {
         const loadGameBorder = (this.state.gameDataMode === 'load') ? '3px solid green' : '3px solid black'
         const saveGameBorder = (this.state.gameDataMode === 'save') ? '3px solid green' : '3px solid black'
-        return (
-            <div style={{ width: '80%' }}
-                className="d-flex flex-row justify-content-around"
-            >
-                <div style={{ border: loadGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'load' })}>Load Game</div>
+        if (!this.props.combat.gameOver) {
+            return (
+                <div style={{ width: '80%' }}
+                    className="d-flex flex-row justify-content-around"
+                >
+                    <div style={{ border: loadGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'load' })}>Load Game</div>
 
-                <div style={{ border: saveGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'save' })}>Save Game</div>
-            </div>
-        )
+                    {(!this.props.combat.isCombat) ? <div style={{ border: saveGameBorder, padding: 8 }} onClick={() => this.setState({ gameDataMode: 'save' })}>Save Game</div> : null}
+                </div>
+            )
+        }
     }
 
     renderContent = () => {
         const { savedGames } = this.props.player;
         const { gameDataMode } = this.state;
-        if (gameDataMode === 'save') {
+        if (this.props.combat.gameOver) {
+            return (
+                <button onClick={() => window.location.reload()}>Game Over</button>
+            )
+        }
+        else if (gameDataMode === 'save') {
             return savedGames.map((save, i) => {
                 // const { saveSlot, levelState: { currentLevel } } = save;
                 const saveSlot = _.get(save, 'saveSlot');

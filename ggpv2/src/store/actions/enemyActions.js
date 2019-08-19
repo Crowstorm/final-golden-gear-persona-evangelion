@@ -1,6 +1,6 @@
-import { changeTurn, addInfoToArray, isHelpReady } from './combatActions';
+import { changeTurn, addInfoToArray, isHelpReady, gameOver } from './combatActions';
 import { allyLoseHp, checkIfCharactersAlive, grantCombatRewards, checkForMainCharTriggers } from './characterActions';
-import { toggleCombatRewardsCard } from './modalActions';
+import { toggleCombatRewardsCard, toggleGameData, openGameData } from './modalActions';
 
 
 export const addEnemiesToCombat = (enemies) => (dispatch) => {
@@ -247,48 +247,50 @@ export const enemyTurn = () => {
                 //stop combat when all characters are dead
                 let areAlive = dispatch(checkIfCharactersAlive());
                 if (!areAlive) {
+                    dispatch(gameOver());
+                    dispatch(openGameData());
                     return;
-                }
+                } else {
+                    let allyIndex = await dispatch(getAllyIndex());
+                    let enemyAgility = getEnemyAgility(i, enemies);
+                    let allyEvasion = dispatch(getAllyEvasion(allyIndex));
+                    let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
 
-                let allyIndex = await dispatch(getAllyIndex());
-                let enemyAgility = getEnemyAgility(i, enemies);
-                let allyEvasion = dispatch(getAllyEvasion(allyIndex));
-                let wasAttackSuccessful = dispatch(calculateAttackSuccessChance(enemyAgility, allyEvasion));
+                    if (wasAttackSuccessful) {
+                        let wasCritical = dispatch(wasAttackCritical(i));
+                        let enemyDmg = await dispatch(calculateEnemyDmg(i));
+                        let allyDef = dispatch(getAllyDefence(allyIndex));
+                        let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
 
-                if (wasAttackSuccessful) {
-                    let wasCritical = dispatch(wasAttackCritical(i));
-                    let enemyDmg = await dispatch(calculateEnemyDmg(i));
-                    let allyDef = dispatch(getAllyDefence(allyIndex));
-                    let totalDmg = dispatch(calculateTotalDmg(enemyDmg, allyDef, wasCritical));
+                        let info = ``;
+                        if (wasCritical) { info += `Critical hit! ` };
+                        let allyName = getState().characters[allyIndex].name;
+                        info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
+                        dispatch(addInfoToArray(info))
 
-                    let info = ``;
-                    if (wasCritical) { info += `Critical hit! ` };
-                    let allyName = getState().characters[allyIndex].name;
-                    info += `${enemy.name} dealth ${totalDmg} damage to ${allyName}.`;
-                    dispatch(addInfoToArray(info))
+                        //Prevent main character dying and switch to ally turn if there is trigger for main char
+                        const isMainCharWaitingForTrigger = dispatch(checkForMainCharTriggers());
+                        const mainCharCurrentHp = getState().characters[0].stats.hp;
+                        if (isMainCharWaitingForTrigger && totalDmg >= mainCharCurrentHp) {
+                            totalDmg = mainCharCurrentHp - 1;
+                            dispatch(allyLoseHp(totalDmg, allyIndex))
+                            dispatch(changeTurn('ally'));
+                            return;
+                        } else {
+                            dispatch(allyLoseHp(totalDmg, allyIndex))
+                        }
 
-                    //Prevent main character dying and switch to ally turn if there is trigger for main char
-                    const isMainCharWaitingForTrigger = dispatch(checkForMainCharTriggers());
-                    const mainCharCurrentHp = getState().characters[0].stats.hp;
-                    if (isMainCharWaitingForTrigger && totalDmg >= mainCharCurrentHp) {
-                        totalDmg = mainCharCurrentHp - 1;
-                        dispatch(allyLoseHp(totalDmg, allyIndex))
-                        dispatch(changeTurn('ally'));
-                        return;
                     } else {
-                        dispatch(allyLoseHp(totalDmg, allyIndex))
+                        let info = `${enemy.name} missed!`
+                        dispatch(addInfoToArray(info))
                     }
 
-                } else {
-                    let info = `${enemy.name} missed!`
-                    dispatch(addInfoToArray(info))
-                }
+                    noOfEnemiesAttacked += 1;
 
-                noOfEnemiesAttacked += 1;
-
-                if (noOfEnemiesAttacked === enemies.length) {
-                    dispatch(addEnemiesFromReserve());
-                    dispatch(changeTurn('ally'))
+                    if (noOfEnemiesAttacked === enemies.length) {
+                        dispatch(addEnemiesFromReserve());
+                        dispatch(changeTurn('ally'))
+                    }
                 }
             }
         } else {

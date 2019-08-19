@@ -66,6 +66,7 @@ export const saveGame = (slot) => (dispatch, getState) => {
     axios.post('/saveGame', gameData).then(res => {
         console.log({ res })
         console.log('zapisalem')
+        dispatch(getSavesData())
     })
 }
 
@@ -102,8 +103,8 @@ export const loadGame = (i) => (dispatch, getState) => {
             const { characterState, combatState, eventState, levelState, modalState, positionState, shopState } = res.data.gameData;
             dispatch({
                 type: 'LOAD_GAME',
-                characterState,
                 combatState,
+                characterState,
                 eventState,
                 levelState,
                 // modalState,

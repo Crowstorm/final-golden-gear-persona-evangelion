@@ -45,7 +45,7 @@ export const mainChar = {
             level: 1,
             exp: 0,
             maxHp: 30,
-            hp: 30,
+            hp: 1,
             maxMp: 15,
             mp: 15,
             strength: 8,

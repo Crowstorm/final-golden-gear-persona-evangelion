@@ -170,13 +170,13 @@ export const changeTurn = (whoseTurn) => {
             let i = 0;
             dispatch(incrementCombatTurn());
             dispatch(changeBuffsCounter());
-            while (getState().characters[i].stats.hp < 1 && i < 3) {
+            while (getState().characters[i].stats.hp < 1 && i < getState().characters.length) {
                 dispatch({
                     type: 'INCREMENT_ATTACKER_INDEX'
                 })
                 i++;
                 //albo przerwac kombat
-                if (i === 4) {
+                if (i === getState().characters.length) {
                     dispatch(toggleCombat())
                 }
             }
@@ -202,5 +202,11 @@ export const setBattleBackground = (background) => (dispatch) => {
     dispatch({
         type: 'SET_BATTLE_BACKGROUND',
         background
+    })
+}
+
+export const gameOver = () => dispatch =>{
+    dispatch({
+        type: 'GAME_OVER'
     })
 }

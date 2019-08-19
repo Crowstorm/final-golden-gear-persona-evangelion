@@ -36,6 +36,10 @@ export default (state = initial_state, action) => {
                 draft.gameDataVisibility = !draft.gameDataVisibility
                 break;
             }
+            case 'OPEN_GAME_DATA': {
+                draft.gameDataVisibility = true;
+                break;
+            }
             case 'TOGGLE_COMBAT_REWARDS_CARD': {
                 draft.combatRewardsCardVisibility = !draft.combatRewardsCardVisibility;
                 break;

@@ -44,3 +44,10 @@ export const toggleGameData = () => {
         })
     }
 }
+export const openGameData = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'OPEN_GAME_DATA'
+        })
+    }
+}
