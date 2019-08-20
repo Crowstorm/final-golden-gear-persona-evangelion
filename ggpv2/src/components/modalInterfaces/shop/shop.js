@@ -98,7 +98,6 @@ class ShopModal extends React.Component {
 
     render() {
         let name = (this.state.content === 'Buy') ? 'Shop inventory' : 'Your inventory';
-        console.log(this.props)
         return (
             <div className="shopModal d-flex flex-row">
                 {/* <div className="shopLeftContainer d-flex flex-column">

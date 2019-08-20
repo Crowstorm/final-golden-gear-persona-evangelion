@@ -1,10 +1,11 @@
 import produce from "immer";
+import * as shop from '../shops/shops';
 
 
 
 let initial_state = {
     shopCut: 0.5,
-    shopInventory: [],
+    shopInventory: shop.capitalCrossroadsShop,
     archivedShopInventory: []
 }
 

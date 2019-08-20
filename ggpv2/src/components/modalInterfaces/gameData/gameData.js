@@ -77,6 +77,7 @@ class GameData extends React.Component {
                 if (currentLevel) {
                     return (
                         <SaveInfo
+                            key={i}
                             saveSlot={saveSlot}
                             currentQuest={currentQuest}
                             currentLevel={currentLevel}
@@ -93,7 +94,7 @@ class GameData extends React.Component {
                                 {i}
                             </div>
 
-                            <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }}>
+                            <div className="d-flex  justify-content-center align-items-center" style={{ width: '100%' }} onClick={() => this.saveGame(i)}>
                                 Empty Slot
                             </div>
                         </div>
@@ -110,6 +111,7 @@ class GameData extends React.Component {
                 if (currentLevel) {
                     return (
                         <SaveInfo
+                            key={i}
                             saveSlot={saveSlot}
                             currentQuest={currentQuest}
                             currentLevel={currentLevel}

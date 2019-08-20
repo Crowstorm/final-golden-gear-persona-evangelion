@@ -13,8 +13,9 @@ export default class CharacterCard extends React.Component {
     }
 
     getEq = () => {
-        let char = this.props.characters[this.state.charIndex];
-        let { chest, legs, head } = char.armor;
+        const char = this.props.characters[this.state.charIndex];
+        const { chest, legs, head, shield } = char.armor;
+        const weapon = char.weapon
 
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
@@ -22,9 +23,9 @@ export default class CharacterCard extends React.Component {
                     {(head) ? <ItemImage equipped={true} item={head} i={0}/> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
                 </div>
                 <div className="d-flex flex-row">
+                    <ItemImage equipped={true} item={weapon} i={0}/>
                     <ItemImage equipped={true} item={chest} i={0}/>
-                    <ItemImage equipped={true} item={chest} i={0}/>
-                    <ItemImage equipped={true} item={chest} i={0}/>
+                    <ItemImage equipped={true} item={shield} i={0}/>
                 </div>
                 <div>
                     <ItemImage equipped={true} item={legs} i={0}/>

@@ -76,8 +76,8 @@ class CapitalCrossroads extends React.Component {
             this.props.addDialogue(this.newAllies);
             this.props.toggleDialogueState();
         }
-        this.props.loadShopInventory(capitalCrossroadsShop);
-        this.props.toggleShop();
+        // this.props.loadShopInventory(capitalCrossroadsShop);
+        // this.props.toggleShop();
     }
 
     componentDidUpdate(prevProps, prevState) {
