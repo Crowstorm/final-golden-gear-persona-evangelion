@@ -7,13 +7,16 @@ import { capitalCrossroadsShop } from '../../../store/shops/shops';
 import './css/levels.css';
 import { BLOCKED_CapitalCrossroads } from '../grids/blockedLevelGrids';
 
+import shop from '../../../assets/sprites/npc/shop_stand.png';
+
 import { characterMovement, characterPosition, checkIfQuestTaken, checkQuestProgress } from '../levelFunctions/levelFunctions';
 
 class CapitalCrossroads extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialogue: null
+            dialogue: null,
+            shop: false,
         }
         this.troubleAtTheCrossroadsDialogue = [
             { text: "HELP!!! SOMEBODY HELP ME!!!", char: dialogueCharacters.unknown },
@@ -38,7 +41,7 @@ class CapitalCrossroads extends React.Component {
             { text: "...", char: dialogueCharacters.setsuna },
             { text: "Well, I was traveling with two adventurers before one of them wandered away and the other went looking for him.", char: dialogueCharacters.setsuna },
             { text: "But I cannot vouch for their loyalty nor resolve. They are a weird bunch.", char: dialogueCharacters.setsuna },
-            { text: "Anyone will do at this point. Let's find them!", char: dialogueCharacters.shujin,  effect: this.findNewAlliesUpdate },
+            { text: "Anyone will do at this point. Let's find them!", char: dialogueCharacters.shujin, effect: this.findNewAlliesUpdate },
             // { text: '', }
         ]
         this.roadBlockNewAllies = [
@@ -52,7 +55,7 @@ class CapitalCrossroads extends React.Component {
             { text: "To make matters worse, one of Setsuna's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
             { text: "As for the second companion, known for his good nature, went east to find out about the mysterious group working in the capital. This is your best shot at finding him.", char: dialogueCharacters.unknown },
             { text: "Before you enter a new level you will be able to talk to a 'traveling' merchant, so you can upgrade your equipment if you wish.", char: dialogueCharacters.unknown },
-            { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown, effect: this.endOfExcuses  },
+            { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown, effect: this.endOfExcuses },
             // { text: '', }
         ]
     }
@@ -74,10 +77,10 @@ class CapitalCrossroads extends React.Component {
             this.props.toggleDialogueState();
         }
         this.props.loadShopInventory(capitalCrossroadsShop);
-        // this.props.toggleShop();
+        this.props.toggleShop();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         let { x, y } = this.props.position;
         let { dialogueVisibility } = this.props.modal;
         if (dialogueVisibility) {
@@ -98,9 +101,16 @@ class CapitalCrossroads extends React.Component {
         const isGameCut = checkQuestProgress('New Allies', 'gameCut', this.props);
 
         //setup shop
-        if (isGameCut) {
+        if (isGameCut && !prevState.shop) {
             //place shopkeeper
+            this.setState({
+                shop: true
+            })
             // this.props.toggleShop();
+        }
+
+        if (!prevState.shop && this.state.shop) {
+            document.getElementById('d20_19').innerHTML = `<img src=${shop} class="npcSprite" style="transform: translateY(-20px)"/>`
         }
 
         if ((y >= 13 && y <= 18) && x === 1 && !isNewAlliesQuestTaken) {
@@ -157,6 +167,10 @@ class CapitalCrossroads extends React.Component {
     handleKeyDown = _.throttle((e) => {
         let { x, y } = this.props.position;
         characterMovement(this.props, e, BLOCKED_CapitalCrossroads);
+
+        if (e.key === "Enter" && (x === 20 && y === 18) && this.state.shop) {
+            this.props.toggleShop();
+        }
     }, this.props.level.movementSpeed)
 
     addTroubleAtTheCrossroadsQuest = () => {

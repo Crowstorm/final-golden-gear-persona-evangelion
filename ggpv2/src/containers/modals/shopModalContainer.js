@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ShopModal from '../../components/modalInterfaces/shop/shop';
+import { toggleShop } from '../../store/actions/modalActions';
 
 // import {toggleDialogueState} from '../../store/actions/modalActions';
 
@@ -23,9 +24,9 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // toggleDialogueState: () => {
-        //     dispatch(toggleDialogueState());
-        // }
+        toggleShop: () => {
+            dispatch(toggleShop());
+        }
     }
 }
 
