@@ -52,7 +52,7 @@ class CapitalCrossroads extends React.Component {
         ]
         this.excuses = [
             { text: "For the purpose of the demo the next part is cut. Filler content takes just as much time to create as main content, so you are being awarded: ", char: dialogueCharacters.unknown },
-            { text: "650 experiance points, 1200 gold and some equipment. After this dialogue ends check your inventory.", char: dialogueCharacters.unknown, effect: this.lootForSkip },
+            { text: "650 experiance points, 300 gold and some equipment. After this dialogue ends check your inventory. I'm a generous developer, so I also restored your HP and mana.", char: dialogueCharacters.unknown, effect: this.lootForSkip },
             { text: "Summary of what you learned:", char: dialogueCharacters.unknown },
             { text: "Adventurers are getting attacked by an unknown group, forcing them out of the capital.", char: dialogueCharacters.unknown },
             { text: "To make matters worse, one of Setsuna's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
@@ -64,11 +64,15 @@ class CapitalCrossroads extends React.Component {
     }
 
     lootForSkip = () => {
-        this.props.alterGoldAmount(1200);
+        this.props.alterGoldAmount(300);
         this.props.addExpPoints(650);
         this.props.addItemOrAbility('items', weapon.steelSword)
         this.props.addItemOrAbility('items', armor.steelHelmet);
         this.props.addItemOrAbility('items', armor.steelLegs);
+        this.props.charRestore('hp', 100, 0);
+        this.props.charRestore('mp', 100, 0);
+        this.props.charRestore('hp', 100, 1);
+        this.props.charRestore('mp', 100, 1);
     }
 
     findNewAlliesUpdate = () => {

@@ -96,7 +96,7 @@ export const healing = {
     hitChance: 100,
     costType: "mp",
     costDataType: "int",
-    cost: 7,
+    cost: 10,
     dmg: 20,
     dmgType: "flat",
     aoe: false,

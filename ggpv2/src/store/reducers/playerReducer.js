@@ -1,5 +1,7 @@
 import produce from "immer";
 
+import * as skills from '../skills/skills';
+import * as spells from '../skills/spells';
 
 const playerDefaultState = {
     loading: false,
@@ -8,10 +10,10 @@ const playerDefaultState = {
     username: 'admin5',
     savedGames: [],
     expTable: [
-        { exp: 100, boost: 2 },
-        { exp: 250, boost: 2 },
-        { exp: 500, boost: 2 },
-        { exp: 1000, boost: 2 },
+        { exp: 100, boost: 2, newAbilities: [] },
+        { exp: 250, boost: 2, newAbilities: [] },
+        { exp: 500, boost: 2, newAbilities: [{ skill: skills.whimOfFate, type: 'skills' }, { skill: spells.healing, type: 'magic' }] },
+        { exp: 1000, boost: 2, newAbilities: [] },
     ]
 }
 

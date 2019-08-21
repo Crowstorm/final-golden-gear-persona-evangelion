@@ -4,6 +4,7 @@ import { changeTurn } from './combatActions';
 import { toggleGameData } from './modalActions';
 import * as items from '../items/items';
 
+
 export const replaceMainCharacter = () => (dispatch) => {
     dispatch({
         type: 'REPLACE_MAIN_CHARACTER'
@@ -211,7 +212,7 @@ export const addExpPoints = (amount) => (dispatch, getState) => {
 
     while (characters[0].stats.exp >= expTable[0].exp) {
         characters.forEach((char, i) => {
-            dispatch(levelUp(i, expTable[0].boost));
+            dispatch(levelUp(i, expTable[0].boost, expTable[0].newAbilities));
         })
         dispatch({
             type: 'SHIFT_EXP_TABLE'
@@ -238,7 +239,7 @@ export const alterGoldAmount = (amount) => (dispatch, getState) => {
 
 
 
-export const levelUp = (i, boost) => (dispatch, getState) => {
+export const levelUp = (i, boost, newAbilities) => (dispatch, getState) => {
     let stats = getState().characters[i].stats;
     let newStats = { ...stats };
     newStats.level += 1;
@@ -255,6 +256,12 @@ export const levelUp = (i, boost) => (dispatch, getState) => {
     newStats.maxMp += 3;
     newStats.mp += 3;
 
+
+    if (newAbilities && newAbilities[i] && newAbilities[i].skill) {
+        dispatch(addItemOrAbility(newAbilities[i].type, newAbilities[i].skill, i))
+    }
+
+
     dispatch({
         type: 'LEVEL_UP',
         i,
@@ -265,19 +272,6 @@ export const levelUp = (i, boost) => (dispatch, getState) => {
 export const grantCombatRewards = () => async (dispatch, getState) => {
     dispatch(addExpPoints());
     dispatch(alterGoldAmount())
-    // dispatch(usePostcombatTriggers());
-    // let characters = getState().characters;
-    // let expTable = getState().player.expTable;
-
-    // while (characters[0].stats.exp >= expTable[0].exp) {
-    //     characters.forEach((char, i) => {
-    //         dispatch(levelUp(i, expTable[0].boost));
-    //     })
-    //     dispatch({
-    //         type: 'SHIFT_EXP_TABLE'
-    //     })
-    //     expTable = getState().player.expTable;
-    // }
 }
 
 //Triggers functions stored in reducer at the end of combat (for example qquest update)
