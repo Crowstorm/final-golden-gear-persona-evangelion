@@ -7,8 +7,8 @@ import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
 let initial_state = [
-    allies.mainCharPre,
-    // allies.mainChar,
+    // allies.mainCharPre,
+    allies.mainChar,
     // allies.setsuna
     // {
     //     name: 'BigBoss',

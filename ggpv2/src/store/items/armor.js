@@ -7,6 +7,9 @@ import leatherHelmetIcon from '../../assets/interface/equipment/armor/leatherHel
 import leatherBootsIcon from '../../assets/interface/equipment/armor/leatherBoots.png';
 import steelBootsIcon from '../../assets/interface/equipment/armor/steelBoots.png';
 
+import woodenShieldIcon from '../../assets/interface/equipment/armor/woodenShield.png';
+
+
 
 
 export const woodenHelmet = {
@@ -20,7 +23,7 @@ export const woodenHelmet = {
 }
 
 export const woodenShirt = {
-    name: "Leather Shirt",
+    name: "Wooden Shirt",
     slot: "chest",
     icon: leatherArmorIcon,
     bonus: {
@@ -42,7 +45,7 @@ export const woodenLegs = {
 export const woodenShield = {
     name: "Wooden Shield",
     slot: "leftHand",
-    icon: 'https://i.pinimg.com/originals/2e/a8/51/2ea851e26242a29461b14ec21004dfe2.png',
+    icon: woodenShieldIcon,
     bonus: {
         defence: 1
     },

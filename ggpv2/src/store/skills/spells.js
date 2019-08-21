@@ -98,9 +98,9 @@ export const healing = {
     description: "Spell that restores target's vitality."
 }
 
-export const buff = {
+export const minorProtection = {
     icon: null,
-    name: "Buff",
+    name: "Minor Protection",
     hitChance: 100,
     costType: "mp",
     costDataType: "int",
@@ -111,5 +111,5 @@ export const buff = {
     boostType: "flat",
     boostAmount: 5,
     boostDuration: 2,
-    description: "Buff test"
+    description: "Slightly boosts target's defence, agility and strength"
 }

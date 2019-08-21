@@ -26,83 +26,83 @@ export const setsuna = {
         spells.magicBullet,
         spells.fireball,
         spells.minorHealing,
-        spells.buff,
         spells.meditate
     ],
     buffs: [],
     armor: {
         head: armor.woodenHelmet,
-        chest: armor.steelArmor,
+        chest: armor.woodenShirt,
         shield: armor.woodenShield,
         legs: armor.woodenLegs
     },
+    weapon: weapons.woodenStaff
 }
 
 export const mainChar = {
     name: 'BigBoss',
-        portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
-        stats: {
-            level: 1,
-            exp: 0,
-            maxHp: 30,
-            hp: 1,
-            maxMp: 15,
-            mp: 15,
-            strength: 8,
-            defence: 7,
-            magic: 5,
-            magicResist: 5,
-            agility: 5,
-            luck: 5,
-            speed: 5,
-        },
-        buffs: [],
-        armor: {
-            // head: armor.woodenHelmet,
-            chest: armor.woodenShirt,
-            shield: armor.woodenShield,
-            legs: armor.woodenLegs
-        },
-        weapon: weapons.woodenSword
-        ,
-        skills: [
-            skills.strongBlow,
-            skills.allIn,
-            skills.whimOfFate,
-            skills.guard
-            // skills.decimate,
-            // skills.whirlwind
-        ],
-        magic: [
-            // spells.fireball,
-            // spells.inferno,
-            // spells.soulDrain,
-            // spells.heal,
-            spells.magicBullet,
-            spells.buff,
-            spells.meditate
+    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    stats: {
+        level: 1,
+        exp: 0,
+        maxHp: 30,
+        hp: 30,
+        maxMp: 15,
+        mp: 15,
+        strength: 8,
+        defence: 7,
+        magic: 5,
+        magicResist: 5,
+        agility: 5,
+        luck: 5,
+        speed: 5,
+    },
+    buffs: [],
+    armor: {
+        // head: armor.woodenHelmet,
+        chest: armor.woodenShirt,
+        shield: armor.woodenShield,
+        legs: armor.woodenLegs
+    },
+    weapon: weapons.woodenSword
+    ,
+    skills: [
+        skills.strongBlow,
+        skills.allIn,
+        // skills.whimOfFate,
+        // skills.guard
+        // skills.decimate,
+        // skills.whirlwind
+    ],
+    magic: [
+        // spells.fireball,
+        // spells.inferno,
+        // spells.soulDrain,
+        // spells.heal,
+        spells.magicBullet,
+        spells.minorProtection,
+        // spells.meditate
 
-        ],
-        gold: 200,
-        items: [
-            armor.woodenShirt,
-            armor.steelLegs,
-            // armor.woodenShirt,
-            // armor.woodenShirt,
-            // armor.woodenShirt,
-            // armor.steelArmor,
-            // armor.woodenShirt,
-            // armor.steelHelmet,
-            // armor.woodenShirt,
-        ],
-        consumables: [
-            items.minorHealingPotion,
-            items.minorManaPotion,
-            items.minorHealingPotion,
-        ],
-        questItems: [
+    ],
+    gold: 200,
+    items: [
+        // armor.woodenShirt,
+        // armor.steelLegs,
+        // armor.woodenShirt,
+        // armor.woodenShirt,
+        // armor.woodenShirt,
+        // armor.steelArmor,
+        // armor.woodenShirt,
+        // armor.steelHelmet,
+        // armor.woodenShirt,
+    ],
+    consumables: [
+        items.minorHealingPotion,
+        items.minorManaPotion,
+        items.minorHealingPotion,
+    ],
+    questItems: [
 
-        ]
+    ]
 }
 export const mainCharPre = {
     name: 'BigBoss',
@@ -133,16 +133,9 @@ export const mainCharPre = {
     ,
     skills: [
         skills.strongBlow,
-        skills.allIn,
-        skills.decimate,
-        skills.whirlwind
     ],
     magic: [
-        spells.fireball,
         spells.inferno,
-        spells.soulDrain,
-        spells.minorHealing,
-        spells.buff
     ],
     gold: 0,
     items: [
