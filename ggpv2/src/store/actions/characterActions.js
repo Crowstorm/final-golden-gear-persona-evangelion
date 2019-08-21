@@ -167,7 +167,10 @@ export const equip = (charIndex, item) => (dispatch, getState) => {
     //check for the type of item to equip
     let slot = item.slot;
 
-    let currentItem = getState().characters[charIndex].armor[slot];
+    console.log({ item }, { slot })
+
+    let currentItem = (slot === 'rightHand') ? getState().characters[charIndex].weapon : getState().characters[charIndex].armor[slot];
+
     dispatch(addItemOrAbility('items', currentItem, 0))
 
     dispatch({
@@ -202,6 +205,20 @@ export const addExpPoints = (amount) => (dispatch, getState) => {
             })
         })
     }
+
+    characters = getState().characters;
+    let expTable = getState().player.expTable;
+
+    while (characters[0].stats.exp >= expTable[0].exp) {
+        characters.forEach((char, i) => {
+            dispatch(levelUp(i, expTable[0].boost));
+        })
+        dispatch({
+            type: 'SHIFT_EXP_TABLE'
+        })
+        expTable = getState().player.expTable;
+    }
+
 }
 
 export const alterGoldAmount = (amount) => (dispatch, getState) => {
@@ -249,18 +266,18 @@ export const grantCombatRewards = () => async (dispatch, getState) => {
     dispatch(addExpPoints());
     dispatch(alterGoldAmount())
     // dispatch(usePostcombatTriggers());
-    let characters = getState().characters;
-    let expTable = getState().player.expTable;
+    // let characters = getState().characters;
+    // let expTable = getState().player.expTable;
 
-    while (characters[0].stats.exp >= expTable[0].exp) {
-        characters.forEach((char, i) => {
-            dispatch(levelUp(i, expTable[0].boost));
-        })
-        dispatch({
-            type: 'SHIFT_EXP_TABLE'
-        })
-        expTable = getState().player.expTable;
-    }
+    // while (characters[0].stats.exp >= expTable[0].exp) {
+    //     characters.forEach((char, i) => {
+    //         dispatch(levelUp(i, expTable[0].boost));
+    //     })
+    //     dispatch({
+    //         type: 'SHIFT_EXP_TABLE'
+    //     })
+    //     expTable = getState().player.expTable;
+    // }
 }
 
 //Triggers functions stored in reducer at the end of combat (for example qquest update)

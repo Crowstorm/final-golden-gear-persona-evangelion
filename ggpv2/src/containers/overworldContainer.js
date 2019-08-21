@@ -4,7 +4,7 @@ import Level from '../components/overworld/levelRenderer';
 import OverworldInterface from '../components/overworld/overworldInterface/overworldInterface';
 
 import { moveCharDown, moveCharUp, moveCharLeft, moveCharRight, setCharacterPosition } from '../store/actions/characterMovementActions';
-import { addNewAlly, charRestore, replaceMainCharacter, addItemOrAbility, chestCleared } from '../store/actions/characterActions';
+import { addNewAlly, charRestore, replaceMainCharacter, addItemOrAbility, chestCleared, addExpPoints, alterGoldAmount } from '../store/actions/characterActions';
 import { toggleDialogueState, addDialogue, toggleCharacterCard, toggleShop } from '../store/actions/modalActions';
 import { changeLevel } from '../store/actions/levelActions';
 import { setCurrentQuest, updateQuestProgress, addCombatTriggers } from '../store/actions/eventActions';
@@ -55,6 +55,8 @@ function mapDispatchToProps(dispatch) {
         toggleCharacterCard: () => { dispatch(toggleCharacterCard()) },
         toggleShop: () => { dispatch(toggleShop()) },
         //level mechanics
+        alterGoldAmount: (amount) => { dispatch(alterGoldAmount(amount)) },
+        addExpPoints: (amount) => { dispatch(addExpPoints(amount)) },
         replaceMainCharacter: () => { dispatch(replaceMainCharacter()) },
         changeLevel: (levelName) => { dispatch(changeLevel(levelName)) },
         toggleCombat: () => { dispatch(toggleCombat()) },

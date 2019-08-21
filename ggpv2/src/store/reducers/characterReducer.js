@@ -7,9 +7,9 @@ import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
 let initial_state = [
-    allies.mainCharPre,
-    // allies.mainChar,
-    // allies.setsuna
+    // allies.mainCharPre,
+    allies.mainChar,
+    allies.setsuna
     // {
     //     name: 'BigBoss',
     //     portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
@@ -188,7 +188,12 @@ export default (state = initial_state, action) => {
                 draft[0].items.splice(i, 1);
                 break;
             case 'EQUIP':
-                draft[action.index].armor[action.slot] = action.item;
+                if (action.slot === 'rightHand') {
+                    draft[action.index].weapon = action.item;
+                } else {
+                    draft[action.index].armor[action.slot] = action.item;
+                }
+
                 break;
             case 'ADD_EXP_POINTS':
                 draft[action.i].stats.exp += action.exp;

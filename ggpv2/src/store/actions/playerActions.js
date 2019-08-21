@@ -98,13 +98,12 @@ export const loadGame = (i) => (dispatch, getState) => {
     }
 
     axios.post('/loadGame', data).then(res => {
-        console.log(res.data)
         if (res.data.success) {
             const { characterState, combatState, eventState, levelState, modalState, positionState, shopState } = res.data.gameData;
             dispatch({
                 type: 'LOAD_GAME',
                 combatState,
-                characterState,
+                // characterState,
                 eventState,
                 levelState,
                 // modalState,

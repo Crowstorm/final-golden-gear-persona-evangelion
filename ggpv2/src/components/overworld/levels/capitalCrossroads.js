@@ -1,6 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 
+import * as armor from '../../../store/items/armor'
+import * as weapon from '../../../store/items/weapons'
+
 import * as dialogueCharacters from '../../../store/dialogueCharacters/dialogueCharacters';
 import { capitalCrossroadsShop } from '../../../store/shops/shops';
 
@@ -49,7 +52,7 @@ class CapitalCrossroads extends React.Component {
         ]
         this.excuses = [
             { text: "For the purpose of the demo the next part is cut. Filler content takes just as much time to create as main content, so you are being awarded: ", char: dialogueCharacters.unknown },
-            { text: "650 experiance points, 1200 gold and some equipment. After this dialogue ends check your inventory.", char: dialogueCharacters.unknown },
+            { text: "650 experiance points, 1200 gold and some equipment. After this dialogue ends check your inventory.", char: dialogueCharacters.unknown, effect: this.lootForSkip },
             { text: "Summary of what you learned:", char: dialogueCharacters.unknown },
             { text: "Adventurers are getting attacked by an unknown group, forcing them out of the capital.", char: dialogueCharacters.unknown },
             { text: "To make matters worse, one of Setsuna's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
@@ -58,6 +61,14 @@ class CapitalCrossroads extends React.Component {
             { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown, effect: this.endOfExcuses },
             // { text: '', }
         ]
+    }
+
+    lootForSkip = () => {
+        this.props.alterGoldAmount(1200);
+        this.props.addExpPoints(650);
+        this.props.addItemOrAbility('items', weapon.steelSword)
+        this.props.addItemOrAbility('items', armor.steelHelmet);
+        this.props.addItemOrAbility('items', armor.steelLegs);
     }
 
     findNewAlliesUpdate = () => {

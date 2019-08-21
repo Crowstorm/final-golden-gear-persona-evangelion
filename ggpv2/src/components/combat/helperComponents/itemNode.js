@@ -50,7 +50,9 @@ export default class ItemNode extends React.Component {
                 onClick={() => this.itemClick()}
             >
                 <img className="abilityIcon" src={this.props.icon} />
-                {this.props.name}
+                <div style={{width: "100%", textAlign: 'center'}}>
+                    {this.props.name}
+                </div>
                 {this.renderTooltipWithInfo()}
             </div>
         )

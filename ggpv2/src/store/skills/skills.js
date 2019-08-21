@@ -1,6 +1,8 @@
 // import strongBlowIcon from './icons/skillIcons/strongBlow.png';
 import strongBlowIcon2 from './icons/skillIcons/strongBlow2.png';
 import whirlwindIcon from './icons/skillIcons/whirlwind.png';
+import allInIcon from './icons/skillIcons/allIn.png';
+import decimateIcon from './icons/skillIcons/decimate.png';
 
 // name - name of skill
 // hitChance - hit chance (perc)
@@ -37,6 +39,7 @@ export const whimOfFate = {
 }
 
 export const allIn = {
+    icon: allInIcon,
     name: "All In Attack",
     hitChance: 90,
     costType: "hp",
@@ -53,6 +56,7 @@ export const allIn = {
 }
 
 export const decimate = {
+    icon: decimateIcon,
     name: "Decimate",
     hitChance: 75,
     costType: "mp",

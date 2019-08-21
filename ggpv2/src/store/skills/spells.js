@@ -1,5 +1,13 @@
+import magicBulletIcon from './icons/spellIcons/magicBullet.png';
+import fireballIcon from './icons/spellIcons/fireball.png';
+import infernoIcon from './icons/spellIcons/inferno.png';
+import meditateIcon from './icons/spellIcons/meditate.png';
+import minorProtectionIcon from './icons/spellIcons/minorProtection.png';
+import healingIcon from './icons/spellIcons/healing.png';
+
+
 export const magicBullet = {
-    icon: null,
+    icon: magicBulletIcon,
     name: "Magic Bullet",
     hitChance: 90,
     costType: "mp",
@@ -12,7 +20,7 @@ export const magicBullet = {
 }
 
 export const fireball = {
-    icon: null,
+    icon: fireballIcon,
     name: "Fireball",
     hitChance: 90,
     costType: "mp",
@@ -25,7 +33,7 @@ export const fireball = {
 }
 
 export const inferno ={
-    icon: null,
+    icon: infernoIcon,
     name: "Inferno",
     hitChance: 100,
     costType: "mp",
@@ -51,7 +59,7 @@ export const soulDrain ={
 }
 
 export const meditate = {
-    icon: null,
+    icon: meditateIcon,
     name: "Meditate",
     hitChance: 100,
     costType: "mp",
@@ -68,7 +76,7 @@ export const meditate = {
 }
 
 export const minorHealing = {
-    icon: null,
+    icon: healingIcon,
     name: "Minor Healing",
     hitChance: 100,
     costType: "mp",
@@ -83,7 +91,7 @@ export const minorHealing = {
     description: "Weaker spell that restores target's vitality."
 }
 export const healing = {
-    icon: null,
+    icon: healingIcon,
     name: "Healing",
     hitChance: 100,
     costType: "mp",
@@ -99,7 +107,7 @@ export const healing = {
 }
 
 export const minorProtection = {
-    icon: null,
+    icon: minorProtectionIcon,
     name: "Minor Protection",
     hitChance: 100,
     costType: "mp",
@@ -107,9 +115,9 @@ export const minorProtection = {
     cost: 7,
     buff: true,
     helpType: 'buff',
-    boost: ['defence', 'agility', 'strength'],
+    boost: ['defence', 'magicResist', 'agility'],
     boostType: "flat",
     boostAmount: 5,
     boostDuration: 2,
-    description: "Slightly boosts target's defence, agility and strength"
+    description: "Slightly boosts target's defence, agility and magic resistance"
 }
