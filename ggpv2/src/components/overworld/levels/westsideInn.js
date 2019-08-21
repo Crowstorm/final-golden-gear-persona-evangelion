@@ -164,6 +164,7 @@ class WestsideInn extends React.Component {
         this.props.addEnemiesToCombat(foes);
         this.props.updateCombatRewards(10, 10, null, { effect: this.banditsDefeated });
         this.props.toggleCombat();
+        this.props.toggleDialogueState();
     }
 
 

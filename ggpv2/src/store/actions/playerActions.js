@@ -104,7 +104,7 @@ export const loadGame = (i) => (dispatch, getState) => {
             dispatch({
                 type: 'LOAD_GAME',
                 combatState,
-                // characterState,
+                characterState,
                 eventState,
                 levelState,
                 // modalState,
