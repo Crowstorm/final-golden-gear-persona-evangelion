@@ -7,7 +7,9 @@ export const register = (username, password) => (dispatch) => {
     axios.post('http://localhost:5000/signup', form).then(res => {
         console.log(res)
         if (res.data.success) {
-            console.log('register complete')
+            console.log('register complete');
+            window.location.reload();
+
         }
     }).catch(err => {
         console.error(err)

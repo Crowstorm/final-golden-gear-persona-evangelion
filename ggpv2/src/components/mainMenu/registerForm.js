@@ -23,8 +23,8 @@ const RegisterForm = (props) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div style={{ color: 'white', margin: 16 }}>
+            <form onSubmit={handleSubmit} >
                 <div className="form-group">
                     <label>Login</label>
                     <input type="text" className="form-control" name="username" placeholder="Login" onChange={handleChange} value={values.username} />
@@ -37,7 +37,7 @@ const RegisterForm = (props) => {
                     <label>Repeat password</label>
                     <input type="password" className="form-control" name="password2" placeholder="Password" onChange={handleChange} value={values.password2} />
                 </div>
-                <button type="submit" className="btn btn-primary mb-2">Submit</button>
+                <div onClick={handleSubmit} className="eightbit-btn">Submit</div>
             </form>
             {renderErrors()}
         </div>
