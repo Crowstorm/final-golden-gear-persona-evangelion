@@ -116,3 +116,19 @@ export const loadGame = (i) => (dispatch, getState) => {
     })
 }
 
+export const checkAuth = () => dispatch => {
+    axios.get('/current_user').then(res => {
+        console.log({ res })
+        if (res.data) {
+            dispatch({
+                type: 'PLAYER_LOGGED_IN',
+                isAuth: true,
+                id: res.data._id,
+                username: res.data.username,
+                savedGames: res.data.savedGames,
+            })
+        }
+    }).catch(err => {
+        console.log({ err })
+    })
+}
