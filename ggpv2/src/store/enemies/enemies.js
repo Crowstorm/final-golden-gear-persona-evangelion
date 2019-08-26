@@ -75,10 +75,10 @@ export const bandit2 = {
         hp: 25,
         maxMp: 0,
         mp: 0,
-        defence: 2,
+        defence: 4,
         magic: 5,
         magicResist: 3,
-        agility: 13,
+        agility: 5,
         speed: 6,
         strength: 18,
         luck: 5
@@ -150,7 +150,7 @@ export const wolf = {
         magicResist: 4,
         agility: 40,
         speed: 6,
-        strength: 25,
+        strength: 15,
         luck: 10
     },
     loot: {
@@ -172,7 +172,7 @@ export const boar = {
         magicResist: 3,
         agility: 1,
         speed: 6,
-        strength: 30,
+        strength: 26,
         luck: 3
     },
     loot: {
@@ -194,12 +194,12 @@ export const militaryPolice = {
         hp: 40,
         maxMp: 0,
         mp: 0,
-        defence: 20,
+        defence: 18,
         magic: 0,
         magicResist: 15,
         agility: 20,
         speed: 6,
-        strength: 25,
+        strength: 22,
         luck: 10
     },
     weapon: weapons.steelSword,
