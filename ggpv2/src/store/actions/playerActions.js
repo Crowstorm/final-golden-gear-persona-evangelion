@@ -108,7 +108,7 @@ export const loadGame = (i) => (dispatch, getState) => {
                 levelState,
                 // modalState,
                 positionState,
-                shopState
+                // shopState
             })
             dispatch(toggleGameData());
         }

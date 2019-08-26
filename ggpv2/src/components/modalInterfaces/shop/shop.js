@@ -58,7 +58,7 @@ class ShopModal extends React.Component {
                     )
                 } else {
                     return (
-                        <ItemImage key={i} i={i} shop={true} item={item} buySell={this.props.sellItemToShop} />
+                        <ItemImage key={i} i={i} shop={true} selling={true} item={item} buySell={this.props.sellItemToShop} />
                     )
                 }
 
@@ -100,10 +100,6 @@ class ShopModal extends React.Component {
         let name = (this.state.content === 'Buy') ? 'Shop inventory' : 'Your inventory';
         return (
             <div className="shopModal d-flex flex-row">
-                {/* <div className="shopLeftContainer d-flex flex-column">
-                    <img src="https://wolna-polska.pl/wp-content/uploads/2013/07/a5.gif" />
-                </div> */}
-
                 <div className="shopRightContainer d-flex flex-column">
                     <div className="characterCardButtonContainer d-flex justify-content-center">
                         {this.renderShopModeChangeButton()}

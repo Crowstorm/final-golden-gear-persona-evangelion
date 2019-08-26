@@ -13,11 +13,9 @@ export const capitalCrossroadsShop = {
         consumables.minorManaPotion,
         consumables.minorManaPotion,
         consumables.minorManaPotion,
-        armor.woodenHelmet,
-        armor.woodenHelmet,
-        weapon.woodenSword,
-        weapon.woodenSword,
-        weapon.woodenSword,
+        armor.steelHelmet,
+        armor.steelArmor,
+        weapon.steelSword,
     ]
 }
 

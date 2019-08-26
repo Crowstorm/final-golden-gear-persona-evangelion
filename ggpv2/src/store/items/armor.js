@@ -19,6 +19,7 @@ export const woodenHelmet = {
     bonus: {
         defence: 1
     },
+    price: 100,
     itemType: 'items'
 }
 
@@ -29,6 +30,7 @@ export const woodenShirt = {
     bonus: {
         defence: 2
     },
+    price: 150,
     itemType: 'items'
 }
 
@@ -39,6 +41,7 @@ export const woodenLegs = {
     bonus: {
         defence: 1
     },
+    price: 100,
     itemType: 'items'
 }
 
@@ -60,7 +63,7 @@ export const steelArmor = {
     bonus: {
         defence: 4
     },
-    price: 100,
+    price: 400,
     itemType: 'items'
 }
 export const steelHelmet = {
@@ -70,7 +73,7 @@ export const steelHelmet = {
     bonus: {
         defence: 2
     },
-    price: 100,
+    price: 150,
     itemType: 'items'
 }
 export const steelLegs = {
@@ -80,7 +83,7 @@ export const steelLegs = {
     bonus: {
         defence: 3
     },
-    price: 100,
+    price: 250,
     itemType: 'items'
 }
 
