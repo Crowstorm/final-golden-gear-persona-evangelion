@@ -20,15 +20,15 @@ export default class CharacterCard extends React.Component {
         return (
             <div className="characterEquipped d-flex flex-column align-items-center">
                 <div>
-                    {(head) ? <ItemImage equipped={true} item={head} i={0}/> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
+                    {(head) ? <ItemImage equipped={true} item={head} i={0} /> : <img src={HelmetSlot} style={{ width: 64, height: 64 }} />}
                 </div>
                 <div className="d-flex flex-row">
-                    <ItemImage equipped={true} item={weapon} i={0}/>
-                    <ItemImage equipped={true} item={chest} i={0}/>
-                    <ItemImage equipped={true} item={shield} i={0}/>
+                    <ItemImage equipped={true} item={weapon} i={0} />
+                    <ItemImage equipped={true} item={chest} i={0} />
+                    <ItemImage equipped={true} item={shield} i={0} />
                 </div>
                 <div>
-                    <ItemImage equipped={true} item={legs} i={0}/>
+                    <ItemImage equipped={true} item={legs} i={0} />
                 </div>
             </div>
         )
@@ -61,14 +61,16 @@ export default class CharacterCard extends React.Component {
     sortItems = (items) => {
         let newItems = items.slice();
         return newItems.sort((a, b) => {
-            let nameA = a.name.toUpperCase();
-            let nameB = b.name.toUpperCase();
-            return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+            if (a && b) {
+                let nameA = a.name.toUpperCase();
+                let nameB = b.name.toUpperCase();
+                return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+            }
         })
     }
 
     getInventory = () => {
-        const charIndex =this.state.charIndex;
+        const charIndex = this.state.charIndex;
         let { items, consumables } = this.props.characters[0];
         let newItems = this.sortItems(items);
         let newConsumables = this.sortItems(consumables);
@@ -100,7 +102,7 @@ export default class CharacterCard extends React.Component {
                 )
             } else {
                 return (
-                    <ItemImage key={i} i={i} type="consumables" item={consum} charRestore={this.props.charRestore} charIndex={charIndex} removeItemFromInventory={this.props.removeItemOrAbility}/>
+                    <ItemImage key={i} i={i} type="consumables" item={consum} charRestore={this.props.charRestore} charIndex={charIndex} removeItemFromInventory={this.props.removeItemOrAbility} />
                 )
             }
         })
@@ -136,7 +138,7 @@ export default class CharacterCard extends React.Component {
         let name = (this.state.menu === 'items') ? 'Consumables' : 'Items';
 
         return (
-            <div onClick={() => { this.handleChangeButtonClick() }} className="eightbit-btn" style={{width: "80%", marginLeft: 16}}>
+            <div onClick={() => { this.handleChangeButtonClick() }} className="eightbit-btn" style={{ width: "80%", marginLeft: 16 }}>
                 {name}
             </div>
         )
@@ -155,7 +157,7 @@ export default class CharacterCard extends React.Component {
 
                 <div className="characterCardRightContainer d-flex flex-column justify-content-center align-items-center">
                     {/* <div className="characterCardButtonContainer d-flex justify-content-center"> */}
-                        {this.renderChangeButton()}
+                    {this.renderChangeButton()}
                     {/* </div> */}
                     <div className="inventoryContainer d-flex flex-wrap">
                         {this.getInventory()}

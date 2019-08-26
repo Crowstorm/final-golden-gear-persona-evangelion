@@ -62,23 +62,74 @@ export const bandit = {
         gold: 10
     }
 }
-export const banditLeader = {
-    name: 'Bandit Leader',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+export const bandit2 = {
+    name: 'Bandit',
+    portrait: 'https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417',
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
+    left: bandit_left,
+    right: bandit_right,
+    front: bandit_front,
+    back: bandit_back,
     stats: {
         maxHp: 25,
         hp: 25,
         maxMp: 0,
         mp: 0,
-        defence: 6,
+        defence: 2,
         magic: 5,
-        magicResist: 2,
-        agility: 12,
+        magicResist: 3,
+        agility: 13,
         speed: 6,
-        strength: 15,
+        strength: 18,
         luck: 5
     },
+    weapon: weapons.woodenSword,
+    loot: {
+        exp: 25,
+        gold: 10
+    }
+}
+export const banditLeader = {
+    name: 'Bandit Leader',
+    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    combatGif: 'https://i.imgur.com/R5xhCzA.png',
+    stats: {
+        maxHp: 35,
+        hp: 35,
+        maxMp: 0,
+        mp: 0,
+        defence: 16,
+        magic: 5,
+        magicResist: 8,
+        agility: 12,
+        speed: 6,
+        strength: 25,
+        luck: 5
+    },
+    weapon: weapons.woodenSword,
+    loot: {
+        exp: 100,
+        gold: 50
+    }
+}
+export const banditLeader2 = {
+    name: 'Bandit Leader',
+    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    combatGif: 'https://i.imgur.com/R5xhCzA.png',
+    stats: {
+        maxHp: 35,
+        hp: 35,
+        maxMp: 0,
+        mp: 0,
+        defence: 10,
+        magic: 8,
+        magicResist: 4,
+        agility: 15,
+        speed: 6,
+        strength: 25,
+        luck: 5
+    },
+    weapon: weapons.steelSword,
     loot: {
         exp: 100,
         gold: 50
@@ -90,16 +141,16 @@ export const wolf = {
     portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
-        maxHp: 16,
-        hp: 16,
+        maxHp: 26,
+        hp: 26,
         maxMp: 0,
         mp: 0,
         defence: 3,
         magic: 0,
         magicResist: 4,
-        agility: 20,
+        agility: 40,
         speed: 6,
-        strength: 16,
+        strength: 25,
         luck: 10
     },
     loot: {
@@ -112,8 +163,8 @@ export const boar = {
     portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
-        maxHp: 25,
-        hp: 25,
+        maxHp: 35,
+        hp: 35,
         maxMp: 0,
         mp: 0,
         defence: 3,
@@ -121,7 +172,7 @@ export const boar = {
         magicResist: 3,
         agility: 1,
         speed: 6,
-        strength: 22,
+        strength: 30,
         luck: 3
     },
     loot: {
@@ -143,15 +194,15 @@ export const militaryPolice = {
         hp: 40,
         maxMp: 0,
         mp: 0,
-        defence: 6,
+        defence: 20,
         magic: 0,
-        magicResist: 5,
+        magicResist: 15,
         agility: 20,
         speed: 6,
-        strength: 13,
+        strength: 25,
         luck: 10
     },
-    weapon: weapons.woodenSword,
+    weapon: weapons.steelSword,
     loot: {
         exp: 100,
         gold: 100

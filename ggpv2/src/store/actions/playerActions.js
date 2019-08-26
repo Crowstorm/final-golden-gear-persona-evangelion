@@ -2,7 +2,6 @@ import axios from 'axios';
 import { toggleGameData } from './modalActions';
 
 export const register = (username, password) => (dispatch) => {
-    console.log(username, password)
     const form = { username, password }
     // axios.post('https://fggpe-server.herokuapp.com/signup', form).then(res => {
     axios.post('http://localhost:5000/signup', form).then(res => {
