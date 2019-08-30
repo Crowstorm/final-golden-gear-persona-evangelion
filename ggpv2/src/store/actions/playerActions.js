@@ -4,13 +4,14 @@ import { API_URL } from '../../config/config';
 import { toggleGameData } from './modalActions';
 
 export const register = (username, password) => (dispatch) => {
-    console.log(username, password)
     const form = { username, password }
     // axios.post('https://fggpe-server.herokuapp.com/signup', form).then(res => {
     axios.post(`${API_URL}/signup`, form).then(res => {
         console.log(res)
         if (res.data.success) {
-            console.log('register complete')
+            console.log('register complete');
+            window.location.reload();
+
         }
     }).catch(err => {
         console.error(err)
@@ -110,7 +111,7 @@ export const loadGame = (i) => (dispatch, getState) => {
                 levelState,
                 // modalState,
                 positionState,
-                shopState
+                // shopState
             })
             dispatch(toggleGameData());
         }
@@ -119,3 +120,26 @@ export const loadGame = (i) => (dispatch, getState) => {
     })
 }
 
+export const checkAuth = () => dispatch => {
+    axios.get('/current_user').then(res => {
+        if (res.data) {
+            dispatch({
+                type: 'PLAYER_LOGGED_IN',
+                isAuth: true,
+                id: res.data._id,
+                username: res.data.username,
+                savedGames: res.data.savedGames,
+            })
+        }
+    }).catch(err => {
+        console.log({ err })
+    })
+}
+
+export const logout = () => dispatch => {
+    axios.get('/api/logout').then(res => {
+        window.location.reload();
+    }).catch(err => {
+        console.log({ err })
+    })
+}

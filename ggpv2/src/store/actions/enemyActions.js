@@ -233,10 +233,6 @@ export const enemyTurn = () => {
     return async function (dispatch, getState) {
         let enemies = getState().enemy;
         if (enemies) {
-            //sort by speed stat
-            // enemies = enemies.slice().sort((a, b) => {
-            //     return b.stats.speed - a.stats.speed
-            // })
             let noOfEnemiesAttacked = 0;
 
             let offset = 1000;
@@ -244,6 +240,7 @@ export const enemyTurn = () => {
                 //if special skill pick target, else pick random target
 
                 await timeout(offset);
+
                 //stop combat when all characters are dead
                 let areAlive = dispatch(checkIfCharactersAlive());
                 if (!areAlive) {

@@ -36,10 +36,10 @@ class AbandonedBuildingInside extends React.Component {
 
     startMilitaryCombat = () => {
         const foes = [
-            enemies.bandit,
-            // enemies.bandit,
-            // enemies.militaryPolice,
-            // enemies.bandit
+            enemies.bandit2,
+            enemies.bandit2,
+            enemies.militaryPolice,
+            enemies.bandit2
         ]
 
         this.props.toggleDialogueState()

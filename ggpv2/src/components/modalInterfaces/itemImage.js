@@ -61,14 +61,33 @@ class ItemImage extends React.Component {
                 )
             }
             if (this.props.shop) {
-                const { name, description, price } = this.props.item;
+                const { name, bonus, description, price } = this.props.item;
+
+                if (bonus) {
+                    const { defence, agility, strength, luck, magic, magicResist } = bonus;
+                    return (
+                        <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
+                            <p>{name}</p>
+                            <p>{description}</p>
+                            {(defence) ? <p>Defence: {defence}</p> : null}
+                            {(agility) ? <p>Agility: {agility}</p> : null}
+                            {(strength) ? <p>Strength: {strength}</p> : null}
+                            {(luck) ? <p>Luck: {luck}</p> : null}
+                            {(magic) ? <p>Magic: {magic}</p> : null}
+                            {(magicResist) ? <p>Magic Resistance: {magicResist}</p> : null}
+                            <p>{(this.props.selling) ? price / 2 : price} gold</p>
+                        </ReactTooltip>
+                    )
+                }
+
                 return (
                     <ReactTooltip id={name + this.props.i} aria-haspopup='true' role='example' className="d-flex flex-column align-content-center align-items-center justify-content-center">
                         <p>{name}</p>
                         <p>{description}</p>
-                        <p>{price} gold</p>
+                        <p>{(this.props.selling) ? price / 2 : price} gold</p>
                     </ReactTooltip>
                 )
+
             }
         }
     }

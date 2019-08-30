@@ -14,7 +14,7 @@ import ShopModalContainer from '../containers/modals/shopModalContainer';
 
 import { equip, charRestore, removeItemOrAbility } from '../store/actions/characterActions';
 import { buyItemFromShop, sellItemToShop } from '../store/actions/shopActions';
-import { saveGame, getSavesData, loadGame } from '../store/actions/playerActions';
+import { saveGame, getSavesData, loadGame, checkAuth, logout } from '../store/actions/playerActions';
 import { toggleGameData } from '../store/actions/modalActions';
 
 //cursors
@@ -22,6 +22,10 @@ import { toggleGameData } from '../store/actions/modalActions';
 // import king from '../assets/sprites/npc/king_overworld.png';
 
 class GameScreenContainer extends React.Component {
+    componentDidMount = () => {
+        this.props.checkAuth();
+    }
+
     overworld = () => {
         return (
             <div>
@@ -124,8 +128,14 @@ function mapDispatchToProps(dispatch) {
         getSavesData: () => {
             dispatch(getSavesData())
         },
-        loadGame: (i) =>{
+        loadGame: (i) => {
             dispatch(loadGame(i))
+        },
+        checkAuth: () => {
+            dispatch(checkAuth())
+        },
+        logout: () => {
+            dispatch(logout())
         }
     }
 }

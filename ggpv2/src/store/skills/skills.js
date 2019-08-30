@@ -22,7 +22,7 @@ export const strongBlow = {
     costType: "hp",
     costDataType: 'int',
     cost: 5,
-    multiplier: 2,
+    multiplier: 1.5,
     description: "Attack with double the strength."
 }
 
@@ -33,7 +33,7 @@ export const whimOfFate = {
     costType: "mp",
     costDataType: "int",
     cost: 3,
-    dmg: 30,
+    dmg: 40,
     dmgType: "flat",
     description: "Overwhelming blow with a low chance of success."
 }
@@ -52,7 +52,7 @@ export const allIn = {
         boostAmount: 10,
         boostDuration: 2,
     },
-    description: "Devastating blow increasing strength of the user but straining the muscles of the user"
+    description: "Devastating blow increasing strength of the user."
 }
 
 export const decimate = {

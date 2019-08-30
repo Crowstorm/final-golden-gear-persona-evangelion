@@ -90,6 +90,7 @@ class Game extends React.Component {
                 {renderCurrentLevel}
                 {gridBlocker}
                 <button style={{ float: "right", marginTop: 50, zIndex: 10000 }} onClick={() => this.toggleGridBlocker()}>GridBlocker</button>
+                <button style={{ float: "right", marginTop: 50, zIndex: 10000 }} onClick={() => this.props.logout()}>Logout</button>
 
             </div>
         )

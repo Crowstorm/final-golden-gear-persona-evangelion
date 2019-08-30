@@ -2,6 +2,9 @@ import React from 'react';
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
 
+import useForm from './useForm';
+
+
 class MainMenuScreen extends React.Component {
     state = {
         content: 'menu'
@@ -29,9 +32,9 @@ class MainMenuScreen extends React.Component {
         switch (this.state.content) {
             case 'menu':
                 return (
-                    <div className="d-flex justify-content-center flex-column" >
-                        <button onClick={() => this.renderLoginForm()}>Login</button>
-                        <button onClick={() => this.renderRegisterForm()}>Register</button>
+                    <div className="d-flex justify-content-around flex-column" style={{height: '50%'}}>
+                        <div className="eightbit-btn d-flex justify-content-center align-items-center" style={{height: '30%', fontSize: 42, textAlign: 'center'}} onClick={() => this.renderLoginForm()}>Login</div>
+                        <div className="eightbit-btn d-flex justify-content-center align-items-center" style={{height: '30%', fontSize: 42, textAlign: 'center'}} onClick={() => this.renderRegisterForm()}>Register</div>
                     </div>
                 )
             case 'login':
@@ -46,7 +49,7 @@ class MainMenuScreen extends React.Component {
     render() {
         const content = this.renderContent()
         return (
-            <div className="d-flex justify-content-center flex-column" style={{ width: "1024px", height: "800px" }}>
+            <div className="mainMenu d-flex justify-content-center flex-column" style={{ width: "1024px", height: "800px" }}>
                 {content}
             </div>
         )
