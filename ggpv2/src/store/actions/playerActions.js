@@ -1,11 +1,13 @@
 import axios from 'axios';
+
+import { API_URL } from '../../config/config';
 import { toggleGameData } from './modalActions';
 
 export const register = (username, password) => (dispatch) => {
     console.log(username, password)
     const form = { username, password }
     // axios.post('https://fggpe-server.herokuapp.com/signup', form).then(res => {
-    axios.post('http://localhost:5000/signup', form).then(res => {
+    axios.post(`${API_URL}/signup`, form).then(res => {
         console.log(res)
         if (res.data.success) {
             console.log('register complete')
@@ -17,7 +19,7 @@ export const register = (username, password) => (dispatch) => {
 
 export const login = (username, password) => (dispatch) => {
     const form = { username, password }
-    axios.post('/login', form).then(res => {
+    axios.post(`${API_URL}/login`, form).then(res => {
         // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
         if (res.data.success) {
             dispatch({
@@ -63,7 +65,7 @@ export const saveGame = (slot) => (dispatch, getState) => {
         }
     }
 
-    axios.post('/saveGame', gameData).then(res => {
+    axios.post(`${API_URL}/saveGame`, gameData).then(res => {
         console.log({ res })
         console.log('zapisalem')
         dispatch(getSavesData())
@@ -77,7 +79,7 @@ export const getSavesData = () => (dispatch, getState) => {
         id: id
     }
 
-    axios.post('/getSavesData', data).then(res => {
+    axios.post(`${API_URL}/getSavesData`, data).then(res => {
         if (res.data.success) {
             dispatch({
                 type: 'GET_SAVES_DATA',
@@ -97,7 +99,7 @@ export const loadGame = (i) => (dispatch, getState) => {
         saveSlot: i
     }
 
-    axios.post('/loadGame', data).then(res => {
+    axios.post(`${API_URL}/loadGame`, data).then(res => {
         if (res.data.success) {
             const { characterState, combatState, eventState, levelState, modalState, positionState, shopState } = res.data.gameData;
             dispatch({
