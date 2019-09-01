@@ -121,7 +121,7 @@ export const loadGame = (i) => (dispatch, getState) => {
 }
 
 export const checkAuth = () => dispatch => {
-    axios.get('/current_user').then(res => {
+    axios.get(`${API_URL}/current_user`).then(res => {
         if (res.data) {
             dispatch({
                 type: 'PLAYER_LOGGED_IN',
@@ -137,7 +137,7 @@ export const checkAuth = () => dispatch => {
 }
 
 export const logout = () => dispatch => {
-    axios.get('/api/logout').then(res => {
+    axios.get(`${API_URL}/api/logout`).then(res => {
         window.location.reload();
     }).catch(err => {
         console.log({ err })
