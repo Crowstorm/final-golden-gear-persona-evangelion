@@ -8,7 +8,7 @@ const initial_state = {
     characterCardVisibility: false,
     combatRewardsCardVisibility: false,
     shopVisibility: false,
-    gameDataVisibility: true,
+    gameDataVisibility: false,
     shopContent: {
         armor: [],
         weapon: [],
