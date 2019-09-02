@@ -47,7 +47,8 @@ class CampBattlefield extends React.Component {
             { text: "With forbidden magic, you... You...", char: dialogueCharacters.setsuna },
             { text: "Weeeee, hahagagagag!", char: dialogueCharacters.tonoruk },
             { text: "Contrary to you, he seems to be happy.", char: dialogueCharacters.deth },
-            //Wjebać efekt i przeniesc z battlefielda
+            { text: "Deth and Tanoku joined your party.", char: dialogueCharacters.unknown },
+            { text: "However that's the end of this demo. You are free to roam the area and find a way to crash the game, but you won't find new adventures for now.", char: dialogueCharacters.unknown },
         ]
 
         this.secondWave1 = [
