@@ -80,10 +80,10 @@ class CampBattlefield extends React.Component {
 
     fightFirstWave = () => {
         const foes = [
-            enemies.bandit,
-            enemies.bandit,
+            enemies.banditLeader2,
+            enemies.bandit2,
             enemies.militaryPolice,
-            // enemies.bandit,
+            enemies.bandit2,
             // enemies.bandit,
         ]
 
@@ -95,10 +95,12 @@ class CampBattlefield extends React.Component {
     fightSecondWave = () => {
         const foes = [
             enemies.militaryPolice,
-            enemies.bandit,
-            enemies.bandit,
-            enemies.bandit,
-            enemies.bandit,
+            enemies.bandit2,
+            enemies.bandit2,
+            enemies.bandit2,
+            enemies.bandit2,
+            enemies.banditLeader2,
+            enemies.militaryPolice,
             // enemies.bandit,
             // enemies.bandit,
             // enemies.bandit,
@@ -135,11 +137,9 @@ class CampBattlefield extends React.Component {
     }
 
     secondWaveDefeated = () => {
-        console.log('gz');
         this.props.updateQuestProgress('The Bridge', 'secondWave', true)
     }
     firstWaveDefeated = () => {
-        console.log('gz');
         this.props.updateQuestProgress('The Bridge', 'firstWave', true)
     }
 
