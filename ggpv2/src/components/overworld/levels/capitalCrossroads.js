@@ -29,18 +29,18 @@ class CapitalCrossroads extends React.Component {
             { text: "No, I need to go west, someone is in danger.", char: dialogueCharacters.shujin }
         ]
         this.newAllies = [
-            { text: "We're near the castle, they won't dare chase us here.", char: dialogueCharacters.shujin },
+            { text: "We're near the castle, they won't dare chasing us here.", char: dialogueCharacters.shujin },
             { text: "So we have some time to talk. Why were you being attacked by them? You... don't look wealthy.", char: dialogueCharacters.setsuna },
             { text: "All my equipment got stolen while I was at the Inn. I was with this lady I saved from the bandits today's morning...", char: dialogueCharacters.shujin },
-            { text: "Next thing I know is I'm upstairs, without belongings and feeling extremely weak. As I mentioned before, those bandits shouldn't stand a chance against me.", char: dialogueCharacters.shujin },
+            { text: "Next thing I know is I'm upstairs, without my belongings and feeling extremely weak. As I mentioned before, those bandits shouldn't stand a chance against me.", char: dialogueCharacters.shujin },
             { text: "Hmm... Let me see...", char: dialogueCharacters.setsuna },
-            { text: "You are being examined by Setsuna. You can feel magic flowing through your body and roaming through your brain.", char: dialogueCharacters.unknown },
+            { text: "You are being examined by Wotah. You can feel magic flowing through your body and roaming through your brain.", char: dialogueCharacters.unknown },
             { text: "I feel powerful surpression in your body. Not only it blocks my magic, but also limits your own organism.", char: dialogueCharacters.setsuna },
             { text: "I take you knew how to use magic, and your muscles certainly have memory of years of training. However...", char: dialogueCharacters.setsuna },
             { text: "You feel a sharp pain in your chest.", char: dialogueCharacters.unknown },
             { text: "I can only do so much... I damaged the barrier holding you down, you should be able to use basic magic and your muscles should slowly start to regenerate.", char: dialogueCharacters.setsuna },
             { text: "This should be enough to deal with bandits again, but I need to rescue the Princess, she's been missing for several days now.", char: dialogueCharacters.shujin },
-            { text: "In that case I will help you, Princess is loved by the masses and my faith won't allow me to stand idle. We need more allies, though...", char: dialogueCharacters.setsuna },
+            { text: "In that case I will help you, Princess is loved by the people and my faith won't allow me to stand idle. We need more allies, though...", char: dialogueCharacters.setsuna },
             { text: "...", char: dialogueCharacters.setsuna },
             { text: "Well, I was traveling with two adventurers before one of them wandered away and the other went looking for him.", char: dialogueCharacters.setsuna },
             { text: "But I cannot vouch for their loyalty nor resolve. They are a weird bunch.", char: dialogueCharacters.setsuna },
@@ -55,10 +55,10 @@ class CapitalCrossroads extends React.Component {
             { text: "650 experiance points, 300 gold and some equipment. After this dialogue ends check your inventory. I'm a generous developer, so I also restored your HP and mana.", char: dialogueCharacters.unknown, effect: this.lootForSkip },
             { text: "Summary of what you learned:", char: dialogueCharacters.unknown },
             { text: "Adventurers are getting attacked by an unknown group, forcing them out of the capital.", char: dialogueCharacters.unknown },
-            { text: "To make matters worse, one of Setsuna's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
-            { text: "As for the second companion, known for his good nature, went east to find out about the mysterious group working in the capital. This is your best shot at finding him.", char: dialogueCharacters.unknown },
+            { text: "To make matters worse, one of Wotah's companions are wanted by Military Police for desecrating the corpses and blasphemy at local cemetary. His current whereabouts are unknown", char: dialogueCharacters.unknown },
+            { text: "As for the second companion, known for his good nature, he went east to find out about the mysterious group working in the capital. This is your best shot at finding him.", char: dialogueCharacters.unknown },
             { text: "Before you enter a new level you will be able to talk to a 'traveling' merchant, so you can upgrade your equipment if you wish.", char: dialogueCharacters.unknown },
-            { text: "Now go, and don't get spooked, I teleported him here, saving myself a lot of time from not creating a proper shop. Deadlines are the biggest threat, never forget that.", char: dialogueCharacters.unknown, effect: this.endOfExcuses },
+            { text: "Now go, and don't get spooked, I teleported him here for you.", char: dialogueCharacters.unknown, effect: this.endOfExcuses },
             // { text: '', }
         ]
     }

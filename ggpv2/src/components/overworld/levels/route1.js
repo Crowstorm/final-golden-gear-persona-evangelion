@@ -23,8 +23,8 @@ class Route1 extends React.Component {
         this.damselInDistress = [
             { text: "Stop right there, scum!", char: dialogueCharacters.shujin },
             { text: "Huh, you're approaching me? Instead of running away you're coming straight at me?", char: dialogueCharacters.banditLeader },
-            { text: "I can't beat the shit out of you without getting closer", char: dialogueCharacters.shujin },
-            { text: "Hoho, then come as close as you like", char: dialogueCharacters.banditLeader },
+            { text: "I can't beat the shit out of you without getting closer!", char: dialogueCharacters.shujin },
+            { text: "Hoho, then come as close as you like!", char: dialogueCharacters.banditLeader },
             { text: "", effect: this.startBanditCombat },
         ]
         this.damselSaved = [
@@ -32,7 +32,7 @@ class Route1 extends React.Component {
             { text: "", effect: this.goToInn },
         ]
         this.dialogue1 = [
-            { text: "Your character is extremely overpowered, but you never know what future might bring. Follow my instructions for now. Or don't, I'm not your mom.", char: dialogueCharacters.unknown },
+            { text: "Your character is extremely overpowered, but you never know what might happen in the future. Follow my instructions for now. Or don't, I'm not your mom.", char: dialogueCharacters.unknown },
             { text: "Let's start with the basics. Nothing more basic than a Basic Attack.", char: dialogueCharacters.unknown },
             { text: "Press the Basic Attack button and then click on portrait of the enemy you want to target", char: dialogueCharacters.unknown }
         ]

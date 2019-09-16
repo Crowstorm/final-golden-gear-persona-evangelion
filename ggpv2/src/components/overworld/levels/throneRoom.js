@@ -22,10 +22,10 @@ class ThroneRoom extends React.Component {
             { text: "Thank you for coming. As you already heard, the princess had been kidnapped.", char: dialogueCharacters.king },
             { text: "And in this time of need we know that we can count on you.", char: dialogueCharacters.king, effect: this.addSaveThePrincessQuest },
             { text: "We've already sent our best men, but the truth is anyone could be involved in her disappearance.", char: dialogueCharacters.king },
-            { text: "It is to our understanding that you care deeply for our daughter. If you save her you shall be offered her hand.", char: dialogueCharacters.king },
-            { text: "Essentialy making you the Prince of the Realm.", char: dialogueCharacters.king },
-            { text: "She was last seen on the streets near the Inn. That's not the first time something bad happened there. During the night bandits are patrolling this area.", char: dialogueCharacters.king },
-            { text: "Now go, my friend, and save the Princess. Time might be running short.", char: dialogueCharacters.king }
+            { text: "I know that you care deeply for our daughter. If you save her I shall allow you to marry her.", char: dialogueCharacters.king },
+            { text: "That's going to make you the Prince of the Realm.", char: dialogueCharacters.king },
+            { text: "She was last seen on the streets near the Inn. That's not the first time something bad happened there. During the night bandits are lurking in that area.", char: dialogueCharacters.king },
+            { text: "Now go, my friend, and save the Princess. Time is running short.", char: dialogueCharacters.king }
         ];
         this.noPrincessQuestDialogue = [
             { text: "I can't leave yet, King has an important matter to discuss", char: dialogueCharacters.shujin }

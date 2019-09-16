@@ -21,7 +21,7 @@ class WestsideInn extends React.Component {
             dialogue: null
         }
         this.damselSaved = [
-            { text: "Thank you again for saving me from the bandits.", char: dialogueCharacters.damselInDistress },
+            { text: "Thank you so much for saving me from the bandits.", char: dialogueCharacters.damselInDistress },
             { text: "If it wasn't for you I don't know what would have happened.", char: dialogueCharacters.damselInDistress },
             { text: "No need to thank me, my lady. It is an honor to serve the citizens of the realm.", char: dialogueCharacters.shujin },
             { text: "Still, I need to repay you for your bravery.", char: dialogueCharacters.damselInDistress },
@@ -29,7 +29,7 @@ class WestsideInn extends React.Component {
             { text: "I respectfully decline, my lady.", char: dialogueCharacters.shujin },
             { text: "Then at least allow me to offer you a drink.", char: dialogueCharacters.damselInDistress },
             { text: "Very well!", char: dialogueCharacters.shujin },
-            { text: "You empty the cup", effect: this.mysteriousDrink },
+            { text: "You empty the cup", effect: this.mysteriousDrink, char: dialogueCharacters.unknown },
         ]
 
         this.banditsAttack = [
@@ -113,8 +113,8 @@ class WestsideInn extends React.Component {
             { text: "I've heard a noise, what's go...", char: dialogueCharacters.setsuna },
             { text: "Piss off, lass, this doesn't concern you!", char: dialogueCharacters.banditLeader },
             { text: "Listen to them... Run!", char: dialogueCharacters.shujin },
-            { text: "I won't leave someone in an uneven fight. Allow me to help. My name is Setsuna and I will offer you the power of the Blessings.", char: dialogueCharacters.setsuna },
-            { text: "MAY THE GODS BLUH BLUH BLUH, HEALING!!!!!!!!!", char: dialogueCharacters.setsuna, effect: this.healMainCharacter },
+            { text: "I won't leave someone in an uneven fight. Allow me to help. My name is Wotah and I will offer you the power of the Blessings.", char: dialogueCharacters.setsuna },
+            { text: "KONO SUBARASHII OTOKO NI SHUKUFUKU WO!!!", char: dialogueCharacters.setsuna, effect: this.healMainCharacter },
             { text: "Thank you! Now, let's finish this!", char: dialogueCharacters.shujin, effect: this.setsunaJoinTheParty },
         ]
         this.props.addDialogue(dialogue);

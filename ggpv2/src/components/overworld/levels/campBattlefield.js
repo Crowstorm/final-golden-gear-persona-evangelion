@@ -31,11 +31,11 @@ class CampBattlefield extends React.Component {
 
         this.afterFirstWave = [
             { text: "AAARGGGHHHH!!!", char: dialogueCharacters.tonoruk },
-            { text: "Tonoruk! Hold on, we're coming!", char: dialogueCharacters.setsuna },
+            { text: "Tanku! Hold on, we're coming!", char: dialogueCharacters.setsuna },
             { text: "Don't let those two come any closer, destroy the bridge!", char: dialogueCharacters.militaryRegular },
             { text: "Hey, big boy, don't give up on me! Ah, shit! Die, you reeking meatsack!", char: dialogueCharacters.deth },
             { text: "AAAAAAAAAAAAAAAAAHHHHHHHHHH!!!", char: dialogueCharacters.bandit },
-            { text: "Setsuna, quickly! They are about to destroy the bridge!", char: dialogueCharacters.shujin },
+            { text: "Wotah, quickly! They are about to destroy the bridge!", char: dialogueCharacters.shujin },
             { text: "Deth, keep him alive at any cost! I will help him once we're done here!", char: dialogueCharacters.setsuna },
         ]
 
@@ -47,7 +47,7 @@ class CampBattlefield extends React.Component {
             { text: "With forbidden magic, you... You...", char: dialogueCharacters.setsuna },
             { text: "Weeeee, hahagagagag!", char: dialogueCharacters.tonoruk },
             { text: "Contrary to you, he seems to be happy.", char: dialogueCharacters.deth },
-            { text: "Deth and Tanoku joined your party.", char: dialogueCharacters.unknown },
+            { text: "Deth and Tanku joined your party.", char: dialogueCharacters.unknown },
             { text: "However that's the end of this demo. You are free to roam the area and find a way to crash the game, but you won't find new adventures for now.", char: dialogueCharacters.unknown },
         ]
 
