@@ -5,6 +5,8 @@ import bandit_left from '../../assets/sprites/enemies/bandit/overworld/left_stan
 import bandit_right from '../../assets/sprites/enemies/bandit/overworld/right_stand.png';
 import bandit_front from '../../assets/sprites/enemies/bandit/overworld/down_stand.png';
 import bandit_back from '../../assets/sprites/enemies/bandit/overworld/up_stand.png';
+import banditPortrait from '../../assets/portraits/bandit.png';
+import banditLeaderPortrait from '../../assets/portraits/banditLeader.png';
 //militaryPolice
 import militaryPolice_left from '../../assets/sprites/enemies/militaryPolice/overworld/left_stand.png';
 import militaryPolice_right from '../../assets/sprites/enemies/militaryPolice/overworld/right_stand.png';
@@ -37,7 +39,7 @@ export const beholder = {
 
 export const bandit = {
     name: 'Bandit',
-    portrait: 'https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417',
+    portrait: banditPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     left: bandit_left,
     right: bandit_right,
@@ -64,7 +66,7 @@ export const bandit = {
 }
 export const bandit2 = {
     name: 'Bandit',
-    portrait: 'https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417',
+    portrait: banditPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     left: bandit_left,
     right: bandit_right,
@@ -91,7 +93,7 @@ export const bandit2 = {
 }
 export const banditLeader = {
     name: 'Bandit Leader',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: banditLeaderPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
         maxHp: 35,
@@ -114,7 +116,7 @@ export const banditLeader = {
 }
 export const banditLeader2 = {
     name: 'Bandit Leader',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: banditLeaderPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
         maxHp: 35,

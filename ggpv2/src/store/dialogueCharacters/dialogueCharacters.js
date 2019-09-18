@@ -1,21 +1,27 @@
 import kingPortrait from '../../assets/portraits/king.png'
+import shujinPortrait from '../../assets/portraits/shujin.png'
+import wotahPortrait from '../../assets/portraits/wotah.png'
+import dethPortrait from '../../assets/portraits/deth.png'
+import tankuPortrait from '../../assets/portraits/tanku.png'
+import banditPortrait from '../../assets/portraits/bandit.png'
+import banditLeaderPortrait from '../../assets/portraits/banditLeader.png'
 
 export const shujin = {
-    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    portrait: shujinPortrait,
     name: "Shujin"
 }
 
 export const setsuna = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
-    name: "Setsuna"
+    portrait: wotahPortrait,
+    name: "Wotah"
 }
 export const deth = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
+    portrait: dethPortrait,
     name: "Deth"
 }
 export const tonoruk = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
-    name: "Tonoruk"
+    portrait: tankuPortrait,
+    name: "Tanku"
 }
 
 export const king = {
@@ -24,11 +30,11 @@ export const king = {
 }
 
 export const banditLeader = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417",
+    portrait: banditLeaderPortrait,
     name: "Bandit Leader"
 }
 export const bandit = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417",
+    portrait: banditPortrait,
     name: "Bandit"
 }
 export const militaryRegular = {

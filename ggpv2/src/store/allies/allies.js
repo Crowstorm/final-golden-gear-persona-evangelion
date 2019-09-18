@@ -4,9 +4,13 @@ import * as skills from '../skills/skills';
 import * as spells from '../skills/spells';
 import * as items from '../items/items';
 
+import shujinPortrait from '../../assets/portraits/shujin.png'
+import wotahPortrait from '../../assets/portraits/wotah.png'
+
+
 export const setsuna = {
-    name: 'Setsuna',
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/b/be/Echoes_Cleric.png/revision/latest?cb=20170405045743",
+    name: 'Wotah',
+    portrait: wotahPortrait,
     stats: {
         level: 1,
         exp: 0,
@@ -39,8 +43,8 @@ export const setsuna = {
 }
 
 export const mainChar = {
-    name: 'BigBoss',
-    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    name: 'Shujin',
+    portrait: shujinPortrait,
     stats: {
         level: 1,
         exp: 0,
@@ -105,8 +109,8 @@ export const mainChar = {
     ]
 }
 export const mainCharPre = {
-    name: 'BigBoss',
-    portrait: "https://unknown321.github.io/mgswaifus/img/ui_face_big_boss.png",
+    name: 'Shujin',
+    portrait: shujinPortrait,
     stats: {
         level: 100,
         exp: 0,
