@@ -156,7 +156,7 @@ class WestsideInn extends React.Component {
         const condition2 = {
             type: 'hp',
             percentage: 0.5,
-            name: 'BigBoss'
+            name: 'Shujin'
         }
 
         this.props.addCombatTriggers({ effect: this.weak, condition: condition1 })

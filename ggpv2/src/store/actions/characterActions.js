@@ -34,7 +34,7 @@ export const checkForMainCharTriggers = () => (dispatch, getState) => {
     const triggers = getState().event.combatTriggers;
     let isTrigger = false;
     triggers.forEach(trigger => {
-        if (trigger.condition && trigger.condition.name && trigger.condition.name === "BigBoss" && trigger.condition.type === 'hp') {
+        if (trigger.condition && trigger.condition.name && trigger.condition.name === "Shujin" && trigger.condition.type === 'hp') {
             isTrigger = true;
         }
     })
