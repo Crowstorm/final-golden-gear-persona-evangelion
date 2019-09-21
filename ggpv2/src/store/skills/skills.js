@@ -45,13 +45,13 @@ export const allIn = {
     costType: "hp",
     costDataType: "perc",
     cost: 20,
-    multiplier: 2.5,
-    bonus: {
-        boost: ['strength'],
-        boostType: "flat",
-        boostAmount: 10,
-        boostDuration: 2,
-    },
+    multiplier: 3,
+    // bonus: {
+    //     boost: ['strength'],
+    //     boostType: "flat",
+    //     boostAmount: 10,
+    //     boostDuration: 2,
+    // },
     description: "Devastating blow increasing strength of the user."
 }
 

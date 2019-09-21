@@ -12,6 +12,7 @@ import militaryPolice_left from '../../assets/sprites/enemies/militaryPolice/ove
 import militaryPolice_right from '../../assets/sprites/enemies/militaryPolice/overworld/right_stand.png';
 import militaryPolice_front from '../../assets/sprites/enemies/militaryPolice/overworld/down_stand.png';
 import militaryPolice_back from '../../assets/sprites/enemies/militaryPolice/overworld/up_stand.png';
+import militaryPolicePortrait from '../../assets/portraits/militaryPolice.png';
 
 
 export const beholder = {
@@ -55,7 +56,7 @@ export const bandit = {
         magicResist: 2,
         agility: 11,
         speed: 6,
-        strength: 11,
+        strength: 10,
         luck: 3
     },
     weapon: weapons.woodenSword,
@@ -82,7 +83,7 @@ export const bandit2 = {
         magicResist: 3,
         agility: 5,
         speed: 6,
-        strength: 18,
+        strength: 16,
         luck: 5
     },
     weapon: weapons.woodenSword,
@@ -100,12 +101,12 @@ export const banditLeader = {
         hp: 35,
         maxMp: 0,
         mp: 0,
-        defence: 8,
+        defence: 6,
         magic: 5,
-        magicResist: 8,
+        magicResist: 6,
         agility: 12,
         speed: 6,
-        strength: 16,
+        strength: 15,
         luck: 5
     },
     weapon: weapons.woodenSword,
@@ -185,7 +186,7 @@ export const boar = {
 
 export const militaryPolice = {
     name: 'Military Police',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: militaryPolicePortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     left: militaryPolice_left,
     right: militaryPolice_right,
@@ -202,7 +203,7 @@ export const militaryPolice = {
         agility: 20,
         speed: 6,
         strength: 22,
-        luck: 10
+        luck: 0
     },
     weapon: weapons.steelSword,
     loot: {

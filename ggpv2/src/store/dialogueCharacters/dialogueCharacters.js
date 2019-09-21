@@ -5,6 +5,9 @@ import dethPortrait from '../../assets/portraits/deth.png'
 import tankuPortrait from '../../assets/portraits/tanku.png'
 import banditPortrait from '../../assets/portraits/bandit.png'
 import banditLeaderPortrait from '../../assets/portraits/banditLeader.png'
+import militaryPolicePortrait from '../../assets/portraits/militaryPolice.png'
+import damselPortrait from '../../assets/portraits/maiden.png'
+import unknownPortrait from '../../assets/portraits/unknown.png'
 
 export const shujin = {
     portrait: shujinPortrait,
@@ -38,16 +41,16 @@ export const bandit = {
     name: "Bandit"
 }
 export const militaryRegular = {
-    portrait: "https://vignette.wikia.nocookie.net/fireemblem/images/f/f1/Echoes_Brigand.png/revision/latest?cb=20170405091417",
+    portrait: militaryPolicePortrait,
     name: "Military Knight"
 }
 
 export const damselInDistress = {
-    portrait: "https://i.pinimg.com/originals/46/31/34/4631344b84a8e432f49eb294af4486c8.jpg",
+    portrait: damselPortrait,
     name: "Woman"
 }
 
 export const unknown = {
-    portrait: "http://brotherswithnogame.com/blog/wp-content/uploads/2011/01/White_square_with_question_mark.png",
+    portrait: unknownPortrait,
     name: "Unknown"
 }
