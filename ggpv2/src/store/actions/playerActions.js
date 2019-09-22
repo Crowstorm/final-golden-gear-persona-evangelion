@@ -18,9 +18,16 @@ export const register = (username, password) => (dispatch) => {
     })
 }
 
+const config = {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
 export const login = (username, password) => (dispatch) => {
     const form = { username, password }
-    axios.post(`${API_URL}/login`, form).then(res => {
+    axios.post(`${API_URL}/login`, form, config).then(res => {
         // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
         if (res.data.success) {
             dispatch({
