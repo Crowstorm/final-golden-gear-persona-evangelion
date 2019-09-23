@@ -22,7 +22,7 @@ class AbandonedBuildingInside extends React.Component {
             { text: "For a bunch of scums that want to be taken as dangerous lot you're not doing a very good job! There are still adventurers in the area.", char: dialogueCharacters.militaryRegular },
             { text: "Piss off, shiny pants. Without us you wouldn't accomplish shite. All you do is sit around inside the walls and leave the dirty job to us.", char: dialogueCharacters.bandit },
             { text: "And you don't even pay that good!", char: dialogueCharacters.bandit },
-            { text: "You're payment is not being executed for 'bothering' people. Now, I want you to finish the job and find those two newcomers before they ruin everything!", char: dialogueCharacters.militaryRegular },
+            { text: "Your payment is not being executed for 'bothering' people. Now, I want you to finish the job and find those two newcomers before they ruin everything!", char: dialogueCharacters.militaryRegular },
             { text: "Heh, sure, 'boss'. But it seems we have another pair of cunts that want to have their throats cut.", char: dialogueCharacters.bandit },
             { text: "HOW DARE YOU EAVESDROP ON THE MILITARY'S MATTER! DIE!", char: dialogueCharacters.militaryRegular },
             { text: "Oh dear...", char: dialogueCharacters.setsuna },

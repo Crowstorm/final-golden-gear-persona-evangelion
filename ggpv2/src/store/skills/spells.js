@@ -9,7 +9,7 @@ import healingIcon from './icons/spellIcons/healing.png';
 export const magicBullet = {
     icon: magicBulletIcon,
     name: "Magic Bullet",
-    hitChance: 90,
+    hitChance: 100,
     costType: "mp",
     costDataType: 'int',
     cost: 2,

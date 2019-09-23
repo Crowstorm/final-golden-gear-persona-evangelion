@@ -21,7 +21,7 @@ class ThroneRoom extends React.Component {
         this.kingDialogue = [
             { text: "Thank you for coming. As you already heard, the princess had been kidnapped.", char: dialogueCharacters.king },
             { text: "And in this time of need we know that we can count on you.", char: dialogueCharacters.king, effect: this.addSaveThePrincessQuest },
-            { text: "We've already sent our best men, but the truth is anyone could be involved in her disappearance.", char: dialogueCharacters.king },
+            { text: "We've already sent our best men. The truth is anyone could be involved in her disappearance.", char: dialogueCharacters.king },
             { text: "I know that you care deeply for our daughter. If you save her I shall allow you to marry her.", char: dialogueCharacters.king },
             { text: "That's going to make you the Prince of the Realm.", char: dialogueCharacters.king },
             { text: "She was last seen on the streets near the Inn. That's not the first time something bad happened there. During the night bandits are lurking in that area.", char: dialogueCharacters.king },
@@ -40,11 +40,11 @@ class ThroneRoom extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keydown", this.handleKeyDown);
         document.getElementById('d12_17').innerHTML = `<img src=${king} />`
-        // this.setState({
-        //     dialogue: this.kingDialogue
-        // })
+        this.setState({
+            dialogue: this.kingDialogue
+        })
         this.props.addDialogue(this.tutorial)
-        // this.props.toggleDialogueState();
+        this.props.toggleDialogueState();
     }
 
     componentDidUpdate(prevProps) {

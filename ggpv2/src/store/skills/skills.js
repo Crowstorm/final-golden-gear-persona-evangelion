@@ -40,7 +40,7 @@ export const whimOfFate = {
 
 export const allIn = {
     icon: allInIcon,
-    name: "All In Attack",
+    name: "All Out Attack",
     hitChance: 90,
     costType: "hp",
     costDataType: "perc",

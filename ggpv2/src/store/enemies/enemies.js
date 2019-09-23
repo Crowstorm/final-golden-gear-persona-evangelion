@@ -14,6 +14,9 @@ import militaryPolice_front from '../../assets/sprites/enemies/militaryPolice/ov
 import militaryPolice_back from '../../assets/sprites/enemies/militaryPolice/overworld/up_stand.png';
 import militaryPolicePortrait from '../../assets/portraits/militaryPolice.png';
 
+import boarPortrait from '../../assets/portraits/boar.png';
+import wolfPortrait from '../../assets/portraits/wolf.png';
+
 
 export const beholder = {
     name: 'Beholder',
@@ -141,7 +144,7 @@ export const banditLeader2 = {
 
 export const wolf = {
     name: 'Wolf',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: wolfPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
         maxHp: 26,
@@ -163,7 +166,7 @@ export const wolf = {
 }
 export const boar = {
     name: 'Boar',
-    portrait: 'https://i.pinimg.com/originals/ce/48/b5/ce48b5ff66a976011a24ac8d7f722d5e.png',
+    portrait: boarPortrait,
     combatGif: 'https://i.imgur.com/R5xhCzA.png',
     stats: {
         maxHp: 35,
