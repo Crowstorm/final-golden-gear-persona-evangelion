@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.9609d538.css",
   "main.css.map": "static/css/main.9609d538.css.map",
-  "main.js": "static/js/main.45a3ad72.js",
-  "main.js.map": "static/js/main.45a3ad72.js.map",
+  "main.js": "static/js/main.ef8c96b6.js",
+  "main.js.map": "static/js/main.ef8c96b6.js.map",
   "static\\media\\abandonedBuilding.png": "static/media/abandonedBuilding.8c200504.png",
   "static\\media\\abandonedBuildingInside.png": "static/media/abandonedBuildingInside.3de0f91e.png",
   "static\\media\\allIn.png": "static/media/allIn.afc8e5e6.png",
@@ -25,6 +25,7 @@
   "static\\media\\throneRoomTest.png": "static/media/throneRoomTest.2e0518ac.png",
   "static\\media\\westsideInnBedroom.png": "static/media/westsideInnBedroom.efe2e40f.png",
   "static\\media\\whirlwind.png": "static/media/whirlwind.af92be67.png",
+  "static\\media\\wolf.png": "static/media/wolf.ede85dc1.png",
   "static\\media\\woodBackground.jpg": "static/media/woodBackground.5b6b1094.jpg",
   "static\\media\\woodenBackground.jpg": "static/media/woodenBackground.19fccd77.jpg"
 }
