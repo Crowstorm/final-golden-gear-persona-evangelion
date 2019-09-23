@@ -52,7 +52,6 @@ export const allyLoseHp = (dmg, i) => (dispatch, getState) => {
         i
     })
     let areAlive = dispatch(checkIfCharactersAlive());
-    console.log({ areAlive })
     if (!areAlive) {
         dispatch({
             type: 'GAME_OVER'
@@ -122,9 +121,7 @@ export const removeItemOrAbility = (section, toRemove, charIndex = 0) => {
         switch (section) {
             case 'consumables':
                 let currentConsumables = getState().characters[0].consumables;
-                console.log({ currentConsumables })
                 indexToRemove = _.findIndex(currentConsumables, { name: toRemove.name })
-                console.log(indexToRemove);
                 dispatch({
                     type: 'REMOVE_ITEM_OR_ABILITY',
                     section,
@@ -167,8 +164,6 @@ export const addItemOrAbility = (section, toAdd, i = 0) => dispatch => {
 export const equip = (charIndex, item) => (dispatch, getState) => {
     //check for the type of item to equip
     let slot = item.slot;
-
-    console.log({ item }, { slot })
 
     let currentItem = (slot === 'rightHand') ? getState().characters[charIndex].weapon : getState().characters[charIndex].armor[slot];
 

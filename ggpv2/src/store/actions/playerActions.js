@@ -26,7 +26,6 @@ const config = {
   };
 
 export const login = (username, password) => (dispatch) => {
-    console.log('test')
     const form = { username, password }
     axios.post(`${API_URL}/login`, form, config).then(res => {
         // axios.post('https://fggpe-server.herokuapp.com/login', form).then(res => {
@@ -75,8 +74,6 @@ export const saveGame = (slot) => (dispatch, getState) => {
     }
 
     axios.post(`${API_URL}/saveGame`, gameData).then(res => {
-        console.log({ res })
-        console.log('zapisalem')
         dispatch(getSavesData())
     })
 }

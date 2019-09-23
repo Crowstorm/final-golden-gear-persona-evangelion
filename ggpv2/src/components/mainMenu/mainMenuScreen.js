@@ -42,7 +42,7 @@ class MainMenuScreen extends React.Component {
             case 'register':
                 return <RegisterForm {...this.props}/>
             default:
-                console.log('renderContent error')
+                console.error('renderContent error')
         }
     }
 

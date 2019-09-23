@@ -108,7 +108,7 @@ class Route1 extends React.Component {
     }
     tutorial3 = () => {
         const dialogue = [
-            { text: "Another one bites the dust! I like to think you are listening to my instructions so there is a final one from me.",  char: dialogueCharacters.unknown },
+            { text: "Another one bites the dust! I like to think you are listening to my instructions so this is a final one from me.",  char: dialogueCharacters.unknown },
             { text: "You are one of the few remaining battle mages in the world, that means your skills and magic alike are extremely powerful",  char: dialogueCharacters.unknown },
             { text: "Press the Magic button and pick a spell I made available for you. It's AOE, so it will target all visible enemies on the battlefield. Burn them to the ground.",  char: dialogueCharacters.unknown },
             { text: "If there are still enemies willing to fight you after that, that means either you didn't follow my instructions or I'm a terrible game designer. Or both.",  char: dialogueCharacters.unknown },

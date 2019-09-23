@@ -5,9 +5,9 @@ import * as spells from '../skills/spells';
 
 const playerDefaultState = {
     loading: false,
-    isAuth: true,
-    id: "5ce84dcbd3e8ae7de4415f73",
-    username: '111',
+    isAuth: false,
+    // id: "5ce84dcbd3e8ae7de4415f73",
+    // username: '111',
     // id: "5ce84dcbd3e8ae7de4415f73",
     // username: 'admin5',
     savedGames: [],
