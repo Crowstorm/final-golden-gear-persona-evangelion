@@ -116,7 +116,7 @@ class CombatScreen extends React.Component {
     render() {
         const background = this.renderBattleBackground();
         return (
-            <div className="combatScreen d-flex flex-wrap align-content-center justify-content-center" style={{ backgroundImage: `url(${background})`, backgroundPosition: 'center' }}>
+            <div className="combatScreen d-flex flex-wrap align-content-center justify-content-center" style={{ backgroundImage: `url(${background})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                 <AttackInterface {...this.props} />
             </div>
         )

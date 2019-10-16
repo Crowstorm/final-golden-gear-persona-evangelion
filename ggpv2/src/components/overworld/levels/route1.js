@@ -23,7 +23,7 @@ class Route1 extends React.Component {
         this.damselInDistress = [
             { text: "Stop right there, scum!", char: dialogueCharacters.shujin },
             { text: "Huh, you're approaching me? Instead of running away you're coming straight at me?", char: dialogueCharacters.banditLeader },
-            { text: "I can't beat the shit out of you without getting closer!", char: dialogueCharacters.shujin },
+            { text: "I can't beat the crap out of you without getting closer!", char: dialogueCharacters.shujin },
             { text: "Hoho, then come as close as you like!", char: dialogueCharacters.banditLeader },
             { text: "", effect: this.startBanditCombat },
         ]
