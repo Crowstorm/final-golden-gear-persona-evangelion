@@ -5,7 +5,7 @@
   "proxy": "http://localhost:5000",
   "homepage": "https://crowstorm.github.io/final-golden-gear-persona-evangelion/",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "immer": "^1.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
